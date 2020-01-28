@@ -18,6 +18,7 @@
 		2862B66323DF9EBD0047B47B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2862B66223DF9EBD0047B47B /* GoogleService-Info.plist */; };
 		2862B66723DFE17A0047B47B /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2862B66623DFE17A0047B47B /* Secrets.swift */; };
 		2862B66C23DFE26C0047B47B /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2862B66B23DFE26C0047B47B /* SignUpVC.swift */; };
+		2862B6B023DFFF3F0047B47B /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2862B6AF23DFFF3F0047B47B /* FirebaseAuthService.swift */; };
 		3D45F700C5198B3C28C12DCB /* Pods_Date_Night.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A0A167012B1843CEF3F7DD /* Pods_Date_Night.framework */; };
 		6BD4DEF7BB09901D06486257 /* Pods_Date_NightTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430EC1B11EDEEA43E7890593 /* Pods_Date_NightTests.framework */; };
 /* End PBXBuildFile section */
@@ -48,6 +49,7 @@
 		2862B66223DF9EBD0047B47B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2862B66623DFE17A0047B47B /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		2862B66B23DFE26C0047B47B /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
+		2862B6AF23DFFF3F0047B47B /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		430EC1B11EDEEA43E7890593 /* Pods_Date_NightTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Date_NightTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74ED85A185AA38B5892717CF /* Pods-Date-NightTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Date-NightTests.debug.xcconfig"; path = "Target Support Files/Pods-Date-NightTests/Pods-Date-NightTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B4BAB314A5629A1F14D7DE6B /* Pods-Date-Night.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Date-Night.debug.xcconfig"; path = "Target Support Files/Pods-Date-Night/Pods-Date-Night.debug.xcconfig"; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 		2862B67723DFEA710047B47B /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
+				2862B6AF23DFFF3F0047B47B /* FirebaseAuthService.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				2862B60523DD47130047B47B /* Date_Night.xcdatamodeld in Sources */,
 				2862B66C23DFE26C0047B47B /* SignUpVC.swift in Sources */,
 				2862B5FD23DD47130047B47B /* SceneDelegate.swift in Sources */,
+				2862B6B023DFFF3F0047B47B /* FirebaseAuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
