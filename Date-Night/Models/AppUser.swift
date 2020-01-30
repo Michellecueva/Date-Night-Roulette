@@ -12,36 +12,37 @@ import Firebase
 struct AppUser {
     let email: String?
     let uid: String
-    let userName: String?
-    let dateCreated: Date?
+    let firstName: String?
+  //  let dateCreated: Date?
     let photoURL: String?
     let sessionID: String?
     let preferences: [String]
     
-    init(from user: User,sessionID:String, preferences:[String]) {
-        self.userName = user.displayName
+    init(from user: User,sessionID:String?, preferences:[String]) {
+        self.firstName = user.displayName
         self.email = user.email
         self.uid = user.uid
-        self.dateCreated = user.metadata.creationDate
+      //  self.dateCreated = user.metadata.creationDate
         self.photoURL = user.photoURL?.absoluteString
         self.sessionID = sessionID
         self.preferences = preferences
-        
+    
     }
     
     init?(from dict: [String: Any], id: String) {
-        guard let userName = dict["userName"] as? String,
+        guard let firstName = dict["firstName"] as? String,
             let email = dict["email"] as? String,
             let photoURL = dict["photoURL"] as? String,
             let sessionID = dict["sessionID"] as? String,
-            let preferences = dict["preferences"] as? [String],
-            let dateCreated = (dict["dateCreated"] as? Timestamp)?.dateValue()
+            let preferences = dict["preferences"] as? [String]
+//            let dateCreated = (dict["dateCreated"] as? Timestamp)?.dateValue()
+            
             else {return nil}
         
-        self.userName = userName
+        self.firstName = firstName
         self.email = email
         self.uid = id
-        self.dateCreated = dateCreated
+      //  self.dateCreated = dateCreated
         self.photoURL = photoURL
         self.sessionID = sessionID
         self.preferences = preferences
@@ -49,11 +50,12 @@ struct AppUser {
     
     var fieldsDict: [String: Any] {
         return [
-            "userName": self.userName ?? "",
+            "firstName": self.firstName ?? "",
             "email": self.email ?? "",
             "sessionID": self.sessionID ?? "",
             "preferences": self.preferences,
-            "photoURL": self.photoURL ?? ""
+            "photoURL": self.photoURL ?? "",
+            "uid": self.uid
         ]
     }
 }
