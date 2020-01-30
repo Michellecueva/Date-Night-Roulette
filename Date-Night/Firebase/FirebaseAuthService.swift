@@ -20,38 +20,38 @@ class FirebaseAuthService {
     
     
     
-    func createNewUser(email: String, password: String, completion: @escaping (Result<User,Error>) -> ()) {
+    func createNewUser(email: String, password: String, completion: @escaping (Result<User,AppError>) -> ()) {
            auth.createUser(withEmail: email, password: password) { (result, error) in
                if let createdUser = result?.user {
                    completion(.success(createdUser))
                } else if let error = error {
-                   completion(.failure(error))
+                completion(.failure(.other(rawError: error)))
                }
            }
        }
-    
-    func updateUserFields(userName: String? = nil,photoURL: URL? = nil, completion: @escaping (Result<(),Error>) -> ()){
+    //changes auth current user information
+    func updateUserFields(name: String? = nil,photoURL: URL? = nil, completion: @escaping (Result<(),Error>) -> ()){
           let changeRequest = auth.currentUser?.createProfileChangeRequest()
-          if let userName = userName {
-              changeRequest?.displayName = userName
+          if let firstName = name {
+              changeRequest?.displayName = firstName
           }
           if let photoURL = photoURL {
               changeRequest?.photoURL = photoURL
           }
           changeRequest?.commitChanges(completion: { (error) in
               if let error = error {
-                  completion(.failure(error))
+                completion(.failure(error))
               } else {
                   completion(.success(()))
               }
           })
       }
     
-    func loginUser(email: String, password: String, completion: @escaping (Result<(), Error>) -> ()) {
+    func loginUser(email: String, password: String, completion: @escaping (Result<(), AppError>) -> ()) {
            auth.signIn(withEmail: email, password: password) { (result, error) in
             guard result?.user != nil else {
                 if let error = error {
-                completion(.failure(error))
+                    completion(.failure(.other(rawError: error)))
                 
             }
                 return
