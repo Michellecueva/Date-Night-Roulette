@@ -1,3 +1,5 @@
 Pods
 GoogleService-Info.plist
 Secrets.swift 
+.DS_Store
+xcuserdata/
