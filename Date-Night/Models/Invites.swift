@@ -8,15 +8,23 @@
 
 import Foundation
 
+enum invitationStatus:String {
+   
+    case pending
+    case accepted
+    case declined
+    
+}
+
 struct Invites:Codable {
     let from:String
     let to:String
     let invitationStatus:String
     
-    init(from:String, to:String, invitationStatus:String) {
+    init(from:String, to:String, invitationStatus:invitationStatus) {
         self.from = from
         self.to = to
-        self.invitationStatus = invitationStatus
+        self.invitationStatus = invitationStatus.rawValue
     }
     
     init?(from dict: [String:Any], id:String) {
