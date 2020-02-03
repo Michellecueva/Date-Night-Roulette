@@ -11,45 +11,43 @@ import FirebaseAuth
 
 class SignUpVC: UIViewController {
     
+    var theSignUpView = SignUpView()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loginButtonFunctions(email: "Michelle2@gmail.com", password: "password1234!", firstName: "Michelle")
+        addSignUpView()
         
         // Do any additional setup after loading the view.
     }
+    
+    func addSignUpView() {
+        view.addSubview(theSignUpView)
+    }
+    
     
     func loginButtonFunctions(email:String?,password:String?,firstName:String?) {
         
         guard let email = email,
             let password = password,
             let firstName = firstName else {
-                
-                return
-        }
-        
-        
-        guard  email.isValidEmail else {
-            
             return
         }
         
+        
+        guard email.isValidEmail else {
+            return
+        }
         
         
         guard password.isValidPassword else {
             return
         }
         FirebaseAuthService.manager.createNewUser(email: email, password: password) { (result) in
-            
-            
             self.updateUserAccount(with: result, firstName: firstName)
         }
-        
-        
-        
-        
     }
-    
     
     
     private func updateUserAccount(with result: Result<User,AppError>,firstName:String) {

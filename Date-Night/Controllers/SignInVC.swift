@@ -10,11 +10,16 @@ import UIKit
 
 class SignInVC: UIViewController {
 
-    
+    var theSignInView = SignInView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addSignInView()
         // Do any additional setup after loading the view.
+    }
+    
+    func addSignInView() {
+        view.addSubview(theSignInView)
     }
 
    private func loginButtonFunctions(email:String?,password:String?) {
