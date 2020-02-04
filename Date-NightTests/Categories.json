@@ -1,0 +1,66 @@
+
+{
+    "Categories": [
+        {
+            "data": {
+                "type": "Concerts"
+            }
+        },
+        {
+            "data": {
+                "type": "Broadway"
+            }
+        },
+        
+        {
+            "data": {
+                "type": "Comedy"
+            }
+        },
+        {
+            "data": {
+                "type": "MLB"
+            }
+        },
+        {
+            "data": {
+                "type": "NBA"
+            }
+        },
+        {
+            "data": {
+                "type": "NHL"
+            }
+        },
+        {
+            "data": {
+                "type": "MLS"
+            }
+        },
+        {
+            "data": {
+                "type": "NCAABB"
+            }
+        },
+        {
+            "data": {
+                "type": "NCAAFB"
+            }
+        },
+        {
+            "data": {
+                "type": "WWE"
+            }
+        },
+        {
+            "data": {
+                "type": "Tennis"
+            }
+        },
+        {
+            "data": {
+                "type": "Golf"
+            }
+        },
+    ]
+}
