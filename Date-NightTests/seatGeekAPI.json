@@ -1,0 +1,1513 @@
+{
+    "meta": {
+        "geolocation": {
+            "city": "Brooklyn",
+            "display_name": "Brooklyn, NY",
+            "country": "US",
+            "lon": -74.0005,
+            "range": "50mi",
+            "metro_code": "501",
+            "state": "NY",
+            "postal_code": "11219",
+            "lat": 40.6368
+        },
+        "per_page": 10,
+        "total": 73,
+        "took": 4,
+        "page": 1
+    },
+    "in_hand": {},
+    "events": [
+        {
+            "links": [],
+            "event_promotion": null,
+            "conditional": false,
+            "is_open": false,
+            "id": 5192188,
+            "stats": {
+                "visible_listing_count": null,
+                "dq_bucket_counts": null,
+                "average_price": null,
+                "lowest_sg_base_price_good_deals": null,
+                "lowest_price_good_deals": null,
+                "median_price": null,
+                "listing_count": null,
+                "lowest_price": null,
+                "lowest_sg_base_price": null,
+                "highest_price": null
+            },
+            "title": "New York Open - Qualifying Session",
+            "announce_date": "2020-01-23T00:00:00",
+            "score": 0.354,
+            "access_method": {
+                "employee_only": false,
+                "created_at": "2018-09-28T00:38:24Z",
+                "method": "QRCODE_TM"
+            },
+            "announcements": {
+                "checkout_disclosures": {
+                    "messages": [
+                        {
+                            "text": "All purchases are 100% guaranteed. Prices set by the seller may be above or below face value."
+                        }
+                    ]
+                }
+            },
+            "taxonomies": [
+                {
+                    "name": "sports",
+                    "parent_id": null,
+                    "id": 1000000
+                },
+                {
+                    "name": "tennis",
+                    "parent_id": 1000000,
+                    "id": 1090000
+                }
+            ],
+            "type": "tennis",
+            "status": "normal",
+            "description": "",
+            "datetime_local": "2020-02-09T12:00:00",
+            "visible_until_utc": "2020-02-09T21:00:00",
+            "time_tbd": false,
+            "date_tbd": false,
+            "performers": [
+                {
+                    "image": "https://seatgeek.com/images/performers-landscape/new-york-open-eb58c8/636823/huge.jpg",
+                    "primary": true,
+                    "colors": null,
+                    "images": {
+                        "huge": "https://seatgeek.com/images/performers-landscape/new-york-open-eb58c8/636823/huge.jpg"
+                    },
+                    "has_upcoming_events": true,
+                    "id": 636823,
+                    "stats": {
+                        "event_count": 10
+                    },
+                    "image_license": "https://creativecommons.org/licenses/by/2.0/",
+                    "score": 0.37,
+                    "location": null,
+                    "taxonomies": [
+                        {
+                            "name": "sports",
+                            "parent_id": null,
+                            "id": 1000000,
+                            "document_source": {
+                                "source_type": "ELASTIC",
+                                "generation_type": "FULL"
+                            }
+                        },
+                        {
+                            "name": "tennis",
+                            "parent_id": 1000000,
+                            "id": 1090000,
+                            "document_source": {
+                                "source_type": "ELASTIC",
+                                "generation_type": "FULL"
+                            }
+                        }
+                    ],
+                    "type": "tennis",
+                    "num_upcoming_events": 10,
+                    "short_name": "New York Open",
+                    "home_venue_id": null,
+                    "slug": "new-york-open",
+                    "divisions": null,
+                    "name": "New York Open",
+                    "url": "https://seatgeek.com/new-york-open-tickets",
+                    "popularity": 0,
+                    "image_attribution": "https://www.flickr.com/photos/romanboed/16355970659/in/photolist-qVjCf8-rcCiSM-qVaRxN-e8ynNm-m7HX9x-9WxvGy-xN4tJ5-Xk5qCj-m7K63Y-fJvrpD-c9ZXUC-crwSHN-5QPeQp-amhB4P-p46Xpr-bAS4Xe-oZKxyT-nUWJB8-i3V69r-m7JW4q-Xor56E-fJMXkG-5wWk5J-fZLXa3-amhBSP-5wRWkz-MnEqW5-d5rXEw-5aXhbc-5b2qqC-YnMsuR-WifeUV-amhwTX-4RYXpY-5wWjHJ-p4khYm-5wWbG1-6oMp4k-p8Rjym-amkjah-bt5Nnv-dSMKSq-nVq9X3-vFR1GG-doYgxm-bnXjNj-vFZtg6-WVz8Ky-4ZQoWc-p4ki6W"
+                }
+            ],
+            "url": "https://seatgeek.com/new-york-open-qualifying-session-tickets/tennis/2020-02-09-12-pm/5192188",
+            "created_at": "2020-01-23T16:00:59",
+            "popularity": 0.441,
+            "venue": {
+                "links": [],
+                "metro_code": 501,
+                "postal_code": "11553",
+                "timezone": "America/New_York",
+                "has_upcoming_events": true,
+                "id": 205,
+                "city": "Uniondale",
+                "extended_address": "Uniondale, NY 11553",
+                "display_location": "Uniondale, NY",
+                "state": "NY",
+                "score": 0.76685643,
+                "location": {
+                    "lat": 40.7464,
+                    "lon": -73.5956
+                },
+                "access_method": {
+                    "employee_only": false,
+                    "created_at": "2018-09-28T00:38:24Z",
+                    "method": "QRCODE_TM"
+                },
+                "num_upcoming_events": 58,
+                "address": "1255 Hempstead Turnpike",
+                "capacity": 16234,
+                "slug": "nassau-veterans-memorial-coliseum-1",
+                "name": "Nassau Veterans Memorial Coliseum",
+                "url": "https://seatgeek.com/venues/nassau-veterans-memorial-coliseum-1/tickets",
+                "country": "US",
+                "popularity": 0,
+                "name_v2": "Nassau Veterans Memorial Coliseum"
+            },
+            "enddatetime_utc": null,
+            "short_title": "New York Open - Qualifying Session",
+            "datetime_utc": "2020-02-09T17:00:00",
+            "datetime_tbd": false
+        },
+        {
+            "links": [],
+            "event_promotion": null,
+            "conditional": false,
+            "is_open": false,
+            "id": 4913657,
+            "stats": {
+                "visible_listing_count": 56,
+                "dq_bucket_counts": [
+                    12,
+                    21,
+                    24,
+                    22,
+                    21,
+                    11,
+                    6,
+                    0
+                ],
+                "average_price": 82,
+                "lowest_sg_base_price_good_deals": 8,
+                "lowest_price_good_deals": 15,
+                "median_price": 73,
+                "listing_count": 118,
+                "lowest_price": 15,
+                "lowest_sg_base_price": 8,
+                "highest_price": 206
+            },
+            "title": "New York Open Final Round Qualifying, First Round Main Draw",
+            "announce_date": "2019-07-03T00:00:00",
+            "score": 0.319,
+            "access_method": {
+                "employee_only": false,
+                "created_at": "2018-09-28T00:38:24Z",
+                "method": "QRCODE_TM"
+            },
+            "announcements": {
+                "checkout_disclosures": {
+                    "messages": [
+                        {
+                            "text": "All purchases are 100% guaranteed. Prices set by the seller may be above or below face value."
+                        }
+                    ]
+                }
+            },
+            "taxonomies": [
+                {
+                    "name": "sports",
+                    "parent_id": null,
+                    "id": 1000000
+                },
+                {
+                    "name": "tennis",
+                    "parent_id": 1000000,
+                    "id": 1090000
+                }
+            ],
+            "type": "tennis",
+            "status": "normal",
+            "description": "",
+            "datetime_local": "2020-02-10T12:00:00",
+            "visible_until_utc": "2020-02-10T21:00:00",
+            "time_tbd": false,
+            "date_tbd": false,
+            "performers": [
+                {
+                    "image": "https://seatgeek.com/images/performers-landscape/new-york-open-eb58c8/636823/huge.jpg",
+                    "primary": true,
+                    "colors": null,
+                    "images": {
+                        "huge": "https://seatgeek.com/images/performers-landscape/new-york-open-eb58c8/636823/huge.jpg"
+                    },
+                    "has_upcoming_events": true,
+                    "id": 636823,
+                    "stats": {
+                        "event_count": 10
+                    },
+                    "image_license": "https://creativecommons.org/licenses/by/2.0/",
+                    "score": 0.37,
+                    "location": null,
+                    "taxonomies": [
+                        {
+                            "name": "sports",
+                            "parent_id": null,
+                            "id": 1000000,
+                            "document_source": {
+                                "source_type": "ELASTIC",
+                                "generation_type": "FULL"
+                            }
+                        },
+                        {
+                            "name": "tennis",
+                            "parent_id": 1000000,
+                            "id": 1090000,
+                            "document_source": {
+                                "source_type": "ELASTIC",
+                                "generation_type": "FULL"
+                            }
+                        }
+                    ],
+                    "type": "tennis",
+                    "num_upcoming_events": 10,
+                    "short_name": "New York Open",
+                    "home_venue_id": null,
+                    "slug": "new-york-open",
+                    "divisions": null,
+                    "name": "New York Open",
+                    "url": "https://seatgeek.com/new-york-open-tickets",
+                    "popularity": 0,
+                    "image_attribution": "https://www.flickr.com/photos/romanboed/16355970659/in/photolist-qVjCf8-rcCiSM-qVaRxN-e8ynNm-m7HX9x-9WxvGy-xN4tJ5-Xk5qCj-m7K63Y-fJvrpD-c9ZXUC-crwSHN-5QPeQp-amhB4P-p46Xpr-bAS4Xe-oZKxyT-nUWJB8-i3V69r-m7JW4q-Xor56E-fJMXkG-5wWk5J-fZLXa3-amhBSP-5wRWkz-MnEqW5-d5rXEw-5aXhbc-5b2qqC-YnMsuR-WifeUV-amhwTX-4RYXpY-5wWjHJ-p4khYm-5wWbG1-6oMp4k-p8Rjym-amkjah-bt5Nnv-dSMKSq-nVq9X3-vFR1GG-doYgxm-bnXjNj-vFZtg6-WVz8Ky-4ZQoWc-p4ki6W"
+                }
+            ],
+            "url": "https://seatgeek.com/new-york-open-final-round-qualifying-first-round-main-draw-tickets/tennis/2020-02-10-12-pm/4913657",
+            "created_at": "2019-07-03T16:01:45",
+            "popularity": 0.404,
+            "venue": {
+                "links": [],
+                "metro_code": 501,
+                "postal_code": "11553",
+                "timezone": "America/New_York",
+                "has_upcoming_events": true,
+                "id": 205,
+                "city": "Uniondale",
+                "extended_address": "Uniondale, NY 11553",
+                "display_location": "Uniondale, NY",
+                "state": "NY",
+                "score": 0.76685643,
+                "location": {
+                    "lat": 40.7464,
+                    "lon": -73.5956
+                },
+                "access_method": {
+                    "employee_only": false,
+                    "created_at": "2018-09-28T00:38:24Z",
+                    "method": "QRCODE_TM"
+                },
+                "num_upcoming_events": 58,
+                "address": "1255 Hempstead Turnpike",
+                "capacity": 16234,
+                "slug": "nassau-veterans-memorial-coliseum-1",
+                "name": "Nassau Veterans Memorial Coliseum",
+                "url": "https://seatgeek.com/venues/nassau-veterans-memorial-coliseum-1/tickets",
+                "country": "US",
+                "popularity": 0,
+                "name_v2": "Nassau Veterans Memorial Coliseum"
+            },
+            "enddatetime_utc": null,
+            "short_title": "New York Open Final Round Qualifying, First Round Main Draw",
+            "datetime_utc": "2020-02-10T17:00:00",
+            "datetime_tbd": false
+        },
+        {
+            "links": [],
+            "event_promotion": null,
+            "conditional": false,
+            "is_open": false,
+            "id": 4913663,
+            "stats": {
+                "visible_listing_count": 14,
+                "dq_bucket_counts": [
+                    4,
+                    2,
+                    4,
+                    2,
+                    2,
+                    2,
+                    2,
+                    0
+                ],
+                "average_price": 89,
+                "lowest_sg_base_price_good_deals": 8,
+                "lowest_price_good_deals": 15,
+                "median_price": 83,
+                "listing_count": 15,
+                "lowest_price": 15,
+                "lowest_sg_base_price": 8,
+                "highest_price": 218
+            },
+            "title": "New York Open First Round Main Draw",
+            "announce_date": "2019-07-03T00:00:00",
+            "score": 0.339,
+            "access_method": {
+                "employee_only": false,
+                "created_at": "2018-09-28T00:38:24Z",
+                "method": "QRCODE_TM"
+            },
+            "announcements": {
+                "checkout_disclosures": {
+                    "messages": [
+                        {
+                            "text": "All purchases are 100% guaranteed. Prices set by the seller may be above or below face value."
+                        }
+                    ]
+                }
+            },
+            "taxonomies": [
+                {
+                    "name": "sports",
+                    "parent_id": null,
+                    "id": 1000000
+                },
+                {
+                    "name": "tennis",
+                    "parent_id": 1000000,
+                    "id": 1090000
+                }
+            ],
+            "type": "tennis",
+            "status": "normal",
+            "description": "",
+            "datetime_local": "2020-02-11T12:00:00",
+            "visible_until_utc": "2020-02-11T21:00:00",
+            "time_tbd": false,
+            "date_tbd": false,
+            "performers": [
+                {
+                    "image": "https://seatgeek.com/images/performers-landscape/new-york-open-eb58c8/636823/huge.jpg",
+                    "primary": true,
+                    "colors": null,
+                    "images": {
+                        "huge": "https://seatgeek.com/images/performers-landscape/new-york-open-eb58c8/636823/huge.jpg"
+                    },
+                    "has_upcoming_events": true,
+                    "id": 636823,
+                    "stats": {
+                        "event_count": 10
+                    },
+                    "image_license": "https://creativecommons.org/licenses/by/2.0/",
+                    "score": 0.37,
+                    "location": null,
+                    "taxonomies": [
+                        {
+                            "name": "sports",
+                            "parent_id": null,
+                            "id": 1000000,
+                            "document_source": {
+                                "source_type": "ELASTIC",
+                                "generation_type": "FULL"
+                            }
+                        },
+                        {
+                            "name": "tennis",
+                            "parent_id": 1000000,
+                            "id": 1090000,
+                            "document_source": {
+                                "source_type": "ELASTIC",
+                                "generation_type": "FULL"
+                            }
+                        }
+                    ],
+                    "type": "tennis",
+                    "num_upcoming_events": 10,
+                    "short_name": "New York Open",
+                    "home_venue_id": null,
+                    "slug": "new-york-open",
+                    "divisions": null,
+                    "name": "New York Open",
+                    "url": "https://seatgeek.com/new-york-open-tickets",
+                    "popularity": 0,
+                    "image_attribution": "https://www.flickr.com/photos/romanboed/16355970659/in/photolist-qVjCf8-rcCiSM-qVaRxN-e8ynNm-m7HX9x-9WxvGy-xN4tJ5-Xk5qCj-m7K63Y-fJvrpD-c9ZXUC-crwSHN-5QPeQp-amhB4P-p46Xpr-bAS4Xe-oZKxyT-nUWJB8-i3V69r-m7JW4q-Xor56E-fJMXkG-5wWk5J-fZLXa3-amhBSP-5wRWkz-MnEqW5-d5rXEw-5aXhbc-5b2qqC-YnMsuR-WifeUV-amhwTX-4RYXpY-5wWjHJ-p4khYm-5wWbG1-6oMp4k-p8Rjym-amkjah-bt5Nnv-dSMKSq-nVq9X3-vFR1GG-doYgxm-bnXjNj-vFZtg6-WVz8Ky-4ZQoWc-p4ki6W"
+                }
+            ],
+            "url": "https://seatgeek.com/new-york-open-first-round-main-draw-tickets/tennis/2020-02-11-12-pm/4913663",
+            "created_at": "2019-07-03T16:01:46",
+            "popularity": 0.416,
+            "venue": {
+                "links": [],
+                "metro_code": 501,
+                "postal_code": "11553",
+                "timezone": "America/New_York",
+                "has_upcoming_events": true,
+                "id": 205,
+                "city": "Uniondale",
+                "extended_address": "Uniondale, NY 11553",
+                "display_location": "Uniondale, NY",
+                "state": "NY",
+                "score": 0.76685643,
+                "location": {
+                    "lat": 40.7464,
+                    "lon": -73.5956
+                },
+                "access_method": {
+                    "employee_only": false,
+                    "created_at": "2018-09-28T00:38:24Z",
+                    "method": "QRCODE_TM"
+                },
+                "num_upcoming_events": 58,
+                "address": "1255 Hempstead Turnpike",
+                "capacity": 16234,
+                "slug": "nassau-veterans-memorial-coliseum-1",
+                "name": "Nassau Veterans Memorial Coliseum",
+                "url": "https://seatgeek.com/venues/nassau-veterans-memorial-coliseum-1/tickets",
+                "country": "US",
+                "popularity": 0,
+                "name_v2": "Nassau Veterans Memorial Coliseum"
+            },
+            "enddatetime_utc": null,
+            "short_title": "New York Open First Round Main Draw",
+            "datetime_utc": "2020-02-11T17:00:00",
+            "datetime_tbd": false
+        },
+        {
+            "links": [],
+            "event_promotion": null,
+            "conditional": false,
+            "is_open": false,
+            "id": 4913660,
+            "stats": {
+                "visible_listing_count": 26,
+                "dq_bucket_counts": [
+                    11,
+                    13,
+                    18,
+                    12,
+                    6,
+                    18,
+                    4,
+                    0
+                ],
+                "average_price": 88,
+                "lowest_sg_base_price_good_deals": 9,
+                "lowest_price_good_deals": 15,
+                "median_price": 87,
+                "listing_count": 78,
+                "lowest_price": 15,
+                "lowest_sg_base_price": 9,
+                "highest_price": 209
+            },
+            "title": "New York Open Second Round Main Draw",
+            "announce_date": "2019-07-03T00:00:00",
+            "score": 0.326,
+            "access_method": {
+                "employee_only": false,
+                "created_at": "2018-09-28T00:38:24Z",
+                "method": "QRCODE_TM"
+            },
+            "announcements": {
+                "checkout_disclosures": {
+                    "messages": [
+                        {
+                            "text": "All purchases are 100% guaranteed. Prices set by the seller may be above or below face value."
+                        }
+                    ]
+                }
+            },
+            "taxonomies": [
+                {
+                    "name": "sports",
+                    "parent_id": null,
+                    "id": 1000000
+                },
+                {
+                    "name": "tennis",
+                    "parent_id": 1000000,
+                    "id": 1090000
+                }
+            ],
+            "type": "tennis",
+            "status": "normal",
+            "description": "",
+            "datetime_local": "2020-02-12T12:00:00",
+            "visible_until_utc": "2020-02-12T21:00:00",
+            "time_tbd": false,
+            "date_tbd": false,
+            "performers": [
+                {
+                    "image": "https://seatgeek.com/images/performers-landscape/new-york-open-eb58c8/636823/huge.jpg",
+                    "primary": true,
+                    "colors": null,
+                    "images": {
+                        "huge": "https://seatgeek.com/images/performers-landscape/new-york-open-eb58c8/636823/huge.jpg"
+                    },
+                    "has_upcoming_events": true,
+                    "id": 636823,
+                    "stats": {
+                        "event_count": 10
+                    },
+                    "image_license": "https://creativecommons.org/licenses/by/2.0/",
+                    "score": 0.37,
+                    "location": null,
+                    "taxonomies": [
+                        {
+                            "name": "sports",
+                            "parent_id": null,
+                            "id": 1000000,
+                            "document_source": {
+                                "source_type": "ELASTIC",
+                                "generation_type": "FULL"
+                            }
+                        },
+                        {
+                            "name": "tennis",
+                            "parent_id": 1000000,
+                            "id": 1090000,
+                            "document_source": {
+                                "source_type": "ELASTIC",
+                                "generation_type": "FULL"
+                            }
+                        }
+                    ],
+                    "type": "tennis",
+                    "num_upcoming_events": 10,
+                    "short_name": "New York Open",
+                    "home_venue_id": null,
+                    "slug": "new-york-open",
+                    "divisions": null,
+                    "name": "New York Open",
+                    "url": "https://seatgeek.com/new-york-open-tickets",
+                    "popularity": 0,
+                    "image_attribution": "https://www.flickr.com/photos/romanboed/16355970659/in/photolist-qVjCf8-rcCiSM-qVaRxN-e8ynNm-m7HX9x-9WxvGy-xN4tJ5-Xk5qCj-m7K63Y-fJvrpD-c9ZXUC-crwSHN-5QPeQp-amhB4P-p46Xpr-bAS4Xe-oZKxyT-nUWJB8-i3V69r-m7JW4q-Xor56E-fJMXkG-5wWk5J-fZLXa3-amhBSP-5wRWkz-MnEqW5-d5rXEw-5aXhbc-5b2qqC-YnMsuR-WifeUV-amhwTX-4RYXpY-5wWjHJ-p4khYm-5wWbG1-6oMp4k-p8Rjym-amkjah-bt5Nnv-dSMKSq-nVq9X3-vFR1GG-doYgxm-bnXjNj-vFZtg6-WVz8Ky-4ZQoWc-p4ki6W"
+                }
+            ],
+            "url": "https://seatgeek.com/new-york-open-second-round-main-draw-tickets/tennis/2020-02-12-12-pm/4913660",
+            "created_at": "2019-07-03T16:01:46",
+            "popularity": 0.4,
+            "venue": {
+                "links": [],
+                "metro_code": 501,
+                "postal_code": "11553",
+                "timezone": "America/New_York",
+                "has_upcoming_events": true,
+                "id": 205,
+                "city": "Uniondale",
+                "extended_address": "Uniondale, NY 11553",
+                "display_location": "Uniondale, NY",
+                "state": "NY",
+                "score": 0.76685643,
+                "location": {
+                    "lat": 40.7464,
+                    "lon": -73.5956
+                },
+                "access_method": {
+                    "employee_only": false,
+                    "created_at": "2018-09-28T00:38:24Z",
+                    "method": "QRCODE_TM"
+                },
+                "num_upcoming_events": 58,
+                "address": "1255 Hempstead Turnpike",
+                "capacity": 16234,
+                "slug": "nassau-veterans-memorial-coliseum-1",
+                "name": "Nassau Veterans Memorial Coliseum",
+                "url": "https://seatgeek.com/venues/nassau-veterans-memorial-coliseum-1/tickets",
+                "country": "US",
+                "popularity": 0,
+                "name_v2": "Nassau Veterans Memorial Coliseum"
+            },
+            "enddatetime_utc": null,
+            "short_title": "New York Open Second Round Main Draw",
+            "datetime_utc": "2020-02-12T17:00:00",
+            "datetime_tbd": false
+        },
+        {
+            "links": [],
+            "event_promotion": null,
+            "conditional": false,
+            "is_open": false,
+            "id": 4913659,
+            "stats": {
+                "visible_listing_count": 20,
+                "dq_bucket_counts": [
+                    10,
+                    4,
+                    27,
+                    0,
+                    15,
+                    10,
+                    3,
+                    0
+                ],
+                "average_price": 88,
+                "lowest_sg_base_price_good_deals": 8,
+                "lowest_price_good_deals": 15,
+                "median_price": 86,
+                "listing_count": 66,
+                "lowest_price": 15,
+                "lowest_sg_base_price": 8,
+                "highest_price": 218
+            },
+            "title": "New York Open Second Round Main Draw",
+            "announce_date": "2019-07-03T00:00:00",
+            "score": 0.335,
+            "access_method": {
+                "employee_only": false,
+                "created_at": "2018-09-28T00:38:24Z",
+                "method": "QRCODE_TM"
+            },
+            "announcements": {
+                "checkout_disclosures": {
+                    "messages": [
+                        {
+                            "text": "All purchases are 100% guaranteed. Prices set by the seller may be above or below face value."
+                        }
+                    ]
+                }
+            },
+            "taxonomies": [
+                {
+                    "name": "sports",
+                    "parent_id": null,
+                    "id": 1000000
+                },
+                {
+                    "name": "tennis",
+                    "parent_id": 1000000,
+                    "id": 1090000
+                }
+            ],
+            "type": "tennis",
+            "status": "normal",
+            "description": "",
+            "datetime_local": "2020-02-13T12:00:00",
+            "visible_until_utc": "2020-02-13T21:00:00",
+            "time_tbd": false,
+            "date_tbd": false,
+            "performers": [
+                {
+                    "image": "https://seatgeek.com/images/performers-landscape/new-york-open-eb58c8/636823/huge.jpg",
+                    "primary": true,
+                    "colors": null,
+                    "images": {
+                        "huge": "https://seatgeek.com/images/performers-landscape/new-york-open-eb58c8/636823/huge.jpg"
+                    },
+                    "has_upcoming_events": true,
+                    "id": 636823,
+                    "stats": {
+                        "event_count": 10
+                    },
+                    "image_license": "https://creativecommons.org/licenses/by/2.0/",
+                    "score": 0.37,
+                    "location": null,
+                    "taxonomies": [
+                        {
+                            "name": "sports",
+                            "parent_id": null,
+                            "id": 1000000,
+                            "document_source": {
+                                "source_type": "ELASTIC",
+                                "generation_type": "FULL"
+                            }
+                        },
+                        {
+                            "name": "tennis",
+                            "parent_id": 1000000,
+                            "id": 1090000,
+                            "document_source": {
+                                "source_type": "ELASTIC",
+                                "generation_type": "FULL"
+                            }
+                        }
+                    ],
+                    "type": "tennis",
+                    "num_upcoming_events": 10,
+                    "short_name": "New York Open",
+                    "home_venue_id": null,
+                    "slug": "new-york-open",
+                    "divisions": null,
+                    "name": "New York Open",
+                    "url": "https://seatgeek.com/new-york-open-tickets",
+                    "popularity": 0,
+                    "image_attribution": "https://www.flickr.com/photos/romanboed/16355970659/in/photolist-qVjCf8-rcCiSM-qVaRxN-e8ynNm-m7HX9x-9WxvGy-xN4tJ5-Xk5qCj-m7K63Y-fJvrpD-c9ZXUC-crwSHN-5QPeQp-amhB4P-p46Xpr-bAS4Xe-oZKxyT-nUWJB8-i3V69r-m7JW4q-Xor56E-fJMXkG-5wWk5J-fZLXa3-amhBSP-5wRWkz-MnEqW5-d5rXEw-5aXhbc-5b2qqC-YnMsuR-WifeUV-amhwTX-4RYXpY-5wWjHJ-p4khYm-5wWbG1-6oMp4k-p8Rjym-amkjah-bt5Nnv-dSMKSq-nVq9X3-vFR1GG-doYgxm-bnXjNj-vFZtg6-WVz8Ky-4ZQoWc-p4ki6W"
+                }
+            ],
+            "url": "https://seatgeek.com/new-york-open-second-round-main-draw-tickets/tennis/2020-02-13-12-pm/4913659",
+            "created_at": "2019-07-03T16:01:46",
+            "popularity": 0.402,
+            "venue": {
+                "links": [],
+                "metro_code": 501,
+                "postal_code": "11553",
+                "timezone": "America/New_York",
+                "has_upcoming_events": true,
+                "id": 205,
+                "city": "Uniondale",
+                "extended_address": "Uniondale, NY 11553",
+                "display_location": "Uniondale, NY",
+                "state": "NY",
+                "score": 0.76685643,
+                "location": {
+                    "lat": 40.7464,
+                    "lon": -73.5956
+                },
+                "access_method": {
+                    "employee_only": false,
+                    "created_at": "2018-09-28T00:38:24Z",
+                    "method": "QRCODE_TM"
+                },
+                "num_upcoming_events": 58,
+                "address": "1255 Hempstead Turnpike",
+                "capacity": 16234,
+                "slug": "nassau-veterans-memorial-coliseum-1",
+                "name": "Nassau Veterans Memorial Coliseum",
+                "url": "https://seatgeek.com/venues/nassau-veterans-memorial-coliseum-1/tickets",
+                "country": "US",
+                "popularity": 0,
+                "name_v2": "Nassau Veterans Memorial Coliseum"
+            },
+            "enddatetime_utc": null,
+            "short_title": "New York Open Second Round Main Draw",
+            "datetime_utc": "2020-02-13T17:00:00",
+            "datetime_tbd": false
+        },
+        {
+            "links": [],
+            "event_promotion": null,
+            "conditional": false,
+            "is_open": false,
+            "id": 4913661,
+            "stats": {
+                "visible_listing_count": 52,
+                "dq_bucket_counts": [
+                    13,
+                    22,
+                    33,
+                    13,
+                    10,
+                    17,
+                    7,
+                    0
+                ],
+                "average_price": 84,
+                "lowest_sg_base_price_good_deals": 9,
+                "lowest_price_good_deals": 15,
+                "median_price": 74,
+                "listing_count": 114,
+                "lowest_price": 15,
+                "lowest_sg_base_price": 9,
+                "highest_price": 209
+            },
+            "title": "New York Open Quarterfinals Day Session",
+            "announce_date": "2019-07-03T00:00:00",
+            "score": 0.358,
+            "access_method": {
+                "employee_only": false,
+                "created_at": "2018-09-28T00:38:24Z",
+                "method": "QRCODE_TM"
+            },
+            "announcements": {
+                "checkout_disclosures": {
+                    "messages": [
+                        {
+                            "text": "All purchases are 100% guaranteed. Prices set by the seller may be above or below face value."
+                        }
+                    ]
+                }
+            },
+            "taxonomies": [
+                {
+                    "name": "sports",
+                    "parent_id": null,
+                    "id": 1000000
+                },
+                {
+                    "name": "tennis",
+                    "parent_id": 1000000,
+                    "id": 1090000
+                }
+            ],
+            "type": "tennis",
+            "status": "normal",
+            "description": "",
+            "datetime_local": "2020-02-14T12:00:00",
+            "visible_until_utc": "2020-02-14T21:00:00",
+            "time_tbd": false,
+            "date_tbd": false,
+            "performers": [
+                {
+                    "image": "https://seatgeek.com/images/performers-landscape/new-york-open-eb58c8/636823/huge.jpg",
+                    "primary": true,
+                    "colors": null,
+                    "images": {
+                        "huge": "https://seatgeek.com/images/performers-landscape/new-york-open-eb58c8/636823/huge.jpg"
+                    },
+                    "has_upcoming_events": true,
+                    "id": 636823,
+                    "stats": {
+                        "event_count": 10
+                    },
+                    "image_license": "https://creativecommons.org/licenses/by/2.0/",
+                    "score": 0.37,
+                    "location": null,
+                    "taxonomies": [
+                        {
+                            "name": "sports",
+                            "parent_id": null,
+                            "id": 1000000,
+                            "document_source": {
+                                "source_type": "ELASTIC",
+                                "generation_type": "FULL"
+                            }
+                        },
+                        {
+                            "name": "tennis",
+                            "parent_id": 1000000,
+                            "id": 1090000,
+                            "document_source": {
+                                "source_type": "ELASTIC",
+                                "generation_type": "FULL"
+                            }
+                        }
+                    ],
+                    "type": "tennis",
+                    "num_upcoming_events": 10,
+                    "short_name": "New York Open",
+                    "home_venue_id": null,
+                    "slug": "new-york-open",
+                    "divisions": null,
+                    "name": "New York Open",
+                    "url": "https://seatgeek.com/new-york-open-tickets",
+                    "popularity": 0,
+                    "image_attribution": "https://www.flickr.com/photos/romanboed/16355970659/in/photolist-qVjCf8-rcCiSM-qVaRxN-e8ynNm-m7HX9x-9WxvGy-xN4tJ5-Xk5qCj-m7K63Y-fJvrpD-c9ZXUC-crwSHN-5QPeQp-amhB4P-p46Xpr-bAS4Xe-oZKxyT-nUWJB8-i3V69r-m7JW4q-Xor56E-fJMXkG-5wWk5J-fZLXa3-amhBSP-5wRWkz-MnEqW5-d5rXEw-5aXhbc-5b2qqC-YnMsuR-WifeUV-amhwTX-4RYXpY-5wWjHJ-p4khYm-5wWbG1-6oMp4k-p8Rjym-amkjah-bt5Nnv-dSMKSq-nVq9X3-vFR1GG-doYgxm-bnXjNj-vFZtg6-WVz8Ky-4ZQoWc-p4ki6W"
+                }
+            ],
+            "url": "https://seatgeek.com/new-york-open-quarterfinals-day-session-tickets/tennis/2020-02-14-12-pm/4913661",
+            "created_at": "2019-07-03T16:01:46",
+            "popularity": 0.419,
+            "venue": {
+                "links": [],
+                "metro_code": 501,
+                "postal_code": "11553",
+                "timezone": "America/New_York",
+                "has_upcoming_events": true,
+                "id": 205,
+                "city": "Uniondale",
+                "extended_address": "Uniondale, NY 11553",
+                "display_location": "Uniondale, NY",
+                "state": "NY",
+                "score": 0.76685643,
+                "location": {
+                    "lat": 40.7464,
+                    "lon": -73.5956
+                },
+                "access_method": {
+                    "employee_only": false,
+                    "created_at": "2018-09-28T00:38:24Z",
+                    "method": "QRCODE_TM"
+                },
+                "num_upcoming_events": 58,
+                "address": "1255 Hempstead Turnpike",
+                "capacity": 16234,
+                "slug": "nassau-veterans-memorial-coliseum-1",
+                "name": "Nassau Veterans Memorial Coliseum",
+                "url": "https://seatgeek.com/venues/nassau-veterans-memorial-coliseum-1/tickets",
+                "country": "US",
+                "popularity": 0,
+                "name_v2": "Nassau Veterans Memorial Coliseum"
+            },
+            "enddatetime_utc": null,
+            "short_title": "New York Open Quarterfinals Day Session",
+            "datetime_utc": "2020-02-14T17:00:00",
+            "datetime_tbd": false
+        },
+        {
+            "links": [],
+            "event_promotion": null,
+            "conditional": false,
+            "is_open": false,
+            "id": 4913666,
+            "stats": {
+                "visible_listing_count": 57,
+                "dq_bucket_counts": [
+                    14,
+                    23,
+                    29,
+                    18,
+                    10,
+                    4,
+                    13,
+                    0
+                ],
+                "average_price": 117,
+                "lowest_sg_base_price_good_deals": 26,
+                "lowest_price_good_deals": 37,
+                "median_price": 102,
+                "listing_count": 113,
+                "lowest_price": 34,
+                "lowest_sg_base_price": 23,
+                "highest_price": 322
+            },
+            "title": "New York Open Quarterfinals Evening Session",
+            "announce_date": "2019-07-03T00:00:00",
+            "score": 0.358,
+            "access_method": {
+                "employee_only": false,
+                "created_at": "2018-09-28T00:38:24Z",
+                "method": "QRCODE_TM"
+            },
+            "announcements": {
+                "checkout_disclosures": {
+                    "messages": [
+                        {
+                            "text": "All purchases are 100% guaranteed. Prices set by the seller may be above or below face value."
+                        }
+                    ]
+                }
+            },
+            "taxonomies": [
+                {
+                    "name": "sports",
+                    "parent_id": null,
+                    "id": 1000000
+                },
+                {
+                    "name": "tennis",
+                    "parent_id": 1000000,
+                    "id": 1090000
+                }
+            ],
+            "type": "tennis",
+            "status": "normal",
+            "description": "",
+            "datetime_local": "2020-02-14T19:30:00",
+            "visible_until_utc": "2020-02-15T04:30:00",
+            "time_tbd": false,
+            "date_tbd": false,
+            "performers": [
+                {
+                    "image": "https://seatgeek.com/images/performers-landscape/new-york-open-eb58c8/636823/huge.jpg",
+                    "primary": true,
+                    "colors": null,
+                    "images": {
+                        "huge": "https://seatgeek.com/images/performers-landscape/new-york-open-eb58c8/636823/huge.jpg"
+                    },
+                    "has_upcoming_events": true,
+                    "id": 636823,
+                    "stats": {
+                        "event_count": 10
+                    },
+                    "image_license": "https://creativecommons.org/licenses/by/2.0/",
+                    "score": 0.37,
+                    "location": null,
+                    "taxonomies": [
+                        {
+                            "name": "sports",
+                            "parent_id": null,
+                            "id": 1000000,
+                            "document_source": {
+                                "source_type": "ELASTIC",
+                                "generation_type": "FULL"
+                            }
+                        },
+                        {
+                            "name": "tennis",
+                            "parent_id": 1000000,
+                            "id": 1090000,
+                            "document_source": {
+                                "source_type": "ELASTIC",
+                                "generation_type": "FULL"
+                            }
+                        }
+                    ],
+                    "type": "tennis",
+                    "num_upcoming_events": 10,
+                    "short_name": "New York Open",
+                    "home_venue_id": null,
+                    "slug": "new-york-open",
+                    "divisions": null,
+                    "name": "New York Open",
+                    "url": "https://seatgeek.com/new-york-open-tickets",
+                    "popularity": 0,
+                    "image_attribution": "https://www.flickr.com/photos/romanboed/16355970659/in/photolist-qVjCf8-rcCiSM-qVaRxN-e8ynNm-m7HX9x-9WxvGy-xN4tJ5-Xk5qCj-m7K63Y-fJvrpD-c9ZXUC-crwSHN-5QPeQp-amhB4P-p46Xpr-bAS4Xe-oZKxyT-nUWJB8-i3V69r-m7JW4q-Xor56E-fJMXkG-5wWk5J-fZLXa3-amhBSP-5wRWkz-MnEqW5-d5rXEw-5aXhbc-5b2qqC-YnMsuR-WifeUV-amhwTX-4RYXpY-5wWjHJ-p4khYm-5wWbG1-6oMp4k-p8Rjym-amkjah-bt5Nnv-dSMKSq-nVq9X3-vFR1GG-doYgxm-bnXjNj-vFZtg6-WVz8Ky-4ZQoWc-p4ki6W"
+                }
+            ],
+            "url": "https://seatgeek.com/new-york-open-quarterfinals-evening-session-tickets/tennis/2020-02-14-7-30-pm/4913666",
+            "created_at": "2019-07-03T16:01:47",
+            "popularity": 0.415,
+            "venue": {
+                "links": [],
+                "metro_code": 501,
+                "postal_code": "11553",
+                "timezone": "America/New_York",
+                "has_upcoming_events": true,
+                "id": 205,
+                "city": "Uniondale",
+                "extended_address": "Uniondale, NY 11553",
+                "display_location": "Uniondale, NY",
+                "state": "NY",
+                "score": 0.76685643,
+                "location": {
+                    "lat": 40.7464,
+                    "lon": -73.5956
+                },
+                "access_method": {
+                    "employee_only": false,
+                    "created_at": "2018-09-28T00:38:24Z",
+                    "method": "QRCODE_TM"
+                },
+                "num_upcoming_events": 58,
+                "address": "1255 Hempstead Turnpike",
+                "capacity": 16234,
+                "slug": "nassau-veterans-memorial-coliseum-1",
+                "name": "Nassau Veterans Memorial Coliseum",
+                "url": "https://seatgeek.com/venues/nassau-veterans-memorial-coliseum-1/tickets",
+                "country": "US",
+                "popularity": 0,
+                "name_v2": "Nassau Veterans Memorial Coliseum"
+            },
+            "enddatetime_utc": null,
+            "short_title": "New York Open Quarterfinals Evening Session",
+            "datetime_utc": "2020-02-15T00:30:00",
+            "datetime_tbd": false
+        },
+        {
+            "links": [],
+            "event_promotion": null,
+            "conditional": false,
+            "is_open": false,
+            "id": 4913665,
+            "stats": {
+                "visible_listing_count": 35,
+                "dq_bucket_counts": [
+                    11,
+                    15,
+                    30,
+                    7,
+                    1,
+                    10,
+                    9,
+                    0
+                ],
+                "average_price": 116,
+                "lowest_sg_base_price_good_deals": 34,
+                "lowest_price_good_deals": 49,
+                "median_price": 95,
+                "listing_count": 85,
+                "lowest_price": 34,
+                "lowest_sg_base_price": 23,
+                "highest_price": 268
+            },
+            "title": "New York Open Semifinals Day Session",
+            "announce_date": "2019-07-03T00:00:00",
+            "score": 0.37,
+            "access_method": {
+                "employee_only": false,
+                "created_at": "2018-09-28T00:38:24Z",
+                "method": "QRCODE_TM"
+            },
+            "announcements": {
+                "checkout_disclosures": {
+                    "messages": [
+                        {
+                            "text": "All purchases are 100% guaranteed. Prices set by the seller may be above or below face value."
+                        }
+                    ]
+                }
+            },
+            "taxonomies": [
+                {
+                    "name": "sports",
+                    "parent_id": null,
+                    "id": 1000000
+                },
+                {
+                    "name": "tennis",
+                    "parent_id": 1000000,
+                    "id": 1090000
+                }
+            ],
+            "type": "tennis",
+            "status": "normal",
+            "description": "",
+            "datetime_local": "2020-02-15T14:00:00",
+            "visible_until_utc": "2020-02-15T23:00:00",
+            "time_tbd": false,
+            "date_tbd": false,
+            "performers": [
+                {
+                    "image": "https://seatgeek.com/images/performers-landscape/new-york-open-eb58c8/636823/huge.jpg",
+                    "primary": true,
+                    "colors": null,
+                    "images": {
+                        "huge": "https://seatgeek.com/images/performers-landscape/new-york-open-eb58c8/636823/huge.jpg"
+                    },
+                    "has_upcoming_events": true,
+                    "id": 636823,
+                    "stats": {
+                        "event_count": 10
+                    },
+                    "image_license": "https://creativecommons.org/licenses/by/2.0/",
+                    "score": 0.37,
+                    "location": null,
+                    "taxonomies": [
+                        {
+                            "name": "sports",
+                            "parent_id": null,
+                            "id": 1000000,
+                            "document_source": {
+                                "source_type": "ELASTIC",
+                                "generation_type": "FULL"
+                            }
+                        },
+                        {
+                            "name": "tennis",
+                            "parent_id": 1000000,
+                            "id": 1090000,
+                            "document_source": {
+                                "source_type": "ELASTIC",
+                                "generation_type": "FULL"
+                            }
+                        }
+                    ],
+                    "type": "tennis",
+                    "num_upcoming_events": 10,
+                    "short_name": "New York Open",
+                    "home_venue_id": null,
+                    "slug": "new-york-open",
+                    "divisions": null,
+                    "name": "New York Open",
+                    "url": "https://seatgeek.com/new-york-open-tickets",
+                    "popularity": 0,
+                    "image_attribution": "https://www.flickr.com/photos/romanboed/16355970659/in/photolist-qVjCf8-rcCiSM-qVaRxN-e8ynNm-m7HX9x-9WxvGy-xN4tJ5-Xk5qCj-m7K63Y-fJvrpD-c9ZXUC-crwSHN-5QPeQp-amhB4P-p46Xpr-bAS4Xe-oZKxyT-nUWJB8-i3V69r-m7JW4q-Xor56E-fJMXkG-5wWk5J-fZLXa3-amhBSP-5wRWkz-MnEqW5-d5rXEw-5aXhbc-5b2qqC-YnMsuR-WifeUV-amhwTX-4RYXpY-5wWjHJ-p4khYm-5wWbG1-6oMp4k-p8Rjym-amkjah-bt5Nnv-dSMKSq-nVq9X3-vFR1GG-doYgxm-bnXjNj-vFZtg6-WVz8Ky-4ZQoWc-p4ki6W"
+                }
+            ],
+            "url": "https://seatgeek.com/new-york-open-semifinals-day-session-tickets/tennis/2020-02-15-2-pm/4913665",
+            "created_at": "2019-07-03T16:01:47",
+            "popularity": 0.426,
+            "venue": {
+                "links": [],
+                "metro_code": 501,
+                "postal_code": "11553",
+                "timezone": "America/New_York",
+                "has_upcoming_events": true,
+                "id": 205,
+                "city": "Uniondale",
+                "extended_address": "Uniondale, NY 11553",
+                "display_location": "Uniondale, NY",
+                "state": "NY",
+                "score": 0.76685643,
+                "location": {
+                    "lat": 40.7464,
+                    "lon": -73.5956
+                },
+                "access_method": {
+                    "employee_only": false,
+                    "created_at": "2018-09-28T00:38:24Z",
+                    "method": "QRCODE_TM"
+                },
+                "num_upcoming_events": 58,
+                "address": "1255 Hempstead Turnpike",
+                "capacity": 16234,
+                "slug": "nassau-veterans-memorial-coliseum-1",
+                "name": "Nassau Veterans Memorial Coliseum",
+                "url": "https://seatgeek.com/venues/nassau-veterans-memorial-coliseum-1/tickets",
+                "country": "US",
+                "popularity": 0,
+                "name_v2": "Nassau Veterans Memorial Coliseum"
+            },
+            "enddatetime_utc": null,
+            "short_title": "New York Open Semifinals Day Session",
+            "datetime_utc": "2020-02-15T19:00:00",
+            "datetime_tbd": false
+        },
+        {
+            "links": [],
+            "event_promotion": null,
+            "conditional": false,
+            "is_open": false,
+            "id": 4913662,
+            "stats": {
+                "visible_listing_count": 43,
+                "dq_bucket_counts": [
+                    10,
+                    13,
+                    34,
+                    8,
+                    8,
+                    2,
+                    10,
+                    0
+                ],
+                "average_price": 119,
+                "lowest_sg_base_price_good_deals": 34,
+                "lowest_price_good_deals": 49,
+                "median_price": 102,
+                "listing_count": 86,
+                "lowest_price": 48,
+                "lowest_sg_base_price": 34,
+                "highest_price": 271
+            },
+            "title": "New York Open Semifinals Evening Session",
+            "announce_date": "2019-07-03T00:00:00",
+            "score": 0.37,
+            "access_method": {
+                "employee_only": false,
+                "created_at": "2018-09-28T00:38:24Z",
+                "method": "QRCODE_TM"
+            },
+            "announcements": {
+                "checkout_disclosures": {
+                    "messages": [
+                        {
+                            "text": "All purchases are 100% guaranteed. Prices set by the seller may be above or below face value."
+                        }
+                    ]
+                }
+            },
+            "taxonomies": [
+                {
+                    "name": "sports",
+                    "parent_id": null,
+                    "id": 1000000
+                },
+                {
+                    "name": "tennis",
+                    "parent_id": 1000000,
+                    "id": 1090000
+                }
+            ],
+            "type": "tennis",
+            "status": "normal",
+            "description": "",
+            "datetime_local": "2020-02-15T19:00:00",
+            "visible_until_utc": "2020-02-16T04:00:00",
+            "time_tbd": false,
+            "date_tbd": false,
+            "performers": [
+                {
+                    "image": "https://seatgeek.com/images/performers-landscape/new-york-open-eb58c8/636823/huge.jpg",
+                    "primary": true,
+                    "colors": null,
+                    "images": {
+                        "huge": "https://seatgeek.com/images/performers-landscape/new-york-open-eb58c8/636823/huge.jpg"
+                    },
+                    "has_upcoming_events": true,
+                    "id": 636823,
+                    "stats": {
+                        "event_count": 10
+                    },
+                    "image_license": "https://creativecommons.org/licenses/by/2.0/",
+                    "score": 0.37,
+                    "location": null,
+                    "taxonomies": [
+                        {
+                            "name": "sports",
+                            "parent_id": null,
+                            "id": 1000000,
+                            "document_source": {
+                                "source_type": "ELASTIC",
+                                "generation_type": "FULL"
+                            }
+                        },
+                        {
+                            "name": "tennis",
+                            "parent_id": 1000000,
+                            "id": 1090000,
+                            "document_source": {
+                                "source_type": "ELASTIC",
+                                "generation_type": "FULL"
+                            }
+                        }
+                    ],
+                    "type": "tennis",
+                    "num_upcoming_events": 10,
+                    "short_name": "New York Open",
+                    "home_venue_id": null,
+                    "slug": "new-york-open",
+                    "divisions": null,
+                    "name": "New York Open",
+                    "url": "https://seatgeek.com/new-york-open-tickets",
+                    "popularity": 0,
+                    "image_attribution": "https://www.flickr.com/photos/romanboed/16355970659/in/photolist-qVjCf8-rcCiSM-qVaRxN-e8ynNm-m7HX9x-9WxvGy-xN4tJ5-Xk5qCj-m7K63Y-fJvrpD-c9ZXUC-crwSHN-5QPeQp-amhB4P-p46Xpr-bAS4Xe-oZKxyT-nUWJB8-i3V69r-m7JW4q-Xor56E-fJMXkG-5wWk5J-fZLXa3-amhBSP-5wRWkz-MnEqW5-d5rXEw-5aXhbc-5b2qqC-YnMsuR-WifeUV-amhwTX-4RYXpY-5wWjHJ-p4khYm-5wWbG1-6oMp4k-p8Rjym-amkjah-bt5Nnv-dSMKSq-nVq9X3-vFR1GG-doYgxm-bnXjNj-vFZtg6-WVz8Ky-4ZQoWc-p4ki6W"
+                }
+            ],
+            "url": "https://seatgeek.com/new-york-open-semifinals-evening-session-tickets/tennis/2020-02-15-7-pm/4913662",
+            "created_at": "2019-07-03T16:01:46",
+            "popularity": 0.42,
+            "venue": {
+                "links": [],
+                "metro_code": 501,
+                "postal_code": "11553",
+                "timezone": "America/New_York",
+                "has_upcoming_events": true,
+                "id": 205,
+                "city": "Uniondale",
+                "extended_address": "Uniondale, NY 11553",
+                "display_location": "Uniondale, NY",
+                "state": "NY",
+                "score": 0.76685643,
+                "location": {
+                    "lat": 40.7464,
+                    "lon": -73.5956
+                },
+                "access_method": {
+                    "employee_only": false,
+                    "created_at": "2018-09-28T00:38:24Z",
+                    "method": "QRCODE_TM"
+                },
+                "num_upcoming_events": 58,
+                "address": "1255 Hempstead Turnpike",
+                "capacity": 16234,
+                "slug": "nassau-veterans-memorial-coliseum-1",
+                "name": "Nassau Veterans Memorial Coliseum",
+                "url": "https://seatgeek.com/venues/nassau-veterans-memorial-coliseum-1/tickets",
+                "country": "US",
+                "popularity": 0,
+                "name_v2": "Nassau Veterans Memorial Coliseum"
+            },
+            "enddatetime_utc": null,
+            "short_title": "New York Open Semifinals Evening Session",
+            "datetime_utc": "2020-02-16T00:00:00",
+            "datetime_tbd": false
+        },
+        {
+            "links": [],
+            "event_promotion": null,
+            "conditional": false,
+            "is_open": false,
+            "id": 4913664,
+            "stats": {
+                "visible_listing_count": 59,
+                "dq_bucket_counts": [
+                    11,
+                    12,
+                    15,
+                    5,
+                    7,
+                    9,
+                    7,
+                    0
+                ],
+                "average_price": 110,
+                "lowest_sg_base_price_good_deals": 27,
+                "lowest_price_good_deals": 39,
+                "median_price": 107,
+                "listing_count": 67,
+                "lowest_price": 34,
+                "lowest_sg_base_price": 23,
+                "highest_price": 268
+            },
+            "title": "New York Open Finals",
+            "announce_date": "2019-07-03T00:00:00",
+            "score": 0.367,
+            "access_method": {
+                "employee_only": false,
+                "created_at": "2018-09-28T00:38:24Z",
+                "method": "QRCODE_TM"
+            },
+            "announcements": {
+                "checkout_disclosures": {
+                    "messages": [
+                        {
+                            "text": "All purchases are 100% guaranteed. Prices set by the seller may be above or below face value."
+                        }
+                    ]
+                }
+            },
+            "taxonomies": [
+                {
+                    "name": "sports",
+                    "parent_id": null,
+                    "id": 1000000
+                },
+                {
+                    "name": "tennis",
+                    "parent_id": 1000000,
+                    "id": 1090000
+                }
+            ],
+            "type": "tennis",
+            "status": "normal",
+            "description": "",
+            "datetime_local": "2020-02-16T14:00:00",
+            "visible_until_utc": "2020-02-16T23:00:00",
+            "time_tbd": false,
+            "date_tbd": false,
+            "performers": [
+                {
+                    "image": "https://seatgeek.com/images/performers-landscape/new-york-open-eb58c8/636823/huge.jpg",
+                    "primary": true,
+                    "colors": null,
+                    "images": {
+                        "huge": "https://seatgeek.com/images/performers-landscape/new-york-open-eb58c8/636823/huge.jpg"
+                    },
+                    "has_upcoming_events": true,
+                    "id": 636823,
+                    "stats": {
+                        "event_count": 10
+                    },
+                    "image_license": "https://creativecommons.org/licenses/by/2.0/",
+                    "score": 0.37,
+                    "location": null,
+                    "taxonomies": [
+                        {
+                            "name": "sports",
+                            "parent_id": null,
+                            "id": 1000000,
+                            "document_source": {
+                                "source_type": "ELASTIC",
+                                "generation_type": "FULL"
+                            }
+                        },
+                        {
+                            "name": "tennis",
+                            "parent_id": 1000000,
+                            "id": 1090000,
+                            "document_source": {
+                                "source_type": "ELASTIC",
+                                "generation_type": "FULL"
+                            }
+                        }
+                    ],
+                    "type": "tennis",
+                    "num_upcoming_events": 10,
+                    "short_name": "New York Open",
+                    "home_venue_id": null,
+                    "slug": "new-york-open",
+                    "divisions": null,
+                    "name": "New York Open",
+                    "url": "https://seatgeek.com/new-york-open-tickets",
+                    "popularity": 0,
+                    "image_attribution": "https://www.flickr.com/photos/romanboed/16355970659/in/photolist-qVjCf8-rcCiSM-qVaRxN-e8ynNm-m7HX9x-9WxvGy-xN4tJ5-Xk5qCj-m7K63Y-fJvrpD-c9ZXUC-crwSHN-5QPeQp-amhB4P-p46Xpr-bAS4Xe-oZKxyT-nUWJB8-i3V69r-m7JW4q-Xor56E-fJMXkG-5wWk5J-fZLXa3-amhBSP-5wRWkz-MnEqW5-d5rXEw-5aXhbc-5b2qqC-YnMsuR-WifeUV-amhwTX-4RYXpY-5wWjHJ-p4khYm-5wWbG1-6oMp4k-p8Rjym-amkjah-bt5Nnv-dSMKSq-nVq9X3-vFR1GG-doYgxm-bnXjNj-vFZtg6-WVz8Ky-4ZQoWc-p4ki6W"
+                }
+            ],
+            "url": "https://seatgeek.com/new-york-open-finals-tickets/tennis/2020-02-16-2-pm/4913664",
+            "created_at": "2019-07-03T16:01:47",
+            "popularity": 0.42,
+            "venue": {
+                "links": [],
+                "metro_code": 501,
+                "postal_code": "11553",
+                "timezone": "America/New_York",
+                "has_upcoming_events": true,
+                "id": 205,
+                "city": "Uniondale",
+                "extended_address": "Uniondale, NY 11553",
+                "display_location": "Uniondale, NY",
+                "state": "NY",
+                "score": 0.76685643,
+                "location": {
+                    "lat": 40.7464,
+                    "lon": -73.5956
+                },
+                "access_method": {
+                    "employee_only": false,
+                    "created_at": "2018-09-28T00:38:24Z",
+                    "method": "QRCODE_TM"
+                },
+                "num_upcoming_events": 58,
+                "address": "1255 Hempstead Turnpike",
+                "capacity": 16234,
+                "slug": "nassau-veterans-memorial-coliseum-1",
+                "name": "Nassau Veterans Memorial Coliseum",
+                "url": "https://seatgeek.com/venues/nassau-veterans-memorial-coliseum-1/tickets",
+                "country": "US",
+                "popularity": 0,
+                "name_v2": "Nassau Veterans Memorial Coliseum"
+            },
+            "enddatetime_utc": null,
+            "short_title": "New York Open Finals",
+            "datetime_utc": "2020-02-16T19:00:00",
+            "datetime_tbd": false
+        }
+    ]
+}
