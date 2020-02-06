@@ -20,14 +20,12 @@ class DiscoverEventView: UIView {
         button.titleLabel?.font = UIFont(name: "Arial-Bold", size: 16)
         button.backgroundColor = #colorLiteral(red: 0.9144081473, green: 0.6900397539, blue: 1, alpha: 1)
         button.layer.cornerRadius = 5
-        
         button.isEnabled = true
         return button
     }()
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
-        
         self.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         setSubviews()
         setConstraints()
@@ -48,22 +46,20 @@ class DiscoverEventView: UIView {
     //MARK: -UI Setup
     
     private func setSubviews() {
-        self.addSubview(setPrefButton)
+        self.addSubview(discoverEventButton)
     }
     
     private func setConstraints() {
-        setsetPrefButtonConstraints()
+        setDiscoverButtonConstraints()
     }
     
-    private func setsetPrefButtonConstraints() {
-        setPrefButton.translatesAutoresizingMaskIntoConstraints = false
+    private func setDiscoverButtonConstraints() {
+        discoverEventButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            setPrefButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 300),
-            setPrefButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            setPrefButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7),
-            setPrefButton.heightAnchor.constraint(equalToConstant: 40)
+            discoverEventButton.topAnchor.constraint(equalTo: self.topAnchor,constant: self.frame.height * 0.3),
+            discoverEventButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            discoverEventButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7),
+            discoverEventButton.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
-    
-    
 }
