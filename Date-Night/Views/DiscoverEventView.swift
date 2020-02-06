@@ -9,13 +9,61 @@
 import UIKit
 
 class DiscoverEventView: UIView {
+    
+ //   MARK:- Properties
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    
+    lazy var discoverEventButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Discover Events", for: .normal)
+        button.setTitleColor(.blue, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Arial-Bold", size: 16)
+        button.backgroundColor = #colorLiteral(red: 0.9144081473, green: 0.6900397539, blue: 1, alpha: 1)
+        button.layer.cornerRadius = 5
+        
+        button.isEnabled = true
+        return button
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: UIScreen.main.bounds)
+        
+        self.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        setSubviews()
+        setConstraints()
     }
-    */
-
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: Obj-C Methods
+    
+    
+    
+    
+    //MARK:- Private functions
+    
+    
+    //MARK: -UI Setup
+    
+    private func setSubviews() {
+        self.addSubview(setPrefButton)
+    }
+    
+    private func setConstraints() {
+        setsetPrefButtonConstraints()
+    }
+    
+    private func setsetPrefButtonConstraints() {
+        setPrefButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            setPrefButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 300),
+            setPrefButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            setPrefButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7),
+            setPrefButton.heightAnchor.constraint(equalToConstant: 40)
+        ])
+    }
+    
+    
 }
