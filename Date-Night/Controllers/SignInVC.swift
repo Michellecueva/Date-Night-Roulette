@@ -10,11 +10,20 @@ import UIKit
 
 class SignInVC: UIViewController {
 
-    
+    let viewSignIn = SignInView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        view.addSubview(viewSignIn)
+        addObjcFunctionsToViewObjects()
+    }
+    
+    @objc private func loginButton() {
+        loginButtonFunctions(email:viewSignIn.emailField.text,password:viewSignIn.passwordField.text)
+    }
+    
+    private func addObjcFunctionsToViewObjects() {
+        viewSignIn.loginButton.addTarget(self, action: #selector(loginButton), for: .touchUpInside)
     }
 
    private func loginButtonFunctions(email:String?,password:String?) {
@@ -34,7 +43,7 @@ class SignInVC: UIViewController {
                       return
                   }
                   FirebaseAuthService.manager.loginUser(email: email.lowercased().trimmingCharacters(in: .whitespacesAndNewlines), password: password) { (result) in
-                    self.handleLoginResponse(vc: UIViewController(), with: result)
+                    self.handleLoginResponse(vc: HomeScreenVC(), with: result)
                   }
        }
     private func handleLoginResponse(vc:UIViewController, with result: Result<(), AppError>) {
