@@ -67,7 +67,6 @@ class SendInviteView: UIView {
         setUpEmailTextFieldConstraints()
         setUpEnterButtonConstraints()
         setUpStackViewConstraints()
-        
     }
     
     private func setUpUserInstructionsConstraints(){
@@ -75,23 +74,16 @@ class SendInviteView: UIView {
         userInstructions.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            
-            
             userInstructions.heightAnchor.constraint(equalToConstant: self.frame.height * 0.05)
-            
         ])
-        
     }
-    
     
     private func setUpEmailTextFieldConstraints(){
         emailField.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            
-            
+     
             emailField.heightAnchor.constraint(equalToConstant: self.frame.height * 0.05)
-            
         ])
     }
     
@@ -114,8 +106,6 @@ class SendInviteView: UIView {
             
         ])
     }
-    
-    
 }
 
 

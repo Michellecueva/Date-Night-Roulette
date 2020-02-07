@@ -23,7 +23,6 @@ class SendInviteVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
     
@@ -32,14 +31,12 @@ class SendInviteVC: UIViewController {
     }
     
   @objc private func sendInvite() {
-          
-    
+        
     guard let recipient = sendInviteView.emailField.text else {
             //add alert
             print("could not invite user")
             return
         }
-        
         let invite = Invites(from: currentUserEmail, to: recipient, invitationStatus: .pending)
            
            FirestoreService.manager.sendInvite(invite: invite) { [weak self] (result) in
