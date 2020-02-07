@@ -23,6 +23,7 @@ class SendInviteVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(sendInviteView)
         // Do any additional setup after loading the view.
     }
     
