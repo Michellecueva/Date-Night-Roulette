@@ -23,20 +23,9 @@ class SignUpView: UIView {
         return label
     }()
     
-    lazy var firstName: UITextField = {
+    lazy var displayName: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "First name"
-        textField.font = UIFont(name: "Verdana", size: 14)
-        textField.backgroundColor = .lightText
-        textField.backgroundColor = #colorLiteral(red: 0.9143477082, green: 0.7107878327, blue: 1, alpha: 1)
-        textField.borderStyle = .roundedRect
-        textField.autocorrectionType = .no
-        return textField
-    }()
-    
-    lazy var lastName: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Last name"
+        textField.placeholder = "Display name"
         textField.font = UIFont(name: "Verdana", size: 14)
         textField.backgroundColor = .lightText
         textField.backgroundColor = #colorLiteral(red: 0.9143477082, green: 0.7107878327, blue: 1, alpha: 1)
@@ -71,19 +60,19 @@ class SignUpView: UIView {
     lazy var createButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Create Account", for: .normal)
-        button.setTitleColor(.blue, for: .normal)
+        button.setTitleColor(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1), for: .normal)
+        button.setTitleColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1), for: .disabled)
         button.titleLabel?.font = UIFont(name: "Verdana-Bold", size: 14)
         button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         button.layer.cornerRadius = 5
-        button.isEnabled = true
+        button.isEnabled = false
         return button
     }()
     
     lazy var stackView: UIStackView = {
         let stackView = UIStackView(
             arrangedSubviews: [
-                firstName,
-                lastName,
+                displayName,
                 emailTextField,
                 passwordTextField,
             ]

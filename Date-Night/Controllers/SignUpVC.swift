@@ -11,48 +11,57 @@ import FirebaseAuth
 
 class SignUpVC: UIViewController {
     
+    let signUpView = SignUpView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginButtonFunctions(email: "Michelle2@gmail.com", password: "password1234!", firstName: "Michelle")
-        
-        // Do any additional setup after loading the view.
+        view.addSubview(signUpView)
+        addObjcFunctionsToViewObjects()
     }
     
-    func loginButtonFunctions(email:String?,password:String?,firstName:String?) {
+    @objc func validateFields() {
+           guard signUpView.emailTextField.hasText, signUpView.passwordTextField.hasText else {
+               signUpView.createButton.isEnabled = false
+               return
+           }
+           signUpView.createButton.isEnabled = true
+           signUpView.createButton.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+       }
+    
+   @objc private func addObjcFunctionsToViewObjects() {
+    signUpView.createButton.addTarget(self, action: #selector(signUpButton), for: .touchUpInside)
+    signUpView.emailTextField.addTarget(self, action: #selector(validateFields), for: .editingChanged)
+    signUpView.passwordTextField.addTarget(self, action: #selector(validateFields), for: .editingChanged)
+    }
+    
+    @objc func signUpButton() {
+        signUpFunction(email: signUpView.emailTextField.text, password: signUpView.passwordTextField.text, displayName: signUpView.displayName.text)
+    }
+    
+   private func signUpFunction(email:String?,password:String?,displayName:String?) {
         
         guard let email = email,
             let password = password,
-            let firstName = firstName else {
+            let displayName = displayName else {
                 
                 return
         }
-        
-        
+    
         guard  email.isValidEmail else {
             
             return
         }
-        
-        
-        
+   
         guard password.isValidPassword else {
             return
         }
         FirebaseAuthService.manager.createNewUser(email: email, password: password) { (result) in
-            
-            
-            self.updateUserAccount(with: result, firstName: firstName)
+         
+            self.updateUserAccount(with: result, displayName: displayName)
         }
-        
-        
-        
-        
     }
-    
-    
-    
-    private func updateUserAccount(with result: Result<User,AppError>,firstName:String) {
+ 
+    private func updateUserAccount(with result: Result<User,AppError>,displayName:String) {
         
         DispatchQueue.main.async {
             switch result {
@@ -61,13 +70,13 @@ class SignUpVC: UIViewController {
                 
             case.success(let user):
                 FirestoreService.manager.createAppUser(user: AppUser(from: user, sessionID: nil, preferences: [])) { (result) in
-                    FirestoreService.manager.updateCurrentUser(firstName: firstName, photoURL: nil) { (result) in
+                    FirestoreService.manager.updateCurrentUser(firstName: displayName, photoURL: nil) { (result) in
                         switch result {
                         case .failure(let error):
                             print(error)
                             
                         case .success():
-                            FirebaseAuthService.manager.updateUserFields(name: firstName, photoURL: nil) { (result) in
+                            FirebaseAuthService.manager.updateUserFields(name: displayName, photoURL: nil) { (result) in
                                 switch result {
                                 case .failure(let error):
                                     print(error)
@@ -84,21 +93,21 @@ class SignUpVC: UIViewController {
     }
 }
 
-private func updateUserFields(result:Result<User,AppError>,firstName:String) {
+private func updateUserFields(result:Result<User,AppError>,displayName:String) {
     
-    FirebaseAuthService.manager.updateUserFields(name: firstName , photoURL: nil) { (result) in
+    FirebaseAuthService.manager.updateUserFields(name: displayName , photoURL: nil) { (result) in
         switch result {
         case .failure(let error):
             print(error)
             
         case .success():
             handleLoginResponse(vc: UIViewController(), with: result)
-            
         }
     }
-    
 }
-private func handleLoginResponse(vc viewController:UIViewController,with result: Result<(), Error>) {
+
+private func handleLoginResponse(vc
+    viewController:UIViewController,with result: Result<(), Error>) {
     switch result {
         
     case .success:
