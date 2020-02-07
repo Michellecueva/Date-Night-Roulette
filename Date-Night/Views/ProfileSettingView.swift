@@ -1,22 +1,15 @@
-//
-//  ProfileSettingView.swift
-//  Date-Night
-//
-//  Created by Kimball Yang on 2/6/20.
-//  Copyright © 2020 Michelle Cueva. All rights reserved.
-//
 
 import UIKit
 
 class ProfileSettingView: UIView {
     
-    //MARK: WIP: Portrait
+    //MARK: Portrait
     
-//    lazy var portraitPic: UIImageView = {
-//        let image = UIImageView(named: "􀉯")
-//        image.auto
-//        return image
-//    }
+    lazy var portraitPic: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(systemName: "person.crop.circle.badge.plus")
+        return image
+    }()
     
     lazy var userEmailFieldLabel: UILabel = {
         let label = UILabel()
@@ -34,6 +27,7 @@ class ProfileSettingView: UIView {
         return label
     }()
     
+ 
     lazy var emailField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Email Address"
@@ -62,7 +56,6 @@ class ProfileSettingView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
-        
         self.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         setSubviews()
         setConstraints()
@@ -75,6 +68,7 @@ class ProfileSettingView: UIView {
     //MARK: -UI Setup
     
     private func setSubviews() {
+        self.addSubview(portraitPic)
         self.addSubview(userEmailFieldLabel)
         self.addSubview(partnerEmailFieldLabel)
         self.addSubview(emailField)
@@ -84,11 +78,22 @@ class ProfileSettingView: UIView {
     }
     
     private func setConstraints() {
+        setPortraitConstraints()
         setUserEmailLabelConstraints()
         setEmailFieldConstraints()
         setPartnerEmailLabelConstraints()
         setPartnerFieldConstraints()
         setLogOutButtonConstraints()
+    }
+    
+    private func setPortraitConstraints() {
+        portraitPic.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            portraitPic.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.1),
+            portraitPic.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            portraitPic.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5),
+            portraitPic.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4)
+        ])
     }
     
     private func setUserEmailLabelConstraints() {
@@ -142,4 +147,3 @@ class ProfileSettingView: UIView {
         ])
     }
 }
-
