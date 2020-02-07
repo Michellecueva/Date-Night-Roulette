@@ -36,6 +36,8 @@
 		6BD4DEF7BB09901D06486257 /* Pods_Date_NightTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430EC1B11EDEEA43E7890593 /* Pods_Date_NightTests.framework */; };
 		7401EF4723ECAB45000C322B /* DiscoverEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401EF4623ECAB45000C322B /* DiscoverEventView.swift */; };
 		7401EF4923ECAB81000C322B /* DiscoverEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401EF4823ECAB81000C322B /* DiscoverEventVC.swift */; };
+		7401EF5723ED23C2000C322B /* ProfileSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401EF5623ED23C2000C322B /* ProfileSettingVC.swift */; };
+		7401EF5923ED2405000C322B /* ProfileSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401EF5823ED2405000C322B /* ProfileSettingView.swift */; };
 		7448D1A023E895B4003A997C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7448D19F23E895B4003A997C /* SignInView.swift */; };
 		7448D1A223E895DF003A997C /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7448D1A123E895DF003A997C /* SignUpView.swift */; };
 		7448D1A423E8B07D003A997C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7448D1A323E8B07D003A997C /* GoogleService-Info.plist */; };
@@ -83,6 +85,8 @@
 		6965961323E0A9ED009399F2 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
 		7401EF4623ECAB45000C322B /* DiscoverEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverEventView.swift; sourceTree = "<group>"; };
 		7401EF4823ECAB81000C322B /* DiscoverEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverEventVC.swift; sourceTree = "<group>"; };
+		7401EF5623ED23C2000C322B /* ProfileSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingVC.swift; sourceTree = "<group>"; };
+		7401EF5823ED2405000C322B /* ProfileSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingView.swift; sourceTree = "<group>"; };
 		7448D19F23E895B4003A997C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		7448D1A123E895DF003A997C /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		7448D1A323E8B07D003A997C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 				283823C923E887450031327E /* HomeScreenVC.swift */,
 				2862B5FE23DD47130047B47B /* SignInVC.swift */,
 				2862B66B23DFE26C0047B47B /* SignUpVC.swift */,
+				7401EF5623ED23C2000C322B /* ProfileSettingVC.swift */,
 				7401EF4823ECAB81000C322B /* DiscoverEventVC.swift */,
 			);
 			path = Controllers;
@@ -225,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				7448D19F23E895B4003A997C /* SignInView.swift */,
+				7401EF5823ED2405000C322B /* ProfileSettingView.swift */,
 				7448D1A123E895DF003A997C /* SignUpView.swift */,
 				7401EF4623ECAB45000C322B /* DiscoverEventView.swift */,
 			);
@@ -457,7 +463,9 @@
 				6965961023E0A775009399F2 /* Extensions.swift in Sources */,
 				7401EF4723ECAB45000C322B /* DiscoverEventView.swift in Sources */,
 				0BBFCD2E23E8949100E039A7 /* Secrets.swift in Sources */,
+				7401EF5723ED23C2000C322B /* ProfileSettingVC.swift in Sources */,
 				2862B60523DD47130047B47B /* Date_Night.xcdatamodeld in Sources */,
+				7401EF5923ED2405000C322B /* ProfileSettingView.swift in Sources */,
 				7448D1A223E895DF003A997C /* SignUpView.swift in Sources */,
 				2862B66C23DFE26C0047B47B /* SignUpVC.swift in Sources */,
 				2862B5FD23DD47130047B47B /* SceneDelegate.swift in Sources */,
