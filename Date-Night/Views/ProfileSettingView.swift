@@ -74,7 +74,6 @@ class ProfileSettingView: UIView {
         self.addSubview(emailField)
         self.addSubview(partnerField)
         self.addSubview(logoutButton)
-        
     }
     
     private func setConstraints() {
@@ -116,7 +115,6 @@ class ProfileSettingView: UIView {
         ])
     }
     
-    //partnerEmailFieldLabel
     private func setPartnerEmailLabelConstraints() {
         partnerEmailFieldLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
