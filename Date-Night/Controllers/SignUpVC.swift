@@ -46,31 +46,21 @@ class SignUpVC: UIViewController {
                 
                 return
         }
-        
-        
+    
         guard  email.isValidEmail else {
             
             return
         }
-        
-        
-        
+   
         guard password.isValidPassword else {
             return
         }
         FirebaseAuthService.manager.createNewUser(email: email, password: password) { (result) in
-            
-            
+         
             self.updateUserAccount(with: result, displayName: displayName)
         }
-        
-        
-        
-        
     }
-    
-    
-    
+ 
     private func updateUserAccount(with result: Result<User,AppError>,displayName:String) {
         
         DispatchQueue.main.async {
@@ -112,12 +102,12 @@ private func updateUserFields(result:Result<User,AppError>,displayName:String) {
             
         case .success():
             handleLoginResponse(vc: UIViewController(), with: result)
-            
         }
     }
-    
 }
-private func handleLoginResponse(vc viewController:UIViewController,with result: Result<(), Error>) {
+
+private func handleLoginResponse(vc
+    viewController:UIViewController,with result: Result<(), Error>) {
     switch result {
         
     case .success:
@@ -138,7 +128,6 @@ private func handleLoginResponse(vc viewController:UIViewController,with result:
     case .failure(let error):
         print(error)
     }
-    
 }
 
 

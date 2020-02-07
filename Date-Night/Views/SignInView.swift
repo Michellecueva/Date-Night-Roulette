@@ -85,14 +85,6 @@ class SignInView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: Obj-C Methods
-    
-    
-    
-    
-    //MARK:- Private functions
-    
-    
     //MARK: -UI Setup
     
     private func setSubviews() {
