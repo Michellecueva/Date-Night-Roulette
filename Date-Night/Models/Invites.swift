@@ -16,7 +16,7 @@ enum invitationStatus:String {
     
 }
 
-struct Invites:Codable {
+struct Invites:Codable,Hashable {
     let from:String
     let to:String
     let invitationStatus:String
