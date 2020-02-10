@@ -3,9 +3,25 @@ import UIKit
 
 class InvitesPendingCell: UITableViewCell {
     
+    var delegate: CellDelegate?
+    
     var nameLabel: UILabel = {
         let label = UILabel()
         return label
+    }()
+    
+    lazy var acceptButton: UIButton = { [unowned self] in
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+        button.addTarget(self, action: #selector(acceptButtonPressed), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var declineButton: UIButton = { [unowned self] in
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "xmark.circle"), for: .normal)
+        button.addTarget(self, action: #selector(declineButtonPressed), for: .touchUpInside)
+        return button
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -27,17 +43,55 @@ class InvitesPendingCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    @objc func acceptButtonPressed(sender: UIButton) {
+        delegate?.handleAcceptedInvite(tag: sender.tag)
+    }
+    
+    @objc func declineButtonPressed(sender: UIButton) {
+        delegate?.handleDeclinedInvite(tag: sender.tag)
+    }
+    
     private func addSubviews() {
         self.contentView.addSubview(nameLabel)
+        self.contentView.addSubview(acceptButton)
+        self.contentView.addSubview(declineButton)
     }
     
     private func setConstraints() {
+        setNameLabelConstraints()
+        setAcceptButtonConstraints()
+        setDeclineButtonConstraints()
+    }
+    
+    private func setNameLabelConstraints() {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             nameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             nameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8)
+        ])
+    }
+    
+    private func setAcceptButtonConstraints() {
+        acceptButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            acceptButton.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
+            acceptButton.trailingAnchor.constraint(equalTo: declineButton.leadingAnchor, constant: 10),
+            acceptButton.heightAnchor.constraint(equalToConstant: 50),
+            acceptButton.widthAnchor.constraint(equalToConstant: 50),
+        ])
+    }
+    
+    private func setDeclineButtonConstraints() {
+        declineButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            declineButton.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
+            declineButton.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+            declineButton.heightAnchor.constraint(equalToConstant: 50),
+            declineButton.widthAnchor.constraint(equalToConstant: 50),
         ])
     }
 

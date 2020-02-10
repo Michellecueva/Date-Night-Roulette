@@ -43,9 +43,12 @@ class InvitesPendingVC: UIViewController {
     
     private func configureDataSource() {
         dataSource = UITableViewDiffableDataSource<Section, Invites>(tableView: invitesPendingView.invitesPendingTableView, cellProvider: { (tableView, indexPath, Invite) -> UITableViewCell? in
-            let cell = tableView.dequeueReusableCell(withIdentifier: "invitesCell", for: indexPath)
-            cell.textLabel?.text = Invite.from
-            cell.textLabel?.textColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "invitesCell", for: indexPath) as! InvitesPendingCell
+            cell.nameLabel.text = Invite.from
+            cell.nameLabel.textColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+            cell.acceptButton.tag = indexPath.row
+            cell.declineButton.tag = indexPath.row
+            cell.delegate = self
             cell.backgroundColor = .clear
             return cell
         })
@@ -85,6 +88,22 @@ extension InvitesPendingVC {
                 print("inviteList: \(inviteList)")
             })
     }
+}
+
+extension InvitesPendingVC: CellDelegate {
+    func handleAcceptedInvite(tag: Int) {
+        let invite = invites[tag]
+        print(invite)
+        //change pending to accepted and update user's partner
+    }
+    
+    func handleDeclinedInvite(tag: Int) {
+        let invite = invites[tag]
+        print(invite)
+        // remove that specific item from the array and firebase
+    }
+    
+    
 }
 
 extension InvitesPendingVC {
