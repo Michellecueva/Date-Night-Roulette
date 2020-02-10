@@ -44,7 +44,7 @@ class InvitesPendingVC: UIViewController {
     
     private func configureDataSource() {
         dataSource = UITableViewDiffableDataSource<Section, Invites>(tableView: invitesPendingView.invitesPendingTableView, cellProvider: { (tableView, indexPath, Invite) -> UITableViewCell? in
-            let cell = tableView.dequeueReusableCell(withIdentifier: "invitesCell", for: indexPath) as! InvitesPendingCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: InvitesCell.identifier, for: indexPath) as! InvitesCell
             
             cell.configureCell(with: Invite, row: indexPath.row)
             cell.delegate = self

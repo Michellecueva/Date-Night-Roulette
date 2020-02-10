@@ -7,7 +7,7 @@ class InvitesPendingView: UIView {
         let tableview = UITableView()
         tableview.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         tableview.separatorColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
-        tableview.register(InvitesPendingCell.self, forCellReuseIdentifier: "invitesCell")
+        tableview.register(InvitesCell.self, forCellReuseIdentifier: InvitesCell.identifier)
         tableview.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         return tableview
        }()

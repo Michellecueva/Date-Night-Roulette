@@ -1,8 +1,9 @@
 
 import UIKit
 
-class InvitesPendingCell: UITableViewCell {
+class InvitesCell: UITableViewCell {
     
+    static let identifier = "invitesCell"
     var delegate: CellDelegate?
     
     var nameLabel: UILabel = {
