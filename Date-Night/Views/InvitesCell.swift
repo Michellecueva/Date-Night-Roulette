@@ -28,7 +28,6 @@ class InvitesPendingCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubviews()
         setConstraints()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -49,6 +48,14 @@ class InvitesPendingCell: UITableViewCell {
     
     @objc func declineButtonPressed(sender: UIButton) {
         delegate?.handleDeclinedInvite(tag: sender.tag)
+    }
+    
+    func configureCell(with invite: Invites, row: Int) {
+        nameLabel.text = invite.from
+        nameLabel.textColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+        backgroundColor = .clear
+        acceptButton.tag = row
+        declineButton.tag = row
     }
     
     private func addSubviews() {
