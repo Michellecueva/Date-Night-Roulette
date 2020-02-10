@@ -77,7 +77,8 @@ class InvitesCell: UITableViewCell {
         NSLayoutConstraint.activate([
             nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             nameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            nameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8)
+            nameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8),
+            nameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.6)
         ])
     }
     
@@ -85,7 +86,7 @@ class InvitesCell: UITableViewCell {
         acceptButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            acceptButton.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
+            acceptButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             acceptButton.trailingAnchor.constraint(equalTo: declineButton.leadingAnchor, constant: 10),
             acceptButton.heightAnchor.constraint(equalToConstant: 50),
             acceptButton.widthAnchor.constraint(equalToConstant: 50),
@@ -96,7 +97,7 @@ class InvitesCell: UITableViewCell {
         declineButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            declineButton.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
+            declineButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             declineButton.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
             declineButton.heightAnchor.constraint(equalToConstant: 50),
             declineButton.widthAnchor.constraint(equalToConstant: 50),
