@@ -38,6 +38,8 @@
 		6BD4DEF7BB09901D06486257 /* Pods_Date_NightTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430EC1B11EDEEA43E7890593 /* Pods_Date_NightTests.framework */; };
 		7401EF4723ECAB45000C322B /* DiscoverEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401EF4623ECAB45000C322B /* DiscoverEventView.swift */; };
 		7401EF4923ECAB81000C322B /* DiscoverEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401EF4823ECAB81000C322B /* DiscoverEventVC.swift */; };
+		7401EF6A23F1C53D000C322B /* PartnerSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401EF6923F1C53D000C322B /* PartnerSettingVC.swift */; };
+		7401EF6C23F1C573000C322B /* PartnerSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401EF6B23F1C573000C322B /* PartnerSettingView.swift */; };
 		7448D1A023E895B4003A997C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7448D19F23E895B4003A997C /* SignInView.swift */; };
 		7448D1A223E895DF003A997C /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7448D1A123E895DF003A997C /* SignUpView.swift */; };
 		7448D1A423E8B07D003A997C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7448D1A323E8B07D003A997C /* GoogleService-Info.plist */; };
@@ -87,6 +89,8 @@
 		6965961323E0A9ED009399F2 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
 		7401EF4623ECAB45000C322B /* DiscoverEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverEventView.swift; sourceTree = "<group>"; };
 		7401EF4823ECAB81000C322B /* DiscoverEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverEventVC.swift; sourceTree = "<group>"; };
+		7401EF6923F1C53D000C322B /* PartnerSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerSettingVC.swift; sourceTree = "<group>"; };
+		7401EF6B23F1C573000C322B /* PartnerSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerSettingView.swift; sourceTree = "<group>"; };
 		7448D19F23E895B4003A997C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		7448D1A123E895DF003A997C /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		7448D1A323E8B07D003A997C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -192,6 +196,7 @@
 				283823C923E887450031327E /* HomeScreenVC.swift */,
 				2862B5FE23DD47130047B47B /* SignInVC.swift */,
 				2862B66B23DFE26C0047B47B /* SignUpVC.swift */,
+				7401EF6923F1C53D000C322B /* PartnerSettingVC.swift */,
 				7401EF4823ECAB81000C322B /* DiscoverEventVC.swift */,
 				691DD0EF23EE03A0003A67E7 /* SendInviteVC.swift */,
 			);
@@ -230,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				7448D1A123E895DF003A997C /* SignUpView.swift */,
+				7401EF6B23F1C573000C322B /* PartnerSettingView.swift */,
 				7401EF4623ECAB45000C322B /* DiscoverEventView.swift */,
 				7448D19F23E895B4003A997C /* SignInView.swift */,
 				691DD0ED23EE0351003A67E7 /* SendInviteView.swift */,
@@ -450,6 +456,7 @@
 				283823C823E885B90031327E /* FirestoreService.swift in Sources */,
 				283823C623E885730031327E /* AppError.swift in Sources */,
 				283823C423E885390031327E /* Sessions.swift in Sources */,
+				7401EF6C23F1C573000C322B /* PartnerSettingView.swift in Sources */,
 				0BBFCD3C23E8CEC000E039A7 /* SeatGeekModel.swift in Sources */,
 				0BBFCD3223E8CE0200E039A7 /* SeatGeekAPIClient.swift in Sources */,
 				0BBFCD3A23E8CEB700E039A7 /* Categories.swift in Sources */,
@@ -468,6 +475,7 @@
 				7448D1A223E895DF003A997C /* SignUpView.swift in Sources */,
 				691DD0EE23EE0351003A67E7 /* SendInviteView.swift in Sources */,
 				2862B66C23DFE26C0047B47B /* SignUpVC.swift in Sources */,
+				7401EF6A23F1C53D000C322B /* PartnerSettingVC.swift in Sources */,
 				2862B5FD23DD47130047B47B /* SceneDelegate.swift in Sources */,
 				2862B6B023DFFF3F0047B47B /* FirebaseAuthService.swift in Sources */,
 				0BBFCD3423E8CE0800E039A7 /* ImageHelper.swift in Sources */,
