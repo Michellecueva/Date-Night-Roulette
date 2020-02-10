@@ -25,6 +25,7 @@
 		283823E823F0C5F20031327E /* InvitesPendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283823E723F0C5F20031327E /* InvitesPendingView.swift */; };
 		283823EA23F0C6E70031327E /* InvitesPendingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283823E923F0C6E70031327E /* InvitesPendingVC.swift */; };
 		283823EC23F0D06A0031327E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7448D1A323E8B07D003A997C /* GoogleService-Info.plist */; };
+		283823EE23F0F4F30031327E /* CellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283823ED23F0F4F30031327E /* CellDelegate.swift */; };
 		2862B5FB23DD47130047B47B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2862B5FA23DD47130047B47B /* AppDelegate.swift */; };
 		2862B5FD23DD47130047B47B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2862B5FC23DD47130047B47B /* SceneDelegate.swift */; };
 		2862B5FF23DD47130047B47B /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2862B5FE23DD47130047B47B /* SignInVC.swift */; };
@@ -71,6 +72,7 @@
 		283823E523F0C4D10031327E /* InvitesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesCell.swift; sourceTree = "<group>"; };
 		283823E723F0C5F20031327E /* InvitesPendingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesPendingView.swift; sourceTree = "<group>"; };
 		283823E923F0C6E70031327E /* InvitesPendingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesPendingVC.swift; sourceTree = "<group>"; };
+		283823ED23F0F4F30031327E /* CellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDelegate.swift; sourceTree = "<group>"; };
 		2862B5F723DD47130047B47B /* Date-Night.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Date-Night.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2862B5FA23DD47130047B47B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2862B5FC23DD47130047B47B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 		2862B67B23DFEAD60047B47B /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				283823ED23F0F4F30031327E /* CellDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 				6965961423E0A9ED009399F2 /* AppUser.swift in Sources */,
 				0BBFCD3023E8CDFB00E039A7 /* NetworkHelper.swift in Sources */,
 				2862B5FB23DD47130047B47B /* AppDelegate.swift in Sources */,
+				283823EE23F0F4F30031327E /* CellDelegate.swift in Sources */,
 				7448D1A023E895B4003A997C /* SignInView.swift in Sources */,
 				283823EA23F0C6E70031327E /* InvitesPendingVC.swift in Sources */,
 				283823E623F0C4D20031327E /* InvitesCell.swift in Sources */,
