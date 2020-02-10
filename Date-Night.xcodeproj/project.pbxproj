@@ -25,6 +25,11 @@
 		283823C623E885730031327E /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283823C523E885730031327E /* AppError.swift */; };
 		283823C823E885B90031327E /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283823C723E885B90031327E /* FirestoreService.swift */; };
 		283823CA23E887450031327E /* HomeScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283823C923E887450031327E /* HomeScreenVC.swift */; };
+		283823E623F0C4D20031327E /* InvitesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283823E523F0C4D10031327E /* InvitesCell.swift */; };
+		283823E823F0C5F20031327E /* InvitesPendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283823E723F0C5F20031327E /* InvitesPendingView.swift */; };
+		283823EA23F0C6E70031327E /* InvitesPendingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283823E923F0C6E70031327E /* InvitesPendingVC.swift */; };
+		283823EC23F0D06A0031327E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7448D1A323E8B07D003A997C /* GoogleService-Info.plist */; };
+		283823EE23F0F4F30031327E /* CellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283823ED23F0F4F30031327E /* CellDelegate.swift */; };
 		2862B5FB23DD47130047B47B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2862B5FA23DD47130047B47B /* AppDelegate.swift */; };
 		2862B5FD23DD47130047B47B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2862B5FC23DD47130047B47B /* SceneDelegate.swift */; };
 		2862B5FF23DD47130047B47B /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2862B5FE23DD47130047B47B /* SignInVC.swift */; };
@@ -35,11 +40,17 @@
 		2862B66C23DFE26C0047B47B /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2862B66B23DFE26C0047B47B /* SignUpVC.swift */; };
 		2862B6B023DFFF3F0047B47B /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2862B6AF23DFFF3F0047B47B /* FirebaseAuthService.swift */; };
 		3D45F700C5198B3C28C12DCB /* Pods_Date_Night.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A0A167012B1843CEF3F7DD /* Pods_Date_Night.framework */; };
+		691DD0EE23EE0351003A67E7 /* SendInviteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691DD0ED23EE0351003A67E7 /* SendInviteView.swift */; };
+		691DD0F023EE03A0003A67E7 /* SendInviteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691DD0EF23EE03A0003A67E7 /* SendInviteVC.swift */; };
 		6965961023E0A775009399F2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6965960F23E0A775009399F2 /* Extensions.swift */; };
 		6965961423E0A9ED009399F2 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6965961323E0A9ED009399F2 /* AppUser.swift */; };
 		6BD4DEF7BB09901D06486257 /* Pods_Date_NightTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430EC1B11EDEEA43E7890593 /* Pods_Date_NightTests.framework */; };
 		7401EF4723ECAB45000C322B /* DiscoverEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401EF4623ECAB45000C322B /* DiscoverEventView.swift */; };
 		7401EF4923ECAB81000C322B /* DiscoverEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401EF4823ECAB81000C322B /* DiscoverEventVC.swift */; };
+		7401EF6A23F1C53D000C322B /* PartnerSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401EF6923F1C53D000C322B /* PartnerSettingVC.swift */; };
+		7401EF6C23F1C573000C322B /* PartnerSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401EF6B23F1C573000C322B /* PartnerSettingView.swift */; };
+		7401EF7623F1E910000C322B /* WaitingForResponseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401EF7523F1E910000C322B /* WaitingForResponseVC.swift */; };
+		7401EF7823F1E941000C322B /* WaitingForResponseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401EF7723F1E941000C322B /* WaitingForResponseView.swift */; };
 		7448D1A023E895B4003A997C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7448D19F23E895B4003A997C /* SignInView.swift */; };
 		7448D1A223E895DF003A997C /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7448D1A123E895DF003A997C /* SignUpView.swift */; };
 /* End PBXBuildFile section */
@@ -71,6 +82,10 @@
 		283823C523E885730031327E /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		283823C723E885B90031327E /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		283823C923E887450031327E /* HomeScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenVC.swift; sourceTree = "<group>"; };
+		283823E523F0C4D10031327E /* InvitesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesCell.swift; sourceTree = "<group>"; };
+		283823E723F0C5F20031327E /* InvitesPendingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesPendingView.swift; sourceTree = "<group>"; };
+		283823E923F0C6E70031327E /* InvitesPendingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesPendingVC.swift; sourceTree = "<group>"; };
+		283823ED23F0F4F30031327E /* CellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDelegate.swift; sourceTree = "<group>"; };
 		2862B5F723DD47130047B47B /* Date-Night.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Date-Night.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2862B5FA23DD47130047B47B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2862B5FC23DD47130047B47B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,10 +100,16 @@
 		2862B66B23DFE26C0047B47B /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		2862B6AF23DFFF3F0047B47B /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		430EC1B11EDEEA43E7890593 /* Pods_Date_NightTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Date_NightTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		691DD0ED23EE0351003A67E7 /* SendInviteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendInviteView.swift; sourceTree = "<group>"; };
+		691DD0EF23EE03A0003A67E7 /* SendInviteVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendInviteVC.swift; sourceTree = "<group>"; };
 		6965960F23E0A775009399F2 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6965961323E0A9ED009399F2 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
 		7401EF4623ECAB45000C322B /* DiscoverEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverEventView.swift; sourceTree = "<group>"; };
 		7401EF4823ECAB81000C322B /* DiscoverEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverEventVC.swift; sourceTree = "<group>"; };
+		7401EF6923F1C53D000C322B /* PartnerSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerSettingVC.swift; sourceTree = "<group>"; };
+		7401EF6B23F1C573000C322B /* PartnerSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerSettingView.swift; sourceTree = "<group>"; };
+		7401EF7523F1E910000C322B /* WaitingForResponseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForResponseVC.swift; sourceTree = "<group>"; };
+		7401EF7723F1E941000C322B /* WaitingForResponseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForResponseView.swift; sourceTree = "<group>"; };
 		7448D19F23E895B4003A997C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		7448D1A123E895DF003A997C /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		7448D1A323E8B07D003A997C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -196,6 +217,11 @@
 				2862B66B23DFE26C0047B47B /* SignUpVC.swift */,
 				7401EF4823ECAB81000C322B /* DiscoverEventVC.swift */,
 				0B96461023F1C3B900D2CAB9 /* PreferenceVC.swift */,
+				7401EF6923F1C53D000C322B /* PartnerSettingVC.swift */,
+				7401EF4823ECAB81000C322B /* DiscoverEventVC.swift */,
+				283823E923F0C6E70031327E /* InvitesPendingVC.swift */,
+				7401EF7523F1E910000C322B /* WaitingForResponseVC.swift */,
+				691DD0EF23EE03A0003A67E7 /* SendInviteVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -236,6 +262,14 @@
 				0B96460E23EE2C9E00D2CAB9 /* PreferenceCell.swift */,
 				7448D1A123E895DF003A997C /* SignUpView.swift */,
 				7401EF4623ECAB45000C322B /* DiscoverEventView.swift */,
+				7448D1A123E895DF003A997C /* SignUpView.swift */,
+				7401EF6B23F1C573000C322B /* PartnerSettingView.swift */,
+				7401EF4623ECAB45000C322B /* DiscoverEventView.swift */,
+				7401EF7723F1E941000C322B /* WaitingForResponseView.swift */,
+				283823E523F0C4D10031327E /* InvitesCell.swift */,
+				283823E723F0C5F20031327E /* InvitesPendingView.swift */,
+				7448D19F23E895B4003A997C /* SignInView.swift */,
+				691DD0ED23EE0351003A67E7 /* SendInviteView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -243,6 +277,7 @@
 		2862B67B23DFEAD60047B47B /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				283823ED23F0F4F30031327E /* CellDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -366,6 +401,7 @@
 				2862B60A23DD47160047B47B /* LaunchScreen.storyboard in Resources */,
 				0BBFCD3823E8CEB000E039A7 /* seatGeekAPI.json in Resources */,
 				0B96462423F1FE1700D2CAB9 /* GoogleService-Info.plist in Resources */,
+				283823EC23F0D06A0031327E /* GoogleService-Info.plist in Resources */,
 				0BBFCD3623E8CEA800E039A7 /* Categories.json in Resources */,
 				2862B60723DD47160047B47B /* Assets.xcassets in Resources */,
 			);
@@ -453,6 +489,7 @@
 				283823C823E885B90031327E /* FirestoreService.swift in Sources */,
 				283823C623E885730031327E /* AppError.swift in Sources */,
 				283823C423E885390031327E /* Sessions.swift in Sources */,
+				7401EF6C23F1C573000C322B /* PartnerSettingView.swift in Sources */,
 				0BBFCD3C23E8CEC000E039A7 /* SeatGeekModel.swift in Sources */,
 				0BBFCD3223E8CE0200E039A7 /* SeatGeekAPIClient.swift in Sources */,
 				0BBFCD3A23E8CEB700E039A7 /* Categories.swift in Sources */,
@@ -465,13 +502,26 @@
 				0BBFCD3023E8CDFB00E039A7 /* NetworkHelper.swift in Sources */,
 				2862B5FB23DD47130047B47B /* AppDelegate.swift in Sources */,
 				0B96460D23EE2C6A00D2CAB9 /* PreferenceView.swift in Sources */,
+				283823E823F0C5F20031327E /* InvitesPendingView.swift in Sources */,
+				691DD0F023EE03A0003A67E7 /* SendInviteVC.swift in Sources */,
+				7401EF4923ECAB81000C322B /* DiscoverEventVC.swift in Sources */,
+				6965961423E0A9ED009399F2 /* AppUser.swift in Sources */,
+				0BBFCD3023E8CDFB00E039A7 /* NetworkHelper.swift in Sources */,
+				2862B5FB23DD47130047B47B /* AppDelegate.swift in Sources */,
+				283823EE23F0F4F30031327E /* CellDelegate.swift in Sources */,
 				7448D1A023E895B4003A997C /* SignInView.swift in Sources */,
+				283823EA23F0C6E70031327E /* InvitesPendingVC.swift in Sources */,
+				283823E623F0C4D20031327E /* InvitesCell.swift in Sources */,
 				6965961023E0A775009399F2 /* Extensions.swift in Sources */,
+				7401EF7823F1E941000C322B /* WaitingForResponseView.swift in Sources */,
 				7401EF4723ECAB45000C322B /* DiscoverEventView.swift in Sources */,
 				0BBFCD2E23E8949100E039A7 /* Secrets.swift in Sources */,
+				7401EF7623F1E910000C322B /* WaitingForResponseVC.swift in Sources */,
 				2862B60523DD47130047B47B /* Date_Night.xcdatamodeld in Sources */,
 				7448D1A223E895DF003A997C /* SignUpView.swift in Sources */,
+				691DD0EE23EE0351003A67E7 /* SendInviteView.swift in Sources */,
 				2862B66C23DFE26C0047B47B /* SignUpVC.swift in Sources */,
+				7401EF6A23F1C53D000C322B /* PartnerSettingVC.swift in Sources */,
 				2862B5FD23DD47130047B47B /* SceneDelegate.swift in Sources */,
 				2862B6B023DFFF3F0047B47B /* FirebaseAuthService.swift in Sources */,
 				0BBFCD3423E8CE0800E039A7 /* ImageHelper.swift in Sources */,
