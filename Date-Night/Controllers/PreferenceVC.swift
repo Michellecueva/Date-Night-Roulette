@@ -8,13 +8,13 @@
 
 import UIKit
 
-class PreferencesVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
-    var prefView = PreferencesView()
+    var prefView = PreferenceView()
     
     var prefList = [Categories](){
         didSet{
-            self.prefView.preferencesCollectionView.reloadData()
+            self.prefView.preferenceCollectionView.reloadData()
         }
     }
     
@@ -22,17 +22,19 @@ class PreferencesVC: UIViewController, UICollectionViewDelegate, UICollectionVie
         super.viewDidLoad()
         view.addSubview(prefView)
         collectionViewMethods()
+        prefList = getPreferences()
+        self.navigationController?.navigationBar.topItem?.title = "Set your Preferences"
     }
     
     private func collectionViewMethods(){
-        prefView.preferencesCollectionView.dataSource = self
-        prefView.preferencesCollectionView.delegate = self
+        prefView.preferenceCollectionView.dataSource = self
+        prefView.preferenceCollectionView.delegate = self
     }
     
     @objc func savedPressed(_ sender: UIButton){
         // delegate?.eventFavs(tag: sender.tag)
         print("button pressed!")
-        //sender.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
+        sender.setBackgroundImage(UIImage(systemName: "heart.fill"), for: .normal)
     }
     
     private func getPreferences() -> [Categories] {
@@ -57,9 +59,14 @@ class PreferencesVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let pref = prefList[indexPath.row]
-        let cell = prefView.preferencesCollectionView.dequeueReusableCell(withReuseIdentifier: "preferenceCell", for: indexPath) as! preferenceCell
+        let cell = prefView.preferenceCollectionView.dequeueReusableCell(withReuseIdentifier: "PreferenceCell", for: indexPath) as! PreferenceCell
         cell.preferenceLabel.text = pref.data.type
+        cell.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        cell.layer.cornerRadius = 5
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+           print("clicked")
+       }
 }
