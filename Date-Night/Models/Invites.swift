@@ -17,11 +17,13 @@ enum invitationStatus:String {
 }
 
 struct Invites:Codable,Hashable {
+    let id: String
     let from:String
     let to:String
     let invitationStatus:String
     
     init(from:String, to:String, invitationStatus:invitationStatus) {
+        self.id = UUID().description
         self.from = from
         self.to = to
         self.invitationStatus = invitationStatus.rawValue
@@ -29,6 +31,7 @@ struct Invites:Codable,Hashable {
     
     init?(from dict: [String:Any], id:String) {
         guard let from = dict["from"] as? String, let to = dict["to"] as? String, let invitationStatus = dict["invitationStatus"] as? String else { return nil}
+        self.id = id
         self.from = from
         self.to = to
         self.invitationStatus = invitationStatus
