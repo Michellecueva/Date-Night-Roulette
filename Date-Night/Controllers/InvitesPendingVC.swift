@@ -99,8 +99,18 @@ extension InvitesPendingVC: CellDelegate {
     
     func handleDeclinedInvite(tag: Int) {
         let invite = invites[tag]
-        print(invite)
-        // remove that specific item from the array and firebase
+      
+        FirestoreService.manager.removeInvite(invite: invite) { (result) in
+            switch result {
+            case .success():
+                print("removed succesfully")
+                let indexOfCurrentInvite = self.invites.firstIndex { $0.id == invite.id}
+                guard let index = indexOfCurrentInvite else {return}
+                self.invites.remove(at: index)
+            case .failure(let error):
+                print("Failed at removing Invite: \(error)")
+            }
+        }
     }
 }
 

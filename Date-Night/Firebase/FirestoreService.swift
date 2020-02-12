@@ -158,7 +158,7 @@ class FirestoreService {
     
     
     func removeInvite(invite:Invites, completion: @escaping (Result<(), Error>) -> ()) {
-        db.collection(FireStoreCollections.invites.rawValue).document().delete() { err in
+        db.collection(FireStoreCollections.invites.rawValue).document(invite.id).delete() { err in
             if let err = err {
                 completion(.failure(err))
             } else {
