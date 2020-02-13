@@ -14,4 +14,9 @@ enum HomePageStatus:String {
     case setPreferences
 }
 
+enum LeftScreenStatus:String {
+    case sendInvite
+    case waitingForResponse
+    case partnerProfile
+}
 

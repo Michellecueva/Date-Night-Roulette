@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+
+protocol SendInviteDelegate: AnyObject {
+func changeStatus(status: LeftScreenStatus)
+}
