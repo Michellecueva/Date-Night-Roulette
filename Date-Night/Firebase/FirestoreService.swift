@@ -13,6 +13,12 @@ enum FireStoreCollections: String {
     
 }
 
+enum InviteField:String {
+  case to
+  case from
+  case invitationStatus
+}
+
 enum SortingCriteria: String {
     case fromNewestToOldest = "dateCreated"
     var shouldSortDescending: Bool {
@@ -42,7 +48,7 @@ class FirestoreService {
         }
     }
     
-    func updateCurrentUser(firstName: String? = nil, photoURL: URL? = nil, completion: @escaping (Result<(), Error>) -> ()){
+    func updateCurrentUser(firstName: String? = nil, photoURL: URL? = nil, partnerEmail: String? = nil, completion: @escaping (Result<(), Error>) -> ()){
         guard let userId = FirebaseAuthService.manager.currentUser?.uid else {
             //MARK: TODO - handle can't get current user
             return
@@ -56,6 +62,10 @@ class FirestoreService {
         
         if let photo = photoURL {
             updateFields["photoURL"] = photo.absoluteString
+        }
+        
+        if let partnerEmail = partnerEmail {
+            updateFields["partnerEmail"] = partnerEmail
         }
         
        
@@ -166,29 +176,6 @@ class FirestoreService {
             }
         }
     }
-    
-//    func updateCurrentUser(firstName: String? = nil, photoURL: URL? = nil, completion: @escaping (Result<(), Error>) -> ()){
-//        guard let userId = FirebaseAuthService.manager.currentUser?.uid else {
-//            //MARK: TODO - handle can't get current user
-//            return
-//        }
-//        var updateFields = [String:Any]()
-//
-//        if let firstName = firstName {
-//            updateFields["firstName"] = firstName
-//        }
-//
-//        if let photo = photoURL {
-//            updateFields["photoURL"] = photo.absoluteString
-//        }
-//        db.collection(FireStoreCollections.users.rawValue).document(userId).updateData(updateFields) { (error) in
-//            if let error = error {
-//                completion(.failure(error))
-//            } else {
-//                completion(.success(()))
-//            }
-//        }
-//    }
     
     func updateInvitationStatus(inviteID: String, invitationStatus: String, completion: @escaping (Result<(), Error>) -> ()) {
         var updateFields = [String:Any]()

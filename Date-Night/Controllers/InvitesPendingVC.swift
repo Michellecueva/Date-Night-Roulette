@@ -100,7 +100,8 @@ extension InvitesPendingVC: CellDelegate {
                 print("Unable to update field: \(error)")
             }
         }
-        //change invitationStatus property from pending to accepted
+        
+        
         //update currentUsers doc with partnerEmail
         //find user's partners doc by making a quiery where it gets you back the user doc where the email in the invites from field equals the email in the user doc. Once you get that User object get the id to update the user's partners doc with the current user's email.
         //remove all Invites that are pending
