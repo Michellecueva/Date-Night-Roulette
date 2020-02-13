@@ -97,6 +97,27 @@ class FirestoreService {
         }
     }
     
+    func updateCurrentUser(partnerUserName: String? = nil, completion: @escaping (Result<(), Error>) -> ()){
+        guard let userId = FirebaseAuthService.manager.currentUser?.uid else {
+            //MARK: TODO - handle can't get current user
+            return
+        }
+        var updateFields = [String:Any]()
+        
+        if let partnerUserName = partnerUserName {
+            updateFields["partnerUserName"] = partnerUserName
+        }
+        
+        //PUT request
+        db.collection(FireStoreCollections.users.rawValue).document(userId).updateData(updateFields) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    
     
     func getAllUsers(completion: @escaping (Result<[AppUser], Error>) -> ()) {
         db.collection(FireStoreCollections.users.rawValue).getDocuments { (snapshot, error) in
