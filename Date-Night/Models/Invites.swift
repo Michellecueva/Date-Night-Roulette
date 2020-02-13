@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum invitationStatus:String {
+enum invitationStatus: String {
    
     case pending
     case accepted
