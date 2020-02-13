@@ -18,6 +18,7 @@ struct AppUser {
     let sessionID: String?
     let preferences: [String]
     let partnerEmail: String?
+    let partnerUserName: String?
     
     init(from user: User,sessionID:String?, preferences:[String]) {
         self.firstName = user.displayName
@@ -28,6 +29,7 @@ struct AppUser {
         self.sessionID = sessionID
         self.preferences = preferences
         self.partnerEmail = nil
+        self.partnerUserName = nil
     }
     
     init?(from dict: [String: Any], id: String) {
@@ -36,9 +38,8 @@ struct AppUser {
             let photoURL = dict["photoURL"] as? String,
             let sessionID = dict["sessionID"] as? String,
             let preferences = dict["preferences"] as? [String],
-            let partnerEmail = dict["partnerEmail"] as? String
-//            let dateCreated = (dict["dateCreated"] as? Timestamp)?.dateValue()
-            
+            let partnerEmail = dict["partnerEmail"] as? String,
+            let partnerUserName = dict["partnerUserName"] as? String
             else {return nil}
         
         self.firstName = firstName
@@ -49,6 +50,7 @@ struct AppUser {
         self.sessionID = sessionID
         self.preferences = preferences
         self.partnerEmail = partnerEmail
+        self.partnerUserName = partnerUserName
     }
     
     var fieldsDict: [String: Any] {
@@ -59,6 +61,7 @@ struct AppUser {
             "preferences": self.preferences,
             "photoURL": self.photoURL ?? "",
             "partnerEmail": self.partnerEmail ?? "",
+            "partnerUserName": self.partnerUserName ?? "",
             "uid": self.uid
         ]
     }
