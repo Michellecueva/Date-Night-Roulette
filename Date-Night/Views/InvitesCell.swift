@@ -53,7 +53,7 @@ class InvitesCell: UITableViewCell {
     
     func configureCell(with invite: Invites, row: Int) {
         nameLabel.text = invite.from
-        nameLabel.textColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+        nameLabel.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         backgroundColor = .clear
         acceptButton.tag = row
         declineButton.tag = row

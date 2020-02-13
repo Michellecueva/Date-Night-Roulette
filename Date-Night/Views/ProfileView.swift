@@ -23,7 +23,7 @@ class ProfileSettingView: UIView {
         label.text = "Hi, userName!"
         label.font = UIFont(name: "Palatino", size: 20)
         label.textAlignment = .center
-        label.textColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
+        label.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         return label
     }()
 
@@ -31,7 +31,7 @@ class ProfileSettingView: UIView {
         let label = UILabel()
         label.text = "User Email"
         label.font = UIFont(name: "Arial", size: 25)
-        label.textColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
+        label.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         return label
     }()
 
@@ -39,7 +39,7 @@ class ProfileSettingView: UIView {
         let label = UILabel()
         label.text = "Partner Email"
         label.font = UIFont(name: "Arial", size: 25)
-        label.textColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
+        label.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         return label
     }()
 
@@ -48,7 +48,7 @@ class ProfileSettingView: UIView {
         let textField = UITextField()
         textField.placeholder = "Email Address"
         textField.borderStyle = .roundedRect
-        textField.backgroundColor = #colorLiteral(red: 0.9143477082, green: 0.7107878327, blue: 1, alpha: 1)
+        textField.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         return textField
     }()
 
@@ -56,14 +56,14 @@ class ProfileSettingView: UIView {
         let textField = UITextField()
         textField.placeholder = "Password"
         textField.borderStyle = .roundedRect
-        textField.backgroundColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
+        textField.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         textField.isSecureTextEntry = true
         return textField
     }()
     lazy var logoutButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Logout", for: .normal)
-        button.setTitleColor(#colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1), for: .normal)
+        button.setTitleColor(#colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1), for: .normal)
         button.titleLabel?.font = UIFont(name: "Arial", size: 20)
         button.layer.cornerRadius = 5
         button.isEnabled = true

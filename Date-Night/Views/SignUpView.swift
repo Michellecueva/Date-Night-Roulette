@@ -28,7 +28,7 @@ class SignUpView: UIView {
         textField.placeholder = "Display name"
         textField.font = UIFont(name: "Verdana", size: 14)
         textField.backgroundColor = .lightText
-        textField.backgroundColor = #colorLiteral(red: 0.9143477082, green: 0.7107878327, blue: 1, alpha: 1)
+        textField.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         textField.borderStyle = .roundedRect
         textField.autocorrectionType = .no
         return textField
@@ -39,7 +39,7 @@ class SignUpView: UIView {
         textField.placeholder = "Enter Email"
         textField.font = UIFont(name: "Verdana", size: 14)
         textField.backgroundColor = .lightText
-        textField.backgroundColor = #colorLiteral(red: 0.9143477082, green: 0.7107878327, blue: 1, alpha: 1)
+        textField.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         textField.borderStyle = .roundedRect
         textField.autocorrectionType = .no
         return textField
@@ -50,7 +50,7 @@ class SignUpView: UIView {
         textField.placeholder = "Enter Password"
         textField.font = UIFont(name: "Verdana", size: 14)
         textField.backgroundColor = .lightText
-        textField.backgroundColor = #colorLiteral(red: 0.9143477082, green: 0.7107878327, blue: 1, alpha: 1)
+        textField.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         textField.borderStyle = .roundedRect
         textField.autocorrectionType = .no
         textField.isSecureTextEntry = true
