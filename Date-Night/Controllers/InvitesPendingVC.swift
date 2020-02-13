@@ -101,7 +101,14 @@ extension InvitesPendingVC: CellDelegate {
             }
         }
         
-        
+        FirestoreService.manager.updateCurrentUser(partnerEmail: invite.from) { (result) in
+            switch result {
+            case .success():
+                print("Able to update user with partner email")
+            case .failure(let error):
+                print("Unable to update user with partner email \(error)")
+            }
+        }
         
         //update currentUsers doc with partnerEmail
         //find user's partners doc by making a quiery where it gets you back the user doc where the email in the invites from field equals the email in the user doc. Once you get that User object get the id to update the user's partners doc with the current user's email.
