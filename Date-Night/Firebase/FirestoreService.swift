@@ -48,7 +48,7 @@ class FirestoreService {
         }
     }
     
-    func updateCurrentUser(firstName: String? = nil, photoURL: URL? = nil, partnerEmail: String? = nil, completion: @escaping (Result<(), Error>) -> ()){
+    func updateCurrentUser(firstName: String? = nil, photoURL: URL? = nil, completion: @escaping (Result<(), Error>) -> ()){
         guard let userId = FirebaseAuthService.manager.currentUser?.uid else {
             //MARK: TODO - handle can't get current user
             return
@@ -64,10 +64,6 @@ class FirestoreService {
             updateFields["photoURL"] = photo.absoluteString
         }
         
-        if let partnerEmail = partnerEmail {
-            updateFields["partnerEmail"] = partnerEmail
-        }
-        
        
         //PUT request
         db.collection(FireStoreCollections.users.rawValue).document(userId).updateData(updateFields) { (error) in
@@ -79,6 +75,28 @@ class FirestoreService {
             
         }
     }
+    
+    func updateCurrentUser(partnerEmail: String? = nil, completion: @escaping (Result<(), Error>) -> ()){
+        guard let userId = FirebaseAuthService.manager.currentUser?.uid else {
+            //MARK: TODO - handle can't get current user
+            return
+        }
+        var updateFields = [String:Any]()
+    
+        if let partnerEmail = partnerEmail {
+            updateFields["partnerEmail"] = partnerEmail
+        }
+        
+        //PUT request
+        db.collection(FireStoreCollections.users.rawValue).document(userId).updateData(updateFields) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    
     
     func getAllUsers(completion: @escaping (Result<[AppUser], Error>) -> ()) {
         db.collection(FireStoreCollections.users.rawValue).getDocuments { (snapshot, error) in
