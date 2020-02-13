@@ -40,6 +40,7 @@ class InvitesPendingVC: UIViewController {
         view.addSubview(invitesPendingView)
         configureDataSource()
         addListener()
+        print(currentUserEmail)
     }
     
     private func configureDataSource() {
