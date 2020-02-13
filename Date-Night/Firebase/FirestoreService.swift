@@ -135,7 +135,7 @@ class FirestoreService {
 //  }
 //
    
-    
+// MARK: Invitation Functionality
     
 
       func getAllInvites(userEmailAddress:String,completionHandler:@escaping (Result<[Invites],AppError>)-> ()) {
@@ -155,5 +155,53 @@ class FirestoreService {
                  }
              }
          }
+    
+    
+    func removeInvite(invite:Invites, completion: @escaping (Result<(), Error>) -> ()) {
+        db.collection(FireStoreCollections.invites.rawValue).document(invite.id).delete() { err in
+            if let err = err {
+                completion(.failure(err))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    
+//    func updateCurrentUser(firstName: String? = nil, photoURL: URL? = nil, completion: @escaping (Result<(), Error>) -> ()){
+//        guard let userId = FirebaseAuthService.manager.currentUser?.uid else {
+//            //MARK: TODO - handle can't get current user
+//            return
+//        }
+//        var updateFields = [String:Any]()
+//
+//        if let firstName = firstName {
+//            updateFields["firstName"] = firstName
+//        }
+//
+//        if let photo = photoURL {
+//            updateFields["photoURL"] = photo.absoluteString
+//        }
+//        db.collection(FireStoreCollections.users.rawValue).document(userId).updateData(updateFields) { (error) in
+//            if let error = error {
+//                completion(.failure(error))
+//            } else {
+//                completion(.success(()))
+//            }
+//        }
+//    }
+    
+    func updateInvitationStatus(inviteID: String, invitationStatus: String, completion: @escaping (Result<(), Error>) -> ()) {
+        var updateFields = [String:Any]()
+        updateFields["invitationStatus"] = invitationStatus
+        db.collection(FireStoreCollections.invites.rawValue).document(inviteID).updateData(updateFields) {
+            (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    
     private init () {}
 }

@@ -92,15 +92,34 @@ extension InvitesPendingVC: CellDelegate {
     func handleAcceptedInvite(tag: Int) {
         let invite = invites[tag]
         print(invite)
+        FirestoreService.manager.updateInvitationStatus(inviteID:invite.id, invitationStatus: invitationStatus.accepted.rawValue) { (result) in
+            switch result {
+            case .success():
+                print("Able to update field")
+            case .failure(let error):
+                print("Unable to update field: \(error)")
+            }
+        }
         //change invitationStatus property from pending to accepted
-        //update user's partner in firebase
+        //update currentUsers doc with partnerEmail
+        //find user's partners doc by making a quiery where it gets you back the user doc where the email in the invites from field equals the email in the user doc. Once you get that User object get the id to update the user's partners doc with the current user's email.
         //remove all Invites that are pending
     }
     
     func handleDeclinedInvite(tag: Int) {
         let invite = invites[tag]
-        print(invite)
-        // remove that specific item from the array and firebase
+      
+        FirestoreService.manager.removeInvite(invite: invite) { (result) in
+            switch result {
+            case .success():
+                print("removed succesfully")
+                let indexOfCurrentInvite = self.invites.firstIndex { $0.id == invite.id}
+                guard let index = indexOfCurrentInvite else {return}
+                self.invites.remove(at: index)
+            case .failure(let error):
+                print("Failed at removing Invite: \(error)")
+            }
+        }
     }
 }
 
