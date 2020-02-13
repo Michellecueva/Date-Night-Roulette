@@ -50,6 +50,7 @@
 		69CE861523F5E49C001E1327 /* SendInviteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE861423F5E49C001E1327 /* SendInviteDelegate.swift */; };
 		69CE861823F5E558001E1327 /* SwipingContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE861623F5E558001E1327 /* SwipingContainerViewController.swift */; };
 		69CE861923F5E558001E1327 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE861723F5E558001E1327 /* RootViewController.swift */; };
+		69CE861B23F5E609001E1327 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE861A23F5E609001E1327 /* LeftViewController.swift */; };
 		6BD4DEF7BB09901D06486257 /* Pods_Date_NightTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430EC1B11EDEEA43E7890593 /* Pods_Date_NightTests.framework */; };
 		7401EF4723ECAB45000C322B /* DiscoverEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401EF4623ECAB45000C322B /* DiscoverEventView.swift */; };
 		7401EF4923ECAB81000C322B /* DiscoverEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401EF4823ECAB81000C322B /* DiscoverEventVC.swift */; };
@@ -118,6 +119,7 @@
 		69CE861423F5E49C001E1327 /* SendInviteDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendInviteDelegate.swift; sourceTree = "<group>"; };
 		69CE861623F5E558001E1327 /* SwipingContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingContainerViewController.swift; sourceTree = "<group>"; };
 		69CE861723F5E558001E1327 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		69CE861A23F5E609001E1327 /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		7401EF4623ECAB45000C322B /* DiscoverEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverEventView.swift; sourceTree = "<group>"; };
 		7401EF4823ECAB81000C322B /* DiscoverEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverEventVC.swift; sourceTree = "<group>"; };
 		7401EF6923F1C53D000C322B /* PartnerSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerSettingVC.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 			children = (
 				69CE861723F5E558001E1327 /* RootViewController.swift */,
 				69CE861623F5E558001E1327 /* SwipingContainerViewController.swift */,
+				69CE861A23F5E609001E1327 /* LeftViewController.swift */,
 				283823C923E887450031327E /* HomeScreenVC.swift */,
 				2862B5FE23DD47130047B47B /* SignInVC.swift */,
 				2862B66B23DFE26C0047B47B /* SignUpVC.swift */,
@@ -553,6 +556,7 @@
 				69CE860923F5E1D7001E1327 /* Secrets.swift in Sources */,
 				7401EF6A23F1C53D000C322B /* PartnerSettingVC.swift in Sources */,
 				2862B5FD23DD47130047B47B /* SceneDelegate.swift in Sources */,
+				69CE861B23F5E609001E1327 /* LeftViewController.swift in Sources */,
 				2862B6B023DFFF3F0047B47B /* FirebaseAuthService.swift in Sources */,
 				0BBFCD3423E8CE0800E039A7 /* ImageHelper.swift in Sources */,
 			);
