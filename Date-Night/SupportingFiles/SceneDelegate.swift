@@ -20,7 +20,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = scene
-        window?.rootViewController = ProfileSettingVC()
+        
+        if FirebaseAuthService.manager.currentUser != nil {
+                         window?.rootViewController = RootViewController()
+                     } else {
+                         window?.rootViewController =  SignInVC()
+                     }
         
         window?.makeKeyAndVisible()
     }
