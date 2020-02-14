@@ -6,7 +6,7 @@ class WaitingForResponseView: UIView {
     lazy var waitingStatusLabel: UILabel = {
         let label = UILabel()
         label.text = "Waiting for response to..."
-        label.textColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
+        label.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         label.font = UIFont(name: "Palatino-bold", size: 25)

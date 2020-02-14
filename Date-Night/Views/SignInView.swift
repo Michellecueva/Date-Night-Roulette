@@ -27,7 +27,7 @@ class SignInView: UIView {
         let textField = UITextField()
         textField.placeholder = "Email Address"
         textField.borderStyle = .roundedRect
-        textField.backgroundColor = #colorLiteral(red: 0.9143477082, green: 0.7107878327, blue: 1, alpha: 1)
+        textField.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         return textField
     }()
     
@@ -35,7 +35,7 @@ class SignInView: UIView {
         let textField = UITextField()
         textField.placeholder = "Password"
         textField.borderStyle = .roundedRect
-        textField.backgroundColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
+        textField.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         textField.isSecureTextEntry = true
         return textField
     }()

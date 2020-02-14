@@ -18,7 +18,7 @@ class DiscoverEventView: UIView {
         button.setTitle("Discover Events", for: .normal)
         button.setTitleColor(.blue, for: .normal)
         button.titleLabel?.font = UIFont(name: "Arial-Bold", size: 16)
-        button.backgroundColor = #colorLiteral(red: 0.9144081473, green: 0.6900397539, blue: 1, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         button.layer.cornerRadius = 5
         button.isEnabled = true
         return button

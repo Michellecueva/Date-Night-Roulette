@@ -13,14 +13,14 @@ class PartnerSettingView: UIView {
         label.text = "Partner Username"
         label.font = UIFont(name: "Palatino-bold", size: 25)
         label.adjustsFontSizeToFitWidth = true
-        label.textColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
+        label.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         return label
     }()
     
     lazy var historyTable: UITableView = {
         let table = UITableView()
         table.register(UITableViewCell.self, forCellReuseIdentifier: "historyCell")
-        table.backgroundColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
+        table.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         return table
     }()
     
@@ -28,7 +28,7 @@ class PartnerSettingView: UIView {
         let button = UIButton(type: .system)
         button.setTitle("Remove Partner", for: .normal)
         button.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         button.titleLabel?.font = UIFont(name: "Arial", size: 20)
         button.layer.cornerRadius = 5
         button.isEnabled = true

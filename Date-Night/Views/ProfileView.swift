@@ -27,7 +27,7 @@ class ProfileSettingView: UIView {
         label.text = "Hi, userName!"
         label.font = UIFont(name: "CopperPlate", size: 25)
         label.textAlignment = .center
-        label.textColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
+        label.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         return label
     }()
     
@@ -36,7 +36,7 @@ class ProfileSettingView: UIView {
         label.text = "Partner Email:"
         label.textAlignment = .center
         label.font = UIFont(name: "Arial", size: 25)
-        label.textColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
+        label.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         return label
     }()
     
@@ -45,10 +45,10 @@ class ProfileSettingView: UIView {
         label.text = "Email goes here"
         label.textAlignment = .center
         label.font = UIFont(name: "Arial", size: 25)
-        label.textColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
+        label.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         return label
     }()
-    
+
     lazy var logoutButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Logout", for: .normal)
