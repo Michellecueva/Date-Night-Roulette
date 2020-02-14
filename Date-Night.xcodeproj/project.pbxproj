@@ -114,6 +114,7 @@
 		69CE862623F71564001E1327 /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		69CE862723F71565001E1327 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		69CE862823F71565001E1327 /* SwipingContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingContainerViewController.swift; sourceTree = "<group>"; };
+		69CE863023F715A9001E1327 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		7401EF4623ECAB45000C322B /* DiscoverEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverEventView.swift; sourceTree = "<group>"; };
 		7401EF4823ECAB81000C322B /* DiscoverEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverEventVC.swift; sourceTree = "<group>"; };
 		7401EF6923F1C53D000C322B /* PartnerSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerSettingVC.swift; sourceTree = "<group>"; };
@@ -172,6 +173,7 @@
 		2862B5F923DD47130047B47B /* Date-Night */ = {
 			isa = PBXGroup;
 			children = (
+				69CE862F23F715A9001E1327 /* AppNavigationEnums */,
 				2862B66523DFE15A0047B47B /* Secrets */,
 				2862B67B23DFEAD60047B47B /* Protocols */,
 				2862B66A23DFE21B0047B47B /* Controllers */,
@@ -302,6 +304,14 @@
 				283823C323E885390031327E /* Sessions.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		69CE862F23F715A9001E1327 /* AppNavigationEnums */ = {
+			isa = PBXGroup;
+			children = (
+				69CE863023F715A9001E1327 /* Enums.swift */,
+			);
+			path = AppNavigationEnums;
 			sourceTree = "<group>";
 		};
 		79549193094CA8299163FE93 /* Frameworks */ = {
