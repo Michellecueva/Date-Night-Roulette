@@ -60,6 +60,19 @@ class InvitesPendingVC: UIViewController {
         snapshot.appendItems(invites)
         dataSource.apply(snapshot, animatingDifferences: true)
     }
+    
+    // MARK: Firebase Functions
+    
+    private func updatePartnerUsernameField(partnerUserName: String?) {
+        FirestoreService.manager.updateCurrentUser(partnerUserName: partnerUserName) { (result) in
+            switch result {
+            case.success():
+                print("able to update partner username")
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }
 
 extension InvitesPendingVC {
@@ -108,6 +121,22 @@ extension InvitesPendingVC: CellDelegate {
                 print("Able to update user with partner email")
             case .failure(let error):
                 print("Unable to update user with partner email \(error)")
+            }
+        }
+        
+        FirestoreService.manager.getPartnersUserData(partnerEmailAddress: invite.from) { (result) in
+            switch result {
+            case .success(let users):
+                print(users[0])
+                
+                let partner = users[0]
+                
+                self.updatePartnerUsernameField(partnerUserName: partner.firstName)
+                
+                // once we have user object we need to get that first name and update current user's field
+                //we have to update partner user object with current users first name and email which is the dipslay name for currentuser
+            case .failure(let error):
+                print("unable to get partner user data \(error)")
             }
         }
         
