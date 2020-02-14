@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 
 
@@ -21,6 +22,7 @@ class LeftViewController: UIViewController {
             determineLeftVC()
         }
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +49,7 @@ class LeftViewController: UIViewController {
            }
         self.add(currentChild)
        }
-
+    
     /*
     // MARK: - Navigation
 

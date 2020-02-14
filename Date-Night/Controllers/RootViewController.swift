@@ -31,28 +31,32 @@ class RootViewController: UIViewController {
         }
     }
     
-    var listOfInvites:[Invites] = [] {
-           didSet {
-               if listOfInvites.count >= 1 {
-              // activateDelegate()
-                print("it works")
-               }
-           }
-       }
+   
        
-       var responseListener:ListenerRegistration?
+       
+       var userListener:ListenerRegistration?
     
-    var collectionReference:Query = Firestore.firestore().collection("invites")
+    var collectionReference:Query = Firestore.firestore().collection("users")
     
     private var currentUser:AppUser? {
         didSet {
-    
-            if currentUser?.preferences == [] && currentUser?.partnerEmail != "" {
+print("changed")
+            print(currentUser?.partnerEmail)
+            print(currentUser?.preferences)
+            if currentUser?.preferences != [] && currentUser?.partnerEmail != "" {
+                
                 homeScreenVC.homePageStatus = .discoverEvents
-            }
-            
-            if currentUser?.partnerEmail != "" {
+                leftVC.leftScreenStatus = .partnerProfile
+              //  leftVC.currentUser = currentUser
+            } else if currentUser?.preferences == [] && currentUser?.partnerEmail != "" {
                 homeScreenVC.homePageStatus = .setPreferences
+                leftVC.leftScreenStatus = .partnerProfile
+          //      leftVC.currentUser = currentUser
+
+         
+            } else if currentUser?.partnerEmail == "" {
+               getInvites()
+                homeScreenVC.homePageStatus = .none
             }
         }
     }
@@ -68,9 +72,8 @@ class RootViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-   addInviteListener()
+   addUserListener()
     getUser()
-    getInvites()
     setUpViewControllerConfigs()
     setUpSwipingNavigationViewController()
  swipingNavigationViewController.navigateToViewController(index: 1)
@@ -81,31 +84,27 @@ class RootViewController: UIViewController {
     super.viewWillLayoutSubviews()
     swipingNavigationViewController.view.frame = view.bounds
   }
-    private func addInviteListener() {
-         responseListener = collectionReference.whereField(
-              "from",isEqualTo: userEmail).addSnapshotListener({ (snapshot, error) in
+    private func addUserListener() {
+         userListener = collectionReference.whereField(
+              "email",isEqualTo: userEmail).addSnapshotListener({ (snapshot, error) in
                   
                     if let error = error {
                                 print(error.localizedDescription)
                             }
-                            guard let invitesFromOnline = snapshot?.documents else {
-                                print("no invites available")
+                            guard let usersFromOnline = snapshot?.documents else {
+                                print("no users available")
                                 return
                             }
-                            let inviteList = invitesFromOnline.compactMap {  (snapshot) -> Invites? in
-                                let inviteID = snapshot.documentID
+                            let userList = usersFromOnline.compactMap {  (snapshot) -> AppUser? in
+                                let userID = snapshot.documentID
                                 let data = snapshot.data()
-                              let invite = Invites(from: data, id: inviteID)
-                              
-                              if invite?.invitationStatus == "accepted" {
-                                return invite
-                              }
-                                self.invitesFromUser.append(invite!)
-                              return nil
+                              let user = AppUser(from: data, id: userID)
+                           
+                                return user
                             }
             
-                  self.listOfInvites = inviteList
-                print("inviteList: \(inviteList.count)")
+                self.currentUser = userList.last
+                print(self.currentUser?.email)
                   
                         })
       }

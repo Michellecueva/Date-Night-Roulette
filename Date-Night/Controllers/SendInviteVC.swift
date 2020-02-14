@@ -1,10 +1,3 @@
-//
-//  SendInviteVC.swift
-//  Date-Night
-//
-//  Created by Phoenix McKnight on 2/6/20.
-//  Copyright © 2020 Michelle Cueva. All rights reserved.
-//
 
 import UIKit
 import FirebaseAuth
@@ -12,6 +5,10 @@ import FirebaseAuth
 class SendInviteVC: UIViewController {
 
     let sendInviteView = SendInviteView()
+    
+    weak var delegate:SendInviteDelegate?
+    
+  //  private var leftScreenStatus:LeftScreenStatus = .sendInvite
     
     private var currentUserEmail:String {
            if let user = Auth.auth().currentUser?.email {
@@ -24,7 +21,14 @@ class SendInviteVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(sendInviteView)
+        addObjcFunctions()
         // Do any additional setup after loading the view.
+    }
+    
+    private func changeStatus() {
+      //  leftScreenStatus = .waitingForResponse
+        delegate?.changeStatus(status: .waitingForResponse)
+        
     }
     
     private func addObjcFunctions() {
@@ -46,8 +50,10 @@ class SendInviteVC: UIViewController {
                    print(error)
                    
                case .success():
-                self?.showAlert(title: "Success!", message: "Invited \(recipient)")
+           //     self?.showAlert(title: "Success!", message: "Invited \(recipient)")
                    print("Invite was succesfully sent")
+                self?.changeStatus()
+                
                }
            }
        }
