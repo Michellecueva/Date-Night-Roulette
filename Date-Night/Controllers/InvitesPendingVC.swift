@@ -63,6 +63,17 @@ class InvitesPendingVC: UIViewController {
     
     // MARK: Firebase Functions
     
+    private func updateInvitationStatus(inviteID: String) {
+        FirestoreService.manager.updateInvitationStatus(inviteID:inviteID, invitationStatus: invitationStatus.accepted.rawValue) { (result) in
+            switch result {
+            case .success():
+                print("Able to update field")
+            case .failure(let error):
+                print("Unable to update field: \(error)")
+            }
+        }
+    }
+    
     private func updatePartnerUsernameField(partnerUserName: String?) {
         FirestoreService.manager.updateCurrentUser(partnerUserName: partnerUserName) { (result) in
             switch result {
@@ -70,6 +81,17 @@ class InvitesPendingVC: UIViewController {
                 print("able to update partner username")
             case .failure(let error):
                 print(error)
+            }
+        }
+    }
+    
+    private func updatePartnerEmailField(partnerEmail: String) {
+        FirestoreService.manager.updateCurrentUser(partnerEmail: partnerEmail) { (result) in
+            switch result {
+            case .success():
+                print("Able to update user with partner email")
+            case .failure(let error):
+                print("Unable to update user with partner email \(error)")
             }
         }
     }
@@ -83,6 +105,38 @@ class InvitesPendingVC: UIViewController {
                 print(error)
             }
         }
+    }
+    
+    private func getPartnerUserData(partnerEmailAddress: String) {
+        FirestoreService.manager.getPartnersUserData(partnerEmailAddress: partnerEmailAddress) { (result) in
+            switch result {
+            case .success(let users):
+                print(users[0])
+                
+                let partner = users[0]
+                
+                self.updatePartnerUsernameField(partnerUserName: partner.firstName)
+                self.updatePartnersField(partnerUID: partner.uid)
+
+            case .failure(let error):
+                print("unable to get partner user data \(error)")
+            }
+        }
+    }
+    
+    private func removeInvite(invite: Invites) {
+        FirestoreService.manager.removeInvite(invite: invite) { (result) in
+            switch result {
+            case .success():
+                print("removed succesfully")
+                let indexOfCurrentInvite = self.invites.firstIndex { $0.id == invite.id}
+                guard let index = indexOfCurrentInvite else {return}
+                self.invites.remove(at: index)
+            case .failure(let error):
+                print("Failed at removing Invite: \(error)")
+            }
+        }
+
     }
 }
 
@@ -122,47 +176,14 @@ extension InvitesPendingVC {
 }
 
 extension InvitesPendingVC: CellDelegate {
+    
     func handleAcceptedInvite(tag: Int) {
         let invite = invites[tag]
         print(invite)
-        FirestoreService.manager.updateInvitationStatus(inviteID:invite.id, invitationStatus: invitationStatus.accepted.rawValue) { (result) in
-            switch result {
-            case .success():
-                print("Able to update field")
-            case .failure(let error):
-                print("Unable to update field: \(error)")
-            }
-        }
         
-        FirestoreService.manager.updateCurrentUser(partnerEmail: invite.from) { (result) in
-            switch result {
-            case .success():
-                print("Able to update user with partner email")
-            case .failure(let error):
-                print("Unable to update user with partner email \(error)")
-            }
-        }
-        
-        FirestoreService.manager.getPartnersUserData(partnerEmailAddress: invite.from) { (result) in
-            switch result {
-            case .success(let users):
-                print(users[0])
-                
-                let partner = users[0]
-                
-                self.updatePartnerUsernameField(partnerUserName: partner.firstName)
-                self.updatePartnersField(partnerUID: partner.uid)
-                
-                // once we have user object we need to get that first name and update current user's field
-                //we have to update partner user object with current users first name and email which is the dipslay name for currentuser
-            case .failure(let error):
-                print("unable to get partner user data \(error)")
-            }
-        }
-        
-        //update currentUsers doc with partnerEmail
-        //find user's partners doc by making a quiery where it gets you back the user doc where the email in the invites from field equals the email in the user doc. Once you get that User object get the id to update the user's partners doc with the current user's email.
-        //remove all Invites that are pending
+        updateInvitationStatus(inviteID: invite.id)
+        updatePartnerEmailField(partnerEmail: invite.from)
+        getPartnerUserData(partnerEmailAddress: invite.from)
     }
     
     func handleDeclinedInvite(tag: Int) {
