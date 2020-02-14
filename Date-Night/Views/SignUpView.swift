@@ -60,7 +60,7 @@ class SignUpView: UIView {
     lazy var createButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Create Account", for: .normal)
-        button.setTitleColor(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1), for: .normal)
+        button.setTitleColor(#colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1), for: .normal)
         button.setTitleColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1), for: .disabled)
         button.titleLabel?.font = UIFont(name: "Verdana-Bold", size: 14)
         button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
