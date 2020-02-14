@@ -107,6 +107,14 @@ extension InvitesPendingVC {
                     let data = snapshot.data()
                     return Invites(from: data, id: inviteID)
                 }
+                
+                if inviteList.count == 0 {
+                    self.invitesPendingView.invitesPendingTableView.isHidden = true
+                    self.invitesPendingView.noInvitesLabel.isHidden = false
+                } else {
+                    self.invitesPendingView.invitesPendingTableView.isHidden = false
+                    self.invitesPendingView.noInvitesLabel.isHidden = true
+                }
                 self.invites = inviteList
                 print("inviteList: \(inviteList)")
             })
