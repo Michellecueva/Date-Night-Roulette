@@ -14,7 +14,7 @@ class PreferenceCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 2
         label.textAlignment = .center
-        label.font = UIFont(name: "Marker Felt", size: 18.0)
+        label.font = UIFont(name: "CopperPlate", size: 18.0)
         label.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         label.adjustsFontSizeToFitWidth = true
         label.layer.cornerRadius = 10

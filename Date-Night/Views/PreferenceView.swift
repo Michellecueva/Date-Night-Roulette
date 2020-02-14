@@ -30,7 +30,7 @@ class PreferenceView: UIView {
         let button = UIButton(type: .system)
         button.setTitle("Save!", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Marker Felt", size: 20)
+        button.titleLabel?.font = UIFont(name: "CopperPlate", size: 20)
         button.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         button.layer.cornerRadius = 5
         // button.addTarget(self, action: #selector(savedPressed), for: .touchUpInside)

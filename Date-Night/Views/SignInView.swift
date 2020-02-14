@@ -19,7 +19,7 @@ class SignInView: UIView {
         label.numberOfLines = 0
         label.textAlignment = .center
         label.adjustsFontForContentSizeCategory = true
-        label.font = UIFont(name: "Helvetica", size: 50)
+        label.font = UIFont(name: "CopperPlate", size: 50)
         return label
     }()
     

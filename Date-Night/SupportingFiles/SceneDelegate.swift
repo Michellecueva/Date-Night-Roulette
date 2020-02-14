@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = scene
         
-        window?.rootViewController = SignUpVC()
+        window?.rootViewController = PofiVC()
         
         window?.makeKeyAndVisible()
     }
