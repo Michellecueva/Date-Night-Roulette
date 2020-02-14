@@ -120,7 +120,7 @@ class ProfileSettingView: UIView {
         partnerEmailLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             partnerEmailLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.45),
-            partnerEmailLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: -50),
+            partnerEmailLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             partnerEmailLabel.widthAnchor.constraint(equalToConstant: 200),
             partnerEmailLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
