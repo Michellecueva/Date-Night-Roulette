@@ -73,6 +73,17 @@ class InvitesPendingVC: UIViewController {
             }
         }
     }
+    
+    private func updatePartnersField(partnerUID: String) {
+        FirestoreService.manager.updatePartnerUser(partnerUID: partnerUID) { (result) in
+            switch result {
+            case .success():
+                print("Able to update partner's field")
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }
 
 extension InvitesPendingVC {
@@ -132,6 +143,7 @@ extension InvitesPendingVC: CellDelegate {
                 let partner = users[0]
                 
                 self.updatePartnerUsernameField(partnerUserName: partner.firstName)
+                self.updatePartnersField(partnerUID: partner.uid)
                 
                 // once we have user object we need to get that first name and update current user's field
                 //we have to update partner user object with current users first name and email which is the dipslay name for currentuser
