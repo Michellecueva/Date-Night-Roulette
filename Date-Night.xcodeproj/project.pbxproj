@@ -10,8 +10,6 @@
 		0B96460D23EE2C6A00D2CAB9 /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B96460C23EE2C6A00D2CAB9 /* PreferenceView.swift */; };
 		0B96460F23EE2C9E00D2CAB9 /* PreferenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B96460E23EE2C9E00D2CAB9 /* PreferenceCell.swift */; };
 		0B96461123F1C3B900D2CAB9 /* PreferenceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B96461023F1C3B900D2CAB9 /* PreferenceVC.swift */; };
-		0B96462423F1FE1700D2CAB9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7448D1A323E8B07D003A997C /* GoogleService-Info.plist */; };
-		0BBFCD2E23E8949100E039A7 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBFCD2D23E8949100E039A7 /* Secrets.swift */; };
 		0BBFCD3023E8CDFB00E039A7 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBFCD2F23E8CDFB00E039A7 /* NetworkHelper.swift */; };
 		0BBFCD3223E8CE0200E039A7 /* SeatGeekAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBFCD3123E8CE0200E039A7 /* SeatGeekAPIClient.swift */; };
 		0BBFCD3423E8CE0800E039A7 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBFCD3323E8CE0800E039A7 /* ImageHelper.swift */; };
@@ -28,7 +26,6 @@
 		283823E623F0C4D20031327E /* InvitesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283823E523F0C4D10031327E /* InvitesCell.swift */; };
 		283823E823F0C5F20031327E /* InvitesPendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283823E723F0C5F20031327E /* InvitesPendingView.swift */; };
 		283823EA23F0C6E70031327E /* InvitesPendingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283823E923F0C6E70031327E /* InvitesPendingVC.swift */; };
-		283823EC23F0D06A0031327E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7448D1A323E8B07D003A997C /* GoogleService-Info.plist */; };
 		283823EE23F0F4F30031327E /* CellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283823ED23F0F4F30031327E /* CellDelegate.swift */; };
 		2862B5FB23DD47130047B47B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2862B5FA23DD47130047B47B /* AppDelegate.swift */; };
 		2862B5FD23DD47130047B47B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2862B5FC23DD47130047B47B /* SceneDelegate.swift */; };
@@ -46,6 +43,17 @@
 		691DD12623F20ACD003A67E7 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691DD12523F20ACD003A67E7 /* ProfileVC.swift */; };
 		6965961023E0A775009399F2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6965960F23E0A775009399F2 /* Extensions.swift */; };
 		6965961423E0A9ED009399F2 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6965961323E0A9ED009399F2 /* AppUser.swift */; };
+		69CE862323F7151F001E1327 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE862223F7151F001E1327 /* Secrets.swift */; };
+		69CE862523F71547001E1327 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69CE862423F71547001E1327 /* GoogleService-Info.plist */; };
+		69CE862923F71565001E1327 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE862623F71564001E1327 /* LeftViewController.swift */; };
+		69CE862A23F71565001E1327 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE862723F71565001E1327 /* RootViewController.swift */; };
+		69CE862B23F71565001E1327 /* SwipingContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE862823F71565001E1327 /* SwipingContainerViewController.swift */; };
+		69CE863523F715FF001E1327 /* WaitingForResponseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE863123F715FF001E1327 /* WaitingForResponseDelegate.swift */; };
+		69CE863623F715FF001E1327 /* SavedPreferenceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE863223F715FF001E1327 /* SavedPreferenceDelegate.swift */; };
+		69CE863723F715FF001E1327 /* SendInviteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE863323F715FF001E1327 /* SendInviteDelegate.swift */; };
+		69CE863823F715FF001E1327 /* InvitesPendingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE863423F715FF001E1327 /* InvitesPendingDelegate.swift */; };
+		69CE863A23F716C7001E1327 /* ViewControllerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE863923F716C6001E1327 /* ViewControllerConfig.swift */; };
+		69CE863B23F718BA001E1327 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE863023F715A9001E1327 /* Enums.swift */; };
 		6BD4DEF7BB09901D06486257 /* Pods_Date_NightTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430EC1B11EDEEA43E7890593 /* Pods_Date_NightTests.framework */; };
 		7401EF4723ECAB45000C322B /* DiscoverEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401EF4623ECAB45000C322B /* DiscoverEventView.swift */; };
 		7401EF4923ECAB81000C322B /* DiscoverEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401EF4823ECAB81000C322B /* DiscoverEventVC.swift */; };
@@ -73,7 +81,6 @@
 		0B96460C23EE2C6A00D2CAB9 /* PreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceView.swift; sourceTree = "<group>"; };
 		0B96460E23EE2C9E00D2CAB9 /* PreferenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceCell.swift; sourceTree = "<group>"; };
 		0B96461023F1C3B900D2CAB9 /* PreferenceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceVC.swift; sourceTree = "<group>"; };
-		0BBFCD2D23E8949100E039A7 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		0BBFCD2F23E8CDFB00E039A7 /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		0BBFCD3123E8CE0200E039A7 /* SeatGeekAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatGeekAPIClient.swift; sourceTree = "<group>"; };
 		0BBFCD3323E8CE0800E039A7 /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
@@ -110,6 +117,17 @@
 		691DD12523F20ACD003A67E7 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		6965960F23E0A775009399F2 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6965961323E0A9ED009399F2 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
+		69CE862223F7151F001E1327 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		69CE862423F71547001E1327 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		69CE862623F71564001E1327 /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
+		69CE862723F71565001E1327 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		69CE862823F71565001E1327 /* SwipingContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingContainerViewController.swift; sourceTree = "<group>"; };
+		69CE863023F715A9001E1327 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		69CE863123F715FF001E1327 /* WaitingForResponseDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingForResponseDelegate.swift; sourceTree = "<group>"; };
+		69CE863223F715FF001E1327 /* SavedPreferenceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedPreferenceDelegate.swift; sourceTree = "<group>"; };
+		69CE863323F715FF001E1327 /* SendInviteDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendInviteDelegate.swift; sourceTree = "<group>"; };
+		69CE863423F715FF001E1327 /* InvitesPendingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitesPendingDelegate.swift; sourceTree = "<group>"; };
+		69CE863923F716C6001E1327 /* ViewControllerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerConfig.swift; sourceTree = "<group>"; };
 		7401EF4623ECAB45000C322B /* DiscoverEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverEventView.swift; sourceTree = "<group>"; };
 		7401EF4823ECAB81000C322B /* DiscoverEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverEventVC.swift; sourceTree = "<group>"; };
 		7401EF6923F1C53D000C322B /* PartnerSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerSettingVC.swift; sourceTree = "<group>"; };
@@ -171,6 +189,7 @@
 		2862B5F923DD47130047B47B /* Date-Night */ = {
 			isa = PBXGroup;
 			children = (
+				69CE862F23F715A9001E1327 /* AppNavigationEnums */,
 				2862B66523DFE15A0047B47B /* Secrets */,
 				2862B67B23DFEAD60047B47B /* Protocols */,
 				2862B66A23DFE21B0047B47B /* Controllers */,
@@ -181,8 +200,8 @@
 				2862B67823DFEA860047B47B /* Extensions */,
 				2862B66423DFE0570047B47B /* SupportingFiles */,
 				2862B60B23DD47160047B47B /* Info.plist */,
+				69CE862423F71547001E1327 /* GoogleService-Info.plist */,
 				2862B60323DD47130047B47B /* Date_Night.xcdatamodeld */,
-				7448D1A323E8B07D003A997C /* GoogleService-Info.plist */,
 			);
 			path = "Date-Night";
 			sourceTree = "<group>";
@@ -212,7 +231,7 @@
 		2862B66523DFE15A0047B47B /* Secrets */ = {
 			isa = PBXGroup;
 			children = (
-				0BBFCD2D23E8949100E039A7 /* Secrets.swift */,
+				69CE862223F7151F001E1327 /* Secrets.swift */,
 			);
 			path = Secrets;
 			sourceTree = "<group>";
@@ -220,6 +239,9 @@
 		2862B66A23DFE21B0047B47B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				69CE862723F71565001E1327 /* RootViewController.swift */,
+				69CE862823F71565001E1327 /* SwipingContainerViewController.swift */,
+				69CE862623F71564001E1327 /* LeftViewController.swift */,
 				283823C923E887450031327E /* HomeScreenVC.swift */,
 				2862B5FE23DD47130047B47B /* SignInVC.swift */,
 				2862B66B23DFE26C0047B47B /* SignUpVC.swift */,
@@ -286,6 +308,10 @@
 			isa = PBXGroup;
 			children = (
 				283823ED23F0F4F30031327E /* CellDelegate.swift */,
+				69CE863223F715FF001E1327 /* SavedPreferenceDelegate.swift */,
+				69CE863323F715FF001E1327 /* SendInviteDelegate.swift */,
+				69CE863423F715FF001E1327 /* InvitesPendingDelegate.swift */,
+				69CE863123F715FF001E1327 /* WaitingForResponseDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -293,6 +319,7 @@
 		2862B67D23DFEB440047B47B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				69CE863923F716C6001E1327 /* ViewControllerConfig.swift */,
 				6965961323E0A9ED009399F2 /* AppUser.swift */,
 				0BBFCD3923E8CEB700E039A7 /* Categories.swift */,
 				283823C123E885050031327E /* Invites.swift */,
@@ -300,6 +327,14 @@
 				283823C323E885390031327E /* Sessions.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		69CE862F23F715A9001E1327 /* AppNavigationEnums */ = {
+			isa = PBXGroup;
+			children = (
+				69CE863023F715A9001E1327 /* Enums.swift */,
+			);
+			path = AppNavigationEnums;
 			sourceTree = "<group>";
 		};
 		79549193094CA8299163FE93 /* Frameworks */ = {
@@ -408,8 +443,7 @@
 			files = (
 				2862B60A23DD47160047B47B /* LaunchScreen.storyboard in Resources */,
 				0BBFCD3823E8CEB000E039A7 /* seatGeekAPI.json in Resources */,
-				0B96462423F1FE1700D2CAB9 /* GoogleService-Info.plist in Resources */,
-				283823EC23F0D06A0031327E /* GoogleService-Info.plist in Resources */,
+				69CE862523F71547001E1327 /* GoogleService-Info.plist in Resources */,
 				0BBFCD3623E8CEA800E039A7 /* Categories.json in Resources */,
 				2862B60723DD47160047B47B /* Assets.xcassets in Resources */,
 			);
@@ -495,30 +529,39 @@
 			files = (
 				283823CA23E887450031327E /* HomeScreenVC.swift in Sources */,
 				283823C823E885B90031327E /* FirestoreService.swift in Sources */,
+				69CE863523F715FF001E1327 /* WaitingForResponseDelegate.swift in Sources */,
 				283823C623E885730031327E /* AppError.swift in Sources */,
 				283823C423E885390031327E /* Sessions.swift in Sources */,
 				7401EF6C23F1C573000C322B /* PartnerSettingView.swift in Sources */,
+				69CE862B23F71565001E1327 /* SwipingContainerViewController.swift in Sources */,
 				0BBFCD3C23E8CEC000E039A7 /* SeatGeekModel.swift in Sources */,
 				0BBFCD3223E8CE0200E039A7 /* SeatGeekAPIClient.swift in Sources */,
 				0BBFCD3A23E8CEB700E039A7 /* Categories.swift in Sources */,
 				7467518123F7169F00357610 /* SplashScreenView.swift in Sources */,
 				283823C223E885050031327E /* Invites.swift in Sources */,
 				2862B5FF23DD47130047B47B /* SignInVC.swift in Sources */,
+				69CE863823F715FF001E1327 /* InvitesPendingDelegate.swift in Sources */,
 				0B96460F23EE2C9E00D2CAB9 /* PreferenceCell.swift in Sources */,
 				7401EF4923ECAB81000C322B /* DiscoverEventVC.swift in Sources */,
 				0B96461123F1C3B900D2CAB9 /* PreferenceVC.swift in Sources */,
 				691DD12423F20A5D003A67E7 /* ProfileView.swift in Sources */,
+				69CE862A23F71565001E1327 /* RootViewController.swift in Sources */,
+				69CE863A23F716C7001E1327 /* ViewControllerConfig.swift in Sources */,
 				6965961423E0A9ED009399F2 /* AppUser.swift in Sources */,
 				0BBFCD3023E8CDFB00E039A7 /* NetworkHelper.swift in Sources */,
 				2862B5FB23DD47130047B47B /* AppDelegate.swift in Sources */,
+				69CE863B23F718BA001E1327 /* Enums.swift in Sources */,
+				69CE863623F715FF001E1327 /* SavedPreferenceDelegate.swift in Sources */,
 				0B96460D23EE2C6A00D2CAB9 /* PreferenceView.swift in Sources */,
 				283823E823F0C5F20031327E /* InvitesPendingView.swift in Sources */,
+				69CE863723F715FF001E1327 /* SendInviteDelegate.swift in Sources */,
 				691DD0F023EE03A0003A67E7 /* SendInviteVC.swift in Sources */,
 				7401EF4923ECAB81000C322B /* DiscoverEventVC.swift in Sources */,
 				6965961423E0A9ED009399F2 /* AppUser.swift in Sources */,
 				0BBFCD3023E8CDFB00E039A7 /* NetworkHelper.swift in Sources */,
 				2862B5FB23DD47130047B47B /* AppDelegate.swift in Sources */,
 				283823EE23F0F4F30031327E /* CellDelegate.swift in Sources */,
+				69CE862923F71565001E1327 /* LeftViewController.swift in Sources */,
 				7448D1A023E895B4003A997C /* SignInView.swift in Sources */,
 				283823EA23F0C6E70031327E /* InvitesPendingVC.swift in Sources */,
 				283823E623F0C4D20031327E /* InvitesCell.swift in Sources */,
@@ -527,12 +570,12 @@
 				7467518323F7293200357610 /* SplashScreenVC.swift in Sources */,
 				691DD12623F20ACD003A67E7 /* ProfileVC.swift in Sources */,
 				7401EF4723ECAB45000C322B /* DiscoverEventView.swift in Sources */,
-				0BBFCD2E23E8949100E039A7 /* Secrets.swift in Sources */,
 				7401EF7623F1E910000C322B /* WaitingForResponseVC.swift in Sources */,
 				2862B60523DD47130047B47B /* Date_Night.xcdatamodeld in Sources */,
 				7448D1A223E895DF003A997C /* SignUpView.swift in Sources */,
 				691DD0EE23EE0351003A67E7 /* SendInviteView.swift in Sources */,
 				2862B66C23DFE26C0047B47B /* SignUpVC.swift in Sources */,
+				69CE862323F7151F001E1327 /* Secrets.swift in Sources */,
 				7401EF6A23F1C53D000C322B /* PartnerSettingVC.swift in Sources */,
 				2862B5FD23DD47130047B47B /* SceneDelegate.swift in Sources */,
 				2862B6B023DFFF3F0047B47B /* FirebaseAuthService.swift in Sources */,

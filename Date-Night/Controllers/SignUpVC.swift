@@ -101,7 +101,7 @@ private func updateUserFields(result:Result<User,AppError>,displayName:String) {
             print(error)
             
         case .success():
-            handleLoginResponse(vc: UIViewController(), with: result)
+            handleLoginResponse(vc: RootViewController(), with: result)
         }
     }
 }

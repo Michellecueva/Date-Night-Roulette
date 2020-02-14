@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -18,10 +19,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let scene = (scene as? UIWindowScene) else { return }
         
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = scene
-        window?.rootViewController = SplashScreenVC()
         
+        if FirebaseAuthService.manager.currentUser != nil {
+            window?.rootViewController = RootViewController()
+        } else {
+            window?.rootViewController =  SignInVC()
+        }
         window?.makeKeyAndVisible()
     }
     
