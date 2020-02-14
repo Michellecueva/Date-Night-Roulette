@@ -24,11 +24,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = scene
         
         if FirebaseAuthService.manager.currentUser != nil {
-                         window?.rootViewController = RootViewController()
-                     } else {
-                         window?.rootViewController =  SignInVC()
-                     }
-        
+            window?.rootViewController = RootViewController()
+        } else {
+            window?.rootViewController =  SignInVC()
+        }
         window?.makeKeyAndVisible()
     }
     
