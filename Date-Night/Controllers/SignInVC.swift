@@ -50,7 +50,7 @@ class SignInVC: UIViewController {
             return
         }
         FirebaseAuthService.manager.loginUser(email: email.lowercased().trimmingCharacters(in: .whitespacesAndNewlines), password: password) { (result) in
-            self.handleLoginResponse(vc: HomeScreenVC(), with: result)
+            self.handleLoginResponse(vc: RootViewController(), with: result)
         }
     }
     private func handleLoginResponse(vc:UIViewController, with result: Result<(), AppError>) {

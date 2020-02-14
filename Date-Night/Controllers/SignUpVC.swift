@@ -83,6 +83,7 @@ class SignUpVC: UIViewController {
                                     
                                 case .success():
                                     print("created user")
+                                    handleLoginResponse(vc: RootViewController(), with: result)
                                 }
                             }
                         }
