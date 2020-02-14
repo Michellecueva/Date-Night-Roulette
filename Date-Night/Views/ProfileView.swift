@@ -7,103 +7,93 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ProfileSettingView: UIView {
-
+    
+    var user: AppUser!
+    
     //MARK: Portrait
     
     lazy var portraitPic: UIImageView = {
         let image = UIImageView()
+        image.tintColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
         image.image = UIImage(systemName: "person.crop.circle.badge.plus")
         return image
     }()
-
+    
     lazy var userNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Hi, userName!"
-        label.font = UIFont(name: "Palatino", size: 20)
+        label.font = UIFont(name: "CopperPlate", size: 25)
         label.textAlignment = .center
         label.textColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
         return label
     }()
-
-    lazy var userEmailFieldLabel: UILabel = {
+    
+    lazy var partnerEmailLabel: UILabel = {
         let label = UILabel()
-        label.text = "User Email"
+        label.text = "Partner Email:"
+        label.textAlignment = .center
         label.font = UIFont(name: "Arial", size: 25)
         label.textColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
         return label
     }()
-
-    lazy var partnerEmailFieldLabel: UILabel = {
+    
+    lazy var partnerEmailDisplayLabel: UILabel = {
         let label = UILabel()
-        label.text = "Partner Email"
+        label.text = "Email goes here"
+        label.textAlignment = .center
         label.font = UIFont(name: "Arial", size: 25)
         label.textColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
         return label
     }()
-
-
-    lazy var emailField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Email Address"
-        textField.borderStyle = .roundedRect
-        textField.backgroundColor = #colorLiteral(red: 0.9143477082, green: 0.7107878327, blue: 1, alpha: 1)
-        return textField
-    }()
-
-    lazy var partnerField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Password"
-        textField.borderStyle = .roundedRect
-        textField.backgroundColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
-        textField.isSecureTextEntry = true
-        return textField
-    }()
+    
     lazy var logoutButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Logout", for: .normal)
         button.setTitleColor(#colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1), for: .normal)
-        button.titleLabel?.font = UIFont(name: "Arial", size: 20)
+        button.titleLabel?.font = UIFont(name: "CopperPlate", size: 20)
+        button.layer.borderColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
+        button.layer.borderWidth = 1
         button.layer.cornerRadius = 5
         button.isEnabled = true
         return button
     }()
-
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         self.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         setSubviews()
         setConstraints()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     //MARK: -UI Setup
     
     private func setSubviews() {
         self.addSubview(portraitPic)
         self.addSubview(userNameLabel)
-        self.addSubview(userEmailFieldLabel)
-        self.addSubview(partnerEmailFieldLabel)
-        self.addSubview(emailField)
-        self.addSubview(partnerField)
+        self.addSubview(partnerEmailLabel)
+        self.addSubview(partnerEmailDisplayLabel)
         self.addSubview(logoutButton)
-
+        
     }
-
+    
+    
     private func setConstraints() {
         setPortraitConstraints()
         setUserNameLabelConstraints()
-        setUserEmailLabelConstraints()
-        setEmailFieldConstraints()
         setPartnerEmailLabelConstraints()
-        setPartnerFieldConstraints()
+        setPartnerEmailDisplayConstraints()
         setLogOutButtonConstraints()
     }
-
+    
+    
+    
     private func setPortraitConstraints() {
         portraitPic.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -113,7 +103,7 @@ class ProfileSettingView: UIView {
             portraitPic.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4)
         ])
     }
-
+    
     private func setUserNameLabelConstraints() {
         userNameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -123,48 +113,29 @@ class ProfileSettingView: UIView {
             userNameLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
-
-    private func setUserEmailLabelConstraints() {
-        userEmailFieldLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            userEmailFieldLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.45),
-            userEmailFieldLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: -50),
-            userEmailFieldLabel.widthAnchor.constraint(equalToConstant: 200),
-            userEmailFieldLabel.heightAnchor.constraint(equalToConstant: 50)
-        ])
-    }
-
-    private func setEmailFieldConstraints() {
-        emailField.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            emailField.topAnchor.constraint(equalTo: userEmailFieldLabel.bottomAnchor, constant:  10),
-            emailField.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            emailField.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7),
-            emailField.heightAnchor.constraint(equalToConstant: 40)
-        ])
-    }
-
-    //partnerEmailFieldLabel
+    
+    
     private func setPartnerEmailLabelConstraints() {
-        partnerEmailFieldLabel.translatesAutoresizingMaskIntoConstraints = false
+        partnerEmailLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            partnerEmailFieldLabel.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: 30),
-            partnerEmailFieldLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: -50),
-            partnerEmailFieldLabel.widthAnchor.constraint(equalToConstant: 200),
-            partnerEmailFieldLabel.heightAnchor.constraint(equalToConstant: 40)
+            partnerEmailLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.45),
+            partnerEmailLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: -50),
+            partnerEmailLabel.widthAnchor.constraint(equalToConstant: 200),
+            partnerEmailLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
-
-    private func setPartnerFieldConstraints() {
-        partnerField.translatesAutoresizingMaskIntoConstraints = false
+    
+    private func setPartnerEmailDisplayConstraints(){
+        partnerEmailDisplayLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            partnerField.topAnchor.constraint(equalTo: partnerEmailFieldLabel.bottomAnchor, constant: 10),
-            partnerField.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            partnerField.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7),
-            partnerField.heightAnchor.constraint(equalToConstant: 40)
+            partnerEmailDisplayLabel.topAnchor.constraint(equalTo: partnerEmailLabel.bottomAnchor, constant: 10),
+            partnerEmailDisplayLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            partnerEmailDisplayLabel.widthAnchor.constraint(equalToConstant: 300),
+            partnerEmailDisplayLabel.heightAnchor.constraint(equalToConstant: 40)
+            
         ])
     }
-
+    
     private func setLogOutButtonConstraints() {
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -175,3 +146,4 @@ class ProfileSettingView: UIView {
         ])
     }
 }
+
