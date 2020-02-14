@@ -12,80 +12,60 @@ import FirebaseAuth
 
 class HomeScreenVC: UIViewController {
     
-    private var inviteListener: ListenerRegistration?
-    private let db = Firestore.firestore()
+     var homePageStatus:HomePageStatus = .none {
+           didSet {
+               determineHomepageVC()
+           }
+       }
     
+       private let pendingInvites = InvitesPendingVC()
+       private let discoverEvents = DiscoverEventVC()
+       private let preferences = PreferenceVC()
+
     private var currentUserEmail:String {
-        if let user = Auth.auth().currentUser?.email {
-            return user
-        } else {
-            return "Invalid Email"
-        }
+        guard let user = Auth.auth().currentUser?.email else { fatalError()}
+           
+       return user
     }
     
-    private var collectionReference:CollectionReference {
-        return db.collection("invites")
-    }
-    
-    deinit {
-        inviteListener?.remove()
-    }
+  
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Current User: \(currentUserEmail)")
-        addListener()
-        sendInvite()
+      
     }
+  
+    private func addAndRemoveChild(currentChild:UIViewController) {
+           for child in children {
+               child.remove()
+           }
+        self.add(currentChild)
+       }
     
-    private func addListener() {
-        inviteListener = collectionReference.addSnapshotListener({ (snapshot, error) in
-            
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            guard let snapshot = snapshot else {
-                //add alert
+        private func determineHomepageVC() {
+            switch homePageStatus {
+
+            case .discoverEvents:
+               
+                addAndRemoveChild(currentChild: discoverEvents)
                 
-                return}
-            snapshot.documentChanges.forEach {
-                (change) in
-                self.handleInvitation(change: change)
-                print("Invites in Firebase: \(change.document.data())")
-            }
-            
-        })
-    }
-    private func sendInvite() {
-        let invite = Invites(from: currentUserEmail, to: "testEmail@gmail.com", invitationStatus: .pending)
-        
-        FirestoreService.manager.sendInvite(invite: invite) { (result) in
-            switch result {
-            case .failure(let error):
-                print(error)
+            case .setPreferences:
+                addAndRemoveChild(currentChild: preferences)
                 
-            case .success():
-                print("Invite was succesfully sent")
+            default:
+                addAndRemoveChild(currentChild: pendingInvites)
             }
         }
     }
-    
-    private func handleInvitation(change:DocumentChange) {
-        switch change.type {
-        case .added:
-            FirestoreService.manager.getAllInvites(userEmailAddress: currentUserEmail) { (result) in
-                switch result {
-                case .failure(let error):
-                    print(error)
-                case .success(let inviteList):
-                    print("Added new invite. Invites where user has a pending invite. \(inviteList.count)")
-                }
-            }
-        case .modified:
-            print("Database was modified")
-        case .removed:
-            print("Invitation removed from database")
+
+    extension HomeScreenVC:InvitesPendingDelegate {
+        func changeStatus(status: HomePageStatus) {
+            homePageStatus = status
         }
+   
     }
-}
+    
+  
+

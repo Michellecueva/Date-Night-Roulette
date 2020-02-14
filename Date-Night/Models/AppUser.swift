@@ -12,7 +12,7 @@ import Firebase
 struct AppUser {
     let email: String?
     let uid: String
-    let firstName: String?
+    let userName: String?
   //  let dateCreated: Date?
     let photoURL: String?
     let sessionID: String?
@@ -21,7 +21,7 @@ struct AppUser {
     let partnerUserName: String?
     
     init(from user: User,sessionID:String?, preferences:[String]) {
-        self.firstName = user.displayName
+        self.userName = user.displayName
         self.email = user.email
         self.uid = user.uid
       //  self.dateCreated = user.metadata.creationDate
@@ -33,7 +33,7 @@ struct AppUser {
     }
     
     init?(from dict: [String: Any], id: String) {
-        guard let firstName = dict["firstName"] as? String,
+        guard let userName = dict["userName"] as? String,
             let email = dict["email"] as? String,
             let photoURL = dict["photoURL"] as? String,
             let sessionID = dict["sessionID"] as? String,
@@ -42,7 +42,7 @@ struct AppUser {
             let partnerUserName = dict["partnerUserName"] as? String
             else {return nil}
         
-        self.firstName = firstName
+        self.userName = userName
         self.email = email
         self.uid = id
       //  self.dateCreated = dateCreated
@@ -55,7 +55,7 @@ struct AppUser {
     
     var fieldsDict: [String: Any] {
         return [
-            "firstName": self.firstName ?? "",
+            "userName": self.userName ?? "",
             "email": self.email ?? "",
             "sessionID": self.sessionID ?? "",
             "preferences": self.preferences,
