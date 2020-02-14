@@ -53,6 +53,7 @@
 		69CE863723F715FF001E1327 /* SendInviteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE863323F715FF001E1327 /* SendInviteDelegate.swift */; };
 		69CE863823F715FF001E1327 /* InvitesPendingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE863423F715FF001E1327 /* InvitesPendingDelegate.swift */; };
 		69CE863A23F716C7001E1327 /* ViewControllerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE863923F716C6001E1327 /* ViewControllerConfig.swift */; };
+		69CE863B23F718BA001E1327 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE863023F715A9001E1327 /* Enums.swift */; };
 		6BD4DEF7BB09901D06486257 /* Pods_Date_NightTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430EC1B11EDEEA43E7890593 /* Pods_Date_NightTests.framework */; };
 		7401EF4723ECAB45000C322B /* DiscoverEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401EF4623ECAB45000C322B /* DiscoverEventView.swift */; };
 		7401EF4923ECAB81000C322B /* DiscoverEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401EF4823ECAB81000C322B /* DiscoverEventVC.swift */; };
@@ -541,6 +542,7 @@
 				6965961423E0A9ED009399F2 /* AppUser.swift in Sources */,
 				0BBFCD3023E8CDFB00E039A7 /* NetworkHelper.swift in Sources */,
 				2862B5FB23DD47130047B47B /* AppDelegate.swift in Sources */,
+				69CE863B23F718BA001E1327 /* Enums.swift in Sources */,
 				69CE863623F715FF001E1327 /* SavedPreferenceDelegate.swift in Sources */,
 				0B96460D23EE2C6A00D2CAB9 /* PreferenceView.swift in Sources */,
 				283823E823F0C5F20031327E /* InvitesPendingView.swift in Sources */,
