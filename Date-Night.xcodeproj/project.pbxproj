@@ -55,6 +55,8 @@
 		7401EF7823F1E941000C322B /* WaitingForResponseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401EF7723F1E941000C322B /* WaitingForResponseView.swift */; };
 		7448D1A023E895B4003A997C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7448D19F23E895B4003A997C /* SignInView.swift */; };
 		7448D1A223E895DF003A997C /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7448D1A123E895DF003A997C /* SignUpView.swift */; };
+		7467518123F7169F00357610 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7467518023F7169F00357610 /* SplashScreenView.swift */; };
+		7467518323F7293200357610 /* SplashScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7467518223F7293200357610 /* SplashScreenVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +119,8 @@
 		7448D19F23E895B4003A997C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		7448D1A123E895DF003A997C /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		7448D1A323E8B07D003A997C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7467518023F7169F00357610 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		7467518223F7293200357610 /* SplashScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenVC.swift; sourceTree = "<group>"; };
 		74ED85A185AA38B5892717CF /* Pods-Date-NightTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Date-NightTests.debug.xcconfig"; path = "Target Support Files/Pods-Date-NightTests/Pods-Date-NightTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B4BAB314A5629A1F14D7DE6B /* Pods-Date-Night.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Date-Night.debug.xcconfig"; path = "Target Support Files/Pods-Date-Night/Pods-Date-Night.debug.xcconfig"; sourceTree = "<group>"; };
 		C410CB0F61507686EBFC1D56 /* Pods-Date-Night.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Date-Night.release.xcconfig"; path = "Target Support Files/Pods-Date-Night/Pods-Date-Night.release.xcconfig"; sourceTree = "<group>"; };
@@ -222,6 +226,7 @@
 				0B96461023F1C3B900D2CAB9 /* PreferenceVC.swift */,
 				7401EF6923F1C53D000C322B /* PartnerSettingVC.swift */,
 				7401EF4823ECAB81000C322B /* DiscoverEventVC.swift */,
+				7467518223F7293200357610 /* SplashScreenVC.swift */,
 				283823E923F0C6E70031327E /* InvitesPendingVC.swift */,
 				7401EF7523F1E910000C322B /* WaitingForResponseVC.swift */,
 				691DD0EF23EE03A0003A67E7 /* SendInviteVC.swift */,
@@ -264,6 +269,7 @@
 				0B96460C23EE2C6A00D2CAB9 /* PreferenceView.swift */,
 				0B96460E23EE2C9E00D2CAB9 /* PreferenceCell.swift */,
 				7448D1A123E895DF003A997C /* SignUpView.swift */,
+				7467518023F7169F00357610 /* SplashScreenView.swift */,
 				7401EF6B23F1C573000C322B /* PartnerSettingView.swift */,
 				7401EF4623ECAB45000C322B /* DiscoverEventView.swift */,
 				7401EF7723F1E941000C322B /* WaitingForResponseView.swift */,
@@ -495,6 +501,7 @@
 				0BBFCD3C23E8CEC000E039A7 /* SeatGeekModel.swift in Sources */,
 				0BBFCD3223E8CE0200E039A7 /* SeatGeekAPIClient.swift in Sources */,
 				0BBFCD3A23E8CEB700E039A7 /* Categories.swift in Sources */,
+				7467518123F7169F00357610 /* SplashScreenView.swift in Sources */,
 				283823C223E885050031327E /* Invites.swift in Sources */,
 				2862B5FF23DD47130047B47B /* SignInVC.swift in Sources */,
 				0B96460F23EE2C9E00D2CAB9 /* PreferenceCell.swift in Sources */,
@@ -517,6 +524,7 @@
 				283823E623F0C4D20031327E /* InvitesCell.swift in Sources */,
 				6965961023E0A775009399F2 /* Extensions.swift in Sources */,
 				7401EF7823F1E941000C322B /* WaitingForResponseView.swift in Sources */,
+				7467518323F7293200357610 /* SplashScreenVC.swift in Sources */,
 				691DD12623F20ACD003A67E7 /* ProfileVC.swift in Sources */,
 				7401EF4723ECAB45000C322B /* DiscoverEventView.swift in Sources */,
 				0BBFCD2E23E8949100E039A7 /* Secrets.swift in Sources */,

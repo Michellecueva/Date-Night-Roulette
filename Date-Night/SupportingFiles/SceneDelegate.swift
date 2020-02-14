@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = scene
-        window?.rootViewController = ProfileSettingVC()
+        window?.rootViewController = SplashScreenVC()
         
         window?.makeKeyAndVisible()
     }
