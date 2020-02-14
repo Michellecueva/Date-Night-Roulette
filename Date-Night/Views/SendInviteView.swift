@@ -10,6 +10,7 @@ class SendInviteView: UIView {
         uiLabel.font = UIFont(name: "Arial-Bold", size: 16)
         uiLabel.numberOfLines = 0
         uiLabel.textAlignment = .center
+        uiLabel.textColor = .white
         uiLabel.text = "Please Enter Your Partner's Email"
         return uiLabel
     }()
@@ -25,9 +26,9 @@ class SendInviteView: UIView {
     lazy var enterButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("enter", for: .normal)
-        button.setTitleColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), for: .normal)
+        button.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
         button.titleLabel?.font = UIFont(name: "Arial-Bold", size: 16)
-        button.backgroundColor = #colorLiteral(red: 0.1345793307, green: 0.03780555353, blue: 0.9968826175, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         button.layer.cornerRadius = 5
         
         button.isEnabled = true
@@ -58,7 +59,7 @@ class SendInviteView: UIView {
     }
     
     private func addConstraintsToSelf() {
-        backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         addSubview(userInstructions)
         addSubview(emailField)
         addSubview(enterButton)
