@@ -224,10 +224,10 @@ class FirestoreService {
     // MARK: Invitation Functionality
     
     
-    func getAllInvites(userEmailAddress:String,completionHandler:@escaping (Result<[Invites],AppError>)-> ()) {
+    func getAllInvites(inviteField:InviteField,userEmailAddress:String,completionHandler:@escaping (Result<[Invites],AppError>)-> ()) {
         
         
-        db.collection(FireStoreCollections.invites.rawValue).whereField("to", isEqualTo: userEmailAddress.lowercased()).getDocuments { (snapshot, error) in
+        db.collection(FireStoreCollections.invites.rawValue).whereField(inviteField.rawValue, isEqualTo: userEmailAddress.lowercased()).getDocuments { (snapshot, error) in
             if let error = error {
                 completionHandler(.failure(.other(rawError: error)))
             } else {

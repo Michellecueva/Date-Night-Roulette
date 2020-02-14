@@ -115,7 +115,7 @@ class InvitesPendingVC: UIViewController {
                 
                 let partner = users[0]
                 
-                self.updatePartnerUsernameField(partnerUserName: partner.firstName)
+                self.updatePartnerUsernameField(partnerUserName: partner.userName)
                 self.updatePartnersField(partnerUID: partner.uid)
 
             case .failure(let error):

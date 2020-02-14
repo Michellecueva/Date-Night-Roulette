@@ -60,7 +60,7 @@ class SignUpView: UIView {
     lazy var createButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Create Account", for: .normal)
-        button.setTitleColor(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1), for: .normal)
+        button.setTitleColor(#colorLiteral(red: 0.819378674, green: 0.3879651427, blue: 1, alpha: 1), for: .normal)
         button.setTitleColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1), for: .disabled)
         button.titleLabel?.font = UIFont(name: "Verdana-Bold", size: 14)
         button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -127,7 +127,7 @@ class SignUpView: UIView {
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 50),
             stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            stackView.heightAnchor.constraint(equalToConstant: 270),
+            stackView.heightAnchor.constraint(equalToConstant: 190),
             stackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7)
         ])
     }

@@ -13,10 +13,24 @@ class SignInVC: UIViewController {
     
     @objc private func loginButton() {
         loginButtonFunctions(email:viewSignIn.emailField.text,password:viewSignIn.passwordField.text)
+        
     }
+    
+    @objc private func createAccountButton() {
+        createAccount()
+    }
+    
+    
     
     private func addObjcFunctionsToViewObjects() {
         viewSignIn.loginButton.addTarget(self, action: #selector(loginButton), for: .touchUpInside)
+        viewSignIn.createAccountButton.addTarget(self, action: #selector(createAccountButton), for: .touchUpInside)
+    }
+    
+    private func createAccount() {
+        let signupVC = SignUpVC()
+             signupVC.modalPresentationStyle = .formSheet
+             present(signupVC, animated: true, completion: nil)
     }
     
     private func loginButtonFunctions(email:String?,password:String?) {
