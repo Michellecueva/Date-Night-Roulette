@@ -17,7 +17,7 @@ class SendInviteView: UIView {
     
     lazy var emailField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Partner's email"
+        textField.placeholder = "Pending Invitation"
         textField.borderStyle = .roundedRect
         textField.backgroundColor = .lightText
         return textField
