@@ -32,8 +32,8 @@ class FirebaseAuthService {
     //changes auth current user information
     func updateUserFields(name: String? = nil,photoURL: URL? = nil, completion: @escaping (Result<(),Error>) -> ()){
           let changeRequest = auth.currentUser?.createProfileChangeRequest()
-          if let firstName = name {
-              changeRequest?.displayName = firstName
+          if let userName = name {
+              changeRequest?.displayName = userName
           }
           if let photoURL = photoURL {
               changeRequest?.photoURL = photoURL

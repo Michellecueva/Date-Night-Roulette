@@ -45,6 +45,7 @@ class ProfileSettingVC: UIViewController {
             switch result {
             case .success(let user):
                 self.profileSetting.partnerEmailDisplayLabel.text = user.partnerEmail
+                print("succesfully added partner email\(user.partnerEmail)")
             case .failure(let error):
                 print(error)
             }

@@ -70,7 +70,7 @@ class SignUpVC: UIViewController {
                 
             case.success(let user):
                 FirestoreService.manager.createAppUser(user: AppUser(from: user, sessionID: nil, preferences: [])) { (result) in
-                    FirestoreService.manager.updateCurrentUser(firstName: displayName, photoURL: nil) { (result) in
+                    FirestoreService.manager.updateCurrentUser(userName: displayName, photoURL: nil) { (result) in
                         switch result {
                         case .failure(let error):
                             print(error)
