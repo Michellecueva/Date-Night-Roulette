@@ -44,6 +44,7 @@
 		6965961023E0A775009399F2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6965960F23E0A775009399F2 /* Extensions.swift */; };
 		6965961423E0A9ED009399F2 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6965961323E0A9ED009399F2 /* AppUser.swift */; };
 		6986FE2D23FC793A00B5560A /* ShowEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6986FE2C23FC793A00B5560A /* ShowEventVC.swift */; };
+		6986FE3123FC85B100B5560A /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6986FE3023FC85B100B5560A /* UserDefaultsWrapper.swift */; };
 		69CE862323F7151F001E1327 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE862223F7151F001E1327 /* Secrets.swift */; };
 		69CE862523F71547001E1327 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69CE862423F71547001E1327 /* GoogleService-Info.plist */; };
 		69CE862923F71565001E1327 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE862623F71564001E1327 /* LeftViewController.swift */; };
@@ -119,6 +120,7 @@
 		6965960F23E0A775009399F2 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6965961323E0A9ED009399F2 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
 		6986FE2C23FC793A00B5560A /* ShowEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEventVC.swift; sourceTree = "<group>"; };
+		6986FE3023FC85B100B5560A /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 		69CE862223F7151F001E1327 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		69CE862423F71547001E1327 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		69CE862623F71564001E1327 /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 				283823C123E885050031327E /* Invites.swift */,
 				0BBFCD3B23E8CEC000E039A7 /* SeatGeekModel.swift */,
 				283823C323E885390031327E /* FBEvents.swift */,
+				6986FE3023FC85B100B5560A /* UserDefaultsWrapper.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -555,6 +558,7 @@
 				2862B5FB23DD47130047B47B /* AppDelegate.swift in Sources */,
 				69CE863B23F718BA001E1327 /* Enums.swift in Sources */,
 				69CE863623F715FF001E1327 /* SavedPreferenceDelegate.swift in Sources */,
+				6986FE3123FC85B100B5560A /* UserDefaultsWrapper.swift in Sources */,
 				0B96460D23EE2C6A00D2CAB9 /* PreferenceView.swift in Sources */,
 				283823E823F0C5F20031327E /* InvitesPendingView.swift in Sources */,
 				69CE863723F715FF001E1327 /* SendInviteDelegate.swift in Sources */,
