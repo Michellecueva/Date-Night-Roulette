@@ -22,7 +22,11 @@ class PreferenceCell: UICollectionViewCell {
         return label
     }()
     
-    
+    var isAddedToPreferenceArray:Bool = false {
+        didSet {
+            switchBackgroundColorOfCell(bool: isAddedToPreferenceArray)
+        }
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -32,6 +36,7 @@ class PreferenceCell: UICollectionViewCell {
         super.init(frame: frame)
         addSubview()
         prefLabelConstraints()
+        self.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         
     }
     
@@ -45,6 +50,15 @@ class PreferenceCell: UICollectionViewCell {
         preferenceLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor).isActive = true
         preferenceLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         preferenceLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+    }
+    
+    private func switchBackgroundColorOfCell(bool:Bool) {
+        switch bool {
+        case true:
+            self.backgroundColor = .gray
+        case false:
+            self.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        }
     }
 }
 

@@ -223,6 +223,23 @@ class FirestoreService {
     
     // MARK: Invitation Functionality
     
+    func savePreferencesForUser(field:FireStoreCollections,preferences:[String],currentUserUID:String,completionHandler:@escaping(Result<(),AppError>) -> ()) {
+       
+        var updateFields = [String:Any]()
+               updateFields["preferences"] = preferences
+        db.collection(FireStoreCollections.users.rawValue).document(currentUserUID).updateData(updateFields) { (error) in
+            if let error = error {
+                completionHandler(.failure(.other(rawError: error)))
+            } else {
+                completionHandler(.success(()))
+            }
+        }
+        
+    }
+    
+    func getUserPreferences() {
+        
+    }
     
     func getAllInvites(inviteField:InviteField,userEmailAddress:String,completionHandler:@escaping (Result<[Invites],AppError>)-> ()) {
         
