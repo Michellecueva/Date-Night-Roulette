@@ -72,7 +72,7 @@ print("changed")
 
   override func viewDidLoad() {
     super.viewDidLoad()
-   addUserListener()
+ //  addUserListener()
     getUser()
     setUpViewControllerConfigs()
     setUpSwipingNavigationViewController()
@@ -117,6 +117,7 @@ print("changed")
                 print(error)
             case .success(let user):
                 self?.currentUser = user
+                self?.addUserListener()
                 
             }
         }
@@ -150,6 +151,7 @@ swipingNavigationViewController.swipingViewControllerDelegate = self
   
   func createFirstScreen() -> ViewControllerConfig {
     let vc = leftVC
+    
     
     //vc.view.backgroundColor = .red
     let leadingBarButtonItems = [UIBarButtonItem(title: "red", style: .plain
