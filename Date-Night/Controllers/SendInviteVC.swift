@@ -42,7 +42,7 @@ class SendInviteVC: UIViewController {
             print("could not invite user")
             return
         }
-        let invite = Invites(from: currentUserEmail, to: recipient, invitationStatus: .pending)
+    let invite = Invites(from: currentUserEmail.lowercased(), to: recipient.lowercased(), invitationStatus: .pending)
            
            FirestoreService.manager.sendInvite(invite: invite) { [weak self] (result) in
                switch result {
