@@ -19,7 +19,7 @@
 		0BBFCD3C23E8CEC000E039A7 /* SeatGeekModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBFCD3B23E8CEC000E039A7 /* SeatGeekModel.swift */; };
 		0BDA95D223EA0B150069E56D /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBFCD3923E8CEB700E039A7 /* Categories.swift */; };
 		283823C223E885050031327E /* Invites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283823C123E885050031327E /* Invites.swift */; };
-		283823C423E885390031327E /* Sessions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283823C323E885390031327E /* Sessions.swift */; };
+		283823C423E885390031327E /* FBEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283823C323E885390031327E /* FBEvents.swift */; };
 		283823C623E885730031327E /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283823C523E885730031327E /* AppError.swift */; };
 		283823C823E885B90031327E /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283823C723E885B90031327E /* FirestoreService.swift */; };
 		283823CA23E887450031327E /* HomeScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283823C923E887450031327E /* HomeScreenVC.swift */; };
@@ -90,7 +90,7 @@
 		0BBFCD3923E8CEB700E039A7 /* Categories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		0BBFCD3B23E8CEC000E039A7 /* SeatGeekModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatGeekModel.swift; sourceTree = "<group>"; };
 		283823C123E885050031327E /* Invites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invites.swift; sourceTree = "<group>"; };
-		283823C323E885390031327E /* Sessions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sessions.swift; sourceTree = "<group>"; };
+		283823C323E885390031327E /* FBEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBEvents.swift; sourceTree = "<group>"; };
 		283823C523E885730031327E /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		283823C723E885B90031327E /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		283823C923E887450031327E /* HomeScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenVC.swift; sourceTree = "<group>"; };
@@ -326,7 +326,7 @@
 				0BBFCD3923E8CEB700E039A7 /* Categories.swift */,
 				283823C123E885050031327E /* Invites.swift */,
 				0BBFCD3B23E8CEC000E039A7 /* SeatGeekModel.swift */,
-				283823C323E885390031327E /* Sessions.swift */,
+				283823C323E885390031327E /* FBEvents.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -533,7 +533,7 @@
 				283823C823E885B90031327E /* FirestoreService.swift in Sources */,
 				69CE863523F715FF001E1327 /* WaitingForResponseDelegate.swift in Sources */,
 				283823C623E885730031327E /* AppError.swift in Sources */,
-				283823C423E885390031327E /* Sessions.swift in Sources */,
+				283823C423E885390031327E /* FBEvents.swift in Sources */,
 				7401EF6C23F1C573000C322B /* PartnerSettingView.swift in Sources */,
 				6986FE2D23FC793A00B5560A /* ShowEventVC.swift in Sources */,
 				69CE862B23F71565001E1327 /* SwipingContainerViewController.swift in Sources */,
