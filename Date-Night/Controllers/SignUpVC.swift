@@ -55,7 +55,7 @@ class SignUpVC: UIViewController {
         guard password.isValidPassword else {
             return
         }
-        FirebaseAuthService.manager.createNewUser(email: email, password: password) { (result) in
+    FirebaseAuthService.manager.createNewUser(email: email.lowercased(), password: password) { (result) in
          
             self.updateUserAccount(with: result, displayName: displayName)
         }
