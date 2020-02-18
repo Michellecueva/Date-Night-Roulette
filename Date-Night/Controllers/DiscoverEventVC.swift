@@ -12,7 +12,7 @@ class DiscoverEventVC: UIViewController {
 
     var discover = DiscoverEventView()
     
-    
+    //add button 
     
     override func viewDidLoad() {
         super.viewDidLoad()

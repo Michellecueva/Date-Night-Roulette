@@ -10,12 +10,20 @@ import UIKit
 
 class ShowEventVC: UIViewController {
 
+    var arrayOfEvents = [Event]()
+    var preferenceArray:[String] = ["nba","nhl"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
+    private func addEventsFromAPI() {
+        for preference in preferenceArray {
+            
+        }
+    }
 
     /*
     // MARK: - Navigation
