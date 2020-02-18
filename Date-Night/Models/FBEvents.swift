@@ -9,13 +9,13 @@
 import Foundation
 
 
-struct Session: Codable {
+struct FBEvents: Codable {
     let title: String
     let address: String
     let eventID: String
     let description: String
-    let imageURL: String
-    let websiteURL: String
+    let imageURL: String?
+    let websiteURL: String?
     
     init(title: String, address: String, eventID: String, description: String, imageURL: String, websiteURL: String) {
         self.title = title
@@ -51,8 +51,8 @@ struct Session: Codable {
             "address": self.address,
             "eventID": self.eventID,
             "description": self.description,
-            "imageURL": self.imageURL,
-            "websiteURL": self.websiteURL
+            "imageURL": self.imageURL ?? "Image Unavailable",
+            "websiteURL": self.websiteURL ?? "Website URL Unavailable"
         ]
     }
     
