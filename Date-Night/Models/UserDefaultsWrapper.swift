@@ -7,3 +7,20 @@
 //
 
 import Foundation
+
+class UserDefaultsWrapper {
+    
+    static let standard = UserDefaultsWrapper()
+    
+    private let preferences = "preferences"
+    
+     func store(preference:[String]) {
+        UserDefaults.standard.set(preference, forKey: preferences)
+    }
+    
+    func getPreferences() -> [String]? {
+        UserDefaults.standard.value(forKey: preferences) as? [String]
+    }
+    
+    
+}
