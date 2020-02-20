@@ -52,6 +52,8 @@ class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionView
     @objc func savedPressed(_ sender: UIButton){
         // delegate?.eventFavs(tag: sender.tag)
        print("tapped button")
+       
+        UserDefaultsWrapper.standard.store(preference: arrayOfPreferences)
         FirestoreService.manager.savePreferencesForUser(field: .users, preferences: arrayOfPreferences, currentUserUID: appUserID) { (result) in
             switch result {
             case .failure(let error):
@@ -82,17 +84,11 @@ class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionView
     
     private func getUserPreferences() {
         //determine whether or not we should make multiple requests to get the same user
+        guard let preferences = UserDefaultsWrapper.standard.getPreferences() else {return}
+        guard preferences.count > 0 else {return}
+        self.arrayOfPreferences = preferences
+        self.prefView.preferenceCollectionView.reloadData()
         
-        FirestoreService.manager.getUser(userID: appUserID) { (result) in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let user):
-                
-                self.arrayOfPreferences = user.preferences
-                self.prefView.preferenceCollectionView.reloadData()
-            }
-        }
     }
    
     
