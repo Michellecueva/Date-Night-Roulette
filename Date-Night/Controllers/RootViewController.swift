@@ -206,14 +206,17 @@ swipingNavigationViewController.setStartingViewController()
     @objc private func backwards() {
         guard pageControl.currentPage != 0 else {return}
         pageControl.currentPage -= 1
+        
         swipingNavigationViewController.navigateToViewController(index: (pageControl.currentPage))
     }
     
     @objc private func forwards() {
         guard pageControl.currentPage != 2 else {return}
         pageControl.currentPage += 1
+       
+       
         swipingNavigationViewController.navigateToViewController(index: pageControl.currentPage)
-        
+       
     }
     
     private func getInvites() {
@@ -231,6 +234,7 @@ swipingNavigationViewController.setStartingViewController()
     
     @objc func pageControlTapHandler(sender:UIPageControl) {
         print("currentPage:", sender.currentPage)
+       
         swipingNavigationViewController.navigateToViewController(index: sender.currentPage)
         //currentPage: 1
     }
@@ -239,6 +243,11 @@ extension RootViewController: SwipingContainerViewControllerDelegate {
     func swipingViewControllerDidEndDeceleratingOnPage(swippingViewController: SwipingContainerViewController, page: Int) {
         print(page)
         pageControl.currentPage = page
+    
+        
     }
     
 }
+
+
+
