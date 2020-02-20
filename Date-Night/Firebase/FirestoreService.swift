@@ -209,18 +209,38 @@ class FirestoreService {
         //add snapshot listener
     }
     
-    //  messageListener = reference?.addSnapshotListener { querySnapshot, error in
-    //    guard let snapshot = querySnapshot else {
-    //      print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
-    //      return
-    //    }
-    //
-    //    snapshot.documentChanges.forEach { change in
-    //      self.handleDocumentChange(change)
-    //    }
-    //  }
-    //
+    func sendEventsToFirebase(event:FBEvents,completionHandler:@escaping (Result<(),AppError>) ->()) {
+        
+       
+            
+            let eventField = event.fieldsDict
+            db.collection("FBEvents").addDocument(data: eventField) { (error) in
+                if let error = error {
+                    completionHandler(.failure(.other(rawError: error)))
+                } else {
+                  
+                   
+                    completionHandler(.success(()))
+                }
+            }
+    }
     
+    func getEventsFromFireBase(preference: [String],completion: @escaping (Result<[FBEvents], Error>) -> ()) {
+        db.collection("FBEvents").whereField("type", isEqualTo: preference[0]).getDocuments { (snapshot, error) in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    let eventData = snapshot?.documents.compactMap({ (snapshot) -> FBEvents? in
+                            
+                            let eventID = snapshot.documentID
+                            let data = snapshot.data()
+                            return FBEvents(from: data, id: eventID)
+                        })
+                        completion(.success(eventData ?? []))
+                    }
+        }
+        
+    }
     // MARK: Invitation Functionality
     
     func savePreferencesForUser(field:FireStoreCollections,preferences:[String],currentUserUID:String,completionHandler:@escaping(Result<(),AppError>) -> ()) {
@@ -234,10 +254,6 @@ class FirestoreService {
                 completionHandler(.success(()))
             }
         }
-        
-    }
-    
-    func getUserPreferences() {
         
     }
     
