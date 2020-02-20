@@ -49,11 +49,14 @@ class SwipingContainerViewController: UIViewController {
     scrollView.frame = view.bounds
     calculateScrollViewContentSize()
     positionViewControllers()
-    navigateToViewController(index: currentPage)
+    setUpScrollView()
+    setStartingViewController()
   }
 
   //MARK: Layout
   
+   
+    
   func calculateScrollViewContentSize() {
     let scrollViewContentSizeWidth = scrollView.bounds.width * CGFloat(viewControllers.count)
     let scrollViewContentSize = CGSize(width: scrollViewContentSizeWidth,
@@ -80,8 +83,9 @@ class SwipingContainerViewController: UIViewController {
   }
   
   func setUpScrollView() {
+    
     scrollView.alwaysBounceVertical = false
-    scrollView.backgroundColor = .blue
+    scrollView.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
     scrollView.isPagingEnabled = true
     view.addSubview(scrollView)
     scrollView.delegate = self
@@ -90,25 +94,27 @@ class SwipingContainerViewController: UIViewController {
     
     
       }
-  
-   func navigateToViewController(index: Int) {
-      guard index < viewControllers.count else { return }
-      //forcing function to return 1
-      guard xOffsetForViewController(index: index) > 0 else {
-          let contentOffset = CGPoint(x: xOffsetForViewController(index: 1 ), y: 0)
-           scrollView.contentOffset = contentOffset
-          return
-      }
-      let contentOffset = CGPoint(x: xOffsetForViewController(index: index ), y: 0)
-      scrollView.contentOffset = contentOffset
-   
     
-    }
-  }
+    func navigateToViewController(index: Int) {
 
+         let contentOffset = CGPoint(x: xOffsetForViewController(index: index ), y: 0)
+         scrollView.contentOffset = contentOffset
+
+
+       }
+  
+    func setStartingViewController() {
+    
+        let contentOffset = CGPoint(x: xOffsetForViewController(index: 1 ), y: 0)
+                 scrollView.contentOffset = contentOffset
+        
+    }
+    }
+    
 extension SwipingContainerViewController: UIScrollViewDelegate {
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
-  }
+  
+    }
   
   func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
     //    print(#function)
