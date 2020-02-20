@@ -23,12 +23,12 @@ class ShakeGestureVC: UIViewController {
     }
     
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        <#code#>
+        
         // Add code when motion begins -- probably could be some kind of animation
     }
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        <#code#>
+        
         // Add code for when motion stops -- 
     }
     
