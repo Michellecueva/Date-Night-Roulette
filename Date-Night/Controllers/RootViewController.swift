@@ -11,16 +11,18 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class RootViewController: UIViewController {
-
+    
     lazy var homeScreenVC = HomeScreenVC()
     lazy var leftVC = LeftViewController()
     
-    var userEmail:String {
-           guard let email = Auth.auth().currentUser?.email else {fatalError()}
-           return email
-       }
+    var pageControl:UIPageControl = UIPageControl(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     
-  private var invitesFromUser = [Invites]() {
+    var userEmail:String {
+        guard let email = Auth.auth().currentUser?.email else {fatalError()}
+        return email
+    }
+    
+    private var invitesFromUser = [Invites]() {
         didSet {
             if invitesFromUser.count > 0 {
                 leftVC.leftScreenStatus = .waitingForResponse
@@ -31,83 +33,79 @@ class RootViewController: UIViewController {
         }
     }
     
-   
-       
-       
-       var userListener:ListenerRegistration?
+    
+    
+    
+    var userListener:ListenerRegistration?
     
     var collectionReference:Query = Firestore.firestore().collection("users")
     
     private var currentUser:AppUser? {
         didSet {
-print("changed")
-            print(currentUser?.partnerEmail)
-            print(currentUser?.preferences)
+            print("changed")
             if currentUser?.preferences != [] && currentUser?.partnerEmail != "" {
                 
                 homeScreenVC.homePageStatus = .discoverEvents
                 leftVC.leftScreenStatus = .partnerProfile
-              //  leftVC.currentUser = currentUser
+                //  leftVC.currentUser = currentUser
             } else if currentUser?.preferences == [] && currentUser?.partnerEmail != "" {
                 homeScreenVC.homePageStatus = .setPreferences
                 leftVC.leftScreenStatus = .partnerProfile
-          //      leftVC.currentUser = currentUser
 
-         
             } else if currentUser?.partnerEmail == "" {
-               getInvites()
+                getInvites()
                 homeScreenVC.homePageStatus = .none
             }
         }
     }
-
+    
     private var currentUserEmail:String {
-            guard let user = Auth.auth().currentUser?.email else {fatalError()}
-                return user
-            }
-        
-
- private let swipingNavigationViewController = SwipingContainerViewController()
- private var viewControllerConfigs: [ViewControllerConfig] = [] // probably need to implement will set did set
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
- //  addUserListener()
-    getUser()
-    setUpViewControllerConfigs()
-    setUpSwipingNavigationViewController()
- swipingNavigationViewController.navigateToViewController(index: 1)
-   showBarButtons(for: 1)
+        guard let user = Auth.auth().currentUser?.email else {fatalError()}
+        return user
     }
-  
-  override func viewWillLayoutSubviews() {
-    super.viewWillLayoutSubviews()
-    swipingNavigationViewController.view.frame = view.bounds
-  }
+    
+    
+    private let swipingNavigationViewController = SwipingContainerViewController()
+    private var viewControllerConfigs: [ViewControllerConfig] = [] // probably need to implement will set did set
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        getUser()
+        setUpViewControllerConfigs()
+        setUpSwipingNavigationViewController()
+        configurePageControl()
+        makeNavBarTranslucent()
+swipingNavigationViewController.setStartingViewController()
+        showBarButtons()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        swipingNavigationViewController.view.frame = view.bounds
+    }
     private func addUserListener() {
-         userListener = collectionReference.whereField(
-              "email",isEqualTo: userEmail).addSnapshotListener({ (snapshot, error) in
-                  
-                    if let error = error {
-                                print(error.localizedDescription)
-                            }
-                            guard let usersFromOnline = snapshot?.documents else {
-                                print("no users available")
-                                return
-                            }
-                            let userList = usersFromOnline.compactMap {  (snapshot) -> AppUser? in
-                                let userID = snapshot.documentID
-                                let data = snapshot.data()
-                              let user = AppUser(from: data, id: userID)
-                           
-                                return user
-                            }
-            
+        userListener = collectionReference.whereField(
+            "email",isEqualTo: userEmail).addSnapshotListener({ (snapshot, error) in
+                
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                guard let usersFromOnline = snapshot?.documents else {
+                    print("no users available")
+                    return
+                }
+                let userList = usersFromOnline.compactMap {  (snapshot) -> AppUser? in
+                    let userID = snapshot.documentID
+                    let data = snapshot.data()
+                    let user = AppUser(from: data, id: userID)
+                    
+                    return user
+                }
                 self.currentUser = userList.last
                 print(self.currentUser?.email)
-                  
-                        })
-      }
+                
+            })
+    }
     
     private func getUser() {
         guard let userID = Auth.auth().currentUser?.uid else {return}
@@ -122,96 +120,125 @@ print("changed")
             }
         }
     }
-    
 
-  func positionSwipingViewController() {
-    let minY = navigationController?.navigationBar.frame.maxX ?? 0
-    let frame =
-      CGRect(x: 0,
-             y: minY,
-             width: view.bounds.width,
-             height: view.bounds.height - minY)
-    swipingNavigationViewController.view.frame = frame
-  }
-
-  func setUpViewControllerConfigs() {
-    viewControllerConfigs = [
-      createFirstScreen(),
-      createSecondScreen(),
-      createThirdScreen()
-    ]
-  }
-private func setUpSwipingNavigationViewController() {
-    
-swipingNavigationViewController.swipingViewControllerDelegate = self
-    swipingNavigationViewController.viewControllers =
-      viewControllerConfigs.map { $0.viewController }
-    view.addSubview(swipingNavigationViewController.view)
-  }
-  
-  func createFirstScreen() -> ViewControllerConfig {
-    let vc = leftVC
-    
-    
-    //vc.view.backgroundColor = .red
-    let leadingBarButtonItems = [UIBarButtonItem(title: "red", style: .plain
-      , target: nil, action: nil)]
-    let trailingBarButtonItems = [UIBarButtonItem(title: "cat", style: .plain
-      , target: nil, action: nil)]
-    return ViewControllerConfig(viewController: vc,
-                                                                leadingBarButtonItems: leadingBarButtonItems,
-                                                                trailingBarButtonItems: trailingBarButtonItems)
-  }
-
-  func createSecondScreen() -> ViewControllerConfig {
-    let vc = homeScreenVC
-    vc.view.backgroundColor = .white
-    let leadingBarButtonItems = [UIBarButtonItem(title: "yellow", style: .plain
-      , target: nil, action: nil)]
-    let trailingBarButtonItems = [UIBarButtonItem(title: "dog", style: .plain
-      , target: nil, action: nil)]
-    
-    return ViewControllerConfig(viewController: vc,
-                                                                leadingBarButtonItems: leadingBarButtonItems,
-                                                                trailingBarButtonItems: trailingBarButtonItems)
-  }
-
-  func createThirdScreen() -> ViewControllerConfig {
-    let vc = ProfileSettingVC()
-    vc.view.backgroundColor = .clear
-    let leadingBarButtonItems = [UIBarButtonItem(title: "blue", style: .plain
-      , target: nil, action: nil)]
-    let trailingBarButtonItems = [UIBarButtonItem(title: "bear", style: .plain
-      , target: nil, action: nil)]
-    return ViewControllerConfig(viewController: vc,
-                                                                leadingBarButtonItems: leadingBarButtonItems,
-                                                                trailingBarButtonItems: trailingBarButtonItems)
-  }
-
-  
-    func showBarButtons(for page: Int) {
-      print("landed on page \(page)")
-      let config = viewControllerConfigs[page]
-      navigationItem.setLeftBarButtonItems(config.leadingBarButtonItems, animated: true)
-      navigationItem.setRightBarButtonItems(config.trailingBarButtonItems, animated: true)      
+    func positionSwipingViewController() {
+        let minY = navigationController?.navigationBar.frame.maxX ?? 0
+        let frame =
+            CGRect(x: 0,
+                   y: minY,
+                   width: view.bounds.width,
+                   height: view.bounds.height - minY)
+        swipingNavigationViewController.view.frame = frame
     }
-
+    
+    func setUpViewControllerConfigs() {
+        viewControllerConfigs = [
+            createFirstScreen(),
+            createSecondScreen(),
+            createThirdScreen()
+        ]
+    }
+    private func setUpSwipingNavigationViewController() {
+        
+        swipingNavigationViewController.swipingViewControllerDelegate = self
+        swipingNavigationViewController.viewControllers =
+            viewControllerConfigs.map { $0.viewController }
+        view.addSubview(swipingNavigationViewController.view)
+    }
+    
+    func createFirstScreen() -> ViewControllerConfig {
+        let vc = leftVC
+        let leadingBarButtonItems = [UIBarButtonItem(title: "red", style: .plain
+            , target: nil, action: nil)]
+        let trailingBarButtonItems = [UIBarButtonItem(title: "cat", style: .plain
+            , target: nil, action: nil)]
+        return ViewControllerConfig(viewController: vc,
+                                    leadingBarButtonItems: leadingBarButtonItems,
+                                    trailingBarButtonItems: trailingBarButtonItems)
+    }
+    
+    func createSecondScreen() -> ViewControllerConfig {
+        let vc = homeScreenVC
+        vc.view.backgroundColor = .white
+        let leadingBarButtonItems = [UIBarButtonItem(title: "yellow", style: .plain
+            , target: nil, action: nil)]
+        let trailingBarButtonItems = [UIBarButtonItem(title: "dog", style: .plain
+            , target: nil, action: nil)]
+        
+        return ViewControllerConfig(viewController: vc,
+                                    leadingBarButtonItems: leadingBarButtonItems,
+                                    trailingBarButtonItems: trailingBarButtonItems)
+    }
+    
+    func createThirdScreen() -> ViewControllerConfig {
+        let vc = ProfileSettingVC()
+        vc.view.backgroundColor = .clear
+        let leadingBarButtonItems = [UIBarButtonItem(title: "blue", style: .plain
+            , target: nil, action: nil)]
+        let trailingBarButtonItems = [UIBarButtonItem(title: "bear", style: .plain
+            , target: nil, action: nil)]
+        return ViewControllerConfig(viewController: vc,
+                                    leadingBarButtonItems: leadingBarButtonItems,
+                                    trailingBarButtonItems: trailingBarButtonItems)
+    }
+    
+    
+    func configurePageControl() {
+        self.pageControl.numberOfPages = viewControllerConfigs.count
+        self.pageControl.currentPage = 1
+        self.pageControl.tintColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        self.pageControl.pageIndicatorTintColor = UIColor.white
+        self.pageControl.currentPageIndicatorTintColor = #colorLiteral(red: 0.9767183661, green: 0.2991916835, blue: 1, alpha: 1)
+        pageControl.isUserInteractionEnabled = false
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+        
+        navigationItem.titleView = pageControl
+        pageControl.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+        
+    }
+  
+    func showBarButtons() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .rewind, target: self, action:#selector(backwards) )
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .fastForward, target: self, action: #selector(forwards))
+    }
+    
+    @objc private func backwards() {
+        guard pageControl.currentPage != 0 else {return}
+        pageControl.currentPage -= 1
+        swipingNavigationViewController.navigateToViewController(index: (pageControl.currentPage))
+    }
+    
+    @objc private func forwards() {
+        guard pageControl.currentPage != 2 else {return}
+        pageControl.currentPage += 1
+        swipingNavigationViewController.navigateToViewController(index: pageControl.currentPage)
+        
+    }
+    
     private func getInvites() {
         
         FirestoreService.manager.getAllInvites( inviteField: .from, userEmailAddress: currentUserEmail) { [weak self](result) in
-               switch result {
-               case .failure(let error):
-                   print(error)
-               case .success(let invites):
-                   self?.invitesFromUser = invites
-               }
-           }
-
-}
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let invites):
+                self?.invitesFromUser = invites
+            }
+        }
+        
+    }
+    
+    @objc func pageControlTapHandler(sender:UIPageControl) {
+        print("currentPage:", sender.currentPage)
+        swipingNavigationViewController.navigateToViewController(index: sender.currentPage)
+        //currentPage: 1
+    }
 }
 extension RootViewController: SwipingContainerViewControllerDelegate {
-  func swipingViewControllerDidEndDeceleratingOnPage(swippingViewController: SwipingContainerViewController, page: Int) {
-    showBarButtons(for: page)
-  }
+    func swipingViewControllerDidEndDeceleratingOnPage(swippingViewController: SwipingContainerViewController, page: Int) {
+        print(page)
+        pageControl.currentPage = page
+    }
+    
 }
-
