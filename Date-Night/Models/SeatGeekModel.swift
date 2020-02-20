@@ -43,7 +43,7 @@ struct Geolocation: Codable {
 // MARK: - Event
 struct Event: Codable {
  
-    let id: Int?
+    let id: Int
     let title: String?  
     let type: String?
     let eventDescription, datetimeLocal, visibleUntilUTC: String?
