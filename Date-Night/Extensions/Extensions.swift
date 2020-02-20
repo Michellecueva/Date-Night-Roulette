@@ -90,6 +90,18 @@ extension UICollectionViewFlowLayout {
 
 extension UIViewController {
     
+    func makeNavBarOpaque() {
+self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default) 
+    }
+    
+    func makeNavBarTranslucent() {
+    self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+        self.navigationController?.navigationBar.backgroundColor = .clear
+    }
+    
     func add(_ child: UIViewController) {
             addChild(child)
             view.addSubview(child.view)
