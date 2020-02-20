@@ -15,7 +15,7 @@ struct SeatGeekAPIClient{
     
     
     func getEventsFrom(category: String, completionHandler: @escaping (Result <[Event], AppError>) ->()){
-        let urlStr = "https://api.seatgeek.com/2/events?type=\(category)&geoip=true&client_id=\(Secrets.seatKey)"
+        let urlStr = "https://api.seatgeek.com/2/events?type=\(category)&geoip=true&client_id=\(Secrets.seatKey)&per_page=2"
         
         guard let url = URL(string: urlStr) else {
             completionHandler(.failure(AppError.badURL))
