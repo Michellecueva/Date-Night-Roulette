@@ -29,13 +29,13 @@ enum SortingCriteria: String {
     }
 }
 
-
 class FirestoreService {    
     static let manager = FirestoreService()
     
     public let db = Firestore.firestore()
     
     //MARK: AppUsers
+    
     func createAppUser(user: AppUser, completion: @escaping (Result<(), Error>) -> ()) {
         var fields = user.fieldsDict
         fields["dateCreated"] = Date()
@@ -59,11 +59,9 @@ class FirestoreService {
             updateFields["userName"] = userName
         }
         
-        
         if let photo = photoURL {
             updateFields["photoURL"] = photo.absoluteString
         }
-        
         
         //PUT request
         db.collection(FireStoreCollections.users.rawValue).document(userId).updateData(updateFields) { (error) in
@@ -126,7 +124,6 @@ class FirestoreService {
         updateFields["partnerEmail"] = currentUserEmail
         updateFields["partnerUserName"] = currentUserName
      
-        
         //PUT request
         db.collection(FireStoreCollections.users.rawValue).document(partnerUID).updateData(updateFields) { (error) in
             if let error = error {
@@ -136,7 +133,6 @@ class FirestoreService {
             }
         }
     }
-    
     
     func getAllUsers(completion: @escaping (Result<[AppUser], Error>) -> ()) {
         db.collection(FireStoreCollections.users.rawValue).getDocuments { (snapshot, error) in
@@ -153,8 +149,11 @@ class FirestoreService {
         }
     }
     
-    func deleteAllDocuments(docIDs:[String],path:FireStoreCollections,completionHandler:@escaping(Result<(),AppError>) -> ()) {
-        
+    func deleteAllDocuments(docIDs:[String],
+                            path:FireStoreCollections,
+                            completionHandler:@escaping(Result<(),AppError>) -> ())
+    {
+
         for docID in docIDs {
             db.collection(path.rawValue).document(docID).delete { (error) in
                 if let error = error {
@@ -165,7 +164,6 @@ class FirestoreService {
             }
         }
     }
-    
     
     func getUser(userID: String, completion: @escaping (Result<AppUser, Error>) -> ()) {
         db.collection(FireStoreCollections.users.rawValue).document(userID).getDocument { (snapshot, error) in
@@ -179,7 +177,7 @@ class FirestoreService {
         }
     }
     
-    func getPartnersUserData(partnerEmailAddress: String, completionHandler: @escaping (Result<[AppUser], Error>) -> ()) {
+    func getPartnersUserData(partnerEmailAddress: String,completionHandler: @escaping (Result<[AppUser], Error>) -> ()) {
         db.collection(FireStoreCollections.users.rawValue).whereField("email", isEqualTo: partnerEmailAddress.lowercased()).getDocuments { (snapshot, error) in
             if let error = error {
                 completionHandler(.failure(error))
@@ -195,20 +193,25 @@ class FirestoreService {
         }
     }
     
-    
-    
-    func sendInvite(invite:Invites,completionHandler:@escaping (Result<(),AppError>)-> ()) {
-        let inviteField = invite.fieldsDictionary
-        db.collection(FireStoreCollections.invites.rawValue).addDocument(data: inviteField) { (error) in
+    func savePreferencesForUser(
+        field:FireStoreCollections,
+        preferences:[String],
+        currentUserUID:String,
+        completionHandler:@escaping(Result<(),AppError>) -> ())
+    {
+       
+        var updateFields = [String:Any]()
+               updateFields["preferences"] = preferences
+        db.collection(FireStoreCollections.users.rawValue).document(currentUserUID).updateData(updateFields) { (error) in
             if let error = error {
                 completionHandler(.failure(.other(rawError: error)))
             } else {
                 completionHandler(.success(()))
             }
         }
-        //add snapshot listener
     }
     
+
     func sendEventsToFirebase(event:FBEvents,completionHandler:@escaping (Result<(),AppError>) ->()) {
         
        
@@ -241,24 +244,26 @@ class FirestoreService {
         }
         
     }
+
     // MARK: Invitation Functionality
     
-    func savePreferencesForUser(field:FireStoreCollections,preferences:[String],currentUserUID:String,completionHandler:@escaping(Result<(),AppError>) -> ()) {
-       
-        var updateFields = [String:Any]()
-               updateFields["preferences"] = preferences
-        db.collection(FireStoreCollections.users.rawValue).document(currentUserUID).updateData(updateFields) { (error) in
+    func sendInvite(invite:Invites,completionHandler:@escaping (Result<(),AppError>)-> ()) {
+        let inviteField = invite.fieldsDictionary
+        db.collection(FireStoreCollections.invites.rawValue).addDocument(data: inviteField) { (error) in
             if let error = error {
                 completionHandler(.failure(.other(rawError: error)))
             } else {
                 completionHandler(.success(()))
             }
         }
-        
+
     }
     
-    func getAllInvites(inviteField:InviteField,userEmailAddress:String,completionHandler:@escaping (Result<[Invites],AppError>)-> ()) {
-        
+    func getAllInvites(
+        inviteField:InviteField,
+        userEmailAddress:String,
+        completionHandler:@escaping (Result<[Invites],AppError>) -> ())
+    {
         
         db.collection(FireStoreCollections.invites.rawValue).whereField(inviteField.rawValue, isEqualTo: userEmailAddress.lowercased()).getDocuments { (snapshot, error) in
             if let error = error {
@@ -275,7 +280,6 @@ class FirestoreService {
         }
     }
     
-    
     func removeInvite(invite:Invites, completion: @escaping (Result<(), Error>) -> ()) {
         db.collection(FireStoreCollections.invites.rawValue).document(invite.id).delete() { err in
             if let err = err {
@@ -286,9 +290,12 @@ class FirestoreService {
         }
     }
     
-    func updateInvitationStatus(inviteID: String, invitationStatus: String, completion: @escaping (Result<(), Error>) -> ()) {
+    func updateInvitationStatus(inviteID: String,
+                                invitationStatus: String,
+                                completion: @escaping (Result<(), Error>) -> ())
+    {
         var updateFields = [String:Any]()
-        updateFields["invitationStatus"] = invitationStatus
+        updateFields[InviteField.invitationStatus.rawValue] = invitationStatus
         db.collection(FireStoreCollections.invites.rawValue).document(inviteID).updateData(updateFields) {
             (error) in
             if let error = error {
