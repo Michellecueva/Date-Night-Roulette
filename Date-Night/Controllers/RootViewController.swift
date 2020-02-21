@@ -14,6 +14,7 @@ class RootViewController: UIViewController {
     
     lazy var homeScreenVC = HomeScreenVC()
     lazy var leftVC = LeftViewController()
+    lazy var profileVC = ProfileSettingVC()
     
     var pageControl:UIPageControl = UIPageControl(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     
@@ -26,7 +27,6 @@ class RootViewController: UIViewController {
         didSet {
             if invitesFromUser.count > 0 {
                 leftVC.leftScreenStatus = .waitingForResponse
-                
             } else {
                 leftVC.leftScreenStatus = .sendInvite
             }
@@ -70,6 +70,9 @@ class RootViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+     
+        
+        
         getUser()
         setUpViewControllerConfigs()
         setUpSwipingNavigationViewController()
@@ -171,7 +174,7 @@ swipingNavigationViewController.setStartingViewController()
     }
     
     func createThirdScreen() -> ViewControllerConfig {
-        let vc = ProfileSettingVC()
+        let vc = profileVC
         vc.view.backgroundColor = .clear
         let leadingBarButtonItems = [UIBarButtonItem(title: "blue", style: .plain
             , target: nil, action: nil)]
@@ -206,14 +209,17 @@ swipingNavigationViewController.setStartingViewController()
     @objc private func backwards() {
         guard pageControl.currentPage != 0 else {return}
         pageControl.currentPage -= 1
+        
         swipingNavigationViewController.navigateToViewController(index: (pageControl.currentPage))
     }
     
     @objc private func forwards() {
         guard pageControl.currentPage != 2 else {return}
         pageControl.currentPage += 1
+       
+       
         swipingNavigationViewController.navigateToViewController(index: pageControl.currentPage)
-        
+       
     }
     
     private func getInvites() {
@@ -231,6 +237,7 @@ swipingNavigationViewController.setStartingViewController()
     
     @objc func pageControlTapHandler(sender:UIPageControl) {
         print("currentPage:", sender.currentPage)
+       
         swipingNavigationViewController.navigateToViewController(index: sender.currentPage)
         //currentPage: 1
     }
@@ -239,6 +246,11 @@ extension RootViewController: SwipingContainerViewControllerDelegate {
     func swipingViewControllerDidEndDeceleratingOnPage(swippingViewController: SwipingContainerViewController, page: Int) {
         print(page)
         pageControl.currentPage = page
+    
+        
     }
     
 }
+
+
+

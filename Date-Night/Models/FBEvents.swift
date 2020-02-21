@@ -1,30 +1,25 @@
-//
-//  Sessions.swift
-//  testAppCapstone
-//
-//  Created by Phoenix McKnight on 1/27/20.
-//  Copyright © 2020 Phoenix McKnight. All rights reserved.
-//
+
 
 import Foundation
 
 
 struct FBEvents: Codable {
-    let title: String
-    let address: String
+    let title: String?
+    let address: String?
     let eventID: String
-    let description: String
+    let description: String?
     let imageURL: String?
     let websiteURL: String?
+    let type:String
     
-    init(title: String, address: String, eventID: String, description: String, imageURL: String, websiteURL: String) {
+    init(title: String?, address: String?, eventID: String, description: String?, imageURL: String?, websiteURL: String?,type:String) {
         self.title = title
         self.address = address
         self.eventID = eventID
         self.description = description
         self.imageURL = imageURL
         self.websiteURL = websiteURL
-        
+        self.type = type
     }
     
     init? (from dict: [String: Any], id: String) {
@@ -33,7 +28,9 @@ struct FBEvents: Codable {
         let eventID = dict["eventID"] as? String,
         let description = dict["description"] as? String,
         let imageURL = dict["imageURL"] as? String,
-        let websiteURL = dict["websiteURL"] as? String else {
+        let websiteURL = dict["websiteURL"] as? String,
+        let type = dict["type"] as? String
+        else {
             return nil
         }
         
@@ -43,16 +40,18 @@ struct FBEvents: Codable {
         self.description = description
         self.imageURL = imageURL
         self.websiteURL = websiteURL
+        self.type = type
     }
     
     var fieldsDict: [String: Any] {
         return [
-            "title": self.title,
-            "address": self.address,
+            "title": self.title ?? "",
+            "address": self.address ?? "",
             "eventID": self.eventID,
-            "description": self.description,
+            "description": self.description ?? "",
             "imageURL": self.imageURL ?? "Image Unavailable",
-            "websiteURL": self.websiteURL ?? "Website URL Unavailable"
+            "websiteURL": self.websiteURL ?? "Website URL Unavailable",
+            "type":self.type
         ]
     }
     

@@ -50,10 +50,10 @@ class SignInVC: UIViewController {
             return
         }
         FirebaseAuthService.manager.loginUser(email: email.lowercased().trimmingCharacters(in: .whitespacesAndNewlines), password: password) { (result) in
-            self.handleLoginResponse(vc: RootViewController(), with: result)
+            self.handleLoginResponse(vc: UINavigationController(rootViewController:RootViewController()), with: result)
         }
     }
-    private func handleLoginResponse(vc:UIViewController, with result: Result<(), AppError>) {
+    private func handleLoginResponse(vc:UINavigationController, with result: Result<(), AppError>) {
         switch result {
             
         case .success:
