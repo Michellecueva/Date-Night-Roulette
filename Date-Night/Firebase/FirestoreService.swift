@@ -211,25 +211,20 @@ class FirestoreService {
         }
     }
     
-
     func sendEventsToFirebase(event:FBEvents,completionHandler:@escaping (Result<(),AppError>) ->()) {
         
-       
-            
             let eventField = event.fieldsDict
             db.collection("FBEvents").addDocument(data: eventField) { (error) in
                 if let error = error {
                     completionHandler(.failure(.other(rawError: error)))
                 } else {
-                  
-                   
                     completionHandler(.success(()))
                 }
             }
     }
     
-    func getEventsFromFireBase(preference: [String],completion: @escaping (Result<[FBEvents], Error>) -> ()) {
-        db.collection("FBEvents").whereField("type", isEqualTo: preference[0]).getDocuments { (snapshot, error) in
+    func getEventsFromFireBase(preference: String,completion: @escaping (Result<[FBEvents], Error>) -> ()) {
+        db.collection("FBEvents").whereField("type", isEqualTo: preference).getDocuments { (snapshot, error) in
                 if let error = error {
                     completion(.failure(error))
                 } else {
