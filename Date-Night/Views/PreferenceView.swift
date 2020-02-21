@@ -59,7 +59,7 @@ class PreferenceView: UIView {
         preferenceCollectionView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
         preferenceCollectionView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor).isActive = true
         preferenceCollectionView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        preferenceCollectionView.heightAnchor.constraint(equalTo:self.safeAreaLayoutGuide.heightAnchor).isActive = true
+       preferenceCollectionView.bottomAnchor.constraint(equalTo: saveButton.topAnchor, constant: -0.05 * self.frame.height ).isActive = true
     }
     
     private func buttonConstraints(){
