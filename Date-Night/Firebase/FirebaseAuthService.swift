@@ -21,9 +21,12 @@ class FirebaseAuthService {
     
     
     func createNewUser(email: String, password: String, completion: @escaping (Result<User,AppError>) -> ()) {
+       
+        do { try auth.useUserAccessGroup(nil)}catch {print(error)}
            auth.createUser(withEmail: email, password: password) { (result, error) in
                if let createdUser = result?.user {
                    completion(.success(createdUser))
+              
                } else if let error = error {
                 completion(.failure(.other(rawError: error)))
                }
@@ -48,7 +51,8 @@ class FirebaseAuthService {
       }
     
     func loginUser(email: String, password: String, completion: @escaping (Result<(), AppError>) -> ()) {
-           auth.signIn(withEmail: email, password: password) { (result, error) in
+        //   do { try auth.useUserAccessGroup(nil)}catch {print(error)}
+        auth.signIn(withEmail: email, password: password) { (result, error) in
             guard result?.user != nil else {
                 if let error = error {
                     completion(.failure(.other(rawError: error)))
@@ -86,5 +90,5 @@ class FirebaseAuthService {
     }
        private init () {}
     
-    
+   
 }

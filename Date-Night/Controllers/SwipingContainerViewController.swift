@@ -27,13 +27,16 @@ class SwipingContainerViewController: UIViewController {
     didSet {
       for viewController in viewControllers {
         scrollView.addSubview(viewController.view)
+        viewController.viewWillAppear(true)
       }
     }
   }
   
   var scrollView: UIScrollView = UIScrollView()
+    
 
   var currentPage: Int {
+    print(scrollView.contentOffset.x)
     return Int(scrollView.contentOffset.x / scrollView.bounds.width)
   }
 

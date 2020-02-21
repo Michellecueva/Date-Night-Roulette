@@ -83,7 +83,7 @@ class SignUpVC: UIViewController {
                                     
                                 case .success():
                                     print("created user")
-                                    handleLoginResponse(vc: RootViewController(), with: result)
+                                    handleLoginResponse(vc: UINavigationController(rootViewController:RootViewController()), with: result)
                                 }
                             }
                         }
@@ -102,13 +102,13 @@ private func updateUserFields(result:Result<User,AppError>,displayName:String) {
             print(error)
             
         case .success():
-            handleLoginResponse(vc: RootViewController(), with: result)
+            handleLoginResponse(vc: UINavigationController(rootViewController: RootViewController()), with: result)
         }
     }
 }
 
 private func handleLoginResponse(vc
-    viewController:UIViewController,with result: Result<(), Error>) {
+    viewController:UINavigationController,with result: Result<(), Error>) {
     switch result {
         
     case .success:
