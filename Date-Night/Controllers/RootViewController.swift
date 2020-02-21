@@ -14,6 +14,7 @@ class RootViewController: UIViewController {
     
     lazy var homeScreenVC = HomeScreenVC()
     lazy var leftVC = LeftViewController()
+    lazy var profileVC = ProfileSettingVC()
     
     var pageControl:UIPageControl = UIPageControl(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     
@@ -26,7 +27,6 @@ class RootViewController: UIViewController {
         didSet {
             if invitesFromUser.count > 0 {
                 leftVC.leftScreenStatus = .waitingForResponse
-                
             } else {
                 leftVC.leftScreenStatus = .sendInvite
             }
@@ -70,6 +70,9 @@ class RootViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+     
+        
+        
         getUser()
         setUpViewControllerConfigs()
         setUpSwipingNavigationViewController()
@@ -171,7 +174,7 @@ swipingNavigationViewController.setStartingViewController()
     }
     
     func createThirdScreen() -> ViewControllerConfig {
-        let vc = ProfileSettingVC()
+        let vc = profileVC
         vc.view.backgroundColor = .clear
         let leadingBarButtonItems = [UIBarButtonItem(title: "blue", style: .plain
             , target: nil, action: nil)]
