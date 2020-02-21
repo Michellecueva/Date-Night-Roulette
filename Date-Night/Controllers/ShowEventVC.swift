@@ -24,38 +24,38 @@ class ShowEventVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-addEventsFromAPI()
+//addEventsFromAPI()
         // Do any additional setup after loading the view.
     }
     
-    private func addEventsFromAPI() {
-        for preference in preferenceArray {
-            SeatGeekAPIClient.shared.getEventsFrom(category: preference) { (result) in
-                switch result {
-                case .failure(let error):
-                    print(error)
-                case .success(let event):
-                    self.arrayOfEvents += event
-                    self.sendEventToFireBase(preference: preference, eventArray: event)
-                }
-            }
-        }
-    }
-    private func sendEventToFireBase(preference:String,eventArray:[Event]) {
-       
-        for event in eventArray {
-            
-            let fbEvent = FBEvents(title: event.title, address: event.venue.address, eventID: String(event.id), description: event.eventDescription, imageURL: nil, websiteURL: event.url,type:preference)
-        
-            FirestoreService.manager.sendEventsToFirebase(event: fbEvent) { (result) in
-                switch result {
-                case .failure(let error):
-                    print(error)
-                case .success():
-                    print("added Event to firebase")
-                }
-            }
-    }
+//    private func addEventsFromAPI() {
+//        for preference in preferenceArray {
+//            SeatGeekAPIClient.shared.getEventsFrom(category: preference) { (result) in
+//                switch result {
+//                case .failure(let error):
+//                    print(error)
+//                case .success(let event):
+//                    self.arrayOfEvents += event
+//                    self.sendEventToFireBase(preference: preference, eventArray: event)
+//                }
+//            }
+//        }
+//    }
+//    private func sendEventToFireBase(preference:String,eventArray:[Event]) {
+//
+//        for event in eventArray {
+//
+//            let fbEvent = FBEvents(title: event.title, address: event.venue.address, eventID: String(event.id), description: event.eventDescription, imageURL: nil, websiteURL: event.url,type:preference)
+//
+//            FirestoreService.manager.sendEventsToFirebase(event: fbEvent) { (result) in
+//                switch result {
+//                case .failure(let error):
+//                    print(error)
+//                case .success():
+//                    print("added Event to firebase")
+//                }
+//            }
+//    }
     /*
     // MARK: - Navigation
 
@@ -66,4 +66,4 @@ addEventsFromAPI()
     }
     */
     }
-}
+//}
