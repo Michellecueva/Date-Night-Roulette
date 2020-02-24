@@ -14,6 +14,8 @@ class UserDefaultsWrapper {
     
     private let preferences = "preferences"
     
+    private let eventsLiked = "eventsLiked"
+    
      func store(preference:[String]) {
         UserDefaults.standard.set(preference, forKey: preferences)
     }
@@ -22,5 +24,12 @@ class UserDefaultsWrapper {
         UserDefaults.standard.value(forKey: preferences) as? [String]
     }
     
+    func store(eventsLikedArr: [String]) {
+        UserDefaults.standard.set(eventsLikedArr, forKey: eventsLiked)
+    }
+    
+    func getEventsLiked() -> [String]? {
+        UserDefaults.standard.value(forKey: eventsLiked) as? [String]
+    }
     
 }
