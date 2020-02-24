@@ -9,32 +9,34 @@
 import Foundation
 
 
-struct SeatGeekAPIClient{
+struct EventfulAPIClient{
     private init() {}
-    static let shared = SeatGeekAPIClient()
+    static let shared = EventfulAPIClient()
     
+    //change function to get events for categories
     
     func getEventsFrom(category: String, completionHandler: @escaping (Result <[Event], AppError>) ->()){
-        let urlStr = "https://api.seatgeek.com/2/events?type=\(category)&geoip=true&client_id=\(Secrets.seatKey)"
-        
+        let urlStr = "http://api.eventful.com/json/events/search?...&keywords=\(category)=New+York+City&date=future&app_key=\(Secrets.eventKey)"
         guard let url = URL(string: urlStr) else {
+            print(urlStr)
             completionHandler(.failure(AppError.badURL))
             return
         }
         NetworkHelper.manager.performDataTask(withUrl: url, andMethod: .get) { (result) in
             switch result {
             case .failure(let error):
+                print(url)
                 completionHandler(.failure(.other(rawError: error)))
             case .success(let data):
                 do{
-                    let catArray = try Event.getSeatGeekData(data: data)
-                    completionHandler(.success(catArray ?? []))
-                    
+                    print(url)
+                 let eventArray = try Event.getEventfulData(data: data)
+                completionHandler(.success(eventArray ?? []))
                 } catch {
-                    completionHandler(.failure(AppError.couldNotParseJSON(rawError: error)))
+                completionHandler(.failure(AppError.couldNotParseJSON(rawError: error)))
                 }
             }
         }
     }
 }
-        
+

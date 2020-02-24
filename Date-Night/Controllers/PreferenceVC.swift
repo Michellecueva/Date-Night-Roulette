@@ -123,9 +123,12 @@ class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionView
            arrayOfPreferences.append(currentCell.preferenceLabel.text?.lowercased() ?? "")
         }
         
-        
-        
         print("clicked")
        }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width / 3.3, height: view.frame.width / 3.3)
+        
+    }
     
 }

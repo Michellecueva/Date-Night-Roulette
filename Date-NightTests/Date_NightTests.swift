@@ -19,34 +19,36 @@ class Date_NightTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    private func getCatData() -> Data? {
-           guard let pathToData = Bundle.main.path(forResource: "seatGeekAPI", ofType: "json")
-               else {
-                   XCTFail("cant find data")
-                   return nil
-                   //fatalError("discovery.json file not found")
-           }
-           let url = URL(fileURLWithPath: pathToData)
-           do {
-               let data = try Data(contentsOf: url)
-               return data
-           } catch let jsonError {
-               fatalError("could not find file: \(jsonError)")
-           }
-       }
+   private func getEventData() -> Data? {
+            guard let pathToData = Bundle.main.path(forResource: "events", ofType: "json")
+                else {
+                    XCTFail("cant find data")
+                    return nil
+                    //fatalError("discovery.json file not found")
+            }
+            let url = URL(fileURLWithPath: pathToData)
+            do {
+                let data = try Data(contentsOf: url)
+                return data
+            } catch let jsonError {
+                fatalError("could not find file: \(jsonError)")
+            }
+        }
 
+  
+  func testEventDataLoad(){
+      let data = getEventData() ?? Data()
+     
+      do{
+          let dataLoad = try Event.getEventfulData(data: data) ?? []
+          print("test406\(dataLoad)")
+          XCTAssertTrue(dataLoad.count > 0, "We have \(dataLoad.count)")
+          print("We have \(data.count)")
+      } catch {
+          XCTFail()
+      }
+  }
     
-       func testCatDataLoad(){
-           let data = getCatData() ?? Data()
-        print("TEST \(data)")
-        do{
-            let cates = try Event.getSeatGeekData(data: data) ?? []
-            XCTAssertTrue(cates.count > 0, "We have \(cates.count)")
-             print("TEST\(cates.count)")
-        } catch {
-             XCTFail()
-           }
-    }
     
     func testExample() {
         // This is an example of a functional test case.

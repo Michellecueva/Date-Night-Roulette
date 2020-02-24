@@ -165,7 +165,7 @@ Seeing The Lion King on Broadway is a life-changing experience. To be fair, I wa
     @objc func animateShowInfo(_ viewToAnimate:UITextView)  {
         
         
-        UIView.animate(withDuration: 2, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 2, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
             switch self.state {
             case .collapsed:
                 self.infoLeadConstraint.constant = 0

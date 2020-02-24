@@ -20,6 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         
         
+        do { try Auth.auth().useUserAccessGroup(nil)}catch {print(error)}
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = scene
         

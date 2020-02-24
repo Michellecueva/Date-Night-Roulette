@@ -8,7 +8,7 @@
         },
         {
             "data": {
-                "type": "Broadway"
+                "type": "Music"
             }
         },
         
@@ -19,47 +19,77 @@
         },
         {
             "data": {
-                "type": "MLB"
+                "type": "Conferences"
             }
         },
         {
             "data": {
-                "type": "NBA"
+                "type": "Family Fun"
             }
         },
         {
             "data": {
-                "type": "NHL"
+                "type": "Festivals & Parades"
             }
         },
         {
             "data": {
-                "type": "MLS"
+                "type": "Movies & Film"
             }
         },
         {
             "data": {
-                "type": "NCAABB"
+                "type": "Food"
             }
         },
         {
             "data": {
-                "type": "NCAAFB"
+                "type": "Wine"
             }
         },
         {
             "data": {
-                "type": "WWE"
+                "type": "Art Galleries"
             }
         },
         {
             "data": {
-                "type": "Tennis"
+                "type": "Health & Wellness"
             }
         },
         {
             "data": {
-                "type": "Golf"
+                "type": "Museums"
+            }
+        },
+        {
+            "data": {
+                "type": "Networking"
+            }
+        },
+        {
+            "data": {
+                "type": "Nightlife"
+            }
+        },
+        {
+            "data": {
+                "type": "Outdoors & Recreation"
+            }
+        },
+        {
+            "data": {
+                "type": "Performing Arts"
+            }
+        },
+        {
+            "data": {
+                "type": "Politics"
+            }
+        },
+        {
+            "data": {
+                "type": "Sports"
             }
         },
     ]
