@@ -1,10 +1,11 @@
 //
 //  ShakeGestureView.swift
-//  Date-Night
+//  TestShake
 //
-//  Created by Kimball Yang on 2/18/20.
-//  Copyright © 2020 Michelle Cueva. All rights reserved.
+//  Created by Kimball Yang on 2/23/20.
+//  Copyright © 2020 Kimball Yang. All rights reserved.
 //
+
 
 import UIKit
 
@@ -37,6 +38,7 @@ class ShakeGestureView: UIView {
         cv.register(ShakeCollectionCell.self, forCellWithReuseIdentifier: shakeCellIdentifier)
         cv.layer.borderColor = UIColor.black.cgColor
         cv.layer.borderWidth = 2
+//        cv.isUserInteractionEnabled = false
         return cv
     }()
     
@@ -64,6 +66,37 @@ class ShakeGestureView: UIView {
         
     }
     
+//    static func scrollToNextCell(){
+
+//        //get Collection View Instance
+//        let collectionView:shakeCollectionView;
+//
+        //get cell size
+//        let cellSize = CGSize(width: 380, height: 380)
+//
+//        //get current content Offset of the Collection view
+//        let contentOffset = shakeCollectionView.contentOffset
+
+        //scroll to next cell
+//        shakeCollectionView.scrollRectToVisible(CGRect(x: shakeCollectionView.contentOffset.x + 380, y: shakeCollectionView.contentOffset.y, width: 380, height: 380), animated: true)
+//
+//
+//    }
+    
+//    static func snapToNearestCell(_ collectionView: UICollectionView) {
+//        for i in 0..<collectionView.numberOfItems(inSection: 0) {
+//
+//            let itemWithSpaceWidth = collectionViewFlowLayout.itemSize.width + collectionViewFlowLayout.minimumLineSpacing
+//            let itemWidth = collectionViewFlowLayout.itemSize.width
+//
+//            if collectionView.contentOffset.x <= CGFloat(i) * itemWithSpaceWidth + itemWidth / 2 {
+//                let indexPath = IndexPath(item: i, section: 0)
+//                collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+//                break
+//            }
+//        }
+//    }
+    
     private func addShakeSubviews() {
         self.addSubview(shakeLabel)
         self.addSubview(shakeCollectionView)
@@ -77,6 +110,8 @@ class ShakeGestureView: UIView {
         setConfirmButtonConstraints()
     }
     
+    
+    
     private func setShakeLabelConstraints() {
         shakeLabel.translatesAutoresizingMaskIntoConstraints = false
         shakeLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 60).isActive = true
@@ -85,7 +120,7 @@ class ShakeGestureView: UIView {
         shakeLabel.heightAnchor.constraint(equalToConstant: 90).isActive = true
     }
     
-//    
+//
 //    private func setPendingStatusConstraint() {
 //          waitingStatusLabel.translatesAutoresizingMaskIntoConstraints = false
 //          NSLayoutConstraint.activate([
