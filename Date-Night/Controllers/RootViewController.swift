@@ -91,11 +91,11 @@ class RootViewController: UIViewController{
         super.viewDidLoad()
     
         getUser()
-        setUpViewControllerConfigs()
-        setUpSwipingNavigationViewController()
-        configurePageControl()
+      //  setUpViewControllerConfigs()
+      //  setUpSwipingNavigationViewController()
+       // configurePageControl()
         makeNavBarTranslucent()
-swipingNavigationViewController.setStartingViewController()
+//swipingNavigationViewController.setStartingViewController()
         showBarButtons()
     }
     
@@ -136,7 +136,11 @@ swipingNavigationViewController.setStartingViewController()
             case .success(let user):
                 self?.currentUser = user
                 self?.addUserListener()
-                
+                self?.setUpViewControllerConfigs()
+                self?.setUpSwipingNavigationViewController()
+                self?.configurePageControl()
+                self?.swipingNavigationViewController.setStartingViewController()
+
             }
         }
     }
@@ -154,12 +158,14 @@ swipingNavigationViewController.setStartingViewController()
     func setUpViewControllerConfigs() {
         
         if currentUser?.isAdmin == false {
+            print(currentUser?.isAdmin)
             viewControllerConfigs = [
                       createFirstScreen(),
                       createSecondScreen(),
                       createThirdScreen()
                   ]
         } else {
+                print(currentUser?.isAdmin)
             viewControllerConfigs = [
                       createFirstScreen(),
                       createSecondScreen(),
