@@ -22,12 +22,34 @@ class ShowEventVC: UIViewController {
     
     var testpreferenceArray:[String] = ["nba"]
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//addEventsFromAPI()
-        // Do any additional setup after loading the view.
+    var eventsLiked = [String]() {
+        didSet {
+            UserDefaultsWrapper.standard.store(eventsLikedArr: eventsLiked)
+        }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+ 
+    }
+    
+    //needs a listener that listens to partner's event Liked arrary changing
+    // whenever someone likes an event we need to be grabbing to events liked on user defaults, updating the stored events and also updating the events on firebase 
+    
+    private func getEventsLiked() {
+        // returns an array of the events like
+    }
+    
+    private func storeEventsLiked(eventsLiked: [String]) {
+        
+    }
+    
+    private func updateEventsLikedOnFirebase() {
+    
+    }
+}
+
+
 //    private func addEventsFromAPI() {
 //        for preference in preferenceArray {
 //            SeatGeekAPIClient.shared.getEventsFrom(category: preference) { (result) in
@@ -65,5 +87,4 @@ class ShowEventVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    }
-//}
+
