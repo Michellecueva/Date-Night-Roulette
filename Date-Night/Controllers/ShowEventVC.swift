@@ -20,7 +20,6 @@ class ShowEventVC: UIViewController {
         return preferences
     }
     
-    var testpreferenceArray:[String] = ["nba"]
     
     var eventsLiked = [String]() {
         didSet {
@@ -28,24 +27,55 @@ class ShowEventVC: UIViewController {
         }
     }
     
+    lazy var button: UIButton = {
+        let button = UIButton(frame:self.view.frame)
+        button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        button.addTarget(self, action: #selector(pressButton), for: .touchUpInside)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.addSubview(button)
+        clearEventsLikedArr()
  
+    }
+    
+    @objc func pressButton() {
+        likedButtonPressed()
+    }
+    
+    private func likedButtonPressed() {
+        getPriorEventsLiked()
+        eventsLiked.append("hey")
+        updateEventsLikedOnFirebase(eventsLiked: eventsLiked)
     }
     
     //needs a listener that listens to partner's event Liked arrary changing
     // whenever someone likes an event we need to be grabbing to events liked on user defaults, updating the stored events and also updating the events on firebase 
     
-    private func getEventsLiked() {
-        // returns an array of the events like
+    private func getPriorEventsLiked() {
+        if let eventsArr = UserDefaultsWrapper.standard.getEventsLiked() {
+            eventsLiked = eventsArr
     }
-    
-    private func storeEventsLiked(eventsLiked: [String]) {
         
     }
+
     
-    private func updateEventsLikedOnFirebase() {
+    private func updateEventsLikedOnFirebase(eventsLiked: [String]) {
+        FirestoreService.manager.updateEventsLiked(eventsLiked: eventsLiked) { (result) in
+            switch result {
+            case .success(()):
+                print("Updated Events Liked")
+            case .failure(let error):
+                print("Did not update events liked \(error)")
+            }
+        }
+    }
     
+    private func clearEventsLikedArr() {
+        eventsLiked = []
+        updateEventsLikedOnFirebase(eventsLiked: eventsLiked)
     }
 }
 
