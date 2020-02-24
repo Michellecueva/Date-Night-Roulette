@@ -123,8 +123,6 @@ class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionView
            arrayOfPreferences.append(currentCell.preferenceLabel.text?.lowercased() ?? "")
         }
         
-        
-        
         print("clicked")
        }
     
