@@ -301,5 +301,30 @@ class FirestoreService {
         }
     }
     
+    // MARK: Events Functionality
+    
+    // have to get the array that is stored in eventsLiked and append the new one
+    // have to get the user object of the partner and appen the whole array
+    
+    func updateEventsLiked(eventsLiked: [String], completion: @escaping (Result<(), Error>) -> () ) {
+        guard let userId = FirebaseAuthService.manager.currentUser?.uid else {
+            return
+        }
+        
+        var updateFields = [String:Any]()
+        
+        updateFields["eventsLiked"] = eventsLiked
+        
+        db.collection(FireStoreCollections.users.rawValue).document(userId).updateData(updateFields) {
+            (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+
+    
     private init () {}
 }
