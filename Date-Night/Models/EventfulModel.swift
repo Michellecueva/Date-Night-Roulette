@@ -9,8 +9,13 @@
 import Foundation
 
 // MARK: - Welcome
+
+enum JSONError: Error {
+             case decodingError(Error)
+         }
+
 struct WelcomeWrapper: Codable {
-    let events: EventWrapper
+    let events: EventWrapper?
 
 }
 
@@ -21,32 +26,21 @@ struct EventWrapper: Codable {
 
 // MARK: - Event
 struct Event: Codable {
-    let url: String
-    let eventDescription: String?
-    let title, venueAddress: String
+    let venue_url: String
+    let description: String?
+    let title: String?
     let image: Image?
-    let venueName: String
-    let venueURL: String
-
-    enum CodingKeys: String, CodingKey {
-        case url
-        case eventDescription = "description"
-        case title
-        case venueAddress = "venue_address"
-        case image
-        case venueName = "venue_name"
-        case venueURL = "venue_url"
-    }
+    let venue_address: String
+    let id:String
+    let venue_name:String
     
-     enum JSONError: Error {
-               case decodingError(Error)
-           }
+   
     
         static func getEventfulData(data:Data)throws -> [Event]? {
             do{
                 let eventData = try
                     JSONDecoder().decode(WelcomeWrapper.self, from: data)
-                return eventData.events.event
+                return eventData.events?.event
             } catch {
                 print(error)
                 return nil
