@@ -15,7 +15,7 @@ class PreferenceView: UIView {
     lazy var preferenceCollectionView: UICollectionView = {
         var layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
         let cv = UICollectionView(frame: UIScreen.main.bounds, collectionViewLayout: layout)
-        layout.itemSize = CGSize(width: 125, height: 125)
+        //layout.itemSize = CGSize(width: 125, height: 125)
         layout.scrollDirection = .vertical
         cv.backgroundColor = .clear
         layout.sectionInset = UIEdgeInsets(top: 30, left: 3, bottom: 0, right: 3)
@@ -59,7 +59,7 @@ class PreferenceView: UIView {
         preferenceCollectionView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
         preferenceCollectionView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor).isActive = true
         preferenceCollectionView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor).isActive = true
-       preferenceCollectionView.bottomAnchor.constraint(equalTo: saveButton.topAnchor, constant: -0.05 * self.frame.height ).isActive = true
+       preferenceCollectionView.bottomAnchor.constraint(equalTo: saveButton.topAnchor, constant: -0.05 * self.frame.height).isActive = true
     }
     
     private func buttonConstraints(){
