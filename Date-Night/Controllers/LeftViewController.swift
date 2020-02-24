@@ -23,6 +23,11 @@ class LeftViewController: UIViewController {
         }
     }
     
+    var currentUser:AppUser? {
+        didSet {
+            partnerProfileVC.thePartner.partnerNameLabel.text = currentUser?.partnerUserName ?? ""
+               }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
