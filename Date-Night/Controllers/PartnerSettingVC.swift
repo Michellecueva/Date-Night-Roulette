@@ -5,6 +5,12 @@ class PartnerSettingVC: UIViewController {
     var thePartner = PartnerSettingView()
     var dummyArray = ["Bear Mountain Hiking", "Fall Out Boy Concert", "Kings Comedy Club", "Biking on the Promenade", "Taco Tuesdays @ San Loco", "1OAK", "Paint & Sip", "Pottery Making Class"]
     
+    var currentUser:AppUser? {
+        didSet {
+            thePartner.partnerNameLabel.text = "Your partner is \(currentUser?.partnerUserName ?? "")"
+            
+               }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
