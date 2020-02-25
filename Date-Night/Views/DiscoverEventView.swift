@@ -16,9 +16,10 @@ class DiscoverEventView: UIView {
     lazy var discoverEventButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Discover Events", for: .normal)
-        button.setTitleColor(.blue, for: .normal)
+        button.setTitleColor(#colorLiteral(red: 1, green: 0.329310298, blue: 0.9998843074, alpha: 1), for: .normal)
         button.titleLabel?.font = UIFont(name: "CopperPlate", size: 20)
-        button.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        button.layer.borderColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        button.layer.borderWidth = 4
         button.layer.cornerRadius = 5
         button.isEnabled = true
         return button
@@ -27,9 +28,10 @@ class DiscoverEventView: UIView {
     lazy var randomEventButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Random Events", for: .normal)
-        button.setTitleColor(.blue, for: .normal)
+        button.setTitleColor(#colorLiteral(red: 1, green: 0.329310298, blue: 0.9998843074, alpha: 1), for: .normal)
         button.titleLabel?.font = UIFont(name: "CopperPlate", size: 20)
-        button.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        button.layer.borderColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        button.layer.borderWidth = 4
         button.layer.cornerRadius = 5
         button.isEnabled = true
         return button
@@ -38,9 +40,10 @@ class DiscoverEventView: UIView {
     lazy var myPreferencesButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("My Preferences", for: .normal)
-        button.setTitleColor(.blue, for: .normal)
+        button.setTitleColor(#colorLiteral(red: 1, green: 0.329310298, blue: 0.9998843074, alpha: 1), for: .normal)
         button.titleLabel?.font = UIFont(name: "CopperPlate", size: 20)
-        button.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        button.layer.borderColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        button.layer.borderWidth = 4
         button.layer.cornerRadius = 5
         button.isEnabled = true
         return button
