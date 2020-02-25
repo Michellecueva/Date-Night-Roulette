@@ -73,6 +73,7 @@
 		746751A523FF458900357610 /* ShakeGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746751A323FF458900357610 /* ShakeGestureView.swift */; };
 		746751A723FF459A00357610 /* ShakeGestureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746751A623FF459A00357610 /* ShakeGestureVC.swift */; };
 		746751AF240069BF00357610 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 746751AE240069BF00357610 /* GoogleService-Info.plist */; };
+		74C61A34240488EE00BD2ACA /* ShakeEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C61A33240488EE00BD2ACA /* ShakeEventView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +153,7 @@
 		746751A323FF458900357610 /* ShakeGestureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakeGestureView.swift; sourceTree = "<group>"; };
 		746751A623FF459A00357610 /* ShakeGestureVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakeGestureVC.swift; sourceTree = "<group>"; };
 		746751AE240069BF00357610 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		74C61A33240488EE00BD2ACA /* ShakeEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeEventView.swift; sourceTree = "<group>"; };
 		74ED85A185AA38B5892717CF /* Pods-Date-NightTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Date-NightTests.debug.xcconfig"; path = "Target Support Files/Pods-Date-NightTests/Pods-Date-NightTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B4BAB314A5629A1F14D7DE6B /* Pods-Date-Night.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Date-Night.debug.xcconfig"; path = "Target Support Files/Pods-Date-Night/Pods-Date-Night.debug.xcconfig"; sourceTree = "<group>"; };
 		C410CB0F61507686EBFC1D56 /* Pods-Date-Night.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Date-Night.release.xcconfig"; path = "Target Support Files/Pods-Date-Night/Pods-Date-Night.release.xcconfig"; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 				746751A323FF458900357610 /* ShakeGestureView.swift */,
 				0B96460E23EE2C9E00D2CAB9 /* PreferenceCell.swift */,
 				7448D1A123E895DF003A997C /* SignUpView.swift */,
+				74C61A33240488EE00BD2ACA /* ShakeEventView.swift */,
 				7467518023F7169F00357610 /* SplashScreenView.swift */,
 				7401EF6B23F1C573000C322B /* PartnerSettingView.swift */,
 				7401EF4623ECAB45000C322B /* DiscoverEventView.swift */,
@@ -463,10 +466,8 @@
 				2862B60A23DD47160047B47B /* LaunchScreen.storyboard in Resources */,
 				0BBFCD3823E8CEB000E039A7 /* seatGeekAPI.json in Resources */,
 				746751AF240069BF00357610 /* GoogleService-Info.plist in Resources */,
-				0BBFCD3623E8CEA800E039A7 /* Categories.json in Resources */,
 				0B38E7D224007961003D05CE /* events.json in Resources */,
 				0B38E7D324007B0B003D05CE /* Categories.json in Resources */,
-				69CE862523F71547001E1327 /* GoogleService-Info.plist in Resources */,
 				2862B60723DD47160047B47B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -603,6 +604,7 @@
 				691DD0EE23EE0351003A67E7 /* SendInviteView.swift in Sources */,
 				2862B66C23DFE26C0047B47B /* SignUpVC.swift in Sources */,
 				69CE862323F7151F001E1327 /* Secrets.swift in Sources */,
+				74C61A34240488EE00BD2ACA /* ShakeEventView.swift in Sources */,
 				7401EF6A23F1C53D000C322B /* PartnerSettingVC.swift in Sources */,
 				746751A423FF458900357610 /* ShakeCollectionCell.swift in Sources */,
 				2862B5FD23DD47130047B47B /* SceneDelegate.swift in Sources */,
