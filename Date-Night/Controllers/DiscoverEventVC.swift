@@ -16,9 +16,31 @@ class DiscoverEventVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        view.backgroundColor = .black
         view.addSubview(discover)
+        addObjcFunctions()
     }
 
+    
+    private func addObjcFunctions() {
+        discover.myPreferencesButton.addTarget(self, action: #selector(goToPreferences), for: .touchUpInside)
+        discover.randomEventButton.addTarget(self, action: #selector(goToRandomEvent), for: .touchUpInside)
+        discover.discoverEventButton.addTarget(self, action: #selector(goToDiscoverEvent), for: .touchUpInside)
+       }
+       
+     @objc private func goToPreferences() {
 
+        present(PreferenceVC(), animated: true, completion: nil)
+    }
+    
+    @objc private func goToRandomEvent() {
+
+        present(RandomEventVC(), animated: true, completion: nil)
+    }
+    
+    @objc private func goToDiscoverEvent() {
+
+       // present(PreferenceVC(), animated: true, completion: nil)
+    }
+    
 }

@@ -18,9 +18,27 @@ class ProfileSettingView: UIView {
     lazy var portraitPic: UIImageView = {
         let image = UIImageView()
         image.tintColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
-        image.image = UIImage(systemName: "person.crop.circle.badge.plus")
+        image.image = UIImage(named: "profilepic")
+        image.layer.borderWidth = 1
+        image.layer.cornerRadius =  84//image.frame.size.height/2
+        image.layer.masksToBounds = false
+        image.layer.borderColor = UIColor.black.cgColor
+        image.clipsToBounds = true
+        //image.image = UIImage(systemName: "person.crop.circle")
         return image
     }()
+    
+    lazy var addPictureButton: UIButton = {
+          let button = UIButton()
+          button.setBackgroundImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
+          button.tintColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
+          button.showsTouchWhenHighlighted = true
+          button.isEnabled = true
+          //button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+          button.layer.backgroundColor = UIColor.black.cgColor
+          button.layer.cornerRadius = 25
+          return button
+      }()
     
     lazy var userNameLabel: UILabel = {
         let label = UILabel()
@@ -53,10 +71,10 @@ class ProfileSettingView: UIView {
     lazy var logoutButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Logout", for: .normal)
-        button.setTitleColor(#colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1), for: .normal)
+        button.setTitleColor(#colorLiteral(red: 0.9534531236, green: 0.3136326671, blue: 1, alpha: 1), for: .normal)
         button.titleLabel?.font = UIFont(name: "CopperPlate", size: 20)
         button.layer.borderColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
-        button.layer.borderWidth = 1
+        button.layer.borderWidth = 2
         button.layer.cornerRadius = 5
         button.isEnabled = true
         return button
@@ -77,6 +95,7 @@ class ProfileSettingView: UIView {
     
     private func setSubviews() {
         self.addSubview(portraitPic)
+        self.addSubview(addPictureButton)
         self.addSubview(userNameLabel)
         self.addSubview(partnerEmailLabel)
         self.addSubview(partnerEmailDisplayLabel)
@@ -87,6 +106,7 @@ class ProfileSettingView: UIView {
     
     private func setConstraints() {
         setPortraitConstraints()
+        setAddButtonConstraints()
         setUserNameLabelConstraints()
         setPartnerEmailLabelConstraints()
         setPartnerEmailDisplayConstraints()
@@ -98,17 +118,28 @@ class ProfileSettingView: UIView {
     private func setPortraitConstraints() {
         portraitPic.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            portraitPic.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.1),
+            portraitPic.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.15),
             portraitPic.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            portraitPic.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5),
+            portraitPic.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4),
             portraitPic.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4)
+        ])
+    }
+    
+    private func setAddButtonConstraints(){
+        addPictureButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            addPictureButton.bottomAnchor.constraint(equalTo: portraitPic.bottomAnchor),
+          //  addPictureButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            addPictureButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 250),
+            addPictureButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.12),
+            addPictureButton.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.12)
         ])
     }
     
     private func setUserNameLabelConstraints() {
         userNameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            userNameLabel.topAnchor.constraint(equalTo: portraitPic.bottomAnchor, constant: 10),
+            userNameLabel.topAnchor.constraint(equalTo: addPictureButton.bottomAnchor, constant: 25),
             userNameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             userNameLabel.widthAnchor.constraint(equalToConstant: 200),
             userNameLabel.heightAnchor.constraint(equalToConstant: 40)
@@ -132,7 +163,7 @@ class ProfileSettingView: UIView {
             partnerEmailDisplayLabel.topAnchor.constraint(equalTo: partnerEmailLabel.bottomAnchor, constant: 10),
             partnerEmailDisplayLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             partnerEmailDisplayLabel.widthAnchor.constraint(equalToConstant: 300),
-            partnerEmailDisplayLabel.heightAnchor.constraint(equalToConstant: 40)
+            partnerEmailDisplayLabel.heightAnchor.constraint(equalToConstant: 45)
             
         ])
     }
@@ -140,10 +171,10 @@ class ProfileSettingView: UIView {
     private func setLogOutButtonConstraints() {
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            logoutButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -50),
+            logoutButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -70),
             logoutButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            logoutButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2),
-            logoutButton.heightAnchor.constraint(equalToConstant: 30)
+            logoutButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.25),
+            logoutButton.heightAnchor.constraint(equalToConstant: 35)
         ])
     }
 }

@@ -10,18 +10,52 @@ import UIKit
 
 class DiscoverEventView: UIView {
     
- //   MARK:- Properties
-
+    //   MARK:- Properties
+    
     
     lazy var discoverEventButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Discover Events", for: .normal)
-        button.setTitleColor(.blue, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Arial-Bold", size: 16)
-        button.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        button.setTitleColor(#colorLiteral(red: 1, green: 0.329310298, blue: 0.9998843074, alpha: 1), for: .normal)
+        button.titleLabel?.font = UIFont(name: "CopperPlate", size: 20)
+        button.layer.borderColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        button.layer.borderWidth = 4
         button.layer.cornerRadius = 5
         button.isEnabled = true
         return button
+    }()
+    
+    lazy var randomEventButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Random Events", for: .normal)
+        button.setTitleColor(#colorLiteral(red: 1, green: 0.329310298, blue: 0.9998843074, alpha: 1), for: .normal)
+        button.titleLabel?.font = UIFont(name: "CopperPlate", size: 20)
+        button.layer.borderColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        button.layer.borderWidth = 4
+        button.layer.cornerRadius = 5
+        button.isEnabled = true
+        return button
+    }()
+    
+    lazy var myPreferencesButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("My Preferences", for: .normal)
+        button.setTitleColor(#colorLiteral(red: 1, green: 0.329310298, blue: 0.9998843074, alpha: 1), for: .normal)
+        button.titleLabel?.font = UIFont(name: "CopperPlate", size: 20)
+        button.layer.borderColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        button.layer.borderWidth = 4
+        button.layer.cornerRadius = 5
+        button.isEnabled = true
+        return button
+    }()
+    
+    lazy var buttonStackView: UIStackView = {
+       
+        let stackView = UIStackView(arrangedSubviews: [discoverEventButton, randomEventButton, myPreferencesButton])
+             stackView.axis = .vertical
+             stackView.spacing = 50
+             stackView.distribution = .fillEqually
+             return stackView
     }()
     
     override init(frame: CGRect) {
@@ -45,21 +79,19 @@ class DiscoverEventView: UIView {
     
     //MARK: -UI Setup
     
-    private func setSubviews() {
-        self.addSubview(discoverEventButton)
-    }
+        private func setSubviews() {
+            self.addSubview(buttonStackView)
+        }
     
+   
+   
     private func setConstraints() {
-        setDiscoverButtonConstraints()
-    }
-    
-    private func setDiscoverButtonConstraints() {
-        discoverEventButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            discoverEventButton.topAnchor.constraint(equalTo: self.topAnchor,constant: self.frame.height * 0.3),
-            discoverEventButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            discoverEventButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7),
-            discoverEventButton.heightAnchor.constraint(equalToConstant: 40)
-        ])
-    }
+           
+        buttonStackView.translatesAutoresizingMaskIntoConstraints = false
+        buttonStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant:0).isActive = true
+        buttonStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: self.frame.width * 0.15).isActive = true
+        buttonStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: self.frame.width * -0.15).isActive = true
+        buttonStackView.heightAnchor.constraint(equalToConstant: self.frame.height * 0.5).isActive = true
+        
+}
 }

@@ -38,6 +38,7 @@ class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionView
         addObjcFunctionsToViewButton()
         getUserPreferences()
         self.navigationController?.navigationBar.topItem?.title = "Set your Preferences"
+        
     }
     
     private func collectionViewMethods(){
