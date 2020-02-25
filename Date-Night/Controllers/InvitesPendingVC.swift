@@ -115,6 +115,7 @@ class InvitesPendingVC: UIViewController {
                 
                 let partner = users[0]
                 
+                UserDefaultsWrapper.standard.store(partnerID: partner.uid)
                 self.updatePartnerUsernameField(partnerUserName: partner.userName)
                 self.updatePartnersField(partnerUID: partner.uid)
 
