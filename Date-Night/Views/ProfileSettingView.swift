@@ -20,7 +20,7 @@ class ProfileSettingView: UIView {
         image.tintColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
         image.image = UIImage(named: "profilepic")
         image.layer.borderWidth = 1
-        image.layer.cornerRadius =  84//image.frame.size.height/2
+        image.layer.cornerRadius =  84 //image.frame.size.height/2
         image.layer.masksToBounds = false
         image.layer.borderColor = UIColor.black.cgColor
         image.clipsToBounds = true
@@ -123,6 +123,7 @@ class ProfileSettingView: UIView {
             portraitPic.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4),
             portraitPic.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4)
         ])
+        //portraitPic.layer.cornerRadius = portraitPic.bounds.size.height / 2
     }
     
     private func setAddButtonConstraints(){
