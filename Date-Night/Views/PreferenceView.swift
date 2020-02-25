@@ -15,7 +15,6 @@ class PreferenceView: UIView {
     lazy var preferenceCollectionView: UICollectionView = {
         var layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
         let cv = UICollectionView(frame: UIScreen.main.bounds, collectionViewLayout: layout)
-        layout.itemSize = CGSize(width: 125, height: 125)
         layout.scrollDirection = .vertical
         cv.backgroundColor = .clear
         layout.sectionInset = UIEdgeInsets(top: 30, left: 3, bottom: 0, right: 3)
@@ -33,15 +32,12 @@ class PreferenceView: UIView {
         button.titleLabel?.font = UIFont(name: "CopperPlate", size: 20)
         button.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         button.layer.cornerRadius = 5
-        // button.addTarget(self, action: #selector(savedPressed), for: .touchUpInside)
         return button
     }()
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
-        addSubviews()
-        cvConstraints()
-        buttonConstraints()
+        commonInit()
     }
     
     required init?(coder: NSCoder) {
@@ -52,14 +48,21 @@ class PreferenceView: UIView {
         self.addSubview(preferenceCollectionView)
         self.addSubview(saveButton)
     }
+    
+    private func commonInit(){
+        addSubviews()
+        cvConstraints()
+        buttonConstraints()
+        self.backgroundColor = .black
+    }
     //MARK:- Constraints
     
     private func cvConstraints() {
         preferenceCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        preferenceCollectionView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
+        preferenceCollectionView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: self.frame.height * 0.05).isActive = true
         preferenceCollectionView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor).isActive = true
         preferenceCollectionView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor).isActive = true
-       preferenceCollectionView.bottomAnchor.constraint(equalTo: saveButton.topAnchor, constant: -0.05 * self.frame.height ).isActive = true
+       preferenceCollectionView.bottomAnchor.constraint(equalTo: saveButton.topAnchor, constant: -0.05 * self.frame.height).isActive = true
     }
     
     private func buttonConstraints(){

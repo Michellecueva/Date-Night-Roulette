@@ -120,12 +120,15 @@ class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionView
                        }
         case false :
             currentCell.isAddedToPreferenceArray = true
-           arrayOfPreferences.append(currentCell.preferenceLabel.text?.lowercased() ?? "")
+            arrayOfPreferences.append(currentCell.preferenceLabel.text?.lowercased().replacingOccurrences(of: " ", with: "+") ?? "")
         }
-        
-        
         
         print("clicked")
        }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width / 3.3, height: view.frame.width / 3.3)
+        
+    }
     
 }

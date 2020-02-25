@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class ShowEventVC: UIViewController {
 
@@ -27,6 +28,18 @@ class ShowEventVC: UIViewController {
         }
     }
     
+    private var partnerListener: ListenerRegistration?
+       
+    private let db = Firestore.firestore()
+    
+    private var collectionReference:CollectionReference {
+           return db.collection("users")
+       }
+       
+    deinit {
+           partnerListener?.remove()
+    }
+    
     lazy var button: UIButton = {
         let button = UIButton(frame:self.view.frame)
         button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -38,7 +51,7 @@ class ShowEventVC: UIViewController {
         super.viewDidLoad()
         self.view.addSubview(button)
         clearEventsLikedArr()
- 
+        addListenerOnPartner()
     }
     
     @objc func pressButton() {
@@ -57,11 +70,10 @@ class ShowEventVC: UIViewController {
     private func getPriorEventsLiked() {
         if let eventsArr = UserDefaultsWrapper.standard.getEventsLiked() {
             eventsLiked = eventsArr
-    }
+        }
         
     }
 
-    
     private func updateEventsLikedOnFirebase(eventsLiked: [String]) {
         FirestoreService.manager.updateEventsLiked(eventsLiked: eventsLiked) { (result) in
             switch result {
@@ -77,6 +89,31 @@ class ShowEventVC: UIViewController {
         eventsLiked = []
         updateEventsLikedOnFirebase(eventsLiked: eventsLiked)
     }
+
+    
+    private func addListenerOnPartner() {
+        
+        guard let partnerUID = UserDefaultsWrapper.standard.getPartnerUID() else {return}
+        
+        partnerListener = collectionReference.whereField("uid", isEqualTo: partnerUID)
+                .addSnapshotListener({ (snapshot, error) in
+
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                    guard let usersFromOnline = snapshot?.documents else {
+                        print("no invites available")
+                        return
+                    }
+                    let userList = usersFromOnline.compactMap { (snapshot) -> AppUser? in
+                        let userID = snapshot.documentID
+                        let data = snapshot.data()
+                        return AppUser(from: data, id: userID)
+                    }
+
+                    print("listener on PartnerUser \(userList[0])")
+                })
+        }
 }
 
 
