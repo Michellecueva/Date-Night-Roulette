@@ -59,7 +59,7 @@ class AdminViewController: UIViewController {
     
             for event in eventArray {
     
-                let fbEvent = FBEvents(title: event.title, address: event.venueAddress, eventID: String(event.id), description: event.eventDescription, imageURL: nil, websiteURL: event.url,type:preference)
+                let fbEvent = FBEvents(title: event.title, address: event.venue_url, eventID: String(event.id), description: event.description, imageURL: nil, websiteURL: event.venue_url,type:preference)
     
                 FirestoreService.manager.sendEventsToFirebase(event: fbEvent) { (result) in
                     switch result {

@@ -120,7 +120,7 @@ class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionView
                        }
         case false :
             currentCell.isAddedToPreferenceArray = true
-           arrayOfPreferences.append(currentCell.preferenceLabel.text?.lowercased() ?? "")
+            arrayOfPreferences.append(currentCell.preferenceLabel.text?.lowercased().replacingOccurrences(of: " ", with: "+") ?? "")
         }
         
         print("clicked")
