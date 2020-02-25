@@ -20,9 +20,8 @@ struct AppUser {
     let partnerUserName: String?
     let isAdmin:Bool
     let eventsLiked: [String]
-    let partnerEventsLiked: [String]
     
-    init(from user: User,sessionID:String?, preferences:[String], eventsLiked: [String], partnerEventsLiked: [String]) {
+    init(from user: User,sessionID:String?, preferences:[String], eventsLiked: [String]) {
         self.userName = user.displayName
         self.email = user.email
         self.uid = user.uid
@@ -33,7 +32,6 @@ struct AppUser {
         self.partnerUserName = nil
         self.isAdmin = false
         self.eventsLiked = eventsLiked
-        self.partnerEventsLiked = partnerEventsLiked
     }
     
     init?(from dict: [String: Any], id: String) {
@@ -45,8 +43,7 @@ struct AppUser {
             let partnerEmail = dict["partnerEmail"] as? String,
             let partnerUserName = dict["partnerUserName"] as? String,
             let isAdmin = dict["isAdmin"] as? Bool,
-            let eventsLiked = dict["eventsLiked"] as? [String],
-            let partnerEventsLiked = dict["partnerEventsLiked"] as? [String]
+            let eventsLiked = dict["eventsLiked"] as? [String]
             else {return nil}
         
         self.userName = userName
@@ -59,7 +56,6 @@ struct AppUser {
         self.partnerUserName = partnerUserName
         self.isAdmin = isAdmin
         self.eventsLiked = eventsLiked
-        self.partnerEventsLiked = partnerEventsLiked
     }
     
     var fieldsDict: [String: Any] {
@@ -73,8 +69,7 @@ struct AppUser {
             "partnerUserName": self.partnerUserName ?? "",
             "uid": self.uid,
             "isAdmin":self.isAdmin,
-            "eventsLiked": self.eventsLiked,
-            "partnerEventsLiked": self.partnerEventsLiked
+            "eventsLiked": self.eventsLiked
         ]
     }
 }

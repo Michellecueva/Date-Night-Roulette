@@ -44,7 +44,7 @@ class ShowEventVC: UIViewController {
     }
     
     lazy var button: UIButton = {
-        let button = UIButton(frame: CGRect(x: 150, y: 400, width: 50, height: 50))
+        let button = UIButton(frame: CGRect(x: 200, y: 400, width: 50, height: 50))
         button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         button.addTarget(self, action: #selector(pressButton), for: .touchUpInside)
         return button
