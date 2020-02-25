@@ -38,6 +38,7 @@ class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionView
         addObjcFunctionsToViewButton()
         getUserPreferences()
         self.navigationController?.navigationBar.topItem?.title = "Set your Preferences"
+        
     }
     
     private func collectionViewMethods(){
@@ -120,7 +121,7 @@ class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionView
                        }
         case false :
             currentCell.isAddedToPreferenceArray = true
-           arrayOfPreferences.append(currentCell.preferenceLabel.text?.lowercased() ?? "")
+            arrayOfPreferences.append(currentCell.preferenceLabel.text?.lowercased().replacingOccurrences(of: " ", with: "+") ?? "")
         }
         
         print("clicked")

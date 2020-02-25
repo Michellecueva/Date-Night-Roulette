@@ -3,7 +3,8 @@ import UIKit
 class PartnerSettingVC: UIViewController {
 
     var thePartner = PartnerSettingView()
-    var dummyArray = ["Hiking", "Concert", "Comedy club", "Biking", "Spelunking"]
+    var dummyArray = ["Bear Mountain Hiking", "Fall Out Boy Concert", "Kings Comedy Club", "Biking on the Promenade", "Taco Tuesdays @ San Loco", "1OAK", "Paint & Sip", "Pottery Making Class"]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

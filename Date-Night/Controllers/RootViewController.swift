@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class RootViewController: UIViewController {
+class RootViewController: UIViewController{
     
     lazy var homeScreenVC = HomeScreenVC()
     lazy var leftVC = LeftViewController()
@@ -40,22 +40,41 @@ class RootViewController: UIViewController {
     
     var collectionReference:Query = Firestore.firestore().collection("users")
     
-    private var currentUser:AppUser? {
+     private var currentUser:AppUser? {
         didSet {
             print("changed")
-            if currentUser?.preferences != [] && currentUser?.partnerEmail != "" {
-                
-                homeScreenVC.homePageStatus = .discoverEvents
-                leftVC.leftScreenStatus = .partnerProfile
-                //  leftVC.currentUser = currentUser
-            } else if currentUser?.preferences == [] && currentUser?.partnerEmail != "" {
-                homeScreenVC.homePageStatus = .setPreferences
-                leftVC.leftScreenStatus = .partnerProfile
-
-            } else if currentUser?.partnerEmail == "" {
+            
+            if currentUser?.partnerEmail == "" {
                 getInvites()
                 homeScreenVC.homePageStatus = .none
+            } else {
+                leftVC.currentUser = currentUser
+                profileVC.currentUser = currentUser
+                leftVC.leftScreenStatus = .partnerProfile
+                if currentUser?.preferences != [] {
+                    homeScreenVC.homePageStatus = .discoverEvents
+                    
+                } else {
+                    homeScreenVC.homePageStatus = .setPreferences
+                }
             }
+            
+//
+//            if currentUser?.preferences != [] && currentUser?.partnerEmail != "" {
+//
+//                homeScreenVC.homePageStatus = .discoverEvents
+//                leftVC.leftScreenStatus = .partnerProfile
+//                  leftVC.currentUser = currentUser
+//            } else if currentUser?.preferences == [] && currentUser?.partnerEmail != "" {
+//                homeScreenVC.homePageStatus = .setPreferences
+//                leftVC.leftScreenStatus = .partnerProfile
+//                profileVC.currentUser = currentUser
+//                leftVC.currentUser = currentUser
+//            } else if currentUser?.partnerEmail == "" {
+//                getInvites()
+//                homeScreenVC.homePageStatus = .none
+//            }
+//        }
         }
     }
     
@@ -70,15 +89,13 @@ class RootViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-        
-        
+    
         getUser()
-        setUpViewControllerConfigs()
-        setUpSwipingNavigationViewController()
-        configurePageControl()
+      //  setUpViewControllerConfigs()
+      //  setUpSwipingNavigationViewController()
+       // configurePageControl()
         makeNavBarTranslucent()
-swipingNavigationViewController.setStartingViewController()
+//swipingNavigationViewController.setStartingViewController()
         showBarButtons()
     }
     
@@ -119,7 +136,11 @@ swipingNavigationViewController.setStartingViewController()
             case .success(let user):
                 self?.currentUser = user
                 self?.addUserListener()
-                
+                self?.setUpViewControllerConfigs()
+                self?.setUpSwipingNavigationViewController()
+                self?.configurePageControl()
+                self?.swipingNavigationViewController.setStartingViewController()
+
             }
         }
     }
@@ -135,11 +156,25 @@ swipingNavigationViewController.setStartingViewController()
     }
     
     func setUpViewControllerConfigs() {
-        viewControllerConfigs = [
-            createFirstScreen(),
-            createSecondScreen(),
-            createThirdScreen()
-        ]
+        
+        if currentUser?.isAdmin == false {
+            print(currentUser?.isAdmin)
+            viewControllerConfigs = [
+                      createFirstScreen(),
+                      createSecondScreen(),
+                      createThirdScreen()
+                  ]
+        } else {
+                print(currentUser?.isAdmin)
+            viewControllerConfigs = [
+                      createFirstScreen(),
+                      createSecondScreen(),
+                      createThirdScreen(),
+                       createAdminPage()
+                  ]
+        }
+        
+      
     }
     private func setUpSwipingNavigationViewController() {
         
@@ -183,6 +218,18 @@ swipingNavigationViewController.setStartingViewController()
         return ViewControllerConfig(viewController: vc,
                                     leadingBarButtonItems: leadingBarButtonItems,
                                     trailingBarButtonItems: trailingBarButtonItems)
+    }
+    
+    private func createAdminPage() -> ViewControllerConfig {
+        let vc = AdminViewController()
+               vc.view.backgroundColor = .clear
+               let leadingBarButtonItems = [UIBarButtonItem(title: "blue", style: .plain
+                   , target: nil, action: nil)]
+               let trailingBarButtonItems = [UIBarButtonItem(title: "bear", style: .plain
+                   , target: nil, action: nil)]
+               return ViewControllerConfig(viewController: vc,
+                                           leadingBarButtonItems: leadingBarButtonItems,
+                                           trailingBarButtonItems: trailingBarButtonItems)
     }
     
     

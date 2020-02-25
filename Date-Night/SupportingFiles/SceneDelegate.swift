@@ -28,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if FirebaseAuthService.manager.currentUser != nil {
             window?.rootViewController = UINavigationController(rootViewController:RootViewController())
         } else {
-            window?.rootViewController =  ShakeGestureVC()
+            window?.rootViewController = SignInVC()
         }
         window?.makeKeyAndVisible()
     }

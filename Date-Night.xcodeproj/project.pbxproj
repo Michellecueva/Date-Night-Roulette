@@ -13,6 +13,8 @@
 		0B38E7CF24007755003D05CE /* EventfulAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38E7CE24007755003D05CE /* EventfulAPIClient.swift */; };
 		0B38E7D224007961003D05CE /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = 0B38E7C92400761D003D05CE /* events.json */; };
 		0B38E7D324007B0B003D05CE /* Categories.json in Resources */ = {isa = PBXBuildFile; fileRef = 0B38E7D0240078DF003D05CE /* Categories.json */; };
+		0B38E7D524048B89003D05CE /* RandomEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38E7D424048B89003D05CE /* RandomEventView.swift */; };
+		0B38E7D724048BAC003D05CE /* RandomEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38E7D624048BAC003D05CE /* RandomEventVC.swift */; };
 		0B96460D23EE2C6A00D2CAB9 /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B96460C23EE2C6A00D2CAB9 /* PreferenceView.swift */; };
 		0B96460F23EE2C9E00D2CAB9 /* PreferenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B96460E23EE2C9E00D2CAB9 /* PreferenceCell.swift */; };
 		0B96461123F1C3B900D2CAB9 /* PreferenceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B96461023F1C3B900D2CAB9 /* PreferenceVC.swift */; };
@@ -44,6 +46,8 @@
 		691DD0F023EE03A0003A67E7 /* SendInviteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691DD0EF23EE03A0003A67E7 /* SendInviteVC.swift */; };
 		691DD12423F20A5D003A67E7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691DD12323F20A5D003A67E7 /* ProfileView.swift */; };
 		691DD12623F20ACD003A67E7 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691DD12523F20ACD003A67E7 /* ProfileVC.swift */; };
+		6954708524033F5B0042159C /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6954708424033F5B0042159C /* AdminViewController.swift */; };
+		6954708724033F720042159C /* adminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6954708624033F720042159C /* adminView.swift */; };
 		6965961023E0A775009399F2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6965960F23E0A775009399F2 /* Extensions.swift */; };
 		6965961423E0A9ED009399F2 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6965961323E0A9ED009399F2 /* AppUser.swift */; };
 		6986FE2D23FC793A00B5560A /* ShowEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6986FE2C23FC793A00B5560A /* ShowEventVC.swift */; };
@@ -91,6 +95,8 @@
 		0B38E7CB2400762E003D05CE /* EventfulModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventfulModel.swift; sourceTree = "<group>"; };
 		0B38E7CE24007755003D05CE /* EventfulAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventfulAPIClient.swift; sourceTree = "<group>"; };
 		0B38E7D0240078DF003D05CE /* Categories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Categories.json; sourceTree = "<group>"; };
+		0B38E7D424048B89003D05CE /* RandomEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomEventView.swift; sourceTree = "<group>"; };
+		0B38E7D624048BAC003D05CE /* RandomEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomEventVC.swift; sourceTree = "<group>"; };
 		0B96460C23EE2C6A00D2CAB9 /* PreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceView.swift; sourceTree = "<group>"; };
 		0B96460E23EE2C9E00D2CAB9 /* PreferenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceCell.swift; sourceTree = "<group>"; };
 		0B96461023F1C3B900D2CAB9 /* PreferenceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceVC.swift; sourceTree = "<group>"; };
@@ -125,6 +131,8 @@
 		691DD0EF23EE03A0003A67E7 /* SendInviteVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendInviteVC.swift; sourceTree = "<group>"; };
 		691DD12323F20A5D003A67E7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		691DD12523F20ACD003A67E7 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		6954708424033F5B0042159C /* AdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
+		6954708624033F720042159C /* adminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adminView.swift; sourceTree = "<group>"; };
 		6965960F23E0A775009399F2 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6965961323E0A9ED009399F2 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
 		6986FE2C23FC793A00B5560A /* ShowEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEventVC.swift; sourceTree = "<group>"; };
@@ -265,12 +273,14 @@
 				0B96461023F1C3B900D2CAB9 /* PreferenceVC.swift */,
 				7401EF6923F1C53D000C322B /* PartnerSettingVC.swift */,
 				7401EF4823ECAB81000C322B /* DiscoverEventVC.swift */,
+				0B38E7D624048BAC003D05CE /* RandomEventVC.swift */,
 				7467518223F7293200357610 /* SplashScreenVC.swift */,
 				283823E923F0C6E70031327E /* InvitesPendingVC.swift */,
 				7401EF7523F1E910000C322B /* WaitingForResponseVC.swift */,
 				691DD0EF23EE03A0003A67E7 /* SendInviteVC.swift */,
 				691DD12523F20ACD003A67E7 /* ProfileVC.swift */,
 				6986FE2C23FC793A00B5560A /* ShowEventVC.swift */,
+				6954708424033F5B0042159C /* AdminViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -316,11 +326,13 @@
 				7401EF6B23F1C573000C322B /* PartnerSettingView.swift */,
 				7401EF4623ECAB45000C322B /* DiscoverEventView.swift */,
 				7401EF7723F1E941000C322B /* WaitingForResponseView.swift */,
+				0B38E7D424048B89003D05CE /* RandomEventView.swift */,
 				283823E523F0C4D10031327E /* InvitesCell.swift */,
 				283823E723F0C5F20031327E /* InvitesPendingView.swift */,
 				7448D19F23E895B4003A997C /* SignInView.swift */,
 				691DD0ED23EE0351003A67E7 /* SendInviteView.swift */,
 				691DD12323F20A5D003A67E7 /* ProfileView.swift */,
+				6954708624033F720042159C /* adminView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -468,6 +480,9 @@
 				746751AF240069BF00357610 /* GoogleService-Info.plist in Resources */,
 				0B38E7D224007961003D05CE /* events.json in Resources */,
 				0B38E7D324007B0B003D05CE /* Categories.json in Resources */,
+				0B38E7D224007961003D05CE /* events.json in Resources */,
+				0B38E7D324007B0B003D05CE /* Categories.json in Resources */,
+				69CE862523F71547001E1327 /* GoogleService-Info.plist in Resources */,
 				2862B60723DD47160047B47B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -560,7 +575,9 @@
 				7401EF6C23F1C573000C322B /* PartnerSettingView.swift in Sources */,
 				6986FE2D23FC793A00B5560A /* ShowEventVC.swift in Sources */,
 				69CE862B23F71565001E1327 /* SwipingContainerViewController.swift in Sources */,
+				6954708724033F720042159C /* adminView.swift in Sources */,
 				0BBFCD3A23E8CEB700E039A7 /* Categories.swift in Sources */,
+				6954708524033F5B0042159C /* AdminViewController.swift in Sources */,
 				7467518123F7169F00357610 /* SplashScreenView.swift in Sources */,
 				283823C223E885050031327E /* Invites.swift in Sources */,
 				2862B5FF23DD47130047B47B /* SignInVC.swift in Sources */,
@@ -574,6 +591,7 @@
 				6965961423E0A9ED009399F2 /* AppUser.swift in Sources */,
 				0BBFCD3023E8CDFB00E039A7 /* NetworkHelper.swift in Sources */,
 				2862B5FB23DD47130047B47B /* AppDelegate.swift in Sources */,
+				0B38E7D524048B89003D05CE /* RandomEventView.swift in Sources */,
 				69CE863B23F718BA001E1327 /* Enums.swift in Sources */,
 				69CE863623F715FF001E1327 /* SavedPreferenceDelegate.swift in Sources */,
 				6986FE3123FC85B100B5560A /* UserDefaultsWrapper.swift in Sources */,
@@ -602,6 +620,7 @@
 				2862B60523DD47130047B47B /* Date_Night.xcdatamodeld in Sources */,
 				7448D1A223E895DF003A997C /* SignUpView.swift in Sources */,
 				691DD0EE23EE0351003A67E7 /* SendInviteView.swift in Sources */,
+				0B38E7D724048BAC003D05CE /* RandomEventVC.swift in Sources */,
 				2862B66C23DFE26C0047B47B /* SignUpVC.swift in Sources */,
 				69CE862323F7151F001E1327 /* Secrets.swift in Sources */,
 				74C61A34240488EE00BD2ACA /* ShakeEventView.swift in Sources */,

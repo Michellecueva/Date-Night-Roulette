@@ -16,21 +16,29 @@ class ProfileSettingVC: UIViewController {
     var profileSetting = ProfileSettingView()
     
     var isCurrentUser = false
-  
     
+    var currentUser:AppUser? = nil {
+        didSet {
+            profileSetting.partnerEmailDisplayLabel.text = currentUser?.partnerEmail
+            profileSetting.userNameLabel.text = "Hi, \(currentUser?.userName ?? "")"
+        }
+    }
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+       
         view.addSubview(profileSetting)
+     //    profileSetting.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         logOut()
         print(FirebaseAuthService.manager.currentUser?.email)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setUpUserName()
-        setUpPartnerEmailDisplay(userID: FirebaseAuthService.manager.currentUser?.uid ?? "" )
+       // setUpUserName()
+       // setUpPartnerEmailDisplay(userID: FirebaseAuthService.manager.currentUser?.uid ?? "" )
     }
     
     private func setUpUserName() {
