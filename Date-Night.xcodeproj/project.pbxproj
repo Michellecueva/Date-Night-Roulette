@@ -13,6 +13,8 @@
 		0B38E7CF24007755003D05CE /* EventfulAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38E7CE24007755003D05CE /* EventfulAPIClient.swift */; };
 		0B38E7D224007961003D05CE /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = 0B38E7C92400761D003D05CE /* events.json */; };
 		0B38E7D324007B0B003D05CE /* Categories.json in Resources */ = {isa = PBXBuildFile; fileRef = 0B38E7D0240078DF003D05CE /* Categories.json */; };
+		0B38E7D524048B89003D05CE /* RandomEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38E7D424048B89003D05CE /* RandomEventView.swift */; };
+		0B38E7D724048BAC003D05CE /* RandomEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38E7D624048BAC003D05CE /* RandomEventVC.swift */; };
 		0B96460D23EE2C6A00D2CAB9 /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B96460C23EE2C6A00D2CAB9 /* PreferenceView.swift */; };
 		0B96460F23EE2C9E00D2CAB9 /* PreferenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B96460E23EE2C9E00D2CAB9 /* PreferenceCell.swift */; };
 		0B96461123F1C3B900D2CAB9 /* PreferenceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B96461023F1C3B900D2CAB9 /* PreferenceVC.swift */; };
@@ -89,6 +91,8 @@
 		0B38E7CB2400762E003D05CE /* EventfulModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventfulModel.swift; sourceTree = "<group>"; };
 		0B38E7CE24007755003D05CE /* EventfulAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventfulAPIClient.swift; sourceTree = "<group>"; };
 		0B38E7D0240078DF003D05CE /* Categories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Categories.json; sourceTree = "<group>"; };
+		0B38E7D424048B89003D05CE /* RandomEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomEventView.swift; sourceTree = "<group>"; };
+		0B38E7D624048BAC003D05CE /* RandomEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomEventVC.swift; sourceTree = "<group>"; };
 		0B96460C23EE2C6A00D2CAB9 /* PreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceView.swift; sourceTree = "<group>"; };
 		0B96460E23EE2C9E00D2CAB9 /* PreferenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceCell.swift; sourceTree = "<group>"; };
 		0B96461023F1C3B900D2CAB9 /* PreferenceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceVC.swift; sourceTree = "<group>"; };
@@ -260,6 +264,7 @@
 				0B96461023F1C3B900D2CAB9 /* PreferenceVC.swift */,
 				7401EF6923F1C53D000C322B /* PartnerSettingVC.swift */,
 				7401EF4823ECAB81000C322B /* DiscoverEventVC.swift */,
+				0B38E7D624048BAC003D05CE /* RandomEventVC.swift */,
 				7467518223F7293200357610 /* SplashScreenVC.swift */,
 				283823E923F0C6E70031327E /* InvitesPendingVC.swift */,
 				7401EF7523F1E910000C322B /* WaitingForResponseVC.swift */,
@@ -309,6 +314,7 @@
 				7401EF6B23F1C573000C322B /* PartnerSettingView.swift */,
 				7401EF4623ECAB45000C322B /* DiscoverEventView.swift */,
 				7401EF7723F1E941000C322B /* WaitingForResponseView.swift */,
+				0B38E7D424048B89003D05CE /* RandomEventView.swift */,
 				283823E523F0C4D10031327E /* InvitesCell.swift */,
 				283823E723F0C5F20031327E /* InvitesPendingView.swift */,
 				7448D19F23E895B4003A997C /* SignInView.swift */,
@@ -569,6 +575,7 @@
 				6965961423E0A9ED009399F2 /* AppUser.swift in Sources */,
 				0BBFCD3023E8CDFB00E039A7 /* NetworkHelper.swift in Sources */,
 				2862B5FB23DD47130047B47B /* AppDelegate.swift in Sources */,
+				0B38E7D524048B89003D05CE /* RandomEventView.swift in Sources */,
 				69CE863B23F718BA001E1327 /* Enums.swift in Sources */,
 				69CE863623F715FF001E1327 /* SavedPreferenceDelegate.swift in Sources */,
 				6986FE3123FC85B100B5560A /* UserDefaultsWrapper.swift in Sources */,
@@ -596,6 +603,7 @@
 				2862B60523DD47130047B47B /* Date_Night.xcdatamodeld in Sources */,
 				7448D1A223E895DF003A997C /* SignUpView.swift in Sources */,
 				691DD0EE23EE0351003A67E7 /* SendInviteView.swift in Sources */,
+				0B38E7D724048BAC003D05CE /* RandomEventVC.swift in Sources */,
 				2862B66C23DFE26C0047B47B /* SignUpVC.swift in Sources */,
 				69CE862323F7151F001E1327 /* Secrets.swift in Sources */,
 				7401EF6A23F1C53D000C322B /* PartnerSettingVC.swift in Sources */,

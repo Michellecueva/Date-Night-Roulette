@@ -54,6 +54,8 @@ class PreferenceView: UIView {
         cvConstraints()
         buttonConstraints()
         self.backgroundColor = .black
+        self.layer.borderColor = UIColor.gray.cgColor
+        self.layer.borderWidth = 3
     }
     //MARK:- Constraints
     
