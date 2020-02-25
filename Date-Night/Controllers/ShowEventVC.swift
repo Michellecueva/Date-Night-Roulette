@@ -28,6 +28,8 @@ class ShowEventVC: UIViewController {
         }
     }
     
+    var partnersEventsLiked = [String]()
+    
     private var partnerListener: ListenerRegistration?
        
     private let db = Firestore.firestore()
@@ -35,13 +37,14 @@ class ShowEventVC: UIViewController {
     private var collectionReference:CollectionReference {
            return db.collection("users")
        }
+     var count = 1
        
     deinit {
            partnerListener?.remove()
     }
     
     lazy var button: UIButton = {
-        let button = UIButton(frame:self.view.frame)
+        let button = UIButton(frame: CGRect(x: 150, y: 400, width: 50, height: 50))
         button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         button.addTarget(self, action: #selector(pressButton), for: .touchUpInside)
         return button
@@ -50,7 +53,7 @@ class ShowEventVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(button)
-        clearEventsLikedArr()
+        //clearEventsLikedArr()
         addListenerOnPartner()
     }
     
@@ -60,12 +63,17 @@ class ShowEventVC: UIViewController {
     
     private func likedButtonPressed() {
         getPriorEventsLiked()
-        eventsLiked.append("hey")
+        eventsLiked.append("hey \(count)")
         updateEventsLikedOnFirebase(eventsLiked: eventsLiked)
+        count += 1
+        
+        guard let lastEventLiked = eventsLiked.last else {return}
+        if partnersEventsLiked.contains(lastEventLiked) {
+            print("IT'S A MATCH! \(lastEventLiked)")
+            // segue to the match VC
+        }
     }
-    
-    //needs a listener that listens to partner's event Liked arrary changing
-    // whenever someone likes an event we need to be grabbing to events liked on user defaults, updating the stored events and also updating the events on firebase 
+
     
     private func getPriorEventsLiked() {
         if let eventsArr = UserDefaultsWrapper.standard.getEventsLiked() {
@@ -111,7 +119,10 @@ class ShowEventVC: UIViewController {
                         return AppUser(from: data, id: userID)
                     }
 
-                    print("listener on PartnerUser \(userList[0])")
+                    print("listener on PartnerUser \(userList[0].eventsLiked)")
+                    
+                    self.partnersEventsLiked = userList[0].eventsLiked
+                    
                 })
         }
 }
