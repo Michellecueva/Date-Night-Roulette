@@ -33,7 +33,7 @@ class ShakeEventView: UIView {
             textview.layer.shadowColor = .init(srgbRed: 0.5, green: 0.5, blue: 0.5, alpha: 0.9)
             textview.adjustsFontForContentSizeCategory = true
             textview.font = UIFont(name: "Arial", size: 30)
-            textview.isUserInteractionEnabled = false
+//            textview.isUserInteractionEnabled = false
             textview.textColor = .clear
             textview.text = " "
             textview.text = demoData.eventObj[0].longDesc
@@ -99,7 +99,7 @@ class ShakeEventView: UIView {
                 case.expanded:
                     self.infoLeadConstraint.constant = self.frame.width - 0
                     self.infoTopConstraint.constant = self.frame.height - 50
-                    self.shakeInfoDetailTextView.text = self.demoData.eventObj.last?.titleLabel ?? ""
+                    self.shakeInfoDetailTextView.text = self.demoData.eventObj.last?.longDesc ?? ""
 
 //                    self.infoLeadConstraint.constant = self.frame.width - 40
 //                    self.infoTopConstraint.constant = self.frame.height - 40
@@ -166,7 +166,7 @@ class ShakeEventView: UIView {
             NSLayoutConstraint.activate([
                 shakeInfoDetailTextView.bottomAnchor.constraint(equalTo: self.shakeImage.bottomAnchor),
                 shakeInfoDetailTextView.trailingAnchor.constraint(equalTo: self.shakeImage.trailingAnchor),
-                shakeInfoDetailTextView.heightAnchor.constraint(equalToConstant: shakeImage.frame.height),
+                shakeInfoDetailTextView.heightAnchor.constraint(equalToConstant: 70),
     //            shakeInfoDetailTextView.leadingAnchor.constraint(equalTo: self.shakeImage.leadingAnchor, constant: contentView.frame.width - 40),
     //            shakeInfoDetailTextView.topAnchor.constraint(equalTo: self.shakeImage.topAnchor, constant: contentView.frame.height - 40),
                 infoTopConstraint,

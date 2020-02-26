@@ -14,16 +14,18 @@ class ShakeGestureVC: UIViewController {
         super.viewDidLoad()
         view.addSubview(shakeView)
         view.backgroundColor = .black
+        self.navigationController?.navigationBar.topItem?.title = "Shake"
     }
     
     func shakeTheEvent() {
         // WIP This function is intended to shift to the next event and will go inside the motionBegan pre-built function
         shakeView.shakeEventView.shakeImage.image = UIImage(named: demoData.eventObj.last?.image ?? "")
         shakeView.shakeEventView.shakeInfoDetailTextView.text = demoData.eventObj.last?.longDesc ?? ""
-        shakeView.shakeEventView.shakeInfoDetailTextView.text = demoData.eventObj.last?.titleLabel ?? ""
+//        shakeView.shakeEventView.shakeInfoDetailTextView.text = demoData.eventObj.last?.titleLabel ?? ""
 //        shakeView.shakeEventView.shake
         shakeView.layoutIfNeeded()
         demoData.eventObj.popLast()
+        print("shake event func called")
     }
 
 // load in my array of events in viewDidLoad, and add the info from the last index to the shakeview
@@ -33,15 +35,18 @@ class ShakeGestureVC: UIViewController {
 // update the shakeview with the info from the event that is NOW at the last index
 // when there are no more events, deal with it, user!
 
-    
-    
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        
-        // Add code when motion begins -- probably could be some kind of animation
         shakeTheEvent()
-        print("Shake has happened")
-
+            print("Shake has happened")
     }
+    
+//    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+//
+//        // Add code when motion begins -- probably could be some kind of animation
+//        shakeTheEvent()
+//        print("Shake has happened")
+//
+//    }
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         
