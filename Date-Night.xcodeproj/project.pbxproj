@@ -53,7 +53,6 @@
 		6986FE2D23FC793A00B5560A /* ShowEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6986FE2C23FC793A00B5560A /* ShowEventVC.swift */; };
 		6986FE3123FC85B100B5560A /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6986FE3023FC85B100B5560A /* UserDefaultsWrapper.swift */; };
 		69CE862323F7151F001E1327 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE862223F7151F001E1327 /* Secrets.swift */; };
-		69CE862523F71547001E1327 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69CE862423F71547001E1327 /* GoogleService-Info.plist */; };
 		69CE862923F71565001E1327 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE862623F71564001E1327 /* LeftViewController.swift */; };
 		69CE862A23F71565001E1327 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE862723F71565001E1327 /* RootViewController.swift */; };
 		69CE862B23F71565001E1327 /* SwipingContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE862823F71565001E1327 /* SwipingContainerViewController.swift */; };
@@ -74,6 +73,11 @@
 		7448D1A223E895DF003A997C /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7448D1A123E895DF003A997C /* SignUpView.swift */; };
 		7467518123F7169F00357610 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7467518023F7169F00357610 /* SplashScreenView.swift */; };
 		7467518323F7293200357610 /* SplashScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7467518223F7293200357610 /* SplashScreenVC.swift */; };
+		746751A423FF458900357610 /* ShakeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746751A223FF458900357610 /* ShakeCollectionCell.swift */; };
+		746751A523FF458900357610 /* ShakeGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746751A323FF458900357610 /* ShakeGestureView.swift */; };
+		746751A723FF459A00357610 /* ShakeGestureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746751A623FF459A00357610 /* ShakeGestureVC.swift */; };
+		746751AF240069BF00357610 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 746751AE240069BF00357610 /* GoogleService-Info.plist */; };
+		74C61A34240488EE00BD2ACA /* ShakeEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C61A33240488EE00BD2ACA /* ShakeEventView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,7 +138,6 @@
 		6986FE2C23FC793A00B5560A /* ShowEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEventVC.swift; sourceTree = "<group>"; };
 		6986FE3023FC85B100B5560A /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 		69CE862223F7151F001E1327 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
-		69CE862423F71547001E1327 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		69CE862623F71564001E1327 /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		69CE862723F71565001E1327 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		69CE862823F71565001E1327 /* SwipingContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingContainerViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +157,11 @@
 		7448D1A123E895DF003A997C /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		7467518023F7169F00357610 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		7467518223F7293200357610 /* SplashScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenVC.swift; sourceTree = "<group>"; };
+		746751A223FF458900357610 /* ShakeCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakeCollectionCell.swift; sourceTree = "<group>"; };
+		746751A323FF458900357610 /* ShakeGestureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakeGestureView.swift; sourceTree = "<group>"; };
+		746751A623FF459A00357610 /* ShakeGestureVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakeGestureVC.swift; sourceTree = "<group>"; };
+		746751AE240069BF00357610 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		74C61A33240488EE00BD2ACA /* ShakeEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeEventView.swift; sourceTree = "<group>"; };
 		74ED85A185AA38B5892717CF /* Pods-Date-NightTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Date-NightTests.debug.xcconfig"; path = "Target Support Files/Pods-Date-NightTests/Pods-Date-NightTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B4BAB314A5629A1F14D7DE6B /* Pods-Date-Night.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Date-Night.debug.xcconfig"; path = "Target Support Files/Pods-Date-Night/Pods-Date-Night.debug.xcconfig"; sourceTree = "<group>"; };
 		C410CB0F61507686EBFC1D56 /* Pods-Date-Night.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Date-Night.release.xcconfig"; path = "Target Support Files/Pods-Date-Night/Pods-Date-Night.release.xcconfig"; sourceTree = "<group>"; };
@@ -215,7 +223,7 @@
 				2862B67823DFEA860047B47B /* Extensions */,
 				2862B66423DFE0570047B47B /* SupportingFiles */,
 				2862B60B23DD47160047B47B /* Info.plist */,
-				69CE862423F71547001E1327 /* GoogleService-Info.plist */,
+				746751AE240069BF00357610 /* GoogleService-Info.plist */,
 				2862B60323DD47130047B47B /* Date_Night.xcdatamodeld */,
 			);
 			path = "Date-Night";
@@ -257,6 +265,7 @@
 			children = (
 				69CE862723F71565001E1327 /* RootViewController.swift */,
 				69CE862823F71565001E1327 /* SwipingContainerViewController.swift */,
+				746751A623FF459A00357610 /* ShakeGestureVC.swift */,
 				69CE862623F71564001E1327 /* LeftViewController.swift */,
 				283823C923E887450031327E /* HomeScreenVC.swift */,
 				2862B5FE23DD47130047B47B /* SignInVC.swift */,
@@ -308,8 +317,11 @@
 			isa = PBXGroup;
 			children = (
 				0B96460C23EE2C6A00D2CAB9 /* PreferenceView.swift */,
+				746751A223FF458900357610 /* ShakeCollectionCell.swift */,
+				746751A323FF458900357610 /* ShakeGestureView.swift */,
 				0B96460E23EE2C9E00D2CAB9 /* PreferenceCell.swift */,
 				7448D1A123E895DF003A997C /* SignUpView.swift */,
+				74C61A33240488EE00BD2ACA /* ShakeEventView.swift */,
 				7467518023F7169F00357610 /* SplashScreenView.swift */,
 				7401EF6B23F1C573000C322B /* PartnerSettingView.swift */,
 				7401EF4623ECAB45000C322B /* DiscoverEventView.swift */,
@@ -465,6 +477,9 @@
 			files = (
 				2862B60A23DD47160047B47B /* LaunchScreen.storyboard in Resources */,
 				0BBFCD3823E8CEB000E039A7 /* seatGeekAPI.json in Resources */,
+				746751AF240069BF00357610 /* GoogleService-Info.plist in Resources */,
+				0B38E7D224007961003D05CE /* events.json in Resources */,
+				0B38E7D324007B0B003D05CE /* Categories.json in Resources */,
 				0B38E7D224007961003D05CE /* events.json in Resources */,
 				0B38E7D324007B0B003D05CE /* Categories.json in Resources */,
 				69CE862523F71547001E1327 /* GoogleService-Info.plist in Resources */,
@@ -552,6 +567,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				283823CA23E887450031327E /* HomeScreenVC.swift in Sources */,
+				746751A723FF459A00357610 /* ShakeGestureVC.swift in Sources */,
 				283823C823E885B90031327E /* FirestoreService.swift in Sources */,
 				69CE863523F715FF001E1327 /* WaitingForResponseDelegate.swift in Sources */,
 				283823C623E885730031327E /* AppError.swift in Sources */,
@@ -589,6 +605,7 @@
 				2862B5FB23DD47130047B47B /* AppDelegate.swift in Sources */,
 				283823EE23F0F4F30031327E /* CellDelegate.swift in Sources */,
 				69CE862923F71565001E1327 /* LeftViewController.swift in Sources */,
+				746751A523FF458900357610 /* ShakeGestureView.swift in Sources */,
 				0B38E7CF24007755003D05CE /* EventfulAPIClient.swift in Sources */,
 				7448D1A023E895B4003A997C /* SignInView.swift in Sources */,
 				283823EA23F0C6E70031327E /* InvitesPendingVC.swift in Sources */,
@@ -606,7 +623,9 @@
 				0B38E7D724048BAC003D05CE /* RandomEventVC.swift in Sources */,
 				2862B66C23DFE26C0047B47B /* SignUpVC.swift in Sources */,
 				69CE862323F7151F001E1327 /* Secrets.swift in Sources */,
+				74C61A34240488EE00BD2ACA /* ShakeEventView.swift in Sources */,
 				7401EF6A23F1C53D000C322B /* PartnerSettingVC.swift in Sources */,
+				746751A423FF458900357610 /* ShakeCollectionCell.swift in Sources */,
 				2862B5FD23DD47130047B47B /* SceneDelegate.swift in Sources */,
 				2862B6B023DFFF3F0047B47B /* FirebaseAuthService.swift in Sources */,
 				0BBFCD3423E8CE0800E039A7 /* ImageHelper.swift in Sources */,
