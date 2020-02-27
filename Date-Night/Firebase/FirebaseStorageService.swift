@@ -46,15 +46,15 @@ class FirebaseStorageService {
         }
     }
     
-    func getImage(url: String, completion: @escaping (Result<UIImage, Error>)-> ()){
-        imagesFolderReference.storage.reference(forURL: url).getData(maxSize: 2000000) { (data, error) in
-            if let error = error {
-                completion(.failure(error))
-            } else if let data = data, let image = UIImage(data: data){
-                completion(.success(image))
-            }
-        }
-    }
+//    func getImage(url: String, completion: @escaping (Result<UIImage, Error>)-> ()){
+//        imagesFolderReference.storage.reference(forURL: url).getData(maxSize: 2000000) { (data, error) in
+//            if let error = error {
+//                completion(.failure(error))
+//            } else if let data = data, let image = UIImage(data: data){
+//                completion(.success(image))
+//            }
+//        }
+//    }
     func getUserImage(photoURL: URL, completion: @escaping (Result<UIImage, Error>)->()){
         imagesFolderReference.storage.reference(forURL: photoURL.absoluteString).getData(maxSize: 2000000) { (data, error) in
             if let error = error {
