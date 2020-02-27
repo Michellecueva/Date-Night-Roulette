@@ -145,6 +145,21 @@ class ProfileSettingVC: UIViewController {
             print(error)
         }
     }
+//    
+//    func newFunc(){
+//        
+//        FirebaseStorageService.manager.storeImage(image: imageData, completion: {[weak self](result) in
+//            switch result {
+//            case .success(let url):
+//                self?.imageURL = url
+//            case .failure(let error):
+//                print(error)
+//            }
+//        })
+//        dismiss(animated: true, completion: nil)
+//        
+//    }
+    
 }
 
 extension ProfileSettingVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
@@ -157,72 +172,10 @@ extension ProfileSettingVC: UIImagePickerControllerDelegate, UINavigationControl
         guard let imageData = image.jpegData(compressionQuality: 0.6) else {
             return
         }
-        dismiss(animated: true, completion: nil)
-        
     }
 }
+
+
     
    
 
-/*    @objc private func addImagePressed(){
-    switch PHPhotoLibrary.authorizationStatus(){
-    case .notDetermined, .denied, .restricted:
-        PHPhotoLibrary.requestAuthorization({[weak self] status in
-            switch status {
-            case .authorized:
-                self?.presentPhotoPickerController()
-            case .denied:
-                print("Denied photo library permissions")
-            default:
-                print("no status")
-            }
-        })
-    default: presentPhotoPickerController()
-    }
-}
-*/
-
-
-/*
- private func showAlert(with title: String, and message: String){
-     let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
-     alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-     present(alertVC, animated: true, completion: nil)
- }
- 
- private func presentPhotoPickerController(){
-     DispatchQueue.main.async {
-         let imagePickerViewController = UIImagePickerController()
-         imagePickerViewController.delegate = self
-         imagePickerViewController.sourceType = .photoLibrary
-         imagePickerViewController.allowsEditing = true
-         imagePickerViewController.mediaTypes = ["public.image"]
-         self.present(imagePickerViewController, animated: true, completion: nil)
-     }
- }
- */
-
-/*
-extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let image = info[.editedImage] as? UIImage else {
-            return
-        }
-        self.image = image
-        guard let imageData = image.jpegData(compressionQuality: 0.6) else {
-            return
-        }
-        FirebaseStorageService.manager.storeImage(image: imageData, completion: { [weak self] (result) in
-            switch result {
-            case .success(let url):
-                self?.imageURL = url
-            case .failure(let error):
-                print(error)
-            }
-            
-        })
-        dismiss(animated: true, completion: nil)
-    }
-    
-}*/
