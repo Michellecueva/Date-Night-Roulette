@@ -108,9 +108,11 @@ setUpView()
            if partnersEventsLiked.contains(lastEventLiked) {
                matchAlert(title: "It's a Match!", message: "You've Matched Events With Your Partner")
                // segue to the match VC
-           }
+           }else {
+            shakeView.confirmButton.isEnabled = false
+    shakeTheEvent()
+    }
     
-    shakeView.confirmButton.isEnabled = false
        }
 
        
