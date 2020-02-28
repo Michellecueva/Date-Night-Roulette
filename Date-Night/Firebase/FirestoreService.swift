@@ -239,7 +239,9 @@ class FirestoreService {
         }
         
     }
-
+    
+    
+    
     // MARK: Invitation Functionality
     
     func sendInvite(invite:Invites,completionHandler:@escaping (Result<(),AppError>)-> ()) {
