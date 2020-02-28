@@ -15,7 +15,9 @@ class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionView
     
     var arrayOfPreferences:[String] = [] {
         didSet {
-            print(arrayOfPreferences.count)
+            for i in arrayOfPreferences {
+                print(i)
+            }
         }
     }
     
@@ -36,9 +38,14 @@ class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionView
         collectionViewMethods()
         prefList = getPreferences()
         addObjcFunctionsToViewButton()
-        getUserPreferences()
+        
         self.navigationController?.navigationBar.topItem?.title = "Set your Preferences"
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getUserPreferences()
     }
     
     private func collectionViewMethods(){
@@ -54,7 +61,6 @@ class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionView
         // delegate?.eventFavs(tag: sender.tag)
        print("tapped button")
        
-        UserDefaultsWrapper.standard.store(preference: arrayOfPreferences)
         FirestoreService.manager.savePreferencesForUser(field: .users, preferences: arrayOfPreferences, currentUserUID: appUserID) { (result) in
             switch result {
             case .failure(let error):
@@ -85,13 +91,20 @@ class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionView
     
     private func getUserPreferences() {
         //determine whether or not we should make multiple requests to get the same user
-        guard let preferences = UserDefaultsWrapper.standard.getPreferences() else {return}
-        guard preferences.count > 0 else {return}
-        self.arrayOfPreferences = preferences
-        self.prefView.preferenceCollectionView.reloadData()
         
+        FirestoreService.manager.getUser(userID: appUserID) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let user):
+
+                self.arrayOfPreferences = user.preferences
+                print(user.preferences.count)
+                self.prefView.preferenceCollectionView.reloadData()
+            }
+        }
     }
-   
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print(prefList.count)
@@ -104,7 +117,7 @@ class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionView
         cell.preferenceLabel.text = pref.data.type
         //cell.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         cell.layer.cornerRadius = 5
-        if arrayOfPreferences.contains(cell.preferenceLabel.text?.lowercased() ?? "") {
+        if arrayOfPreferences.contains(cell.preferenceLabel.text?.lowercased().replacingOccurrences(of: " ", with: "+") ?? "") {
             cell.isAddedToPreferenceArray = true
         }
         return cell
@@ -117,7 +130,7 @@ class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionView
         case true :
             currentCell.isAddedToPreferenceArray = false
             arrayOfPreferences.removeAll { (string) -> Bool in
-                           string == currentCell.preferenceLabel.text?.lowercased() ?? ""
+                string == currentCell.preferenceLabel.text?.lowercased().replacingOccurrences(of: " ", with: "+") ?? ""
                        }
         case false :
             currentCell.isAddedToPreferenceArray = true

@@ -211,25 +211,20 @@ class FirestoreService {
         }
     }
     
-
     func sendEventsToFirebase(event:FBEvents,completionHandler:@escaping (Result<(),AppError>) ->()) {
         
-       
-            
             let eventField = event.fieldsDict
             db.collection("FBEvents").addDocument(data: eventField) { (error) in
                 if let error = error {
                     completionHandler(.failure(.other(rawError: error)))
                 } else {
-                  
-                   
                     completionHandler(.success(()))
                 }
             }
     }
     
-    func getEventsFromFireBase(preference: [String],completion: @escaping (Result<[FBEvents], Error>) -> ()) {
-        db.collection("FBEvents").whereField("type", isEqualTo: preference[0]).getDocuments { (snapshot, error) in
+    func getEventsFromFireBase(preference: String,completion: @escaping (Result<[FBEvents], Error>) -> ()) {
+        db.collection("FBEvents").whereField("type", isEqualTo: preference).getDocuments { (snapshot, error) in
                 if let error = error {
                     completion(.failure(error))
                 } else {
@@ -244,7 +239,9 @@ class FirestoreService {
         }
         
     }
-
+    
+    
+    
     // MARK: Invitation Functionality
     
     func sendInvite(invite:Invites,completionHandler:@escaping (Result<(),AppError>)-> ()) {
@@ -305,6 +302,31 @@ class FirestoreService {
             }
         }
     }
+    
+    // MARK: Events Functionality
+    
+    // have to get the array that is stored in eventsLiked and append the new one
+    // have to get the user object of the partner and appen the whole array
+    
+    func updateEventsLiked(eventsLiked: [String], completion: @escaping (Result<(), Error>) -> () ) {
+        guard let userId = FirebaseAuthService.manager.currentUser?.uid else {
+            return
+        }
+        
+        var updateFields = [String:Any]()
+        
+        updateFields["eventsLiked"] = eventsLiked
+        
+        db.collection(FireStoreCollections.users.rawValue).document(userId).updateData(updateFields) {
+            (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+
     
     private init () {}
 }

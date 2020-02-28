@@ -8,13 +8,13 @@ class ShakeEventView: UIView {
    // var shakeIndex = ShakeGestureVC()
     
     
-    var demoData = DummyData()
     var infoTopConstraint = NSLayoutConstraint()
     var infoLeadConstraint = NSLayoutConstraint()
         
         lazy var shakeImage: UIImageView = {
            let image = UIImageView()
-            image.image = UIImage(named: demoData.eventObj[0].image)
+            image.contentMode = .scaleAspectFit
+            image.image = UIImage(systemName: "photo")
             return image
         }()
         
@@ -36,7 +36,6 @@ class ShakeEventView: UIView {
 //            textview.isUserInteractionEnabled = false
             textview.textColor = .clear
             textview.text = " "
-            textview.text = demoData.eventObj[0].longDesc
             return textview
         }()
            
@@ -82,39 +81,45 @@ class ShakeEventView: UIView {
             
         }
     
-        @objc func animateShowInfo(_ viewToAnimate:UITextView)  {
-            
-            UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.1, options: .curveEaseInOut, animations: {
-                
-                switch self.state {
-                case .collapsed:
-                    self.infoLeadConstraint.constant = 0
-                    self.infoTopConstraint.constant = 70
-                    self.layoutIfNeeded()
-                    self.shakeInfoDetailTextView.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
-                    self.shakeInfoDetailTextView.alpha = 0.7
-                    self.shakeInfoDetailTextView.text = self.demoData.eventObj.last?.titleLabel ?? ""
-                    self.state = .expanded
+       @objc func animateShowInfo(_ viewToAnimate:UITextView)  {
                     
-                case.expanded:
-                    self.infoLeadConstraint.constant = self.frame.width - 0
-                    self.infoTopConstraint.constant = self.frame.height - 50
-                    self.shakeInfoDetailTextView.text = self.demoData.eventObj.last?.longDesc ?? ""
-
-//                    self.infoLeadConstraint.constant = self.frame.width - 40
-//                    self.infoTopConstraint.constant = self.frame.height - 40
-                    self.layoutIfNeeded()
-                    self.shakeInfoDetailTextView.alpha = 0.7
-                    self.shakeInfoDetailTextView.textColor = .clear
-                    self.state = .collapsed
+                    UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.1, options: .curveEaseInOut, animations: {
+                        
+                        switch self.state {
+                        case .collapsed:
+                            self.infoLeadConstraint.constant = 0
+                            self.infoTopConstraint.constant = 70
+                            self.layoutIfNeeded()
+                            self.shakeInfoDetailTextView.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+                            self.shakeInfoDetailTextView.alpha = 0.7
+                            
+                            self.state = .expanded
+                            
+                        case.expanded:
+                            self.infoLeadConstraint.constant = self.frame.width - 0
+                            self.infoTopConstraint.constant = self.frame.height - 50
+                            self.layoutIfNeeded()
+                            self.shakeInfoDetailTextView.alpha = 0.7
+                            self.shakeInfoDetailTextView.textColor = .clear
+                            self.state = .collapsed
+                        }
+                    })
                 }
-            })
-        }
+    
+    func setUpImage(from object: FBEvents, image: UIImage) {
+      self.shakeImage.image = image
+       
+      switch state {
+      case .expanded :
+        self.shakeInfoDetailTextView.text = object.description
+      default:
+        self.shakeInfoDetailTextView.text = object.title
+      }
+    }
         
         private func setConstraints() {
             setShakeImageConstraint()
             setShakeInfoEyeConstraints()
-             //setInfoDetailConstraints()
             collapseInfoDetailConstraints()
            
         }

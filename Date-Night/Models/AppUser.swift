@@ -13,25 +13,25 @@ struct AppUser {
     let email: String?
     let uid: String
     let userName: String?
-  //  let dateCreated: Date?
     let photoURL: String?
     let sessionID: String?
     let preferences: [String]
     let partnerEmail: String?
     let partnerUserName: String?
     let isAdmin:Bool
+    let eventsLiked: [String]
     
-    init(from user: User,sessionID:String?, preferences:[String]) {
+    init(from user: User,sessionID:String?, preferences:[String], eventsLiked: [String]) {
         self.userName = user.displayName
         self.email = user.email
         self.uid = user.uid
-      //  self.dateCreated = user.metadata.creationDate
         self.photoURL = user.photoURL?.absoluteString
         self.sessionID = sessionID
         self.preferences = preferences
         self.partnerEmail = nil
         self.partnerUserName = nil
         self.isAdmin = false
+        self.eventsLiked = eventsLiked
     }
     
     init?(from dict: [String: Any], id: String) {
@@ -42,19 +42,20 @@ struct AppUser {
             let preferences = dict["preferences"] as? [String],
             let partnerEmail = dict["partnerEmail"] as? String,
             let partnerUserName = dict["partnerUserName"] as? String,
-            let isAdmin = dict["isAdmin"] as? Bool
+            let isAdmin = dict["isAdmin"] as? Bool,
+            let eventsLiked = dict["eventsLiked"] as? [String]
             else {return nil}
         
         self.userName = userName
         self.email = email
         self.uid = id
-      //  self.dateCreated = dateCreated
         self.photoURL = photoURL
         self.sessionID = sessionID
         self.preferences = preferences
         self.partnerEmail = partnerEmail
         self.partnerUserName = partnerUserName
         self.isAdmin = isAdmin
+        self.eventsLiked = eventsLiked
     }
     
     var fieldsDict: [String: Any] {
@@ -67,7 +68,8 @@ struct AppUser {
             "partnerEmail": self.partnerEmail ?? "",
             "partnerUserName": self.partnerUserName ?? "",
             "uid": self.uid,
-            "isAdmin":self.isAdmin
+            "isAdmin":self.isAdmin,
+            "eventsLiked": self.eventsLiked
         ]
     }
 }

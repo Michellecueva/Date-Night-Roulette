@@ -1,73 +1,222 @@
 
 import UIKit
+import FirebaseFirestore
 
+
+//shake gesture only works on first responder
 class ShakeGestureVC: UIViewController {
     
     var eventIndexCount = 0
-    var demonstration = DummyData()
+    
+    var pageControl:UIPageControl = UIPageControl(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     
     var shakeView = ShakeGestureView()
-    var eventView = ShakeEventView()
-    var demoData = DummyData()
+    var fbEvents:[FBEvents] = [] {
+        didSet {
+            guard fbEvents.count != 0 else {
+                navigationController?.popViewController(animated: true)
+                return
+            }
+            setUpView()
+            
+        }
+    }
+    
+    var eventsLiked = [String]() {
+         didSet {
+             UserDefaultsWrapper.standard.store(eventsLikedArr: eventsLiked)
+         }
+     }
+     
+     var partnersEventsLiked = [String]()
+     
+     private var partnerListener: ListenerRegistration?
+        
+     private let db = Firestore.firestore()
+     
+     private var collectionReference:CollectionReference {
+            return db.collection("users")
+        }
+      var count = 1
+        
+     deinit {
+            partnerListener?.remove()
+     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(shakeView)
         view.backgroundColor = .black
-        self.navigationController?.navigationBar.topItem?.title = "Shake"
+       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.makeNavBarTranslucent()
+        configurePageControl()
+        addObjcFunctionsToViewButtons()
+        addListenerOnPartner()
+        getPriorEventsLiked()
+    }
+    
+    override func viewDidAppear(_ animated:Bool) {
+        super.viewDidAppear(animated)
+      
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        clearEventsLikedArr()
+    }
+    
+    private func addObjcFunctionsToViewButtons() {
+        shakeView.confirmButton.addTarget(self, action: #selector(likedButtonPressed), for: .touchUpInside)
     }
     
     func shakeTheEvent() {
-        // WIP This function is intended to shift to the next event and will go inside the motionBegan pre-built function
-        shakeView.shakeEventView.shakeImage.image = UIImage(named: demoData.eventObj.last?.image ?? "")
-        shakeView.shakeEventView.shakeInfoDetailTextView.text = demoData.eventObj.last?.longDesc ?? ""
-//        shakeView.shakeEventView.shakeInfoDetailTextView.text = demoData.eventObj.last?.titleLabel ?? ""
-//        shakeView.shakeEventView.shake
+       
+setUpView()
         shakeView.layoutIfNeeded()
-        demoData.eventObj.popLast()
+        fbEvents.popLast()
+        pageControl.currentPage = pageControl.currentPage + 1
         print("shake event func called")
+        shakeView.confirmButton.isEnabled = true
     }
+    
+  private func configurePageControl() {
+    self.pageControl.numberOfPages = fbEvents.count
+        self.pageControl.currentPage = 0
+        self.pageControl.tintColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        self.pageControl.pageIndicatorTintColor = UIColor.white
+        self.pageControl.currentPageIndicatorTintColor = #colorLiteral(red: 0.9767183661, green: 0.2991916835, blue: 1, alpha: 1)
+        pageControl.isUserInteractionEnabled = false
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+        
+        navigationItem.titleView = pageControl
+        pageControl.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+        
+    }
+    
+   @objc private func likedButtonPressed() {
+    guard let eventID = fbEvents.last?.eventID else {return}
+    eventsLiked.append(eventID)
+           updateEventsLikedOnFirebase(eventsLiked: eventsLiked)
+           count += 1
+           
+           guard let lastEventLiked = eventsLiked.last else {return}
+           if partnersEventsLiked.contains(lastEventLiked) {
+               matchAlert(title: "It's a Match!", message: "You've Matched Events With Your Partner")
+               // segue to the match VC
+           }
+    
+    shakeView.confirmButton.isEnabled = false
+       }
 
-// load in my array of events in viewDidLoad, and add the info from the last index to the shakeview
-// after I shake the phone, let's call a func that does these things:
-// remove last index of array of events (popLast)
-// (not important right now) save info from that index to firebase.
-// update the shakeview with the info from the event that is NOW at the last index
-// when there are no more events, deal with it, user!
+       
+       private func getPriorEventsLiked() {
+           if let eventsArr = UserDefaultsWrapper.standard.getEventsLiked() {
+            guard eventsArr.count > 0 else {return}
+        }
+           
+           //maybe pull events from firebase instead
+           
+       }
 
+       private func updateEventsLikedOnFirebase(eventsLiked: [String]) {
+           FirestoreService.manager.updateEventsLiked(eventsLiked: eventsLiked) { (result) in
+               switch result {
+               case .success(()):
+                   print("Updated Events Liked")
+               case .failure(let error):
+                   print("Did not update events liked \(error)")
+               }
+           }
+       }
+    private func matchAlert(title:String,message:String) {
+        //move to extension
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let confirmMatch = UIAlertAction(title: "Confirm", style: .default) { (response) in
+            self.navigationController?.pushViewController(RootViewController(), animated: true)
+        }
+        let deny = UIAlertAction(title: "Deny", style: .destructive)
+        
+        alertController.addAction(confirmMatch)
+        alertController.addAction(deny)
+        present(alertController,animated: true)
+    }
+       private func clearEventsLikedArr() {
+           eventsLiked = []
+           updateEventsLikedOnFirebase(eventsLiked: eventsLiked)
+        
+       }
+
+       
+       private func addListenerOnPartner() {
+           
+           guard let partnerUID = UserDefaultsWrapper.standard.getPartnerUID() else {return}
+           
+           partnerListener = collectionReference.whereField("uid", isEqualTo: partnerUID)
+                   .addSnapshotListener({ (snapshot, error) in
+
+                       if let error = error {
+                           print(error.localizedDescription)
+                       }
+                       guard let usersFromOnline = snapshot?.documents else {
+                           print("no invites available")
+                           return
+                       }
+                       let userList = usersFromOnline.compactMap { (snapshot) -> AppUser? in
+                           let userID = snapshot.documentID
+                           let data = snapshot.data()
+                           return AppUser(from: data, id: userID)
+                       }
+
+                       print("listener on PartnerUser \(userList[0].eventsLiked)")
+                       
+                       self.partnersEventsLiked = userList[0].eventsLiked
+                       
+                   })
+           }
+    
+    private func setUpView() {
+        guard let lastEvent = self.fbEvents.last else {return}
+        if let image = lastEvent.imageURL {
+
+       //remember to stop user interaction until image finishes loading
+            ImageHelper.shared.getImage(urlStr: image) { [weak self](result) in
+        DispatchQueue.main.async {
+            
+        
+        switch result {
+      case .failure(let error):
+       print(error)
+       self?.shakeView.shakeEventView.setUpImage(from:lastEvent , image: UIImage(systemName: "photo")!)
+      case .success(let image):
+        
+        self?.shakeView.shakeEventView.setUpImage(from: lastEvent, image: image)
+      }
+     }
+            }
+    } else {
+            self.shakeView.shakeEventView.setUpImage(from:lastEvent , image: UIImage(systemName: "photo")!)
+    }
+}
+
+    override func becomeFirstResponder() -> Bool {
+        return true
+    }
+    
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         shakeTheEvent()
             print("Shake has happened")
     }
     
-//    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-//
-//        // Add code when motion begins -- probably could be some kind of animation
-//        shakeTheEvent()
-//        print("Shake has happened")
-//
-//    }
-    
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        
-        // Add code for when motion stops --
+        override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?){
+         if motion == .motionShake
+         {
+               print("Shake Gesture Detected")
+               //show some alert here
+         }
     }
-    
-    
-}
-
-struct DummyData {
-    var eventObj =
-        [EventObj(titleLabel: "The Lion King", image: "LIONKING-superJumbo", longDesc: "Based on the 1994 Disney animated feature film of the same name and William Shakespeare's Hamlet, The Lion King is the story of Simba, an adventurous and energetic lion cub who is next in line to be king of the Pride Lands, a thriving and beautiful region in the African savanna." ),
-         EventObj(titleLabel: "Goldfinger Live", image: "concert-2", longDesc: "Goldfinger is an American punk rock and ska punk band from Los Angeles, California, formed in 1994. In their early years the band is widely considered to have been a contributor to the movement of third-wave ska, a mid-1990s revitalization in the popularity of ska." ),
-         EventObj(titleLabel: "Jazz night", image: "jazzNight", longDesc: "Jazz night featuring our beloved, phenomenal saxophonist, Kenn Friedman. ... Our three-story café allows having an eclectic experience varying from a lively Jazz experience on the second floor (the main venue) to a relaxing Jazz music background on the first and third floor." ),
-         EventObj(titleLabel: "Electric Daisy Carnival", image: "festival", longDesc: "Electric Daisy Carnival, commonly known as EDC, is the largest electronic dance music festival in North America. The annual flagship event is now held in May, at the Las Vegas Motor Speedway."),
-         EventObj(titleLabel: "Webster Hall", image: "danceNight", longDesc: "Webster Hall. The landmarked Webster Hall in the East Village serves as a performance space during the week and nightclub on the weekends, in addition to hosting private events. Three floors of entertainment space, including lounges, can accommodate parties from 100 to 2,500 people."),
-         EventObj(titleLabel: "Bill Burr", image: "comedyShow", longDesc: "Massachusetts native Bill Burr is a standup comedian, podcaster, and actor best known for his sardonic observational humor. Burr studied radio at Emerson College in the early '90s, and did his first standup show as a student in 1992.")]
-}
-
-struct EventObj {
-    let titleLabel: String
-    let image: String
-    let longDesc: String
 }

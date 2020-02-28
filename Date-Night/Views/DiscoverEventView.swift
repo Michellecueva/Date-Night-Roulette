@@ -17,11 +17,12 @@ class DiscoverEventView: UIView {
         let button = UIButton(type: .system)
         button.setTitle("Discover Events", for: .normal)
         button.setTitleColor(#colorLiteral(red: 1, green: 0.329310298, blue: 0.9998843074, alpha: 1), for: .normal)
+         button.setTitleColor(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1), for: .disabled)
         button.titleLabel?.font = UIFont(name: "CopperPlate", size: 20)
         button.layer.borderColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         button.layer.borderWidth = 4
         button.layer.cornerRadius = 5
-        button.isEnabled = true
+        button.isEnabled = false
         return button
     }()
     
