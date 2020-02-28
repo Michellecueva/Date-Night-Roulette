@@ -79,7 +79,7 @@ class DiscoverEventVC: UIViewController {
                 
             case .success(let partner):
                 self?.partner = partner[0]
-                
+                UserDefaultsWrapper.standard.store(partnerID: partner[0].uid)
                 self?.addListener()
             }
         }
@@ -99,7 +99,7 @@ class DiscoverEventVC: UIViewController {
     }
     
     private func getEvents(arrayOfPreferences:Set<String>) {
-      
+      //check matched events to see stop events you've already added from showing up in get events
         let group = DispatchGroup()
         
         
@@ -118,10 +118,10 @@ class DiscoverEventVC: UIViewController {
         }
      
         group.notify(queue: .main) {
-           // let shakeVC = ShakeGestureVC()
-           // shakeVC.fbEvents = self.arrayOfEvents
+         
             self.shakeGestureDelegateFunction()
-           // self.partnerListener?.remove()
+            self.partnerListener?.remove()
+            self.remove()
 
         }
        
