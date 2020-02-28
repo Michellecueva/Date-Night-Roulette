@@ -15,6 +15,9 @@
 		0B38E7D324007B0B003D05CE /* Categories.json in Resources */ = {isa = PBXBuildFile; fileRef = 0B38E7D0240078DF003D05CE /* Categories.json */; };
 		0B38E7D524048B89003D05CE /* RandomEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38E7D424048B89003D05CE /* RandomEventView.swift */; };
 		0B38E7D724048BAC003D05CE /* RandomEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38E7D624048BAC003D05CE /* RandomEventVC.swift */; };
+		0B5D18F9240716D800A5849B /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D18F8240716D800A5849B /* FirebaseStorageService.swift */; };
+		0B5D18FD24086B3100A5849B /* MatchedHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D18FC24086B3100A5849B /* MatchedHistory.swift */; };
+		0B5D18FF24086F8000A5849B /* MatchedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D18FE24086F8000A5849B /* MatchedCell.swift */; };
 		0B96460D23EE2C6A00D2CAB9 /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B96460C23EE2C6A00D2CAB9 /* PreferenceView.swift */; };
 		0B96460F23EE2C9E00D2CAB9 /* PreferenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B96460E23EE2C9E00D2CAB9 /* PreferenceCell.swift */; };
 		0B96461123F1C3B900D2CAB9 /* PreferenceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B96461023F1C3B900D2CAB9 /* PreferenceVC.swift */; };
@@ -97,6 +100,9 @@
 		0B38E7D0240078DF003D05CE /* Categories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Categories.json; sourceTree = "<group>"; };
 		0B38E7D424048B89003D05CE /* RandomEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomEventView.swift; sourceTree = "<group>"; };
 		0B38E7D624048BAC003D05CE /* RandomEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomEventVC.swift; sourceTree = "<group>"; };
+		0B5D18F8240716D800A5849B /* FirebaseStorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
+		0B5D18FC24086B3100A5849B /* MatchedHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchedHistory.swift; sourceTree = "<group>"; };
+		0B5D18FE24086F8000A5849B /* MatchedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchedCell.swift; sourceTree = "<group>"; };
 		0B96460C23EE2C6A00D2CAB9 /* PreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceView.swift; sourceTree = "<group>"; };
 		0B96460E23EE2C9E00D2CAB9 /* PreferenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceCell.swift; sourceTree = "<group>"; };
 		0B96461023F1C3B900D2CAB9 /* PreferenceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceVC.swift; sourceTree = "<group>"; };
@@ -301,6 +307,7 @@
 			children = (
 				2862B6AF23DFFF3F0047B47B /* FirebaseAuthService.swift */,
 				283823C723E885B90031327E /* FirestoreService.swift */,
+				0B5D18F8240716D800A5849B /* FirebaseStorageService.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -328,6 +335,7 @@
 				7401EF7723F1E941000C322B /* WaitingForResponseView.swift */,
 				0B38E7D424048B89003D05CE /* RandomEventView.swift */,
 				283823E523F0C4D10031327E /* InvitesCell.swift */,
+				0B5D18FE24086F8000A5849B /* MatchedCell.swift */,
 				283823E723F0C5F20031327E /* InvitesPendingView.swift */,
 				7448D19F23E895B4003A997C /* SignInView.swift */,
 				691DD0ED23EE0351003A67E7 /* SendInviteView.swift */,
@@ -354,6 +362,7 @@
 			children = (
 				69CE863923F716C6001E1327 /* ViewControllerConfig.swift */,
 				6965961323E0A9ED009399F2 /* AppUser.swift */,
+				0B5D18FC24086B3100A5849B /* MatchedHistory.swift */,
 				0BBFCD3923E8CEB700E039A7 /* Categories.swift */,
 				283823C123E885050031327E /* Invites.swift */,
 				0B38E7CB2400762E003D05CE /* EventfulModel.swift */,
@@ -482,7 +491,6 @@
 				0B38E7D324007B0B003D05CE /* Categories.json in Resources */,
 				0B38E7D224007961003D05CE /* events.json in Resources */,
 				0B38E7D324007B0B003D05CE /* Categories.json in Resources */,
-				69CE862523F71547001E1327 /* GoogleService-Info.plist in Resources */,
 				2862B60723DD47160047B47B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -616,10 +624,12 @@
 				7467518323F7293200357610 /* SplashScreenVC.swift in Sources */,
 				691DD12623F20ACD003A67E7 /* ProfileSettingVC.swift in Sources */,
 				7401EF4723ECAB45000C322B /* DiscoverEventView.swift in Sources */,
+				0B5D18FF24086F8000A5849B /* MatchedCell.swift in Sources */,
 				7401EF7623F1E910000C322B /* WaitingForResponseVC.swift in Sources */,
 				2862B60523DD47130047B47B /* Date_Night.xcdatamodeld in Sources */,
 				7448D1A223E895DF003A997C /* SignUpView.swift in Sources */,
 				691DD0EE23EE0351003A67E7 /* SendInviteView.swift in Sources */,
+				0B5D18FD24086B3100A5849B /* MatchedHistory.swift in Sources */,
 				0B38E7D724048BAC003D05CE /* RandomEventVC.swift in Sources */,
 				2862B66C23DFE26C0047B47B /* SignUpVC.swift in Sources */,
 				69CE862323F7151F001E1327 /* Secrets.swift in Sources */,
@@ -628,6 +638,7 @@
 				746751A423FF458900357610 /* ShakeCollectionCell.swift in Sources */,
 				2862B5FD23DD47130047B47B /* SceneDelegate.swift in Sources */,
 				2862B6B023DFFF3F0047B47B /* FirebaseAuthService.swift in Sources */,
+				0B5D18F9240716D800A5849B /* FirebaseStorageService.swift in Sources */,
 				0BBFCD3423E8CE0800E039A7 /* ImageHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

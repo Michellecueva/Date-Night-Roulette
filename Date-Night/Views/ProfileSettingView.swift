@@ -16,17 +16,20 @@ class ProfileSettingView: UIView {
     //MARK: Portrait
     
     lazy var portraitPic: UIImageView = {
-        let image = UIImageView()
+        let image = UIImageView(frame: UIScreen.main.bounds)
         image.tintColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
         image.image = UIImage(named: "profilepic")
         image.layer.borderWidth = 1
-        image.layer.cornerRadius =  84 //image.frame.size.height/2
-        image.layer.masksToBounds = false
+        image.layer.cornerRadius = 84 //frame.size.width / 2 //image.bounds.width / 2 //84 //image.frame.size.height/2
+        image.layer.masksToBounds = true
         image.layer.borderColor = UIColor.black.cgColor
-        image.clipsToBounds = true
+        //image.clipsToBounds = true
+        image.contentMode = .scaleToFill
         //image.image = UIImage(systemName: "person.crop.circle")
         return image
     }()
+    
+
     
     lazy var addPictureButton: UIButton = {
           let button = UIButton()
@@ -123,7 +126,7 @@ class ProfileSettingView: UIView {
             portraitPic.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4),
             portraitPic.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4)
         ])
-        //portraitPic.layer.cornerRadius = portraitPic.bounds.size.height / 2
+       // portraitPic.layer.cornerRadius = portraitPic.bounds.size.width / 2
     }
     
     private func setAddButtonConstraints(){

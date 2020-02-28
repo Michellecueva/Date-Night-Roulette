@@ -8,7 +8,7 @@ class PartnerSettingView: UIView {
        image.image = UIImage(named: "partnerpic")
        image.layer.borderWidth = 1
        image.layer.cornerRadius =  84//image.frame.size.height/2
-       image.layer.masksToBounds = false
+       image.layer.masksToBounds = true
        image.layer.borderColor = UIColor.black.cgColor
        image.clipsToBounds = true
        //image.image = UIImage(systemName: "person.crop.circle")
@@ -24,12 +24,25 @@ class PartnerSettingView: UIView {
         return label
     }()
     
+    lazy var noEventsLabel: UILabel = {
+          let label = UILabel()
+          label.text = "No Event History"
+          label.font = UIFont(name: "Palatino-bold", size: 25)
+          label.adjustsFontSizeToFitWidth = true
+          label.textAlignment = .center
+          label.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+          return label
+      }()
+    
     lazy var historyTable: UITableView = {
-        let table = UITableView()
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "historyCell")
-        table.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
-        return table
-    }()
+         let tableview = UITableView()
+         tableview.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+         tableview.separatorColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+         tableview.register(MatchedCell.self, forCellReuseIdentifier: MatchedCell.identifier)
+         tableview.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+         return tableview
+        }()
+     
     
     lazy var removePartnerButton: UIButton = {
         let button = UIButton(type: .system)
@@ -58,6 +71,7 @@ class PartnerSettingView: UIView {
     private func setSubviews() {
         self.addSubview(portraitPic)
         self.addSubview(partnerNameLabel)
+        self.addSubview(noEventsLabel)
         self.addSubview(historyTable)
         self.addSubview(removePartnerButton)
     }
@@ -65,6 +79,7 @@ class PartnerSettingView: UIView {
     private func setConstraints() {
         setPortraitConstraints()
         setPartnerNameLabelConstraints()
+        setNoEventsLabelConstraints()
         setTableConstraints()
         setRemoveButtonConstraints()
     }
@@ -89,20 +104,30 @@ class PartnerSettingView: UIView {
         ])
     }
     
-    private func setUserEmailLabelConstraints() {
-        partnerNameLabel.translatesAutoresizingMaskIntoConstraints = false
+    private func setNoEventsLabelConstraints(){
+        noEventsLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            partnerNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.45),
-            partnerNameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: -50),
-            partnerNameLabel.widthAnchor.constraint(equalToConstant: 200),
-            partnerNameLabel.heightAnchor.constraint(equalToConstant: 50)
+        noEventsLabel.topAnchor.constraint(equalTo: partnerNameLabel.bottomAnchor, constant: 20),
+        noEventsLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+        noEventsLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6),
+        noEventsLabel.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
+    
+//    private func setUserEmailLabelConstraints() {
+//        partnerNameLabel.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            partnerNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: self.frame.height * 0.45),
+//            partnerNameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: -50),
+//            partnerNameLabel.widthAnchor.constraint(equalToConstant: 200),
+//            partnerNameLabel.heightAnchor.constraint(equalToConstant: 50)
+//        ])
+//    }
     
     private func setTableConstraints() {
         historyTable.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            historyTable.topAnchor.constraint(equalTo: portraitPic.bottomAnchor, constant: 70),
+            historyTable.topAnchor.constraint(equalTo: partnerNameLabel.bottomAnchor, constant: 70),
             historyTable.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 40),
             historyTable.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -40),
             historyTable.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.4)
@@ -120,4 +145,3 @@ class PartnerSettingView: UIView {
     }
     
 }
-
