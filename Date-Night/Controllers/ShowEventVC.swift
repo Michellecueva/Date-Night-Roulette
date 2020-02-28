@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class ShowEventVC: UIViewController {
 
@@ -20,14 +21,113 @@ class ShowEventVC: UIViewController {
         return preferences
     }
     
-    var testpreferenceArray:[String] = ["nba"]
+    
+    var eventsLiked = [String]() {
+        didSet {
+            UserDefaultsWrapper.standard.store(eventsLikedArr: eventsLiked)
+        }
+    }
+    
+    var partnersEventsLiked = [String]()
+    
+    private var partnerListener: ListenerRegistration?
+       
+    private let db = Firestore.firestore()
+    
+    private var collectionReference:CollectionReference {
+           return db.collection("users")
+       }
+     var count = 1
+       
+    deinit {
+           partnerListener?.remove()
+    }
+    
+    lazy var button: UIButton = {
+        let button = UIButton(frame: CGRect(x: 200, y: 400, width: 50, height: 50))
+        button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        button.addTarget(self, action: #selector(pressButton), for: .touchUpInside)
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//addEventsFromAPI()
-        // Do any additional setup after loading the view.
+        self.view.addSubview(button)
+        //clearEventsLikedArr()
+        addListenerOnPartner()
     }
     
+    @objc func pressButton() {
+        likedButtonPressed()
+    }
+    
+    private func likedButtonPressed() {
+        getPriorEventsLiked()
+        eventsLiked.append("hey \(count)")
+        updateEventsLikedOnFirebase(eventsLiked: eventsLiked)
+        count += 1
+        
+        guard let lastEventLiked = eventsLiked.last else {return}
+        if partnersEventsLiked.contains(lastEventLiked) {
+            print("IT'S A MATCH! \(lastEventLiked)")
+            // segue to the match VC
+        }
+    }
+
+    
+    private func getPriorEventsLiked() {
+        if let eventsArr = UserDefaultsWrapper.standard.getEventsLiked() {
+            eventsLiked = eventsArr
+        }
+        
+    }
+
+    private func updateEventsLikedOnFirebase(eventsLiked: [String]) {
+        FirestoreService.manager.updateEventsLiked(eventsLiked: eventsLiked) { (result) in
+            switch result {
+            case .success(()):
+                print("Updated Events Liked")
+            case .failure(let error):
+                print("Did not update events liked \(error)")
+            }
+        }
+    }
+    
+    private func clearEventsLikedArr() {
+        eventsLiked = []
+        updateEventsLikedOnFirebase(eventsLiked: eventsLiked)
+    }
+
+    
+    private func addListenerOnPartner() {
+        
+        guard let partnerUID = UserDefaultsWrapper.standard.getPartnerUID() else {return}
+        
+        partnerListener = collectionReference.whereField("uid", isEqualTo: partnerUID)
+                .addSnapshotListener({ (snapshot, error) in
+
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                    guard let usersFromOnline = snapshot?.documents else {
+                        print("no invites available")
+                        return
+                    }
+                    let userList = usersFromOnline.compactMap { (snapshot) -> AppUser? in
+                        let userID = snapshot.documentID
+                        let data = snapshot.data()
+                        return AppUser(from: data, id: userID)
+                    }
+
+                    print("listener on PartnerUser \(userList[0].eventsLiked)")
+                    
+                    self.partnersEventsLiked = userList[0].eventsLiked
+                    
+                })
+        }
+}
+
+
 //    private func addEventsFromAPI() {
 //        for preference in preferenceArray {
 //            SeatGeekAPIClient.shared.getEventsFrom(category: preference) { (result) in
@@ -65,5 +165,4 @@ class ShowEventVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    }
-//}
+
