@@ -183,6 +183,8 @@ setUpView()
            }
     
     private func setUpView() {
+      
+        
         guard let lastEvent = self.fbEvents.last else {return}
         if let image = lastEvent.imageURL {
 
@@ -205,6 +207,7 @@ setUpView()
             self.shakeView.shakeEventView.setUpImage(from:lastEvent , image: UIImage(systemName: "photo")!)
     }
 }
+   
 
     override func becomeFirstResponder() -> Bool {
         return true

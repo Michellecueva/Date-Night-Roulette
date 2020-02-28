@@ -46,7 +46,8 @@ class ProfileSettingView: UIView {
     lazy var userNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Hi, userName!"
-        label.font = UIFont(name: "CopperPlate", size: 25)
+        label.adjustsFontSizeToFitWidth = true
+        label.font = UIFont(name: "CopperPlate", size: 17)
         label.textAlignment = .center
         label.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         return label
@@ -56,7 +57,7 @@ class ProfileSettingView: UIView {
         let label = UILabel()
         label.text = "Partner Email:"
         label.textAlignment = .center
-        label.font = UIFont(name: "Arial", size: 25)
+        label.font = UIFont(name: "Arial", size: 17)
         label.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         return label
     }()
@@ -64,7 +65,7 @@ class ProfileSettingView: UIView {
     lazy var partnerEmailDisplayLabel: UILabel = {
         let label = UILabel()
         label.text = "Partner Email"
-        label.font = UIFont(name: "CopperPlate", size: 25)
+        label.font = UIFont(name: "CopperPlate", size: 17)
         label.text = "Email goes here"
         label.textAlignment = .center
         label.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
