@@ -29,7 +29,7 @@ class ShakeEventView: UIView {
         lazy var shakeInfoDetailTextView: UITextView = {
             let textview = UITextView()
             textview.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            textview.alpha = 0.0
+            textview.alpha = 0.7
             textview.layer.shadowColor = .init(srgbRed: 0.5, green: 0.5, blue: 0.5, alpha: 0.9)
             textview.adjustsFontForContentSizeCategory = true
             textview.font = UIFont(name: "Arial", size: 30)
@@ -53,7 +53,7 @@ class ShakeEventView: UIView {
             fatalError("init(coder:) has not been implemented")
         }
         
-        private enum State {
+         enum State {
             case expanded
             case collapsed
             
@@ -70,7 +70,7 @@ class ShakeEventView: UIView {
         //Mark: Properties
         
         private var initialFrame: CGRect?
-        private var state: State = .expanded
+         var state: State = .collapsed
         private var collectionView: UICollectionView?
         private var index: Int?
         
@@ -81,37 +81,37 @@ class ShakeEventView: UIView {
             
         }
     
-       @objc func animateShowInfo(_ viewToAnimate:UITextView)  {
-                    
-                    UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.1, options: .curveEaseInOut, animations: {
-                        
-                        switch self.state {
-                        case .collapsed:
-                            self.infoLeadConstraint.constant = 0
-                            self.infoTopConstraint.constant = 70
-                            self.layoutIfNeeded()
-                            self.shakeInfoDetailTextView.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
-                            self.shakeInfoDetailTextView.alpha = 0.7
-                            
-                            self.state = .expanded
-                            
-                        case.expanded:
-                            self.infoLeadConstraint.constant = self.frame.width - 0
-                            self.infoTopConstraint.constant = self.frame.height - 50
-                            self.layoutIfNeeded()
-                            self.shakeInfoDetailTextView.alpha = 0.7
-                            self.shakeInfoDetailTextView.textColor = .clear
-                            self.state = .collapsed
-                        }
-                    })
-                }
+     @objc func animateShowInfo(_ viewToAnimate:UITextView)  {
+                           
+                           UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.1, options: .curveEaseInOut, animations: {
+                               
+                               switch self.state {
+                               case .collapsed:
+                                   self.infoLeadConstraint.constant = 0
+                                   self.infoTopConstraint.constant = 250
+                                   self.layoutIfNeeded()
+                                   self.shakeInfoDetailTextView.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+                                   self.shakeInfoDetailTextView.alpha = 0.7
+                                
+                                   self.state = .expanded
+                                   
+                               case.expanded:
+                                   self.infoLeadConstraint.constant = 0
+                                   self.infoTopConstraint.constant = 50
+                                   self.layoutIfNeeded()
+                                   self.shakeInfoDetailTextView.alpha = 0.7
+                                   self.shakeInfoDetailTextView.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+                                   self.state = .collapsed
+                               }
+                           })
+                       }
     
     func setUpImage(from object: FBEvents, image: UIImage) {
       self.shakeImage.image = image
        
       switch state {
       case .expanded :
-        self.shakeInfoDetailTextView.text = object.description
+        self.shakeInfoDetailTextView.text = object.description?.replacingOccurrences(of: "<em>", with: "").replacingOccurrences(of: "<br>", with: "").replacingOccurrences(of: "</em>", with: "").replacingOccurrences(of: "</br>", with: "")
       default:
         self.shakeInfoDetailTextView.text = object.title
       }
@@ -160,24 +160,16 @@ class ShakeEventView: UIView {
         }
         
         
-        private func collapseInfoDetailConstraints() {
+   private func collapseInfoDetailConstraints() {
             shakeInfoDetailTextView.translatesAutoresizingMaskIntoConstraints = false
-            infoTopConstraint = shakeInfoDetailTextView.topAnchor.constraint(equalTo: self.shakeImage.topAnchor, constant: -50)
+            infoTopConstraint = shakeInfoDetailTextView.topAnchor.constraint(equalTo: self.shakeImage.topAnchor, constant: 250)
             infoLeadConstraint = shakeInfoDetailTextView.leadingAnchor.constraint(equalTo: self.shakeImage.leadingAnchor, constant: 0)
-            
-//            infoTopConstraint = shakeInfoDetailTextView.topAnchor.constraint(equalTo: self.shakeImage.topAnchor, constant: frame.height - 70)
-//            infoLeadConstraint = shakeInfoDetailTextView.leadingAnchor.constraint(equalTo: self.shakeImage.leadingAnchor, constant: 0)
-
             NSLayoutConstraint.activate([
                 shakeInfoDetailTextView.bottomAnchor.constraint(equalTo: self.shakeImage.bottomAnchor),
                 shakeInfoDetailTextView.trailingAnchor.constraint(equalTo: self.shakeImage.trailingAnchor),
-                shakeInfoDetailTextView.heightAnchor.constraint(equalToConstant: 70),
-    //            shakeInfoDetailTextView.leadingAnchor.constraint(equalTo: self.shakeImage.leadingAnchor, constant: contentView.frame.width - 40),
-    //            shakeInfoDetailTextView.topAnchor.constraint(equalTo: self.shakeImage.topAnchor, constant: contentView.frame.height - 40),
                 infoTopConstraint,
                 infoLeadConstraint
             ])
-            
         }
         
         
