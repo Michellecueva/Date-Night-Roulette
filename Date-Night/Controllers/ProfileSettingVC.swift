@@ -145,7 +145,7 @@ class ProfileSettingVC: UIViewController {
             print(error)
         }
     }
-//    
+    
 //    func newFunc(){
 //        
 //        FirebaseStorageService.manager.storeImage(image: imageData, completion: {[weak self](result) in
