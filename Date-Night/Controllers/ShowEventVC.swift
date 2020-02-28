@@ -80,6 +80,8 @@ class ShowEventVC: UIViewController {
             eventsLiked = eventsArr
         }
         
+        //maybe pull events from firebase instead
+        
     }
 
     private func updateEventsLikedOnFirebase(eventsLiked: [String]) {

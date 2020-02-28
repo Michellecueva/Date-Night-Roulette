@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 
 class AdminViewController: UIViewController {
@@ -16,10 +17,11 @@ class AdminViewController: UIViewController {
              print("added Event  #\(arrayOfEvents.count)")
          }
      }
-     var preferenceArray:[String] {
-         guard let preferences =  UserDefaultsWrapper.standard.getPreferences() else {fatalError()}
-         return preferences
-     }
+    var preferenceArray:[String]  = [] {
+        didSet {
+            print(preferenceArray.count)
+        }
+    }
     
 
     let adminView = AdminView()
@@ -29,15 +31,17 @@ class AdminViewController: UIViewController {
         view.backgroundColor = .clear
         view.addSubview(adminView)
         addTargetToButton()
-        
+        getUserPreferences()
         // Do any additional setup after loading the view.
     }
     
     
 
     @objc private func addEventsToFirebase() {
-     addEventsFromAPI()
+     
+        addEventsFromAPI()
     }
+    
     
     private func addTargetToButton() {
         adminView.addEventsButton.addTarget(self, action: #selector(addEventsToFirebase), for: .touchUpInside)
@@ -50,15 +54,35 @@ class AdminViewController: UIViewController {
                         print(error)
                     case .success(let event):
                         self.arrayOfEvents += event
+                    
                         self.sendEventToFireBase(preference: preference, eventArray: event)
+                      
                     }
                 }
             }
         }
+    
+    private func getUserPreferences() {
+           //determine whether or not we should make multiple requests to get the same user
+        guard let appUserID = Auth.auth().currentUser?.uid else {return}
+           
+           FirestoreService.manager.getUser(userID: appUserID) { (result) in
+               switch result {
+               case .failure(let error):
+                   print(error)
+               case .success(let user):
+
+                   self.preferenceArray = user.preferences
+                   print(user.preferences.count)
+                   
+               }
+           }
+       }
+    
         private func sendEventToFireBase(preference:String,eventArray:[Event]) {
     
             for event in eventArray {
-                
+                print(event.title)
                   guard event.image?.medium.url != nil && event.description != nil else {return}
     
                 let fbEvent = FBEvents(title: event.title, address: event.venue_url, eventID: String(event.id), description: event.description, imageURL: event.image?.medium.url, websiteURL: event.venue_url,type:preference)

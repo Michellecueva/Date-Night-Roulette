@@ -18,6 +18,7 @@ class ShakeGestureVC: UIViewController {
                 return
             }
             setUpView()
+            print(fbEvents.count)
             
         }
     }

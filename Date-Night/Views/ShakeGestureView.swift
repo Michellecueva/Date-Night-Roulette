@@ -28,7 +28,8 @@ class ShakeGestureView: UIView {
     lazy var confirmButton: UIButton = {
         let button = UIButton()
         button.setTitle("It's a date!", for: .normal)
-        button.setTitleColor(#colorLiteral(red: 1, green: 0.1273619533, blue: 1, alpha: 1), for: .normal)
+        button.setTitleColor(#colorLiteral(red: 1, green: 0.329310298, blue: 0.9998843074, alpha: 1), for: .normal)
+        button.setTitleColor(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1), for: .disabled)
         button.titleLabel?.font = UIFont(name: "Copperplate", size: 20)
         button.layer.borderColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
 //            colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
