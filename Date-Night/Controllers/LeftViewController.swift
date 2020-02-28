@@ -25,7 +25,7 @@ class LeftViewController: UIViewController {
     
     var currentUser:AppUser? {
         didSet {
-            partnerProfileVC.thePartner.partnerNameLabel.text = currentUser?.partnerUserName ?? ""
+            partnerProfileVC.thePartner.partnerNameLabel.text = "Partner: \(currentUser?.partnerUserName ?? "")" 
                }
     }
     
@@ -38,7 +38,7 @@ class LeftViewController: UIViewController {
     private func determineLeftVC() {
           switch leftScreenStatus {
           case .partnerProfile:
-            
+        
               addAndRemoveChild(currentChild: partnerProfileVC)
           case .sendInvite:
               sendInviteVC.delegate = self
