@@ -43,23 +43,23 @@ class RootViewController: UIViewController{
      private var currentUser:AppUser? {
         didSet {
             print("changed")
-            
-            if currentUser?.partnerEmail == "" {
-                getInvites()
-                homeScreenVC.homePageStatus = .none
-            } else {
-                leftVC.currentUser = currentUser
-                profileVC.currentUser = currentUser
-                leftVC.leftScreenStatus = .partnerProfile
-                homeScreenVC.currentUser = currentUser
-                
-                if currentUser?.preferences != [] {
-                    homeScreenVC.homePageStatus = .discoverEvents
-                    
-                } else {
-                    homeScreenVC.homePageStatus = .setPreferences
-                }
-            }
+            handleAppNavigationLogic()
+//            if currentUser?.partnerEmail == "" {
+//                getInvites()
+//                homeScreenVC.homePageStatus = .none
+//            } else {
+//                leftVC.currentUser = currentUser
+//                profileVC.currentUser = currentUser
+//                leftVC.leftScreenStatus = .partnerProfile
+//                homeScreenVC.currentUser = currentUser
+//
+//                if currentUser?.preferences != [] {
+//                    homeScreenVC.homePageStatus = .discoverEvents
+//
+//                } else {
+//                    homeScreenVC.homePageStatus = .setPreferences
+//                }
+//            }
         }
     }
     
@@ -83,6 +83,33 @@ class RootViewController: UIViewController{
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         swipingNavigationViewController.view.frame = view.bounds
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard currentUser != nil else {return}
+        handleAppNavigationLogic()
+        
+    }
+    
+    private func handleAppNavigationLogic() {
+        if currentUser?.partnerEmail == "" {
+            getInvites()
+            homeScreenVC.homePageStatus = .none
+        } else {
+            leftVC.currentUser = currentUser
+            profileVC.currentUser = currentUser
+            leftVC.leftScreenStatus = .partnerProfile
+            homeScreenVC.currentUser = currentUser
+            
+            if currentUser?.preferences != [] {
+                homeScreenVC.homePageStatus = .discoverEvents
+                
+            } else {
+                homeScreenVC.homePageStatus = .setPreferences
+            }
+        }
+
     }
     private func addUserListener() {
         userListener = collectionReference.whereField(
