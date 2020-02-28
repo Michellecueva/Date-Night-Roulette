@@ -9,6 +9,6 @@
 import Foundation
 
 
-protocol SavedPreferencesDelegate:AnyObject {
+protocol ShakeGestureDelegate:AnyObject {
     func changeStatus(homeScreenStatus:HomePageStatus)
 }

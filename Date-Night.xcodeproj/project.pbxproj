@@ -57,7 +57,7 @@
 		69CE862A23F71565001E1327 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE862723F71565001E1327 /* RootViewController.swift */; };
 		69CE862B23F71565001E1327 /* SwipingContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE862823F71565001E1327 /* SwipingContainerViewController.swift */; };
 		69CE863523F715FF001E1327 /* WaitingForResponseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE863123F715FF001E1327 /* WaitingForResponseDelegate.swift */; };
-		69CE863623F715FF001E1327 /* SavedPreferenceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE863223F715FF001E1327 /* SavedPreferenceDelegate.swift */; };
+		69CE863623F715FF001E1327 /* ShakeGestureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE863223F715FF001E1327 /* ShakeGestureDelegate.swift */; };
 		69CE863723F715FF001E1327 /* SendInviteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE863323F715FF001E1327 /* SendInviteDelegate.swift */; };
 		69CE863823F715FF001E1327 /* InvitesPendingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE863423F715FF001E1327 /* InvitesPendingDelegate.swift */; };
 		69CE863A23F716C7001E1327 /* ViewControllerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE863923F716C6001E1327 /* ViewControllerConfig.swift */; };
@@ -142,7 +142,7 @@
 		69CE862823F71565001E1327 /* SwipingContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingContainerViewController.swift; sourceTree = "<group>"; };
 		69CE863023F715A9001E1327 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		69CE863123F715FF001E1327 /* WaitingForResponseDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitingForResponseDelegate.swift; sourceTree = "<group>"; };
-		69CE863223F715FF001E1327 /* SavedPreferenceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedPreferenceDelegate.swift; sourceTree = "<group>"; };
+		69CE863223F715FF001E1327 /* ShakeGestureDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakeGestureDelegate.swift; sourceTree = "<group>"; };
 		69CE863323F715FF001E1327 /* SendInviteDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendInviteDelegate.swift; sourceTree = "<group>"; };
 		69CE863423F715FF001E1327 /* InvitesPendingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitesPendingDelegate.swift; sourceTree = "<group>"; };
 		69CE863923F716C6001E1327 /* ViewControllerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerConfig.swift; sourceTree = "<group>"; };
@@ -338,7 +338,7 @@
 			isa = PBXGroup;
 			children = (
 				283823ED23F0F4F30031327E /* CellDelegate.swift */,
-				69CE863223F715FF001E1327 /* SavedPreferenceDelegate.swift */,
+				69CE863223F715FF001E1327 /* ShakeGestureDelegate.swift */,
 				69CE863323F715FF001E1327 /* SendInviteDelegate.swift */,
 				69CE863423F715FF001E1327 /* InvitesPendingDelegate.swift */,
 				69CE863123F715FF001E1327 /* WaitingForResponseDelegate.swift */,
@@ -589,7 +589,7 @@
 				2862B5FB23DD47130047B47B /* AppDelegate.swift in Sources */,
 				0B38E7D524048B89003D05CE /* RandomEventView.swift in Sources */,
 				69CE863B23F718BA001E1327 /* Enums.swift in Sources */,
-				69CE863623F715FF001E1327 /* SavedPreferenceDelegate.swift in Sources */,
+				69CE863623F715FF001E1327 /* ShakeGestureDelegate.swift in Sources */,
 				6986FE3123FC85B100B5560A /* UserDefaultsWrapper.swift in Sources */,
 				0B96460D23EE2C6A00D2CAB9 /* PreferenceView.swift in Sources */,
 				283823E823F0C5F20031327E /* InvitesPendingView.swift in Sources */,
