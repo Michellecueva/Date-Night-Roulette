@@ -11,6 +11,7 @@ import Foundation
 enum HomePageStatus:String {
     case discoverEvents
     case setPreferences
+    case shakeGesture
     case none
 }
 

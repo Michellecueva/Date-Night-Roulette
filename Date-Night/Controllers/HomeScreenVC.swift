@@ -10,6 +10,14 @@ import UIKit
 import FirebaseFirestore
 import FirebaseAuth
 
+protocol ShakeGestureDelegate:AnyObject {
+    func sendEvents(events:[FBEvents])
+}
+//change name of delegate
+protocol TestChainDelegate:AnyObject {
+    func sendEventDataToShakeVC(fbEvents:[FBEvents])
+}
+
 class HomeScreenVC: UIViewController {
     
      var homePageStatus:HomePageStatus = .none {
@@ -17,10 +25,17 @@ class HomeScreenVC: UIViewController {
                determineHomepageVC()
            }
        }
+    var currentUser:AppUser?
+    
+    weak var delegate:TestChainDelegate?
+    
+  lazy var homeEvents:[FBEvents] = []
     
        private let pendingInvites = InvitesPendingVC()
        private let discoverEvents = DiscoverEventVC()
        private let preferences = PreferenceVC()
+    
+    private let shakeGesture = ShakeGestureVC()
 
     private var currentUserEmail:String {
         guard let user = Auth.auth().currentUser?.email else { fatalError()}
@@ -36,6 +51,8 @@ class HomeScreenVC: UIViewController {
         print("Current User: \(currentUserEmail)")
       
     }
+    
+    
   
     private func addAndRemoveChild(currentChild:UIViewController) {
            for child in children {
@@ -49,23 +66,44 @@ class HomeScreenVC: UIViewController {
 
             case .discoverEvents:
                
+                discoverEvents.delegate = self
+                discoverEvents.currentUser = currentUser
                 addAndRemoveChild(currentChild: discoverEvents)
                 
             case .setPreferences:
                 addAndRemoveChild(currentChild: preferences)
                 
+            case .shakeGesture:
+               
+                shakeGesture.fbEvents = homeEvents
+                addAndRemoveChild(currentChild: shakeGesture)
+                
+                
             default:
                 addAndRemoveChild(currentChild: pendingInvites)
             }
         }
+    
+    private func testChainDelegateFunction() {
+        delegate?.sendEventDataToShakeVC(fbEvents: homeEvents)
     }
+   
+}
 
     extension HomeScreenVC:InvitesPendingDelegate {
         func changeStatus(status: HomePageStatus) {
             homePageStatus = status
         }
-   
     }
     
-  
+extension HomeScreenVC:ShakeGestureDelegate {
+    func sendEvents(events: [FBEvents]) {
+        homeEvents = events
+        testChainDelegateFunction()
 
+    }
+    
+    
+    
+ 
+}

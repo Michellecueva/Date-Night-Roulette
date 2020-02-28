@@ -58,9 +58,16 @@ class AdminViewController: UIViewController {
         private func sendEventToFireBase(preference:String,eventArray:[Event]) {
     
             for event in eventArray {
+                
+                  guard event.image?.medium.url != nil && event.description != nil else {return}
     
-                let fbEvent = FBEvents(title: event.title, address: event.venue_url, eventID: String(event.id), description: event.description, imageURL: nil, websiteURL: event.venue_url,type:preference)
+                let fbEvent = FBEvents(title: event.title, address: event.venue_url, eventID: String(event.id), description: event.description, imageURL: event.image?.medium.url, websiteURL: event.venue_url,type:preference)
     
+              
+               
+                
+                
+                
                 FirestoreService.manager.sendEventsToFirebase(event: fbEvent) { (result) in
                     switch result {
                     case .failure(let error):

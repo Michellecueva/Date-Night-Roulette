@@ -9,6 +9,7 @@
 import Foundation
 
 
-protocol ShakeGestureDelegate:AnyObject {
-    func changeStatus(homeScreenStatus:HomePageStatus)
-}
+//protocol ShakeGestureDelegate:AnyObject {
+//    func changeStatuss(status:HomePageStatus)
+//}
+

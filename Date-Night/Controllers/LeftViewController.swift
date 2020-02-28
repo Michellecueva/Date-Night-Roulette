@@ -70,6 +70,4 @@ extension LeftViewController:SendInviteDelegate {
     func changeStatus(status: LeftScreenStatus) {
         leftScreenStatus = status
     }
-    
-    
 }
