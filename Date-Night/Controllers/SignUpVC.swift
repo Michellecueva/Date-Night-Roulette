@@ -20,47 +20,68 @@ class SignUpVC: UIViewController {
     }
     
     @objc func validateFields() {
-           guard signUpView.emailTextField.hasText, signUpView.passwordTextField.hasText else {
-               signUpView.createButton.isEnabled = false
-               return
-           }
-           signUpView.createButton.isEnabled = true
-           signUpView.createButton.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-       }
+        guard signUpView.emailTextField.hasText, signUpView.passwordTextField.hasText, signUpView.confirmPasswordTextField.hasText else {
+            signUpView.createButton.isEnabled = false
+            return
+        }
+        signUpView.createButton.isEnabled = true
+        signUpView.createButton.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    }
     
-   @objc private func addObjcFunctionsToViewObjects() {
-    signUpView.createButton.addTarget(self, action: #selector(signUpButton), for: .touchUpInside)
-    signUpView.emailTextField.addTarget(self, action: #selector(validateFields), for: .editingChanged)
-    signUpView.passwordTextField.addTarget(self, action: #selector(validateFields), for: .editingChanged)
+    @objc private func addObjcFunctionsToViewObjects() {
+        signUpView.createButton.addTarget(self, action: #selector(signUpButton), for: .touchUpInside)
+        signUpView.emailTextField.addTarget(self, action: #selector(validateFields), for: .editingChanged)
+        signUpView.passwordTextField.addTarget(self, action: #selector(validateFields), for: .editingChanged)
+        signUpView.confirmPasswordTextField.addTarget(self, action: #selector(validateFields), for: .editingChanged)
     }
     
     @objc func signUpButton() {
-        signUpFunction(email: signUpView.emailTextField.text, password: signUpView.passwordTextField.text, displayName: signUpView.displayName.text)
+        
+        if signUpView.passwordTextField.text != signUpView.confirmPasswordTextField.text {
+            let alertController = UIAlertController(title: "Error", message: "Passwords do not match", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+        } else {
+            
+            signUpFunction(email: signUpView.emailTextField.text, password: signUpView.passwordTextField.text, confirmPassword: signUpView.confirmPasswordTextField.text, displayName: signUpView.displayName.text)
+        }
     }
     
-   private func signUpFunction(email:String?,password:String?,displayName:String?) {
+    private func signUpFunction(email:String?,password:String?,confirmPassword: String?, displayName:String?) {
         
         guard let email = email,
             let password = password,
-            let displayName = displayName else {
+            let confirmPassword = confirmPassword,
+            let displayName = displayName
+            
+            else {
                 
                 return
         }
-    
-        guard  email.isValidEmail else {
+        
+        guard email.isValidEmail else {
             
             return
         }
-   
+        
         guard password.isValidPassword else {
             return
         }
-    FirebaseAuthService.manager.createNewUser(email: email.lowercased(), password: password) { (result) in
-         
+        
+        guard confirmPassword.isConfirmPasswordValid else {
+            return
+        }
+        
+        FirebaseAuthService.manager.createNewUser(email: email.lowercased(), password: password) { (result) in
+            
             self.updateUserAccount(with: result, displayName: displayName)
         }
     }
- 
+    
+    
+    
     private func updateUserAccount(with result: Result<User,AppError>,displayName:String) {
         
         DispatchQueue.main.async {

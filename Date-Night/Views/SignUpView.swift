@@ -57,6 +57,19 @@ class SignUpView: UIView {
         return textField
     }()
     
+    lazy var confirmPasswordTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Confirm Password"
+        textField.font = UIFont(name: "Verdana", size: 14)
+        textField.backgroundColor = .lightText
+        textField.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        textField.borderStyle = .roundedRect
+        textField.autocorrectionType = .no
+        textField.isSecureTextEntry = true
+        return textField
+    }()
+    
+    
     lazy var createButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Create Account", for: .normal)
@@ -75,11 +88,12 @@ class SignUpView: UIView {
                 displayName,
                 emailTextField,
                 passwordTextField,
+                confirmPasswordTextField
             ]
         )
         
         stackView.axis = .vertical
-        stackView.spacing = 35
+        stackView.spacing = 25
         stackView.distribution = .fillEqually
         return stackView
     }()
