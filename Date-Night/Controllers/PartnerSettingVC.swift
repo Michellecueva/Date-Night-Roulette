@@ -44,9 +44,9 @@ class PartnerSettingVC: UIViewController {
     }
     
     private func configureDataSource(){
-        dataSource = UITableViewDiffableDataSource<Section, MatchedEvent>(tableView: thePartner.historyTable, cellProvider: { (tableView, indexPath, MatchedEventsHistory) -> UITableViewCell? in
+        dataSource = UITableViewDiffableDataSource<Section, MatchedEvent>(tableView: thePartner.historyTable, cellProvider: { (tableView, indexPath, MatchedEvents) -> UITableViewCell? in
             let cell = tableView.dequeueReusableCell(withIdentifier: MatchedCell.identifier, for: indexPath) as! MatchedCell
-            cell.configureCell(with: MatchedEventsHistory, row: indexPath.row)
+            cell.configureCell(with: MatchedEvents, row: indexPath.row)
             return cell
         })
     }

@@ -238,7 +238,6 @@ class FirestoreService {
                         completion(.success(eventData ?? []))
                     }
         }
-        
     }
     
     
@@ -326,20 +325,17 @@ class FirestoreService {
         }
     }
     
-   
-    
-//    func sendInvite(invite:Invites,completionHandler:@escaping (Result<(),AppError>)-> ()) {
-//        let inviteField = invite.fieldsDictionary
-//        db.collection(FireStoreCollections.invites.rawValue).addDocument(data: inviteField) { (error) in
-//            if let error = error {
-//                completionHandler(.failure(.other(rawError: error)))
-//            } else {
-//                completionHandler(.success(()))
-//            }
-//        }
-//
-//    }
-
+    func createMatchedEvent(matchedEvent: MatchedEvent, completionHandler: @escaping (Result<(), AppError>) -> ()) {
+        
+        let eventsMatchedField = matchedEvent.fieldsDict
+        db.collection(FireStoreCollections.MatchedEvents.rawValue).addDocument(data: eventsMatchedField) { (error) in
+            if let error = error {
+                completionHandler(.failure(.other(rawError: error)))
+            } else {
+                completionHandler(.success(()))
+            }
+        }
+    }
     
     private init () {}
 }
