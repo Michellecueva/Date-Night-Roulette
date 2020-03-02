@@ -109,19 +109,14 @@ class ShakeGestureVC: UIViewController {
     }
     
     @objc private func likedButtonPressed() {
-        
-
-        guard let partnerUID = UserDefaultsWrapper.standard.getPartnerUID() else {return}
-        
-        
         guard let eventID = fbEvents.last?.eventID else {return}
         
         eventsLiked.append(eventID)
         updateEventsLikedOnFirebase(eventsLiked: eventsLiked)
         
-        
         guard let lastEventLiked = eventsLiked.last else {return}
         if partnersEventsLiked.contains(lastEventLiked) {
+            guard let partnerUID = UserDefaultsWrapper.standard.getPartnerUID() else {return}
             let matchedEvent = MatchedEvent(userOne: currentUserID, userTwo: partnerUID, title: eventTitle, eventID: eventID)
             createMatchedEvent(matchedEvent: matchedEvent)
             
