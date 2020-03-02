@@ -1,12 +1,15 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseAuth
 
 
 //shake gesture only works on first responder
 class ShakeGestureVC: UIViewController {
     
     var eventIndexCount = 0
+    
+    var eventTitle: String!
     
     var pageControl:UIPageControl = UIPageControl(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     
@@ -24,31 +27,38 @@ class ShakeGestureVC: UIViewController {
     }
     
     var eventsLiked = [String]() {
-         didSet {
-             UserDefaultsWrapper.standard.store(eventsLikedArr: eventsLiked)
-         }
-     }
-     
-     var partnersEventsLiked = [String]()
-     
-     private var partnerListener: ListenerRegistration?
-        
-     private let db = Firestore.firestore()
-     
-     private var collectionReference:CollectionReference {
-            return db.collection("users")
+        didSet {
+            UserDefaultsWrapper.standard.store(eventsLikedArr: eventsLiked)
         }
-      var count = 1
-        
-     deinit {
-            partnerListener?.remove()
-     }
-
+    }
+    
+    private var currentUserID:String {
+        if let user = Auth.auth().currentUser?.uid {
+           return user
+       } else {
+           return "Invalid ID"
+       }
+    }
+    
+    var partnersEventsLiked = [String]()
+    
+    private var partnerListener: ListenerRegistration?
+    
+    private let db = Firestore.firestore()
+    
+    private var collectionReference:CollectionReference {
+        return db.collection("users")
+    }
+    
+    deinit {
+        partnerListener?.remove()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(shakeView)
         view.backgroundColor = .black
-       
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,7 +72,7 @@ class ShakeGestureVC: UIViewController {
     
     override func viewDidAppear(_ animated:Bool) {
         super.viewDidAppear(animated)
-      
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -75,8 +85,8 @@ class ShakeGestureVC: UIViewController {
     }
     
     func shakeTheEvent() {
-       
-setUpView()
+        
+        setUpView()
         shakeView.layoutIfNeeded()
         fbEvents.popLast()
         pageControl.currentPage = pageControl.currentPage + 1
@@ -84,8 +94,8 @@ setUpView()
         shakeView.confirmButton.isEnabled = true
     }
     
-  private func configurePageControl() {
-    self.pageControl.numberOfPages = fbEvents.count
+    private func configurePageControl() {
+        self.pageControl.numberOfPages = fbEvents.count
         self.pageControl.currentPage = 0
         self.pageControl.tintColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         self.pageControl.pageIndicatorTintColor = UIColor.white
@@ -98,43 +108,61 @@ setUpView()
         
     }
     
-   @objc private func likedButtonPressed() {
-    guard let eventID = fbEvents.last?.eventID else {return}
-    eventsLiked.append(eventID)
-           updateEventsLikedOnFirebase(eventsLiked: eventsLiked)
-           count += 1
-           
-           guard let lastEventLiked = eventsLiked.last else {return}
-           if partnersEventsLiked.contains(lastEventLiked) {
-               matchAlert(title: "It's a Match!", message: "You've Matched Events With Your Partner")
-               // segue to the match VC
-           }else {
-            shakeView.confirmButton.isEnabled = false
-    shakeTheEvent()
+    @objc private func likedButtonPressed() {
+        
+
+        guard let partnerUID = UserDefaultsWrapper.standard.getPartnerUID() else {return}
+        
+        
+        guard let eventID = fbEvents.last?.eventID else {return}
+        
+        eventsLiked.append(eventID)
+        updateEventsLikedOnFirebase(eventsLiked: eventsLiked)
+        
+        
+        guard let lastEventLiked = eventsLiked.last else {return}
+        if partnersEventsLiked.contains(lastEventLiked) {
+            let matchedEvent = MatchedEvent(userOne: currentUserID, userTwo: partnerUID, title: eventTitle, eventID: eventID)
+            createMatchedEvent(matchedEvent: matchedEvent)
+            
+            matchAlert(title: "It's a Match!", message: "You've Matched Events With Your Partner")
+        }else {
+            shakeTheEvent()
+        }
     }
     
-       }
-
-       
-       private func getPriorEventsLiked() {
-           if let eventsArr = UserDefaultsWrapper.standard.getEventsLiked() {
+    
+    private func getPriorEventsLiked() {
+        if let eventsArr = UserDefaultsWrapper.standard.getEventsLiked() {
             guard eventsArr.count > 0 else {return}
         }
-           
-           //maybe pull events from firebase instead
-           
-       }
-
-       private func updateEventsLikedOnFirebase(eventsLiked: [String]) {
-           FirestoreService.manager.updateEventsLiked(eventsLiked: eventsLiked) { (result) in
-               switch result {
-               case .success(()):
-                   print("Updated Events Liked")
-               case .failure(let error):
-                   print("Did not update events liked \(error)")
-               }
-           }
-       }
+        
+        //maybe pull events from firebase instead
+        
+    }
+    
+    private func updateEventsLikedOnFirebase(eventsLiked: [String]) {
+        FirestoreService.manager.updateEventsLiked(eventsLiked: eventsLiked) { (result) in
+            switch result {
+            case .success(()):
+                print("Updated Events Liked")
+            case .failure(let error):
+                print("Did not update events liked \(error)")
+            }
+        }
+    }
+    
+    private func createMatchedEvent(matchedEvent: MatchedEvent) {
+        FirestoreService.manager.createMatchedEvent(matchedEvent: matchedEvent) { (result) in
+            switch result {
+            case .success(()):
+                print("able to save matched event")
+            case .failure(let error):
+                print("not able to save matched event \(error)")
+            }
+        }
+    }
+    
     private func matchAlert(title:String,message:String) {
         //move to extension
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -148,81 +176,81 @@ setUpView()
         alertController.addAction(deny)
         present(alertController,animated: true)
     }
-       private func clearEventsLikedArr() {
-           eventsLiked = []
-           updateEventsLikedOnFirebase(eventsLiked: eventsLiked)
+    
+    private func clearEventsLikedArr() {
+        eventsLiked = []
+        updateEventsLikedOnFirebase(eventsLiked: eventsLiked)
+    }
+    
+    
+    private func addListenerOnPartner() {
         
-       }
-
-       
-       private func addListenerOnPartner() {
-           
-           guard let partnerUID = UserDefaultsWrapper.standard.getPartnerUID() else {return}
-           
-           partnerListener = collectionReference.whereField("uid", isEqualTo: partnerUID)
-                   .addSnapshotListener({ (snapshot, error) in
-
-                       if let error = error {
-                           print(error.localizedDescription)
-                       }
-                       guard let usersFromOnline = snapshot?.documents else {
-                           print("no invites available")
-                           return
-                       }
-                       let userList = usersFromOnline.compactMap { (snapshot) -> AppUser? in
-                           let userID = snapshot.documentID
-                           let data = snapshot.data()
-                           return AppUser(from: data, id: userID)
-                       }
-
-                       print("listener on PartnerUser \(userList[0].eventsLiked)")
-                       
-                       self.partnersEventsLiked = userList[0].eventsLiked
-                       
-                   })
-           }
+        guard let partnerUID = UserDefaultsWrapper.standard.getPartnerUID() else {return}
+        
+        partnerListener = collectionReference.whereField("uid", isEqualTo: partnerUID)
+            .addSnapshotListener({ (snapshot, error) in
+                
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                guard let usersFromOnline = snapshot?.documents else {
+                    print("no invites available")
+                    return
+                }
+                let userList = usersFromOnline.compactMap { (snapshot) -> AppUser? in
+                    let userID = snapshot.documentID
+                    let data = snapshot.data()
+                    return AppUser(from: data, id: userID)
+                }
+                
+                print("listener on PartnerUser \(userList[0].eventsLiked)")
+                
+                self.partnersEventsLiked = userList[0].eventsLiked
+                
+            })
+    }
     
     private func setUpView() {
-      
         
         guard let lastEvent = self.fbEvents.last else {return}
+        eventTitle = lastEvent.title
         if let image = lastEvent.imageURL {
-
-       //remember to stop user interaction until image finishes loading
-            ImageHelper.shared.getImage(urlStr: image) { [weak self](result) in
-        DispatchQueue.main.async {
             
-        
-        switch result {
-      case .failure(let error):
-       print(error)
-       self?.shakeView.shakeEventView.setUpImage(from:lastEvent , image: UIImage(systemName: "photo")!)
-      case .success(let image):
-        
-        self?.shakeView.shakeEventView.setUpImage(from: lastEvent, image: image)
-      }
-     }
+            //remember to stop user interaction until image finishes loading
+            ImageHelper.shared.getImage(urlStr: image) { [weak self](result) in
+                DispatchQueue.main.async {
+                    
+                    
+                    switch result {
+                    case .failure(let error):
+                        print(error)
+                        self?.shakeView.shakeEventView.setUpImage(from:lastEvent , image: UIImage(systemName: "photo")!)
+                    case .success(let image):
+                        
+                        self?.shakeView.shakeEventView.setUpImage(from: lastEvent, image: image)
+                    }
+                }
             }
-    } else {
+        } else {
             self.shakeView.shakeEventView.setUpImage(from:lastEvent , image: UIImage(systemName: "photo")!)
+        }
     }
-}
-   
-
+    
+    
     override func becomeFirstResponder() -> Bool {
         return true
     }
     
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         shakeTheEvent()
-            print("Shake has happened")
+        print("Shake has happened")
     }
     
-        override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?){
-         if motion == .motionShake
-         {
-               print("Shake Gesture Detected")
-               //show some alert here
-         }
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?){
+        if motion == .motionShake
+        {
+            print("Shake Gesture Detected")
+            //show some alert here
+        }
     }
 }
