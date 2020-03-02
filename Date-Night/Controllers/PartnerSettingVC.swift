@@ -4,7 +4,7 @@ import FirebaseFirestore
 
 class PartnerSettingVC: UIViewController {
     
-    var matchedEvents: [MatchedEventsHistory] = [] {
+    var matchedEvents: [MatchedEvent] = [] {
         didSet{
         createSnapshot(from: matchedEvents)
         }
@@ -12,7 +12,7 @@ class PartnerSettingVC: UIViewController {
 
     var thePartner = PartnerSettingView()
     
-    private var dataSource: UITableViewDiffableDataSource<Section, MatchedEventsHistory>!
+    private var dataSource: UITableViewDiffableDataSource<Section, MatchedEvent>!
     
     private var eventsListener:
     ListenerRegistration?
@@ -44,15 +44,15 @@ class PartnerSettingVC: UIViewController {
     }
     
     private func configureDataSource(){
-        dataSource = UITableViewDiffableDataSource<Section, MatchedEventsHistory>(tableView: thePartner.historyTable, cellProvider: { (tableView, indexPath, MatchedEventsHistory) -> UITableViewCell? in
+        dataSource = UITableViewDiffableDataSource<Section, MatchedEvent>(tableView: thePartner.historyTable, cellProvider: { (tableView, indexPath, MatchedEventsHistory) -> UITableViewCell? in
             let cell = tableView.dequeueReusableCell(withIdentifier: MatchedCell.identifier, for: indexPath) as! MatchedCell
             cell.configureCell(with: MatchedEventsHistory, row: indexPath.row)
             return cell
         })
     }
     
-    private func createSnapshot(from matchedEvents: [MatchedEventsHistory]){
-        var snapshot = NSDiffableDataSourceSnapshot<Section, MatchedEventsHistory>()
+    private func createSnapshot(from matchedEvents: [MatchedEvent]){
+        var snapshot = NSDiffableDataSourceSnapshot<Section, MatchedEvent>()
         snapshot.appendSections([.events])
         snapshot.appendItems(matchedEvents)
         dataSource.apply(snapshot, animatingDifferences: true)

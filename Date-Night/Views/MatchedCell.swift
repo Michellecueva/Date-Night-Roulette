@@ -38,7 +38,7 @@ class MatchedCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-   func configureCell(with events: MatchedEventsHistory, row: Int) {
+   func configureCell(with events: MatchedEvent, row: Int) {
     titleLabel.text = events.title
     titleLabel.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
     backgroundColor = .clear

@@ -10,6 +10,7 @@ enum FireStoreCollections: String {
     case posts
     case comments
     case invites
+    case MatchedEvents
     
 }
 
@@ -305,8 +306,6 @@ class FirestoreService {
     
     // MARK: Events Functionality
     
-    // have to get the array that is stored in eventsLiked and append the new one
-    // have to get the user object of the partner and appen the whole array
     
     func updateEventsLiked(eventsLiked: [String], completion: @escaping (Result<(), Error>) -> () ) {
         guard let userId = FirebaseAuthService.manager.currentUser?.uid else {
@@ -326,6 +325,20 @@ class FirestoreService {
             }
         }
     }
+    
+   
+    
+//    func sendInvite(invite:Invites,completionHandler:@escaping (Result<(),AppError>)-> ()) {
+//        let inviteField = invite.fieldsDictionary
+//        db.collection(FireStoreCollections.invites.rawValue).addDocument(data: inviteField) { (error) in
+//            if let error = error {
+//                completionHandler(.failure(.other(rawError: error)))
+//            } else {
+//                completionHandler(.success(()))
+//            }
+//        }
+//
+//    }
 
     
     private init () {}
