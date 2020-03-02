@@ -238,6 +238,7 @@ class FirestoreService {
                         completion(.success(eventData ?? []))
                     }
         }
+
     }
     
     
@@ -336,6 +337,40 @@ class FirestoreService {
             }
         }
     }
+    
+    func getMatchedHistory(userID: String, partnerID: String, completionHandler: @escaping (Result <[MatchedEvent], Error>) -> () ) {
+        db.collection(FireStoreCollections.MatchedEvents.rawValue).whereField("userOne", isEqualTo: userID)
+            .whereField("userTwo", isEqualTo: partnerID).getDocuments { (snapshot, error) in
+                if let error = error {
+                    completionHandler(.failure(error))
+                } else {
+                    let matchedData = snapshot?.documents.compactMap({ (snapshot) -> MatchedEvent? in
+                        let matchedID = snapshot.documentID
+                        let data = snapshot.data()
+                        return MatchedEvent(from: data, id: matchedID)
+                    })
+                    
+                    completionHandler(.success(matchedData ?? []))
+                }
+        }
+        
+    }
+    
+//    func getEventsFromFireBase(preference: String,completion: @escaping (Result<[FBEvents], Error>) -> ()) {
+//        db.collection("FBEvents").whereField("type", isEqualTo: preference).getDocuments { (snapshot, error) in
+//                if let error = error {
+//                    completion(.failure(error))
+//                } else {
+//                    let eventData = snapshot?.documents.compactMap({ (snapshot) -> FBEvents? in
+//
+//                            let eventID = snapshot.documentID
+//                            let data = snapshot.data()
+//                            return FBEvents(from: data, id: eventID)
+//                        })
+//                        completion(.success(eventData ?? []))
+//                    }
+//        }
+//    }
     
     private init () {}
 }
