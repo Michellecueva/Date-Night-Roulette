@@ -18,6 +18,7 @@ class ShakeGestureVC: UIViewController {
                 return
             }
             setUpView()
+            print(fbEvents.count)
             
         }
     }
@@ -107,9 +108,11 @@ setUpView()
            if partnersEventsLiked.contains(lastEventLiked) {
                matchAlert(title: "It's a Match!", message: "You've Matched Events With Your Partner")
                // segue to the match VC
-           }
+           }else {
+            shakeView.confirmButton.isEnabled = false
+    shakeTheEvent()
+    }
     
-    shakeView.confirmButton.isEnabled = false
        }
 
        
@@ -180,6 +183,8 @@ setUpView()
            }
     
     private func setUpView() {
+      
+        
         guard let lastEvent = self.fbEvents.last else {return}
         if let image = lastEvent.imageURL {
 
@@ -202,6 +207,7 @@ setUpView()
             self.shakeView.shakeEventView.setUpImage(from:lastEvent , image: UIImage(systemName: "photo")!)
     }
 }
+   
 
     override func becomeFirstResponder() -> Bool {
         return true

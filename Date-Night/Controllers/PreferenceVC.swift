@@ -38,7 +38,6 @@ class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionView
         collectionViewMethods()
         prefList = getPreferences()
         addObjcFunctionsToViewButton()
-        
         self.navigationController?.navigationBar.topItem?.title = "Set your Preferences"
         
     }
@@ -60,7 +59,7 @@ class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionView
     @objc func savedPressed(_ sender: UIButton){
         // delegate?.eventFavs(tag: sender.tag)
        print("tapped button")
-       
+        
         FirestoreService.manager.savePreferencesForUser(field: .users, preferences: arrayOfPreferences, currentUserUID: appUserID) { (result) in
             switch result {
             case .failure(let error):
@@ -68,6 +67,7 @@ class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionView
                 print("couldn't save preferences")
             case .success():
                 print("saved Preferences")
+                
             }
         }
         print("button pressed!")

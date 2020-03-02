@@ -16,7 +16,7 @@ struct EventfulAPIClient{
     //change function to get events for categories
     
     func getEventsFrom(category: String, completionHandler: @escaping (Result <[Event], AppError>) ->()){
-        let urlStr = "http://api.eventful.com/json/events/search?...&keywords=\(category)&location=New+York+City&date=future&app_key=\(Secrets.eventKey)&page_size=2"
+        let urlStr = "http://api.eventful.com/json/events/search?...&keywords=\(category)&location=New+York+City&date=future&app_key=\(Secrets.eventKey)&page_size=5"
         guard let url = URL(string: urlStr) else {
             print(urlStr)
             completionHandler(.failure(AppError.badURL))

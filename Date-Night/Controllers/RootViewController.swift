@@ -214,6 +214,7 @@ class RootViewController: UIViewController{
     
     func createThirdScreen() -> ViewControllerConfig {
         let vc = profileVC
+        profileVC.currentUser = currentUser
         vc.view.backgroundColor = .clear
         let leadingBarButtonItems = [UIBarButtonItem(title: "blue", style: .plain
             , target: nil, action: nil)]
@@ -252,26 +253,26 @@ class RootViewController: UIViewController{
     }
   
     func showBarButtons() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .rewind, target: self, action:#selector(backwards) )
+      //  navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .rewind, target: self, action:#selector(backwards) )
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .fastForward, target: self, action: #selector(forwards))
+      //  navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .fastForward, target: self, action: #selector(forwards))
     }
     
-    @objc private func backwards() {
-        guard pageControl.currentPage != 0 else {return}
-        pageControl.currentPage -= 1
-        
-        swipingNavigationViewController.navigateToViewController(index: (pageControl.currentPage))
-    }
-    
-    @objc private func forwards() {
-        guard pageControl.currentPage != 2 else {return}
-        pageControl.currentPage += 1
-       
-       
-        swipingNavigationViewController.navigateToViewController(index: pageControl.currentPage)
-       
-    }
+//    @objc private func backwards() {
+//        guard pageControl.currentPage != 0 else {return}
+//        pageControl.currentPage -= 1
+//        
+//        swipingNavigationViewController.navigateToViewController(index: (pageControl.currentPage))
+//    }
+//    
+//    @objc private func forwards() {
+//        guard pageControl.currentPage != 2 else {return}
+//        pageControl.currentPage += 1
+//       
+//       
+//        swipingNavigationViewController.navigateToViewController(index: pageControl.currentPage)
+//       
+//    }
     
     private func getInvites() {
         
