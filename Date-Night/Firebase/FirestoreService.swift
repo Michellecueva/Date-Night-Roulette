@@ -10,6 +10,7 @@ enum FireStoreCollections: String {
     case posts
     case comments
     case invites
+    case MatchedEvents
     
 }
 
@@ -237,7 +238,7 @@ class FirestoreService {
                         completion(.success(eventData ?? []))
                     }
         }
-        
+
     }
     
     
@@ -305,8 +306,6 @@ class FirestoreService {
     
     // MARK: Events Functionality
     
-    // have to get the array that is stored in eventsLiked and append the new one
-    // have to get the user object of the partner and appen the whole array
     
     func updateEventsLiked(eventsLiked: [String], completion: @escaping (Result<(), Error>) -> () ) {
         guard let userId = FirebaseAuthService.manager.currentUser?.uid else {
@@ -326,7 +325,52 @@ class FirestoreService {
             }
         }
     }
-
+    
+    func createMatchedEvent(matchedEvent: MatchedEvent, completionHandler: @escaping (Result<(), AppError>) -> ()) {
+        
+        let eventsMatchedField = matchedEvent.fieldsDict
+        db.collection(FireStoreCollections.MatchedEvents.rawValue).addDocument(data: eventsMatchedField) { (error) in
+            if let error = error {
+                completionHandler(.failure(.other(rawError: error)))
+            } else {
+                completionHandler(.success(()))
+            }
+        }
+    }
+    
+    func getMatchedHistory(userID: String, partnerID: String, completionHandler: @escaping (Result <[MatchedEvent], Error>) -> () ) {
+        db.collection(FireStoreCollections.MatchedEvents.rawValue).whereField("userOne", isEqualTo: userID)
+            .whereField("userTwo", isEqualTo: partnerID).getDocuments { (snapshot, error) in
+                if let error = error {
+                    completionHandler(.failure(error))
+                } else {
+                    let matchedData = snapshot?.documents.compactMap({ (snapshot) -> MatchedEvent? in
+                        let matchedID = snapshot.documentID
+                        let data = snapshot.data()
+                        return MatchedEvent(from: data, id: matchedID)
+                    })
+                    
+                    completionHandler(.success(matchedData ?? []))
+                }
+        }
+        
+    }
+    
+//    func getEventsFromFireBase(preference: String,completion: @escaping (Result<[FBEvents], Error>) -> ()) {
+//        db.collection("FBEvents").whereField("type", isEqualTo: preference).getDocuments { (snapshot, error) in
+//                if let error = error {
+//                    completion(.failure(error))
+//                } else {
+//                    let eventData = snapshot?.documents.compactMap({ (snapshot) -> FBEvents? in
+//
+//                            let eventID = snapshot.documentID
+//                            let data = snapshot.data()
+//                            return FBEvents(from: data, id: eventID)
+//                        })
+//                        completion(.success(eventData ?? []))
+//                    }
+//        }
+//    }
     
     private init () {}
 }

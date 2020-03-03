@@ -16,7 +16,7 @@
 		0B38E7D524048B89003D05CE /* RandomEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38E7D424048B89003D05CE /* RandomEventView.swift */; };
 		0B38E7D724048BAC003D05CE /* RandomEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38E7D624048BAC003D05CE /* RandomEventVC.swift */; };
 		0B5D18F9240716D800A5849B /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D18F8240716D800A5849B /* FirebaseStorageService.swift */; };
-		0B5D18FD24086B3100A5849B /* MatchedHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D18FC24086B3100A5849B /* MatchedHistory.swift */; };
+		0B5D18FD24086B3100A5849B /* MatchedEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D18FC24086B3100A5849B /* MatchedEvent.swift */; };
 		0B5D18FF24086F8000A5849B /* MatchedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D18FE24086F8000A5849B /* MatchedCell.swift */; };
 		0B96460D23EE2C6A00D2CAB9 /* PreferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B96460C23EE2C6A00D2CAB9 /* PreferenceView.swift */; };
 		0B96460F23EE2C9E00D2CAB9 /* PreferenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B96460E23EE2C9E00D2CAB9 /* PreferenceCell.swift */; };
@@ -100,7 +100,7 @@
 		0B38E7D424048B89003D05CE /* RandomEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomEventView.swift; sourceTree = "<group>"; };
 		0B38E7D624048BAC003D05CE /* RandomEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomEventVC.swift; sourceTree = "<group>"; };
 		0B5D18F8240716D800A5849B /* FirebaseStorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
-		0B5D18FC24086B3100A5849B /* MatchedHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchedHistory.swift; sourceTree = "<group>"; };
+		0B5D18FC24086B3100A5849B /* MatchedEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchedEvent.swift; sourceTree = "<group>"; };
 		0B5D18FE24086F8000A5849B /* MatchedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchedCell.swift; sourceTree = "<group>"; };
 		0B96460C23EE2C6A00D2CAB9 /* PreferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceView.swift; sourceTree = "<group>"; };
 		0B96460E23EE2C9E00D2CAB9 /* PreferenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceCell.swift; sourceTree = "<group>"; };
@@ -359,7 +359,7 @@
 			children = (
 				69CE863923F716C6001E1327 /* ViewControllerConfig.swift */,
 				6965961323E0A9ED009399F2 /* AppUser.swift */,
-				0B5D18FC24086B3100A5849B /* MatchedHistory.swift */,
+				0B5D18FC24086B3100A5849B /* MatchedEvent.swift */,
 				0BBFCD3923E8CEB700E039A7 /* Categories.swift */,
 				283823C123E885050031327E /* Invites.swift */,
 				0B38E7CB2400762E003D05CE /* EventfulModel.swift */,
@@ -627,7 +627,7 @@
 				2862B60523DD47130047B47B /* Date_Night.xcdatamodeld in Sources */,
 				7448D1A223E895DF003A997C /* SignUpView.swift in Sources */,
 				691DD0EE23EE0351003A67E7 /* SendInviteView.swift in Sources */,
-				0B5D18FD24086B3100A5849B /* MatchedHistory.swift in Sources */,
+				0B5D18FD24086B3100A5849B /* MatchedEvent.swift in Sources */,
 				0B38E7D724048BAC003D05CE /* RandomEventVC.swift in Sources */,
 				2862B66C23DFE26C0047B47B /* SignUpVC.swift in Sources */,
 				74C61A34240488EE00BD2ACA /* ShakeEventView.swift in Sources */,

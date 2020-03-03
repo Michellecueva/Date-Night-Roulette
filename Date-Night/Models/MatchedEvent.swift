@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-struct MatchedEventsHistory: Codable,Hashable {
+struct MatchedEvent: Codable,Hashable {
     
     let userOne: String?
     let userTwo: String?
