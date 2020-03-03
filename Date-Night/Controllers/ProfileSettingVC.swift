@@ -19,11 +19,11 @@ class ProfileSettingVC: UIViewController {
     var isCurrentUser = false
     
     var image = UIImage(){
-           didSet {
+        didSet {
             self.profileSetting.portraitPic.image = image
-           }
-       }
-
+        }
+    }
+    
     var imageURL: URL? = nil
     
     var currentUser:AppUser? = nil {
@@ -32,22 +32,21 @@ class ProfileSettingVC: UIViewController {
             profileSetting.userNameLabel.text = "Hi, \(currentUser?.userName ?? "")"
         }
     }
-  
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         view.addSubview(profileSetting)
         addObjcFunction()
-     //    profileSetting.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        //    profileSetting.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         logOut()
         print(FirebaseAuthService.manager.currentUser?.email)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       // setUpUserName()
-       // setUpPartnerEmailDisplay(userID: FirebaseAuthService.manager.currentUser?.uid ?? "" )
+        setUpProfilePortrait()
     }
     
     private func setUpUserName() {
@@ -70,15 +69,15 @@ class ProfileSettingVC: UIViewController {
     }
     
     private func presentPhotoPickerController(){
-          DispatchQueue.main.async {
-              let imagePickerViewController = UIImagePickerController()
-              imagePickerViewController.delegate = self
-              imagePickerViewController.sourceType = .photoLibrary
-              imagePickerViewController.allowsEditing = true
-              imagePickerViewController.mediaTypes = ["public.image"]
-              self.present(imagePickerViewController, animated: true, completion: nil)
-          }
-      }
+        DispatchQueue.main.async {
+            let imagePickerViewController = UIImagePickerController()
+            imagePickerViewController.delegate = self
+            imagePickerViewController.sourceType = .photoLibrary
+            imagePickerViewController.allowsEditing = true
+            imagePickerViewController.mediaTypes = ["public.image"]
+            self.present(imagePickerViewController, animated: true, completion: nil)
+        }
+    }
     
     private func showAlert(with title: String, and message: String){
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -88,28 +87,28 @@ class ProfileSettingVC: UIViewController {
     
     private func addObjcFunction() {
         profileSetting.addPictureButton.addTarget(self, action: #selector(addProfileImage), for: .touchUpInside)
-          
-          }
-          
-        @objc private func addProfileImage() {
-            switch PHPhotoLibrary.authorizationStatus(){
-            case .notDetermined, .denied, .restricted:
-                PHPhotoLibrary.requestAuthorization({[weak self] status in
-                    switch status {
-                    case .authorized:
-                        self?.presentPhotoPickerController()
-                    case .denied:
-                        print("Denied photo library permissions")
-                    default:
-                        print("no status")
-                        
-                        
-                    }
-                })
-            default: presentPhotoPickerController()
-            }
-          
-       }
+        
+    }
+    
+    @objc private func addProfileImage() {
+        switch PHPhotoLibrary.authorizationStatus(){
+        case .notDetermined, .denied, .restricted:
+            PHPhotoLibrary.requestAuthorization({[weak self] status in
+                switch status {
+                case .authorized:
+                    self?.presentPhotoPickerController()
+                case .denied:
+                    print("Denied photo library permissions")
+                default:
+                    print("no status")
+                    
+                    
+                }
+            })
+        default: presentPhotoPickerController()
+        }
+        
+    }
     
     private func logOut(){
         profileSetting.logoutButton.addTarget(self, action: #selector(signOut), for:.touchUpInside )
@@ -146,19 +145,38 @@ class ProfileSettingVC: UIViewController {
         }
     }
     
-//    func newFunc(){
-//        
-//        FirebaseStorageService.manager.storeImage(image: imageData, completion: {[weak self](result) in
-//            switch result {
-//            case .success(let url):
-//                self?.imageURL = url
-//            case .failure(let error):
-//                print(error)
-//            }
-//        })
-//        dismiss(animated: true, completion: nil)
-//        
-//    }
+    private func setUpProfilePortrait() {
+        guard let photoURL = Auth.auth().currentUser?.photoURL?.absoluteString else {return}
+        ImageHelper.shared.getImage(urlStr: photoURL) { [weak self](result) in
+            DispatchQueue.main.async {
+                switch result {
+                    
+                case .failure(let error):
+                    print(error)
+                    
+                case .success(let image):
+                    self?.profileSetting.portraitPic.image = image
+                }
+            }
+        }
+    }
+    
+    private func handleUpdateCurentUser(result:Result<(),Error>,url:URL) {
+        switch result {
+        case .failure(let error):
+            print(error)
+        case .success():
+            
+            FirestoreService.manager.updateCurrentUser(photoURL: url) { (result) in
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success():
+                    print("saved profile change in appuser")
+                }
+            }
+        }
+    }
     
 }
 
@@ -172,10 +190,29 @@ extension ProfileSettingVC: UIImagePickerControllerDelegate, UINavigationControl
         guard let imageData = image.jpegData(compressionQuality: 0.6) else {
             return
         }
+        FirebaseStorageService.manager.storeImage(image: imageData) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+                
+            case .success(let url):
+                FirebaseAuthService.manager.updateUserFields( photoURL: url) { (result) in
+                    switch result {
+                    case .failure(let error):
+                        print(error)
+                    case .success():
+                        print("updated photo url in auth user")
+                        self.handleUpdateCurentUser(result: result, url: url)
+                    }
+                }
+            }
+        }
+        
+        dismiss(animated: true, completion: nil)
     }
 }
 
 
-    
-   
+
+
 
