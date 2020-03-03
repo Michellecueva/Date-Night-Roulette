@@ -7,7 +7,6 @@ class PartnerSettingVC: UIViewController {
     var matchedEvents: [MatchedEvent] = [] {
         didSet{
             createSnapshot(from: matchedEvents)
-            print("these are the matched events \(matchedEvents)")
         }
     }
     
@@ -15,19 +14,14 @@ class PartnerSettingVC: UIViewController {
     
     private var dataSource: UITableViewDiffableDataSource<Section, MatchedEvent>!
     
-    private var eventsListener:
-    ListenerRegistration?
     
     private let db = Firestore.firestore()
     
-    //   private var collectionReference:CollectionReference {
-    //         return db.collection("invites")
-    //     }
-    //
-    //     deinit {
-    //         inviteListener?.remove()
-    //     }
+    private var matchedEventListener: ListenerRegistration?
     
+    private var collectionReference:CollectionReference {
+           return db.collection("MatchedEvents")
+    }
     
     var currentUser:AppUser? {
         didSet {
@@ -41,7 +35,7 @@ class PartnerSettingVC: UIViewController {
         view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         view.addSubview(thePartner)
         configureDataSource()
-        // addListener()
+        addMatchedEventListener()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,6 +75,48 @@ class PartnerSettingVC: UIViewController {
             }
         }
     }
+    
+    private func addMatchedEventListener() {
+        
+        guard let userID = Auth.auth().currentUser?.uid else {
+                   print("no current user")
+                   return
+                   
+               }
+        guard let partnerID = UserDefaultsWrapper.standard.getPartnerUID() else {return}
+        
+        matchedEventListener = collectionReference.whereField(
+               "userOne",
+               isEqualTo: userID
+            )
+            .whereField("userTwo", isEqualTo: partnerID)
+               .addSnapshotListener({ (snapshot, error) in
+                   
+                   if let error = error {
+                       print(error.localizedDescription)
+                   }
+                   guard let eventsFromOnline = snapshot?.documents else {
+                       print("no events available")
+                       return
+                   }
+                   let eventList = eventsFromOnline.compactMap { (snapshot) -> MatchedEvent? in
+                       let eventID = snapshot.documentID
+                       let data = snapshot.data()
+                       return MatchedEvent(from: data, id: eventID)
+                   }
+                   
+                   if eventList.count == 0 {
+                    self.thePartner.historyTable.isHidden = true
+                    self.thePartner.noEventsLabel.isHidden = false
+                   } else {
+                        self.thePartner.historyTable.isHidden = false
+                        self.thePartner.noEventsLabel.isHidden = true
+                   }
+                    self.matchedEvents = eventList
+                
+                   print("inviteList: \(eventList)")
+               })
+       }
 }
 
 extension PartnerSettingVC {
