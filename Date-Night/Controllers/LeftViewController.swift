@@ -23,15 +23,18 @@ class LeftViewController: UIViewController {
         }
     }
     
-    var currentUser:AppUser? {
+    var leftScreenPartner:AppUser? {
         didSet {
-            partnerProfileVC.thePartner.partnerNameLabel.text = "Partner: \(currentUser?.partnerUserName ?? "")" 
-               }
+            print("leftScreen received partner")
+            guard leftScreenPartner != nil else {return}
+            partnerProfileVC.profilePartnerUser = leftScreenPartner
+            
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     

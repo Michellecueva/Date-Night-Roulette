@@ -25,7 +25,8 @@ class HomeScreenVC: UIViewController {
                determineHomepageVC()
            }
        }
-    var currentUser:AppUser?
+   
+    
     
     weak var delegate:TestChainDelegate?
     
@@ -34,6 +35,22 @@ class HomeScreenVC: UIViewController {
        private let pendingInvites = InvitesPendingVC()
        private let discoverEvents = DiscoverEventVC()
        private let preferences = PreferenceVC()
+    
+    var currentUser:AppUser? {
+        didSet {
+            
+            print("homescreen received currentuser")
+        discoverEvents.discoverEventCurrentUser = currentUser
+        }
+    }
+      
+       var partner:AppUser? {
+           didSet {
+            guard partner != nil else {return}
+            print("homescreen received partner")
+            discoverEvents.discoverEventsPartnerUser = partner
+           }
+       }
     
     private let shakeGesture = ShakeGestureVC()
 
@@ -67,7 +84,6 @@ class HomeScreenVC: UIViewController {
             case .discoverEvents:
                
                 discoverEvents.delegate = self
-                discoverEvents.currentUser = currentUser
                 addAndRemoveChild(currentChild: discoverEvents)
                 
             case .setPreferences:

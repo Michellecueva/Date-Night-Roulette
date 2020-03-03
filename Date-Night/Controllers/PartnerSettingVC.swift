@@ -12,36 +12,51 @@ class PartnerSettingVC: UIViewController {
 
     var thePartner = PartnerSettingView()
     
+    var profilePartnerUser:AppUser? {
+        didSet {
+            print("partner profile VC received partner")
+          //possibly change to layout subviews
+            thePartner.partnerNameLabel.text = "Partner: \(profilePartnerUser?.userName ?? "")"
+              setUpProfilePortrait()
+        }
+    }
+    
     private var dataSource: UITableViewDiffableDataSource<Section, MatchedEventsHistory>!
     
     private var eventsListener:
     ListenerRegistration?
     
     private let db = Firestore.firestore()
-    
-//   private var collectionReference:CollectionReference {
-//         return db.collection("invites")
-//     }
-//
-//     deinit {
-//         inviteListener?.remove()
-//     }
-    
-   
-    var currentUser:AppUser? {
-        didSet {
-            thePartner.partnerNameLabel.text = "Your partner is \(currentUser?.partnerUserName ?? "")"
-            
-               }
-    }
+        
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         view.addSubview(thePartner)
         configureDataSource()
-       // addListener()
     }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+       //
+        print("layout up subviews")
+    }
+    
+     private func setUpProfilePortrait() {
+        guard let partnerPortraitURL = profilePartnerUser?.photoURL else {return}
+          ImageHelper.shared.getImage(urlStr: partnerPortraitURL) { [weak self](result) in
+              DispatchQueue.main.async {
+                  switch result {
+                      
+                  case .failure(let error):
+                      print(error)
+                      
+                  case .success(let image):
+                      self?.thePartner.portraitPic.image = image
+                  }
+              }
+          }
+      }
     
     private func configureDataSource(){
         dataSource = UITableViewDiffableDataSource<Section, MatchedEventsHistory>(tableView: thePartner.historyTable, cellProvider: { (tableView, indexPath, MatchedEventsHistory) -> UITableViewCell? in

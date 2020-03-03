@@ -37,16 +37,15 @@ class SignUpVC: UIViewController {
     
     @objc func signUpButton() {
         
-        if signUpView.passwordTextField.text != signUpView.confirmPasswordTextField.text {
-            let alertController = UIAlertController(title: "Error", message: "Passwords do not match", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(defaultAction)
-            self.present(alertController, animated: true, completion: nil)
-            
-        } else {
+        guard signUpView.passwordTextField.text == signUpView.confirmPasswordTextField.text else { let alertController = UIAlertController(title: "Error", message: "Passwords do not match", preferredStyle: .alert)
+                   let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                   alertController.addAction(defaultAction)
+                   self.present(alertController, animated: true, completion: nil)
+            return
+        }
             
             signUpFunction(email: signUpView.emailTextField.text, password: signUpView.passwordTextField.text, confirmPassword: signUpView.confirmPasswordTextField.text, displayName: signUpView.displayName.text)
-        }
+        
     }
     
     private func signUpFunction(email:String?,password:String?,confirmPassword: String?, displayName:String?) {

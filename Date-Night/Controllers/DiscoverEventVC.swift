@@ -16,10 +16,9 @@ class DiscoverEventVC: UIViewController {
      weak var delegate:ShakeGestureDelegate?
     
     
-    var currentUser:AppUser? {
-        didSet{
-            grabPartnerFromFirebase()
-            
+    var discoverEventCurrentUser:AppUser? {
+        didSet {
+            print("discover event VC receieved currnetUser")
         }
     }
     
@@ -33,12 +32,16 @@ class DiscoverEventVC: UIViewController {
         return FirestoreService.manager.db.collection("users")
       }
     
-    private var partner:AppUser? {
+    //dependency partner appuser
+     var discoverEventsPartnerUser:AppUser? {
         didSet {
-            guard partner?.preferences.count ?? 0 > 0 else {return}
+            print("discover event vc received partner")
+            guard discoverEventsPartnerUser?.preferences.count ?? 0 > 0 else {return}
       discover.discoverEventButton.isEnabled = true
         }
     }
+    
+   
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,23 +70,9 @@ class DiscoverEventVC: UIViewController {
     @objc private func goToDiscoverEvent() {
 
        
-        getEvents(arrayOfPreferences: setPreferencesForGetEvent(user: currentUser, partner: partner))
+        getEvents(arrayOfPreferences: setPreferencesForGetEvent(user: discoverEventCurrentUser, partner: discoverEventsPartnerUser))
     }
     
-    private func grabPartnerFromFirebase() {
-        guard let partnerEmailAddress = currentUser?.partnerEmail else {fatalError()}
-                FirestoreService.manager.getPartnersUserData(partnerEmailAddress: partnerEmailAddress) { [weak self](result) in
-            switch result {
-            case .failure(let error):
-                print(error)
-                
-            case .success(let partner):
-                self?.partner = partner[0]
-                UserDefaultsWrapper.standard.store(partnerID: partner[0].uid)
-                self?.addListener()
-            }
-        }
-    }
     
     private func shakeGestureDelegateFunction() {
        delegate?.sendEvents(events: arrayOfEvents)        
@@ -120,31 +109,7 @@ class DiscoverEventVC: UIViewController {
         group.notify(queue: .main) {
          
             self.shakeGestureDelegateFunction()
-            self.partnerListener?.remove()
             self.remove()
-
         }
-       
     }
-    private func addListener() {
-                
-     partnerListener = collectionReference.whereField("uid", isEqualTo: partner!.uid).addSnapshotListener({ (snapshot, error) in
-        if let error = error {
-            print(error.localizedDescription)
-        }
-        guard let userFromOnline = snapshot?.documents else {
-            print("couldn't attach snapshot")
-            return
-        }
-        let userList = userFromOnline.compactMap { (snapshot) -> AppUser? in
-            let userID = snapshot.documentID
-            let data = snapshot.data()
-            return AppUser(from: data, id: userID)
-        }
-        self.partner = userList[0]
-    })
-    }
-    deinit {
-        self.partnerListener?.remove()
-}
 }
