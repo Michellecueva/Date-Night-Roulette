@@ -16,7 +16,6 @@ class ProfileSettingVC: UIViewController {
     
     var profileSetting = ProfileSettingView()
     
-    var isCurrentUser = false
     
     var image = UIImage(){
         didSet {
@@ -28,6 +27,7 @@ class ProfileSettingVC: UIViewController {
     
     var currentUser:AppUser? = nil {
         didSet {
+            print("profile setting vc received current User")
             profileSetting.partnerEmailDisplayLabel.text = currentUser?.partnerEmail
             profileSetting.userNameLabel.text = "Hi, \(currentUser?.userName ?? "")"
         }

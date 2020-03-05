@@ -12,6 +12,7 @@ import FirebaseFirestore
 
 class RootViewController: UIViewController{
     
+    
     lazy var homeScreenVC = HomeScreenVC()
     lazy var leftVC = LeftViewController()
     lazy var profileVC = ProfileSettingVC()
@@ -34,32 +35,16 @@ class RootViewController: UIViewController{
     }
     
     
+    private var partnerListener:ListenerRegistration?
     
+    private var userListener:ListenerRegistration?
     
-    var userListener:ListenerRegistration?
-    
-    var collectionReference:Query = Firestore.firestore().collection("users")
+    private var collectionReference:Query = Firestore.firestore().collection("users")
     
      private var currentUser:AppUser? {
         didSet {
-            print("changed")
-            handleAppNavigationLogic()
-//            if currentUser?.partnerEmail == "" {
-//                getInvites()
-//                homeScreenVC.homePageStatus = .none
-//            } else {
-//                leftVC.currentUser = currentUser
-//                profileVC.currentUser = currentUser
-//                leftVC.leftScreenStatus = .partnerProfile
-//                homeScreenVC.currentUser = currentUser
-//
-//                if currentUser?.preferences != [] {
-//                    homeScreenVC.homePageStatus = .discoverEvents
-//
-//                } else {
-//                    homeScreenVC.homePageStatus = .setPreferences
-//                }
-//            }
+            print("rootVC received current User")
+           handleAppNavigationLogic()
         }
     }
     
@@ -97,7 +82,9 @@ class RootViewController: UIViewController{
             getInvites()
             homeScreenVC.homePageStatus = .none
         } else {
-            leftVC.currentUser = currentUser
+            if partner == nil {
+                grabPartnerFromFirebase()
+            }
             profileVC.currentUser = currentUser
             leftVC.leftScreenStatus = .partnerProfile
             homeScreenVC.currentUser = currentUser
@@ -111,6 +98,15 @@ class RootViewController: UIViewController{
         }
 
     }
+    
+    private var partner:AppUser? {
+        didSet {
+            print("rootVC received partner")
+            leftVC.leftScreenPartner = partner
+            homeScreenVC.partner = partner
+        }
+    }
+    
     private func addUserListener() {
         userListener = collectionReference.whereField(
             "email",isEqualTo: userEmail).addSnapshotListener({ (snapshot, error) in
@@ -129,8 +125,33 @@ class RootViewController: UIViewController{
                     
                     return user
                 }
+                if userList.last?.partnerEmail == "" {
+                    self.partner = nil
+                }
                 self.currentUser = userList.last
             })
+    }
+    
+     private func addPartnerListener() {
+                    
+         partnerListener = collectionReference.whereField("uid", isEqualTo: partner!.uid).addSnapshotListener({ (snapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            guard let userFromOnline = snapshot?.documents else {
+                print("couldn't attach snapshot")
+                return
+            }
+            let userList = userFromOnline.compactMap { (snapshot) -> AppUser? in
+                let userID = snapshot.documentID
+                let data = snapshot.data()
+                return AppUser(from: data, id: userID)
+            }
+            self.partner = userList[0]
+        })
+        }
+        deinit {
+            self.partnerListener?.remove()
     }
     
     private func getUser() {
@@ -150,6 +171,20 @@ class RootViewController: UIViewController{
             }
         }
     }
+    
+    private func grabPartnerFromFirebase() {
+           guard let partnerEmailAddress = currentUser?.partnerEmail else {fatalError()}
+                   FirestoreService.manager.getPartnersUserData(partnerEmailAddress: partnerEmailAddress) { [weak self](result) in
+               switch result {
+               case .failure(let error):
+                   print(error)
+                   
+               case .success(let partner):
+                   self?.partner = partner[0]
+                   self?.addPartnerListener()
+               }
+           }
+       }
 
     func positionSwipingViewController() {
         let minY = navigationController?.navigationBar.frame.maxX ?? 0
@@ -253,26 +288,7 @@ class RootViewController: UIViewController{
     }
   
     func showBarButtons() {
-      //  navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .rewind, target: self, action:#selector(backwards) )
-        
-      //  navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .fastForward, target: self, action: #selector(forwards))
     }
-    
-//    @objc private func backwards() {
-//        guard pageControl.currentPage != 0 else {return}
-//        pageControl.currentPage -= 1
-//        
-//        swipingNavigationViewController.navigateToViewController(index: (pageControl.currentPage))
-//    }
-//    
-//    @objc private func forwards() {
-//        guard pageControl.currentPage != 2 else {return}
-//        pageControl.currentPage += 1
-//       
-//       
-//        swipingNavigationViewController.navigateToViewController(index: pageControl.currentPage)
-//       
-//    }
     
     private func getInvites() {
         
@@ -284,26 +300,19 @@ class RootViewController: UIViewController{
                 self?.invitesFromUser = invites
             }
         }
-        
     }
     
     @objc func pageControlTapHandler(sender:UIPageControl) {
-        print("currentPage:", sender.currentPage)
-       
+
         swipingNavigationViewController.navigateToViewController(index: sender.currentPage)
-        //currentPage: 1
     }
 }
 extension RootViewController: SwipingContainerViewControllerDelegate {
     func swipingViewControllerDidEndDeceleratingOnPage(swippingViewController: SwipingContainerViewController, page: Int) {
         print(page)
         pageControl.currentPage = page
-    
-        
     }
-    
 }
-
 
 extension RootViewController:TestChainDelegate {
     func sendEventDataToShakeVC(fbEvents: [FBEvents]) {
@@ -312,8 +321,4 @@ extension RootViewController:TestChainDelegate {
         shakeVC.fbEvents = fbEvents
         navigationController?.pushViewController(shakeVC, animated: true)
     }
-    
-    
-    
-    
 }
