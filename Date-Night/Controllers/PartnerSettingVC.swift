@@ -12,6 +12,15 @@ class PartnerSettingVC: UIViewController {
     
     var thePartner = PartnerSettingView()
     
+    var profilePartnerUser:AppUser? {
+          didSet {
+              print("partner profile VC received partner")
+            //possibly change to layout subviews
+              thePartner.partnerNameLabel.text = "Partner: \(profilePartnerUser?.userName ?? "")"
+                setUpProfilePortrait()
+          }
+      }
+    
     private var dataSource: UITableViewDiffableDataSource<Section, MatchedEvent>!
     
     
@@ -117,6 +126,22 @@ class PartnerSettingVC: UIViewController {
                    print("inviteList: \(eventList)")
                })
        }
+    
+    private func setUpProfilePortrait() {
+           guard let partnerPortraitURL = profilePartnerUser?.photoURL else {return}
+             ImageHelper.shared.getImage(urlStr: partnerPortraitURL) { [weak self](result) in
+                 DispatchQueue.main.async {
+                     switch result {
+                         
+                     case .failure(let error):
+                         print(error)
+                         
+                     case .success(let image):
+                         self?.thePartner.portraitPic.image = image
+                     }
+                 }
+             }
+         }
 }
 
 extension PartnerSettingVC {
