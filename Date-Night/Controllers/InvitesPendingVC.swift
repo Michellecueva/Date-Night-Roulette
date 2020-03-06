@@ -74,8 +74,8 @@ class InvitesPendingVC: UIViewController {
         }
     }
     
-    private func updatePartnerUsernameAndCoupleID(partnerUserName: String?) {
-        FirestoreService.manager.updateCurrentUser(partnerUserName: partnerUserName) { (result) in
+    private func updatePartnerUsernameAndCoupleID(partnerUserName: String?, coupleID: String?) {
+        FirestoreService.manager.updateCurrentUser(partnerUserName: partnerUserName, coupleID: coupleID) { (result) in
             switch result {
             case.success():
                 print("able to update partner username")
@@ -96,8 +96,8 @@ class InvitesPendingVC: UIViewController {
         }
     }
     
-    private func updatePartnersField(partnerUID: String) {
-        FirestoreService.manager.updatePartnerUser(partnerUID: partnerUID) { (result) in
+    private func updatePartnersField(partnerUID: String, coupleID: String) {
+        FirestoreService.manager.updatePartnerUser(partnerUID: partnerUID, coupleID: coupleID) { (result) in
             switch result {
             case .success():
                 print("Able to update partner's field")
@@ -114,10 +114,10 @@ class InvitesPendingVC: UIViewController {
                 print(users[0])
                 
                 let partner = users[0]
+                let coupleID = Auth.auth().currentUser!.uid + partner.uid
                 
-                UserDefaultsWrapper.standard.store(partnerID: partner.uid)
-                self.updatePartnerUsernameAndCoupleID(partnerUserName: partner.userName)
-                self.updatePartnersField(partnerUID: partner.uid)
+                self.updatePartnerUsernameAndCoupleID(partnerUserName: partner.userName, coupleID: coupleID)
+                self.updatePartnersField(partnerUID: partner.uid, coupleID: coupleID)
 
             case .failure(let error):
                 print("unable to get partner user data \(error)")
