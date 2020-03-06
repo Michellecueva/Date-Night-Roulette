@@ -14,19 +14,19 @@ struct AppUser {
     let uid: String
     let userName: String?
     let photoURL: String?
-    let sessionID: String?
+    let coupleID: String?
     let preferences: [String]
     let partnerEmail: String?
     let partnerUserName: String?
     let isAdmin:Bool
     let eventsLiked: [String]
     
-    init(from user: User,sessionID:String?, preferences:[String], eventsLiked: [String]) {
+    init(from user: User,coupleID:String?, preferences:[String], eventsLiked: [String]) {
         self.userName = user.displayName
         self.email = user.email
         self.uid = user.uid
         self.photoURL = user.photoURL?.absoluteString
-        self.sessionID = sessionID
+        self.coupleID = coupleID
         self.preferences = preferences
         self.partnerEmail = nil
         self.partnerUserName = nil
@@ -38,7 +38,7 @@ struct AppUser {
         guard let userName = dict["userName"] as? String,
             let email = dict["email"] as? String,
             let photoURL = dict["photoURL"] as? String,
-            let sessionID = dict["sessionID"] as? String,
+            let coupleID = dict["coupleID"] as? String,
             let preferences = dict["preferences"] as? [String],
             let partnerEmail = dict["partnerEmail"] as? String,
             let partnerUserName = dict["partnerUserName"] as? String,
@@ -50,7 +50,7 @@ struct AppUser {
         self.email = email
         self.uid = id
         self.photoURL = photoURL
-        self.sessionID = sessionID
+        self.coupleID = coupleID
         self.preferences = preferences
         self.partnerEmail = partnerEmail
         self.partnerUserName = partnerUserName
@@ -62,7 +62,7 @@ struct AppUser {
         return [
             "userName": self.userName ?? "",
             "email": self.email ?? "",
-            "sessionID": self.sessionID ?? "",
+            "coupleID": self.coupleID ?? "",
             "preferences": self.preferences,
             "photoURL": self.photoURL ?? "",
             "partnerEmail": self.partnerEmail ?? "",
