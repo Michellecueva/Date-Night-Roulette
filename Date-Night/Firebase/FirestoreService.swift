@@ -121,13 +121,16 @@ class FirestoreService {
         }
     }
     
-    func updatePartnerUser(partnerUID: String, completion: @escaping (Result<(), Error>) -> ()){
+    func updatePartnerUser(partnerUID: String, coupleID: String, completion: @escaping (Result<(), Error>) -> ()){
         let currentUserEmail = FirebaseAuthService.manager.currentUser?.email
         let currentUserName = FirebaseAuthService.manager.currentUser?.displayName
         var updateFields = [String:Any]()
         
         updateFields["partnerEmail"] = currentUserEmail
         updateFields["partnerUserName"] = currentUserName
+        updateFields["coupleID"] = coupleID
+
+        
      
         //PUT request
         db.collection(FireStoreCollections.users.rawValue).document(partnerUID).updateData(updateFields) { (error) in
