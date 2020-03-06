@@ -96,7 +96,7 @@ class FirestoreService {
         }
     }
     
-    func updateCurrentUser(partnerUserName: String? = nil, completion: @escaping (Result<(), Error>) -> ()){
+    func updateCurrentUser(partnerUserName: String?, coupleID: String?, completion: @escaping (Result<(), Error>) -> ()){
         guard let userId = FirebaseAuthService.manager.currentUser?.uid else {
             //MARK: TODO - handle can't get current user
             return
@@ -105,6 +105,10 @@ class FirestoreService {
         
         if let partnerUserName = partnerUserName {
             updateFields["partnerUserName"] = partnerUserName
+        }
+        
+        if let coupleID = coupleID {
+                   updateFields["coupleID"] = coupleID
         }
         
         //PUT request

@@ -74,7 +74,7 @@ class InvitesPendingVC: UIViewController {
         }
     }
     
-    private func updatePartnerUsernameField(partnerUserName: String?) {
+    private func updatePartnerUsernameAndCoupleID(partnerUserName: String?) {
         FirestoreService.manager.updateCurrentUser(partnerUserName: partnerUserName) { (result) in
             switch result {
             case.success():
@@ -116,7 +116,7 @@ class InvitesPendingVC: UIViewController {
                 let partner = users[0]
                 
                 UserDefaultsWrapper.standard.store(partnerID: partner.uid)
-                self.updatePartnerUsernameField(partnerUserName: partner.userName)
+                self.updatePartnerUsernameAndCoupleID(partnerUserName: partner.userName)
                 self.updatePartnersField(partnerUID: partner.uid)
 
             case .failure(let error):
