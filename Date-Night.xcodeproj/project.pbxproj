@@ -80,6 +80,8 @@
 		746751A523FF458900357610 /* ShakeGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746751A323FF458900357610 /* ShakeGestureView.swift */; };
 		746751A723FF459A00357610 /* ShakeGestureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746751A623FF459A00357610 /* ShakeGestureVC.swift */; };
 		74C61A34240488EE00BD2ACA /* ShakeEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C61A33240488EE00BD2ACA /* ShakeEventView.swift */; };
+		74DB5647240F044C000C43EA /* MatchedEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DB5646240F044C000C43EA /* MatchedEventVC.swift */; };
+		74DB5649240F046F000C43EA /* MatchedEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DB5648240F046F000C43EA /* MatchedEventView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,6 +168,8 @@
 		746751A323FF458900357610 /* ShakeGestureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakeGestureView.swift; sourceTree = "<group>"; };
 		746751A623FF459A00357610 /* ShakeGestureVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakeGestureVC.swift; sourceTree = "<group>"; };
 		74C61A33240488EE00BD2ACA /* ShakeEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeEventView.swift; sourceTree = "<group>"; };
+		74DB5646240F044C000C43EA /* MatchedEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchedEventVC.swift; sourceTree = "<group>"; };
+		74DB5648240F046F000C43EA /* MatchedEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchedEventView.swift; sourceTree = "<group>"; };
 		74ED85A185AA38B5892717CF /* Pods-Date-NightTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Date-NightTests.debug.xcconfig"; path = "Target Support Files/Pods-Date-NightTests/Pods-Date-NightTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B4BAB314A5629A1F14D7DE6B /* Pods-Date-Night.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Date-Night.debug.xcconfig"; path = "Target Support Files/Pods-Date-Night/Pods-Date-Night.debug.xcconfig"; sourceTree = "<group>"; };
 		C410CB0F61507686EBFC1D56 /* Pods-Date-Night.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Date-Night.release.xcconfig"; path = "Target Support Files/Pods-Date-Night/Pods-Date-Night.release.xcconfig"; sourceTree = "<group>"; };
@@ -278,6 +282,7 @@
 				7401EF6923F1C53D000C322B /* PartnerSettingVC.swift */,
 				7401EF4823ECAB81000C322B /* DiscoverEventVC.swift */,
 				0B38E7D624048BAC003D05CE /* RandomEventVC.swift */,
+				74DB5646240F044C000C43EA /* MatchedEventVC.swift */,
 				7467518223F7293200357610 /* SplashScreenVC.swift */,
 				283823E923F0C6E70031327E /* InvitesPendingVC.swift */,
 				7401EF7523F1E910000C322B /* WaitingForResponseVC.swift */,
@@ -323,6 +328,7 @@
 			children = (
 				0B96460C23EE2C6A00D2CAB9 /* PreferenceView.swift */,
 				746751A323FF458900357610 /* ShakeGestureView.swift */,
+				74DB5648240F046F000C43EA /* MatchedEventView.swift */,
 				0B96460E23EE2C9E00D2CAB9 /* PreferenceCell.swift */,
 				7448D1A123E895DF003A997C /* SignUpView.swift */,
 				74C61A33240488EE00BD2ACA /* ShakeEventView.swift */,
@@ -587,6 +593,7 @@
 				7467518123F7169F00357610 /* SplashScreenView.swift in Sources */,
 				283823C223E885050031327E /* Invites.swift in Sources */,
 				2862B5FF23DD47130047B47B /* SignInVC.swift in Sources */,
+				74DB5649240F046F000C43EA /* MatchedEventView.swift in Sources */,
 				69CE863823F715FF001E1327 /* InvitesPendingDelegate.swift in Sources */,
 				0B96460F23EE2C9E00D2CAB9 /* PreferenceCell.swift in Sources */,
 				7401EF4923ECAB81000C322B /* DiscoverEventVC.swift in Sources */,
@@ -611,6 +618,7 @@
 				2862B5FB23DD47130047B47B /* AppDelegate.swift in Sources */,
 				283823EE23F0F4F30031327E /* CellDelegate.swift in Sources */,
 				69CE862923F71565001E1327 /* LeftViewController.swift in Sources */,
+				74DB5647240F044C000C43EA /* MatchedEventVC.swift in Sources */,
 				746751A523FF458900357610 /* ShakeGestureView.swift in Sources */,
 				0B38E7CF24007755003D05CE /* EventfulAPIClient.swift in Sources */,
 				7448D1A023E895B4003A997C /* SignInView.swift in Sources */,
