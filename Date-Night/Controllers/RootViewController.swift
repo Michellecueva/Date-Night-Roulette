@@ -44,7 +44,8 @@ class RootViewController: UIViewController{
      private var currentUser:AppUser? {
         didSet {
             print("rootVC received current User")
-           handleAppNavigationLogic()
+            handleAppNavigationLogic()
+            leftVC.currentUser = currentUser
         }
     }
     
@@ -106,6 +107,8 @@ class RootViewController: UIViewController{
             homeScreenVC.partner = partner
         }
     }
+    
+
     
     private func addUserListener() {
         userListener = collectionReference.whereField(

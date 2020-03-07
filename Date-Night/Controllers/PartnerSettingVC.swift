@@ -35,7 +35,8 @@ class PartnerSettingVC: UIViewController {
     var currentUser:AppUser? {
         didSet {
             thePartner.partnerNameLabel.text = "Your partner is \(currentUser?.partnerUserName ?? "")"
-            
+            addMatchedEventListener()
+            print("currentPartner shown on partner vc")
         }
     }
     
@@ -44,21 +45,9 @@ class PartnerSettingVC: UIViewController {
         view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         view.addSubview(thePartner)
         configureDataSource()
-        addMatchedEventListener()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        guard let userID = Auth.auth().currentUser?.uid else {
-            print("no current user")
-            return
-            
-        }
-        guard let partnerID = UserDefaultsWrapper.standard.getPartnerUID() else {return}
-        
-        getMatchedEvents(userID: userID, partnerID: partnerID)
-    }
-    
-    
+ 
+
     private func configureDataSource(){
         dataSource = UITableViewDiffableDataSource<Section, MatchedEvent>(tableView: thePartner.historyTable, cellProvider: { (tableView, indexPath, MatchedEvents) -> UITableViewCell? in
             let cell = tableView.dequeueReusableCell(withIdentifier: MatchedCell.identifier, for: indexPath) as! MatchedCell
@@ -74,31 +63,14 @@ class PartnerSettingVC: UIViewController {
         dataSource.apply(snapshot, animatingDifferences: true)
     }
     
-    private func getMatchedEvents(userID: String, partnerID: String) {
-        FirestoreService.manager.getMatchedHistory(userID: userID, partnerID: partnerID) { (result) in
-            switch result {
-            case .success(let matchedEventsOnline):
-                self.matchedEvents = matchedEventsOnline
-            case .failure(let error):
-                print("unable to get matched Events \(error)")
-            }
-        }
-    }
-    
     private func addMatchedEventListener() {
         
-        guard let userID = Auth.auth().currentUser?.uid else {
-                   print("no current user")
-                   return
-                   
-               }
-        guard let partnerID = UserDefaultsWrapper.standard.getPartnerUID() else {return}
+        guard let currentUser = currentUser else {return}
         
         matchedEventListener = collectionReference.whereField(
-               "userOne",
-               isEqualTo: userID
+               "coupleID",
+               isEqualTo: currentUser.coupleID!
             )
-            .whereField("userTwo", isEqualTo: partnerID)
                .addSnapshotListener({ (snapshot, error) in
                    
                    if let error = error {
