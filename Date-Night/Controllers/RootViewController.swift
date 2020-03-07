@@ -45,7 +45,6 @@ class RootViewController: UIViewController{
         didSet {
             print("rootVC received current User")
             handleAppNavigationLogic()
-            leftVC.currentUser = currentUser
         }
     }
     

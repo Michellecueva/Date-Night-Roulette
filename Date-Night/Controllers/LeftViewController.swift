@@ -32,12 +32,6 @@ class LeftViewController: UIViewController {
         }
     }
     
-    var currentUser:AppUser? {
-        didSet {
-            print("currentUser passed into left VC")
-            partnerProfileVC.currentUser = currentUser
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

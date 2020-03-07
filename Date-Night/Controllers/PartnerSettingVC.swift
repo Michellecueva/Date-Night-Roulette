@@ -34,10 +34,7 @@ class PartnerSettingVC: UIViewController {
     
     var currentUser:AppUser? {
         didSet {
-            thePartner.partnerNameLabel.text = "Your partner is \(currentUser?.partnerUserName ?? "")"
-            getMatchedEvents(coupleID: (currentUser?.coupleID)!)
             addMatchedEventListener()
-            print("currentPartner shown on partner vc")
         }
     }
     
@@ -45,6 +42,7 @@ class PartnerSettingVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         view.addSubview(thePartner)
+        getAppUser()
         configureDataSource()
     }
  
@@ -60,9 +58,24 @@ class PartnerSettingVC: UIViewController {
     private func createSnapshot(from matchedEvents: [MatchedEvent]){
         var snapshot = NSDiffableDataSourceSnapshot<Section, MatchedEvent>()
         snapshot.appendSections([.events])
-        snapshot.appendItems(matchedEvents)
+        if matchedEvents.count > 0 {
+            snapshot.appendItems(matchedEvents)
+        }
+        
         dataSource.apply(snapshot, animatingDifferences: true)
     }
+    
+    private func getAppUser() {
+           guard let user = Auth.auth().currentUser else {return}
+           FirestoreService.manager.getUser(userID: user.uid) { (result) in
+               switch result {
+               case .success(let appUser):
+                   self.currentUser = appUser
+               case .failure(let error):
+                   print("unable to get appUser in gesture VC \(error)")
+               }
+           }
+       }
     
     private func addMatchedEventListener() {
         

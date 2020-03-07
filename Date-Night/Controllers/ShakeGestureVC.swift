@@ -34,7 +34,7 @@ class ShakeGestureVC: UIViewController {
     
     var currentUser:AppUser? {
       didSet {
-          print("gesture VC receieved currentUser\(currentUser)")
+        addListenerOnPartner()
       }
     }
     
@@ -64,14 +64,12 @@ class ShakeGestureVC: UIViewController {
         self.makeNavBarTranslucent()
         configurePageControl()
         addObjcFunctionsToViewButtons()
-        addListenerOnPartner()
-        getPriorEventsLiked()
         getAppUser()
+        getPriorEventsLiked()
     }
     
     override func viewDidAppear(_ animated:Bool) {
         super.viewDidAppear(animated)
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -122,6 +120,7 @@ class ShakeGestureVC: UIViewController {
             createMatchedEvent(matchedEvent: matchedEvent)
             
             matchAlert(title: "It's a Match!", message: "You've Matched Events With Your Partner")
+            clearEventsLikedArr()
             
         }else {
             shakeTheEvent()
@@ -144,6 +143,7 @@ class ShakeGestureVC: UIViewController {
             switch result {
             case .success(let appUser):
                 self.currentUser = appUser
+                print("****** this is the partner email\(appUser.partnerEmail)")
             case .failure(let error):
                 print("unable to get appUser in gesture VC \(error)")
             }
@@ -194,9 +194,9 @@ class ShakeGestureVC: UIViewController {
     
     private func addListenerOnPartner() {
         
-        guard let partnerUID = UserDefaultsWrapper.standard.getPartnerUID() else {return}
+        guard let currentUser = currentUser else {return}
         
-        partnerListener = collectionReference.whereField("uid", isEqualTo: partnerUID)
+        partnerListener = collectionReference.whereField("email", isEqualTo: currentUser.partnerEmail!)
             .addSnapshotListener({ (snapshot, error) in
                 
                 if let error = error {
@@ -212,7 +212,7 @@ class ShakeGestureVC: UIViewController {
                     return AppUser(from: data, id: userID)
                 }
                 
-                print("listener on PartnerUser \(userList[0].eventsLiked)")
+                print("*******listener on PartnerUser \(userList[0].eventsLiked)")
                 
                 self.partnersEventsLiked = userList[0].eventsLiked
                 
