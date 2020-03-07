@@ -103,9 +103,8 @@ class ShowEventVC: UIViewController {
     
     private func addListenerOnPartner() {
         
-        guard let partnerUID = UserDefaultsWrapper.standard.getPartnerUID() else {return}
         
-        partnerListener = collectionReference.whereField("uid", isEqualTo: partnerUID)
+        partnerListener = collectionReference.whereField("uid", isEqualTo: "partnerUID")
                 .addSnapshotListener({ (snapshot, error) in
 
                     if let error = error {

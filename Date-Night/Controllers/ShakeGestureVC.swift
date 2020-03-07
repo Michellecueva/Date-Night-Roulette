@@ -32,12 +32,10 @@ class ShakeGestureVC: UIViewController {
         }
     }
     
-    private var currentUserID:String {
-        if let user = Auth.auth().currentUser?.uid {
-           return user
-       } else {
-           return "Invalid ID"
-       }
+    var currentUser:AppUser? {
+      didSet {
+        addListenerOnPartner()
+      }
     }
     
     var partnersEventsLiked = [String]()
@@ -66,18 +64,16 @@ class ShakeGestureVC: UIViewController {
         self.makeNavBarTranslucent()
         configurePageControl()
         addObjcFunctionsToViewButtons()
-        addListenerOnPartner()
+        getAppUser()
         getPriorEventsLiked()
     }
     
     override func viewDidAppear(_ animated:Bool) {
         super.viewDidAppear(animated)
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        clearEventsLikedArr()
     }
     
     private func addObjcFunctionsToViewButtons() {
@@ -116,11 +112,16 @@ class ShakeGestureVC: UIViewController {
         
         guard let lastEventLiked = eventsLiked.last else {return}
         if partnersEventsLiked.contains(lastEventLiked) {
-            guard let partnerUID = UserDefaultsWrapper.standard.getPartnerUID() else {return}
-            let matchedEvent = MatchedEvent(userOne: currentUserID, userTwo: partnerUID, title: eventTitle, eventID: eventID)
+            guard let coupleID = currentUser?.coupleID else {
+                       print("no user found")
+                       return
+                   }
+            let matchedEvent = MatchedEvent(coupleID: coupleID, title: eventTitle, eventID: eventID)
             createMatchedEvent(matchedEvent: matchedEvent)
             
             matchAlert(title: "It's a Match!", message: "You've Matched Events With Your Partner")
+            clearEventsLikedArr()
+            
         }else {
             shakeTheEvent()
         }
@@ -134,6 +135,19 @@ class ShakeGestureVC: UIViewController {
         
         //maybe pull events from firebase instead
         
+    }
+    
+    private func getAppUser() {
+        guard let user = Auth.auth().currentUser else {return}
+        FirestoreService.manager.getUser(userID: user.uid) { (result) in
+            switch result {
+            case .success(let appUser):
+                self.currentUser = appUser
+                print("****** this is the partner email\(appUser.partnerEmail)")
+            case .failure(let error):
+                print("unable to get appUser in gesture VC \(error)")
+            }
+        }
     }
     
     private func updateEventsLikedOnFirebase(eventsLiked: [String]) {
@@ -180,9 +194,9 @@ class ShakeGestureVC: UIViewController {
     
     private func addListenerOnPartner() {
         
-        guard let partnerUID = UserDefaultsWrapper.standard.getPartnerUID() else {return}
+        guard let currentUser = currentUser else {return}
         
-        partnerListener = collectionReference.whereField("uid", isEqualTo: partnerUID)
+        partnerListener = collectionReference.whereField("email", isEqualTo: currentUser.partnerEmail!)
             .addSnapshotListener({ (snapshot, error) in
                 
                 if let error = error {
@@ -198,7 +212,7 @@ class ShakeGestureVC: UIViewController {
                     return AppUser(from: data, id: userID)
                 }
                 
-                print("listener on PartnerUser \(userList[0].eventsLiked)")
+                print("*******listener on PartnerUser \(userList[0].eventsLiked)")
                 
                 self.partnersEventsLiked = userList[0].eventsLiked
                 

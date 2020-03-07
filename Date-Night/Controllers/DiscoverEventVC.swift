@@ -18,7 +18,7 @@ class DiscoverEventVC: UIViewController {
     
     var discoverEventCurrentUser:AppUser? {
         didSet {
-            print("discover event VC receieved currnetUser")
+            print("discover event VC receieved currentUser\(print(discoverEventCurrentUser))")
         }
     }
     
@@ -71,6 +71,9 @@ class DiscoverEventVC: UIViewController {
 
        
         getEvents(arrayOfPreferences: setPreferencesForGetEvent(user: discoverEventCurrentUser, partner: discoverEventsPartnerUser))
+        
+//        let shakeGestureVC = ShakeGestureVC()
+//        shakeGestureVC.currentUser = discoverEventCurrentUser
     }
     
     
