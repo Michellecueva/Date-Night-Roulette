@@ -58,10 +58,7 @@ class PartnerSettingVC: UIViewController {
     private func createSnapshot(from matchedEvents: [MatchedEvent]){
         var snapshot = NSDiffableDataSourceSnapshot<Section, MatchedEvent>()
         snapshot.appendSections([.events])
-        if matchedEvents.count > 0 {
-            snapshot.appendItems(matchedEvents)
-        }
-        
+        snapshot.appendItems(matchedEvents)
         dataSource.apply(snapshot, animatingDifferences: true)
     }
     
@@ -107,9 +104,10 @@ class PartnerSettingVC: UIViewController {
                         self.thePartner.historyTable.isHidden = false
                         self.thePartner.noEventsLabel.isHidden = true
                    }
+                    print("inviteList: \(eventList)")
                     self.matchedEvents = eventList
                 
-                   print("inviteList: \(eventList)")
+                   
                })
        }
     
