@@ -35,6 +35,7 @@ class PartnerSettingVC: UIViewController {
     var currentUser:AppUser? {
         didSet {
             thePartner.partnerNameLabel.text = "Your partner is \(currentUser?.partnerUserName ?? "")"
+            getMatchedEvents(coupleID: (currentUser?.coupleID)!)
             addMatchedEventListener()
             print("currentPartner shown on partner vc")
         }
@@ -114,6 +115,17 @@ class PartnerSettingVC: UIViewController {
                  }
              }
          }
+    
+    private func getMatchedEvents(coupleID: String) {
+        FirestoreService.manager.getMatchedHistory(coupleID: coupleID) { (result) in
+            switch result {
+            case .success(let matchedEventsOnline):
+                self.matchedEvents = matchedEventsOnline
+            case .failure(let error):
+                print("unable to get matched Events \(error)")
+            }
+        }
+    }
 }
 
 extension PartnerSettingVC {

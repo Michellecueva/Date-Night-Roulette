@@ -345,5 +345,22 @@ class FirestoreService {
         }
     }
     
+    func getMatchedHistory(coupleID: String, completionHandler: @escaping (Result <[MatchedEvent], Error>) -> () ) {
+        db.collection(FireStoreCollections.MatchedEvents.rawValue).whereField("coupleID", isEqualTo: coupleID).getDocuments { (snapshot, error) in
+                if let error = error {
+                    completionHandler(.failure(error))
+                } else {
+                    let matchedData = snapshot?.documents.compactMap({ (snapshot) -> MatchedEvent? in
+                        let matchedID = snapshot.documentID
+                        let data = snapshot.data()
+                        return MatchedEvent(from: data, id: matchedID)
+                    })
+                    
+                    completionHandler(.success(matchedData ?? []))
+                }
+        }
+        
+    }
+    
     private init () {}
 }
