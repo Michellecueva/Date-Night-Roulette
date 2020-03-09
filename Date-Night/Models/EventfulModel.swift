@@ -26,13 +26,13 @@ struct EventWrapper: Codable {
 
 // MARK: - Event
 struct Event: Codable {
-    let venue_url: String
+    let venue_url: String?
     let description: String?
     let title: String?
     let image: Image?
-    let venue_address: String
-    let id:String
-    let venue_name:String
+    let venue_address: String?
+    let id:String?
+    let venue_name:String?
     
    
     
@@ -50,15 +50,15 @@ struct Event: Codable {
 
 // MARK: - Image
 struct Image: Codable {
-    let width: String
-    let medium: Medium
-    let url: String
-    let height: String
+    let width: String?
+    let medium: Medium?
+    let url: String?
+    let height: String?
 }
 
 // MARK: - Medium
 struct Medium: Codable {
-    let width: String
-    let url: String
-    let height: String
+    let width: String?
+    let url: String?
+    let height: String?
 }
