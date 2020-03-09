@@ -19,7 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let scene = (scene as? UIWindowScene) else { return }
         
-        
+        //uncomment if you need to log out before the app loads
+            //   do { try Auth.auth().signOut()}catch {print(error)}
         do { try Auth.auth().useUserAccessGroup(nil)}catch {print(error)}
         
         window = UIWindow(frame: UIScreen.main.bounds)
