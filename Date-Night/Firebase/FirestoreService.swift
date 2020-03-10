@@ -96,7 +96,7 @@ class FirestoreService {
         }
     }
     
-    func updateCurrentUser(partnerUserName: String? = nil, completion: @escaping (Result<(), Error>) -> ()){
+    func updateCurrentUser(partnerUserName: String?, coupleID: String?, completion: @escaping (Result<(), Error>) -> ()){
         guard let userId = FirebaseAuthService.manager.currentUser?.uid else {
             //MARK: TODO - handle can't get current user
             return
@@ -105,6 +105,10 @@ class FirestoreService {
         
         if let partnerUserName = partnerUserName {
             updateFields["partnerUserName"] = partnerUserName
+        }
+        
+        if let coupleID = coupleID {
+                   updateFields["coupleID"] = coupleID
         }
         
         //PUT request
@@ -117,13 +121,16 @@ class FirestoreService {
         }
     }
     
-    func updatePartnerUser(partnerUID: String, completion: @escaping (Result<(), Error>) -> ()){
+    func updatePartnerUser(partnerUID: String, coupleID: String, completion: @escaping (Result<(), Error>) -> ()){
         let currentUserEmail = FirebaseAuthService.manager.currentUser?.email
         let currentUserName = FirebaseAuthService.manager.currentUser?.displayName
         var updateFields = [String:Any]()
         
         updateFields["partnerEmail"] = currentUserEmail
         updateFields["partnerUserName"] = currentUserName
+        updateFields["coupleID"] = coupleID
+
+        
      
         //PUT request
         db.collection(FireStoreCollections.users.rawValue).document(partnerUID).updateData(updateFields) { (error) in
@@ -338,9 +345,8 @@ class FirestoreService {
         }
     }
     
-    func getMatchedHistory(userID: String, partnerID: String, completionHandler: @escaping (Result <[MatchedEvent], Error>) -> () ) {
-        db.collection(FireStoreCollections.MatchedEvents.rawValue).whereField("userOne", isEqualTo: userID)
-            .whereField("userTwo", isEqualTo: partnerID).getDocuments { (snapshot, error) in
+    func getMatchedHistory(coupleID: String, completionHandler: @escaping (Result <[MatchedEvent], Error>) -> () ) {
+        db.collection(FireStoreCollections.MatchedEvents.rawValue).whereField("coupleID", isEqualTo: coupleID).getDocuments { (snapshot, error) in
                 if let error = error {
                     completionHandler(.failure(error))
                 } else {
@@ -355,22 +361,6 @@ class FirestoreService {
         }
         
     }
-    
-//    func getEventsFromFireBase(preference: String,completion: @escaping (Result<[FBEvents], Error>) -> ()) {
-//        db.collection("FBEvents").whereField("type", isEqualTo: preference).getDocuments { (snapshot, error) in
-//                if let error = error {
-//                    completion(.failure(error))
-//                } else {
-//                    let eventData = snapshot?.documents.compactMap({ (snapshot) -> FBEvents? in
-//
-//                            let eventID = snapshot.documentID
-//                            let data = snapshot.data()
-//                            return FBEvents(from: data, id: eventID)
-//                        })
-//                        completion(.success(eventData ?? []))
-//                    }
-//        }
-//    }
     
     private init () {}
 }
