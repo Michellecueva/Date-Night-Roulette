@@ -17,12 +17,22 @@ class RootViewController: UIViewController{
     lazy var leftVC = LeftViewController()
     lazy var profileVC = ProfileSettingVC()
     
-    var pageControl:UIPageControl = UIPageControl(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    var pageControl:UIPageControl = UIPageControl(frame: CGRect(x: 0, y: 0, width: 0, height: 0)) {
+        didSet {
+            print("printing \(pageControl.currentPage)")
+        }
+    }
     
     var userEmail:String {
         guard let email = Auth.auth().currentUser?.email else {fatalError()}
         return email
     }
+    
+    private var profileButton:UIButton = {
+        let profileBtn = UIButton(type: UIButton.ButtonType.custom)
+     profileBtn.addTarget(self, action: #selector(navigateToProfileVC), for: .touchUpInside)
+        return profileBtn
+    }()
     
     private var invitesFromUser = [Invites]() {
         didSet {
@@ -43,7 +53,7 @@ class RootViewController: UIViewController{
     
      private var currentUser:AppUser? {
         didSet {
-            print("rootVC received current User")
+            setUpRightBarButton(profilePicURL: currentUser?.photoURL)
             handleAppNavigationLogic()
         }
     }
@@ -53,21 +63,31 @@ class RootViewController: UIViewController{
         return user
     }
     
+    private var partner:AppUser? {
+           didSet {
+               print("rootVC received partner")
+            guard partner != nil else {return}
+               leftVC.leftScreenPartner = partner
+               homeScreenVC.partner = partner
+            setUpLeftBarButton(profilePictureURL: partner?.photoURL)
+           }
+       }
     
     private let swipingNavigationViewController = SwipingContainerViewController()
     private var viewControllerConfigs: [ViewControllerConfig] = [] // probably need to implement will set did set
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         getUser()
         makeNavBarTranslucent()
         showBarButtons()
+       
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         swipingNavigationViewController.view.frame = view.bounds
+       // profileButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,6 +101,7 @@ class RootViewController: UIViewController{
         if currentUser?.partnerEmail == "" {
             getInvites()
             homeScreenVC.homePageStatus = .none
+            partner = nil
         } else {
             if partner == nil {
                 grabPartnerFromFirebase()
@@ -99,14 +120,55 @@ class RootViewController: UIViewController{
 
     }
     
-    private var partner:AppUser? {
-        didSet {
-            print("rootVC received partner")
-            leftVC.leftScreenPartner = partner
-            homeScreenVC.partner = partner
+   
+    private func setUpLeftBarButton(profilePictureURL:String?) {
+        guard let profileURL = profilePictureURL else {return}
+       
+        DispatchQueue.main.async {
+            
+            if let image = ImageHelper.shared.image(forKey: profileURL as NSString) {
+                
+                self.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(self, action: #selector(self.navigateToPartnerVC), imageName: nil, image: image, systemImageName: nil)
+            } else {
+        
+        ImageHelper.shared.getImage(urlStr: profileURL) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let image):
+                self?.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(self, action: #selector(self?.navigateToPartnerVC), imageName: nil, image: image, systemImageName: nil)
+            }
+                }
+        }
         }
     }
     
+    private func setUpRightBarButton(profilePicURL:String?) {
+        guard let profileURL = profilePicURL else {return}
+        
+        if let image = ImageHelper.shared.image(forKey: profileURL as NSString) {
+                     
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(self, action: #selector(self.navigateToPartnerVC), imageName: nil, image: image, systemImageName: nil)
+        } else {
+        
+        ImageHelper.shared.getImage(urlStr: profileURL) { [weak self] (result) in
+            DispatchQueue.main.async {
+                
+            
+                   switch result {
+                   case .failure(let error):
+                       print(error)
+                   case .success(let image):
+                    self?.navigationItem.rightBarButtonItem = UIBarButtonItem.barButton(self, action: #selector(self?.navigateToProfileVC), imageName: nil, image: image, systemImageName: nil)
+                    self?.navigationItem.rightBarButtonItem?.customView?.layer.cornerRadius = 12
+                    
+                    self?.navigationItem.rightBarButtonItem?.customView?.layoutIfNeeded()
+                    
+                }
+                }
+               }
+        }
+    }
 
     
     private func addUserListener() {
@@ -285,12 +347,14 @@ class RootViewController: UIViewController{
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         
         navigationItem.titleView = pageControl
-        pageControl.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+      //  pageControl.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
         
     }
   
-    func showBarButtons() {
+   private func showBarButtons() {
+    navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(self, action: #selector(navigateToPartnerVC), imageName: nil, image: nil,systemImageName:"person.fill")
     }
+    
     
     private func getInvites() {
         
@@ -304,19 +368,37 @@ class RootViewController: UIViewController{
         }
     }
     
-    @objc func pageControlTapHandler(sender:UIPageControl) {
+    @objc func navigateToPartnerVC() {
 
-        swipingNavigationViewController.navigateToViewController(index: sender.currentPage)
+        swipingNavigationViewController.navigateToViewController(index: 0)
+        pageControl.currentPage = 0
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        navigationItem.leftBarButtonItem?.isEnabled = false
+    }
+    
+    @objc func navigateToProfileVC() {
+        swipingNavigationViewController.navigateToViewController(index: 2)
+        pageControl.currentPage = 2
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        navigationItem.leftBarButtonItem?.isEnabled = false
     }
 }
 extension RootViewController: SwipingContainerViewControllerDelegate {
     func swipingViewControllerDidEndDeceleratingOnPage(swippingViewController: SwipingContainerViewController, page: Int) {
         print(page)
         pageControl.currentPage = page
+        if page == 0 || page == 2 {
+            navigationItem.rightBarButtonItem?.isEnabled = false
+            navigationItem.leftBarButtonItem?.isEnabled = false
+        } else {
+                       navigationItem.rightBarButtonItem?.isEnabled = true
+                       navigationItem.leftBarButtonItem?.isEnabled = true
+
+        }
     }
 }
 
-extension RootViewController:TestChainDelegate {
+extension RootViewController:fbEventsDelegate {
     func sendEventDataToShakeVC(fbEvents: [FBEvents]) {
         let shakeVC = ShakeGestureVC()
      //maybe pop discover VC before pushing shakeVC
