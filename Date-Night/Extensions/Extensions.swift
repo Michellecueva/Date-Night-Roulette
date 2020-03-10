@@ -164,6 +164,37 @@ extension UIViewController {
     }
 }
 
+extension UIBarButtonItem {
+
+    static func barButton(_ target: Any?, action: Selector, imageName: String?, image:UIImage?,systemImageName:String?) -> UIBarButtonItem {
+        let button = UIButton(type: .custom)
+        
+        
+        
+        if let imageName = imageName {
+        button.setImage(UIImage(named: imageName), for: .normal)
+        }
+    
+       if let image = image {
+            button.setImage(image, for: .normal)
+        }
+        
+        if let systemImageName = systemImageName {
+            button.setImage(UIImage(systemName: systemImageName), for: .normal)
+        }
+        button.addTarget(target, action: action, for: .touchUpInside)
+        button.setImage(UIImage(), for: .disabled)
+        let barButtonItem = UIBarButtonItem(customView: button)
+        barButtonItem.customView?.translatesAutoresizingMaskIntoConstraints = false
+        barButtonItem.customView?.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        barButtonItem.customView?.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        
+     
+
+        return barButtonItem
+    }
+}
+
 extension Date {
     // get an ISO timestamp
     static func getISOTimestamp() -> String {
