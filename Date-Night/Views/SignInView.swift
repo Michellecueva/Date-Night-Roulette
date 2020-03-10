@@ -14,48 +14,54 @@ class SignInView: UIView {
     
     lazy var titleLabel : UILabel = {
         let label = UILabel()
-        label.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        label.textColor = StyleGuide.AppColors.accentColor
         label.text = "Date Night\nRoulette"
         label.numberOfLines = 0
         label.textAlignment = .center
         label.adjustsFontForContentSizeCategory = true
-        label.font = UIFont(name: "CopperPlate", size: 50)
+        label.font = UIFont(name: StyleGuide.TitleFontStyle.fontName, size: StyleGuide.TitleFontStyle.fontSize)
         return label
     }()
-    
+ 
     lazy var emailField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Email Address"
+        textField.font = UIFont(name: StyleGuide.TextFieldStyle.fontName, size: StyleGuide.TextFieldStyle.fontSize)
+        textField.backgroundColor = .lightText
         textField.borderStyle = .roundedRect
-        textField.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        textField.backgroundColor = StyleGuide.TextFieldStyle.backgroundColor
+        textField.autocorrectionType = .no
         return textField
     }()
     
+          
     lazy var passwordField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Password"
         textField.borderStyle = .roundedRect
-        textField.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        textField.font = UIFont(name: StyleGuide.TextFieldStyle.fontName, size: StyleGuide.TextFieldStyle.fontSize)
+        textField.backgroundColor = StyleGuide.TextFieldStyle.backgroundColor
         textField.isSecureTextEntry = true
         return textField
     }()
+    
     lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Login", for: .normal)
         button.setTitleColor(.blue, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Arial-Bold", size: 16)
+        button.titleLabel?.font = UIFont(name: "Helvetica-Neue", size: 14)
         button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        button.layer.cornerRadius = 5
+        button.layer.cornerRadius = StyleGuide.ButtonStyle.cornerRadius
         button.isEnabled = true
         return button
     }()
-    
+
     lazy var createAccountButton: UIButton = {
         let button = UIButton(type: .system)
         let attributedTitle = NSMutableAttributedString(
             string: "Dont have an account?  ",
             attributes: [
-                NSAttributedString.Key.font: UIFont(name: "Verdana", size: 14)!,
+                NSAttributedString.Key.font: UIFont(name: "Arial", size: 14)!,
                 NSAttributedString.Key.foregroundColor: UIColor.white
             ]
         )
@@ -64,7 +70,7 @@ class SignInView: UIView {
         attributedTitle.append(NSAttributedString(
             string: "Sign Up",
             attributes: [
-                NSAttributedString.Key.font: UIFont(name: "Verdana", size: 14)!,
+                NSAttributedString.Key.font: UIFont(name: "Arial", size: 14)!,
                 NSAttributedString.Key.foregroundColor:  UIColor.blue
             ]
         ))

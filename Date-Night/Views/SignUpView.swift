@@ -14,21 +14,21 @@ class SignUpView: UIView {
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        label.textColor = StyleGuide.AppColors.accentColor
         label.text = "Date Night\nRoulette"
         label.numberOfLines = 0
         label.textAlignment = .center
         label.adjustsFontForContentSizeCategory = true
-        label.font = UIFont(name: "CopperPlate", size: 50)
+        label.font = UIFont(name: StyleGuide.TitleFontStyle.fontName, size: StyleGuide.TitleFontStyle.fontSize)
         return label
     }()
     
     lazy var displayName: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Display name"
-        textField.font = UIFont(name: "Verdana", size: 14)
+        textField.placeholder = "Display Name"
+        textField.font = UIFont(name: StyleGuide.TextFieldStyle.fontName, size: StyleGuide.TextFieldStyle.fontSize)
         textField.backgroundColor = .lightText
-        textField.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        textField.backgroundColor = StyleGuide.TextFieldStyle.backgroundColor
         textField.borderStyle = .roundedRect
         textField.autocorrectionType = .no
         return textField
@@ -37,9 +37,9 @@ class SignUpView: UIView {
     lazy var emailTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Enter Email"
-        textField.font = UIFont(name: "Verdana", size: 14)
+        textField.font = UIFont(name: StyleGuide.TextFieldStyle.fontName, size: StyleGuide.TextFieldStyle.fontSize)
         textField.backgroundColor = .lightText
-        textField.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        textField.backgroundColor = StyleGuide.TextFieldStyle.backgroundColor
         textField.borderStyle = .roundedRect
         textField.autocorrectionType = .no
         return textField
@@ -48,9 +48,9 @@ class SignUpView: UIView {
     lazy var passwordTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Enter Password"
-        textField.font = UIFont(name: "Verdana", size: 14)
+        textField.font = UIFont(name: StyleGuide.TextFieldStyle.fontName, size: StyleGuide.TextFieldStyle.fontSize)
         textField.backgroundColor = .lightText
-        textField.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        textField.backgroundColor = StyleGuide.TextFieldStyle.backgroundColor
         textField.borderStyle = .roundedRect
         textField.autocorrectionType = .no
         textField.isSecureTextEntry = true
@@ -60,9 +60,9 @@ class SignUpView: UIView {
     lazy var confirmPasswordTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Confirm Password"
-        textField.font = UIFont(name: "Verdana", size: 14)
+        textField.font = UIFont(name: StyleGuide.TextFieldStyle.fontName, size: StyleGuide.TextFieldStyle.fontSize)
         textField.backgroundColor = .lightText
-        textField.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        textField.backgroundColor = StyleGuide.TextFieldStyle.backgroundColor
         textField.borderStyle = .roundedRect
         textField.autocorrectionType = .no
         textField.isSecureTextEntry = true
@@ -73,11 +73,11 @@ class SignUpView: UIView {
     lazy var createButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Create Account", for: .normal)
-        button.setTitleColor(#colorLiteral(red: 0.819378674, green: 0.3879651427, blue: 1, alpha: 1), for: .normal)
-        button.setTitleColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1), for: .disabled)
-        button.titleLabel?.font = UIFont(name: "Verdana-Bold", size: 14)
+        button.setTitleColor(StyleGuide.ButtonStyle.fontColor, for: .normal)
+        button.setTitleColor(StyleGuide.ButtonStyle.disabledColor, for: .disabled)
+        button.titleLabel?.font = UIFont(name: "Helvetica-Neue", size: 14)
         button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        button.layer.cornerRadius = 5
+        button.layer.cornerRadius = StyleGuide.ButtonStyle.cornerRadius
         button.isEnabled = false
         return button
     }()
@@ -141,7 +141,7 @@ class SignUpView: UIView {
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 50),
             stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            stackView.heightAnchor.constraint(equalToConstant: 190),
+            stackView.heightAnchor.constraint(equalToConstant: 215),
             stackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7)
         ])
     }

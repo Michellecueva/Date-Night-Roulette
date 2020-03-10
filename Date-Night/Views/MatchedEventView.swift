@@ -1,15 +1,7 @@
-//
-//  MatchedEventView.swift
-//  Date-Night
-//
-//  Created by Kimball Yang on 3/3/20.
-//  Copyright © 2020 Date Night Roulette. All rights reserved.
-//
 
 import UIKit
 
 class MatchedEventView: UIView {
-    
     
     var imageTopConstraint = NSLayoutConstraint()
     var labelTopConstraint = NSLayoutConstraint()
@@ -18,12 +10,12 @@ class MatchedEventView: UIView {
     
     lazy var matchLabel: UILabel = {
         let mLabel = UILabel()
-        mLabel.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
-        mLabel.text = "You and your partner have matched an event!"
+        mLabel.textColor = StyleGuide.TitleFontStyle.fontColor
+        mLabel.text = "You and your Partner Have Matched!"
         mLabel.numberOfLines = 0
         mLabel.textAlignment = .center
         mLabel.adjustsFontForContentSizeCategory = true
-        mLabel.font = UIFont(name: "CopperPlate", size: 25)
+        mLabel.font = UIFont(name:StyleGuide.TitleFontStyle.fontName, size:StyleGuide.TitleFontStyle.fontSize)
         return mLabel
     }()
     
@@ -37,10 +29,13 @@ class MatchedEventView: UIView {
     lazy var confirmButton: UIButton = {
         let button = UIButton()
         button.setTitle("Confirm", for: .normal)
-        button.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
-        button.titleLabel?.font = UIFont(name: "Arial", size: 24)
-        button.layer.cornerRadius = 10
+        button.setTitleColor(StyleGuide.ButtonStyle.fontColor, for: .normal)
+        button.setTitleColor(StyleGuide.ButtonStyle.disabledColor, for: .disabled)
+        button.titleLabel?.font = UIFont(name: StyleGuide.ButtonStyle.fontName, size: StyleGuide.ButtonStyle.fontSize)
+        button.backgroundColor = StyleGuide.ButtonStyle.backgroundColor
+        button.layer.cornerRadius = StyleGuide.ButtonStyle.cornerRadius
+        button.layer.borderColor = StyleGuide.ButtonStyle.borderColor
+        button.layer.borderWidth = StyleGuide.ButtonStyle.borderWidth
         button.isEnabled = true
         return button
     }()
@@ -52,24 +47,29 @@ class MatchedEventView: UIView {
     }()
     
     
-    
     lazy var moreInfoButton: UIButton = {
         let infoButton = UIButton()
-        infoButton.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
-        infoButton.layer.cornerRadius = 10
         infoButton.setTitle("More Info", for: .normal)
-        infoButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+        infoButton.setTitleColor(StyleGuide.ButtonStyle.fontColor, for: .normal)
+        infoButton.setTitleColor(StyleGuide.ButtonStyle.disabledColor, for: .disabled)
+        infoButton.titleLabel?.font = UIFont(name: StyleGuide.ButtonStyle.fontName, size: StyleGuide.ButtonStyle.fontSize)
+        infoButton.backgroundColor = StyleGuide.ButtonStyle.backgroundColor
+        infoButton.layer.cornerRadius = StyleGuide.ButtonStyle.cornerRadius
+        infoButton.layer.borderColor = StyleGuide.ButtonStyle.borderColor
+        infoButton.layer.borderWidth = StyleGuide.ButtonStyle.borderWidth
         infoButton.addTarget(self, action: #selector(animateMatchView), for: .touchUpInside)
         return infoButton
     }()
     
     lazy var directionButton: UIButton = {
         let dirButton = UIButton()
-        dirButton.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
-        dirButton.layer.cornerRadius = 10
         dirButton.setTitle("Directions", for: .normal)
-        dirButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
-        
+        dirButton.setTitleColor(StyleGuide.ButtonStyle.disabledColor, for: .disabled)
+        dirButton.titleLabel?.font = UIFont(name: StyleGuide.ButtonStyle.fontName, size: StyleGuide.ButtonStyle.fontSize)
+        dirButton.backgroundColor = StyleGuide.ButtonStyle.backgroundColor
+        dirButton.layer.cornerRadius = StyleGuide.ButtonStyle.cornerRadius
+        dirButton.layer.borderColor = StyleGuide.ButtonStyle.borderColor
+        dirButton.layer.borderWidth = StyleGuide.ButtonStyle.borderWidth
         return dirButton
     }()
     
@@ -101,8 +101,8 @@ class MatchedEventView: UIView {
         super.init(frame: UIScreen.main.bounds)
         addMatchSubviews()
         setMatchConstraints()
-//        labelTopConstraint.constant = 150
-//        imageTopConstraint.constant = 250
+        //        labelTopConstraint.constant = 150
+        //        imageTopConstraint.constant = 250
     }
     
     enum State {
@@ -120,31 +120,31 @@ class MatchedEventView: UIView {
     }
     
     @objc func animateMatchView()  {
-            
+        
         UIView.animate(withDuration: 1, delay: 0.2, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.1, options: .curveEaseInOut, animations: {
+            
+            switch self.state {
                 
-                switch self.state {
-            
-                    case .collapsed:
-            
-                        self.imageTopConstraint.constant = 250
-                        self.labelTopConstraint.constant = 150
-                        self.layoutIfNeeded()
-                        self.state = self.state.change
-                        print("collapsed")
-            
-                    case .expanded:
-                               
-                        self.imageTopConstraint.constant = 0
-                        self.labelTopConstraint.constant = 30
-                        self.layoutIfNeeded()
-                        self.state = self.state.change
-                        
-                        print("expanded")
-            
-                }
-            })
-        }
+            case .collapsed:
+                
+                self.imageTopConstraint.constant = 250
+                self.labelTopConstraint.constant = 150
+                self.layoutIfNeeded()
+                self.state = self.state.change
+                print("collapsed")
+                
+            case .expanded:
+                
+                self.imageTopConstraint.constant = 0
+                self.labelTopConstraint.constant = 30
+                self.layoutIfNeeded()
+                self.state = self.state.change
+                
+                print("expanded")
+                
+            }
+        })
+    }
     
     private func addMatchSubviews() {
         self.addSubview(matchLabel)

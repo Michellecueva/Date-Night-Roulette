@@ -1,10 +1,3 @@
-//
-//  PreferencesView.swift
-//  Date-Night
-//
-//  Created by Krystal Campbell on 2/7/20.
-//  Copyright © 2020 Michelle Cueva. All rights reserved.
-//
 
 import UIKit
 
@@ -28,10 +21,12 @@ class PreferenceView: UIView {
     lazy var saveButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Save!", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont(name: "CopperPlate", size: 20)
-        button.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
-        button.layer.cornerRadius = 5
+        button.setTitleColor(StyleGuide.ButtonStyle.fontColor, for: .normal)
+        button.titleLabel?.font = UIFont(name: StyleGuide.ButtonStyle.fontName, size: StyleGuide.ButtonStyle.fontSize)
+        button.backgroundColor = StyleGuide.ButtonStyle.backgroundColor
+        button.layer.cornerRadius = StyleGuide.ButtonStyle.cornerRadius
+        button.layer.borderColor = StyleGuide.ButtonStyle.borderColor
+        button.layer.borderWidth = StyleGuide.ButtonStyle.borderWidth
         return button
     }()
     
@@ -54,7 +49,7 @@ class PreferenceView: UIView {
         cvConstraints()
         buttonConstraints()
         self.backgroundColor = .black
-        self.layer.borderColor = UIColor.gray.cgColor
+        //self.layer.borderColor = UIColor.gray.cgColor
         self.layer.borderWidth = 3
     }
     //MARK:- Constraints

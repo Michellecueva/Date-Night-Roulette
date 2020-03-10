@@ -8,27 +8,54 @@
 
 import Foundation
 import UIKit
+
 enum StyleGuide {
-   
-  enum TitleFontStyle{
-     static let fontName = "CopperPlate"
+    
+    // MARK: - For Headers: App Name
+    enum TitleFontStyle{
+        static let fontName = "CopperPlate"
+        static let fontColor: UIColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        static let fontSize:CGFloat = 50
+        static let altFontSize: CGFloat = 25
     }
-  enum FontStyle {
-    static let fontName = "Helvetica-Neue"
-  }
-  enum AppColors{
-    static let primaryColor: UIColor = .gray
-  }
-  enum ImageStrings {
-    static let placeHolder = "photo"
-  }
-   
-//  enum ButtonStyle {
-//    static let
-//  }
-//  enum TitleFontStyle{
-//    static let
-//  }
-//
-//
+    
+    // MARK: -  For Labels
+    enum FontStyle {
+        static let fontName = "Helvetica-Neue"
+        static let fontSize: CGFloat = 12
+        static let altFontSize: CGFloat = 25
+        static let fontColor: UIColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+    }
+    // MARK: - For All App Colors
+    enum AppColors{
+        static let primaryColor: UIColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        static let accentColor: UIColor = #colorLiteral(red: 0.9534531236, green: 0.3136326671, blue: 1, alpha: 1)
+        static let disabledColor: UIColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+    }
+    
+    // MARK: -  For Placeholder Images
+    enum ImageStrings {
+        static let placeHolder = "photo"
+    }
+    
+    //  MARK: - For All Buttons
+    enum ButtonStyle {
+        static let fontName = "CopperPlate"
+        static let borderColor: CGColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        static let fontColor: UIColor = #colorLiteral(red: 0.9534531236, green: 0.3136326671, blue: 1, alpha: 1)
+        static let disabledColor: UIColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        static let backgroundColor: UIColor = .clear
+        static let fontSize: CGFloat = 20
+        static let cornerRadius: CGFloat = 5
+        static let borderWidth: CGFloat = 4
+        
+    }
+    //For All Textfields
+    enum TextFieldStyle {
+        static let backgroundColor: UIColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        static let fontName = "Helvetica-Neue"
+        static let fontSize: CGFloat = 14
+    }
+    
+    
 }
