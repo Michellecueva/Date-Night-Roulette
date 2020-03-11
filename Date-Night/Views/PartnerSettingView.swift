@@ -3,15 +3,16 @@ import UIKit
 class PartnerSettingView: UIView {
 
  lazy var portraitPic: UIImageView = {
-       let image = UIImageView()
+       let image = UIImageView(frame: UIScreen.main.bounds)
        image.tintColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
        image.backgroundColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
        image.image = UIImage(named: "PortraitPlaceholder")
        image.layer.borderWidth = 1
-       image.layer.cornerRadius =  84//image.frame.size.height/2
+      // image.layer.cornerRadius =  84//image.frame.size.height/2
        image.layer.masksToBounds = true
        image.layer.borderColor = UIColor.black.cgColor
-       image.clipsToBounds = true
+      // image.clipsToBounds = true
+       image.contentMode = .scaleToFill
        //image.image = UIImage(systemName: "person.crop.circle")
        return image
    }()
@@ -53,7 +54,7 @@ class PartnerSettingView: UIView {
        button.backgroundColor = StyleGuide.ButtonStyle.backgroundColor
         button.layer.cornerRadius = StyleGuide.ButtonStyle.cornerRadius
         button.layer.borderColor = StyleGuide.ButtonStyle.borderColor
-        button.layer.borderWidth = StyleGuide.ButtonStyle.borderWidth
+        button.layer.borderWidth = StyleGuide.ButtonStyle.altBorderWidth
         button.isEnabled = true
         return button
     }()
