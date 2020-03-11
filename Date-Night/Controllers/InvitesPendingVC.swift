@@ -14,6 +14,8 @@ class InvitesPendingVC: UIViewController {
     
     let invitesPendingView = InvitesPendingView()
     
+    var tableViewHeaderText: String!
+    
     private var dataSource: UITableViewDiffableDataSource<Section,Invites>!
     
     private var inviteListener: ListenerRegistration?
@@ -42,7 +44,6 @@ class InvitesPendingVC: UIViewController {
         configureDataSource()
         addListener()
         print(currentUserEmail)
-        invitesPendingView.invitesPendingTableView.delegate = self
     }
     
     private func configureDataSource() {
@@ -58,7 +59,7 @@ class InvitesPendingVC: UIViewController {
     private func createSnapshot(from invites: [Invites]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Invites>()
         
-        snapshot.appendSections([.main])
+        snapshot.appendSections([.invites])
         snapshot.appendItems(invites)
         dataSource.apply(snapshot, animatingDifferences: true)
     }
@@ -148,10 +149,11 @@ extension InvitesPendingVC: UITableViewDelegate {
         let returnedView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
         returnedView.backgroundColor = .clear
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
-        label.text = "Invites Pending"
+        label.text = tableViewHeaderText
         label.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         returnedView.addSubview(label)
         return returnedView
+       
       }
 }
 
@@ -177,13 +179,11 @@ extension InvitesPendingVC {
                     return Invites(from: data, id: inviteID)
                 }
                 
-//                if inviteList.count == 0 {
-//                    self.invitesPendingView.invitesPendingTableView.isHidden = true
-//                    self.invitesPendingView.noInvitesLabel.isHidden = false
-//                } else {
-//                    self.invitesPendingView.invitesPendingTableView.isHidden = false
-//                    self.invitesPendingView.noInvitesLabel.isHidden = true
-//                }
+                if inviteList.count == 0 {
+                    self.invitesPendingView.InvitesPendingLabel.isHidden = true
+                } else {
+                    self.invitesPendingView.InvitesPendingLabel.isHidden = false
+                }
                 self.invites = inviteList
                 print("inviteList: \(inviteList)")
             })
@@ -218,8 +218,4 @@ extension InvitesPendingVC: CellDelegate {
     }
 }
 
-
-enum Section  {
-        case main
-}
 
