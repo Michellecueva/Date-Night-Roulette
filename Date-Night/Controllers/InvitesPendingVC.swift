@@ -14,8 +14,6 @@ class InvitesPendingVC: UIViewController {
     
     let invitesPendingView = InvitesPendingView()
     
-    var tableViewHeaderText: String!
-    
     private var dataSource: UITableViewDiffableDataSource<Section,Invites>!
     
     private var inviteListener: ListenerRegistration?
@@ -43,6 +41,7 @@ class InvitesPendingVC: UIViewController {
         view.addSubview(invitesPendingView)
         configureDataSource()
         addListener()
+        self.invitesPendingView.invitesPendingTableView.delegate = self
         print(currentUserEmail)
     }
     
@@ -161,7 +160,7 @@ extension InvitesPendingVC: UITableViewDelegate {
         let returnedView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
         returnedView.backgroundColor = .clear
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
-        label.text = tableViewHeaderText
+        label.text = "Invites Pending"
         label.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         returnedView.addSubview(label)
         return returnedView
@@ -192,9 +191,9 @@ extension InvitesPendingVC {
                 }
                 
                 if inviteList.count == 0 {
-                    self.invitesPendingView.InvitesPendingLabel.isHidden = true
+                    self.invitesPendingView.invitesPendingTableView.isHidden = true
                 } else {
-                    self.invitesPendingView.InvitesPendingLabel.isHidden = false
+                    self.invitesPendingView.invitesPendingTableView.isHidden = false
                 }
                 self.invites = inviteList
                 print("inviteList: \(inviteList)")
