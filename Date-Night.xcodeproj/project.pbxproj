@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B38E7CA2400761E003D05CE /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = 0B38E7C92400761D003D05CE /* events.json */; };
 		0B38E7CC2400762E003D05CE /* EventfulModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38E7CB2400762E003D05CE /* EventfulModel.swift */; };
 		0B38E7CD24007664003D05CE /* EventfulModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38E7CB2400762E003D05CE /* EventfulModel.swift */; };
 		0B38E7CF24007755003D05CE /* EventfulAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38E7CE24007755003D05CE /* EventfulAPIClient.swift */; };
@@ -47,6 +46,7 @@
 		2862B61523DD47170047B47B /* Date_NightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2862B61423DD47170047B47B /* Date_NightTests.swift */; };
 		2862B66C23DFE26C0047B47B /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2862B66B23DFE26C0047B47B /* SignUpVC.swift */; };
 		2862B6B023DFFF3F0047B47B /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2862B6AF23DFFF3F0047B47B /* FirebaseAuthService.swift */; };
+		2865BF102418801500327385 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2865BF0F2418801500327385 /* Section.swift */; };
 		3D45F700C5198B3C28C12DCB /* Pods_Date_Night.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A0A167012B1843CEF3F7DD /* Pods_Date_Night.framework */; };
 		691DD0EE23EE0351003A67E7 /* SendInviteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691DD0ED23EE0351003A67E7 /* SendInviteView.swift */; };
 		691DD0F023EE03A0003A67E7 /* SendInviteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691DD0EF23EE03A0003A67E7 /* SendInviteVC.swift */; };
@@ -137,6 +137,7 @@
 		2862B61623DD47170047B47B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2862B66B23DFE26C0047B47B /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		2862B6AF23DFFF3F0047B47B /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
+		2865BF0F2418801500327385 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		430EC1B11EDEEA43E7890593 /* Pods_Date_NightTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Date_NightTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		691DD0ED23EE0351003A67E7 /* SendInviteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendInviteView.swift; sourceTree = "<group>"; };
 		691DD0EF23EE03A0003A67E7 /* SendInviteVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendInviteVC.swift; sourceTree = "<group>"; };
@@ -374,6 +375,7 @@
 				0B38E7CB2400762E003D05CE /* EventfulModel.swift */,
 				283823C323E885390031327E /* FBEvents.swift */,
 				6986FE3023FC85B100B5560A /* UserDefaultsWrapper.swift */,
+				2865BF0F2418801500327385 /* Section.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -505,7 +507,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B38E7CA2400761E003D05CE /* events.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,6 +598,7 @@
 				283823C223E885050031327E /* Invites.swift in Sources */,
 				2862B5FF23DD47130047B47B /* SignInVC.swift in Sources */,
 				74DB5649240F046F000C43EA /* MatchedEventView.swift in Sources */,
+				2865BF102418801500327385 /* Section.swift in Sources */,
 				69CE863823F715FF001E1327 /* InvitesPendingDelegate.swift in Sources */,
 				0B96460F23EE2C9E00D2CAB9 /* PreferenceCell.swift in Sources */,
 				7401EF4923ECAB81000C322B /* DiscoverEventVC.swift in Sources */,
