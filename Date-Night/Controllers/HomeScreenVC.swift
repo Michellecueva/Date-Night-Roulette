@@ -14,7 +14,7 @@ protocol ShakeGestureDelegate:AnyObject {
     func sendEvents(events:[FBEvents])
 }
 //change name of delegate
-protocol TestChainDelegate:AnyObject {
+protocol fbEventsDelegate:AnyObject {
     func sendEventDataToShakeVC(fbEvents:[FBEvents])
 }
 
@@ -26,7 +26,7 @@ class HomeScreenVC: UIViewController {
            }
        }
  
-    weak var delegate:TestChainDelegate?
+    weak var delegate:fbEventsDelegate?
     
   lazy var homeEvents:[FBEvents] = []
     
