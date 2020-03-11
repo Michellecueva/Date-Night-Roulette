@@ -12,12 +12,22 @@ class PartnerSettingVC: UIViewController {
     
     var thePartner = PartnerSettingView()
     
+    private var isListenerEnabled:Bool = false
+    
     var profilePartnerUser:AppUser? {
           didSet {
               print("partner profile VC received partner")
             //possibly change to layout subviews
+           
               thePartner.partnerNameLabel.text = "Partner: \(profilePartnerUser?.userName ?? "")"
                 setUpProfilePortrait()
+            
+            guard isListenerEnabled == true else {
+                addMatchedEventListener()
+                isListenerEnabled = true
+                return
+            }
+            
           }
       }
     
@@ -32,18 +42,14 @@ class PartnerSettingVC: UIViewController {
            return db.collection("MatchedEvents")
     }
     
-    var currentUser:AppUser? {
-        didSet {
-            addMatchedEventListener()
-        }
-    }
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         view.addSubview(thePartner)
-        getAppUser()
         configureDataSource()
+        addObjcFunctionToRemovePartnerButton()
     }
  
 
@@ -62,25 +68,13 @@ class PartnerSettingVC: UIViewController {
         dataSource.apply(snapshot, animatingDifferences: true)
     }
     
-    private func getAppUser() {
-           guard let user = Auth.auth().currentUser else {return}
-           FirestoreService.manager.getUser(userID: user.uid) { (result) in
-               switch result {
-               case .success(let appUser):
-                   self.currentUser = appUser
-               case .failure(let error):
-                   print("unable to get appUser in gesture VC \(error)")
-               }
-           }
-       }
-    
     private func addMatchedEventListener() {
         
-        guard let currentUser = currentUser else {return}
+        guard let partner = profilePartnerUser else {return}
         
         matchedEventListener = collectionReference.whereField(
                "coupleID",
-               isEqualTo: currentUser.coupleID!
+               isEqualTo: partner.coupleID!
             )
                .addSnapshotListener({ (snapshot, error) in
                    
@@ -137,6 +131,38 @@ class PartnerSettingVC: UIViewController {
             }
         }
     }
+    
+     private func addObjcFunctionToRemovePartnerButton() {
+            thePartner.removePartnerButton.addTarget(self, action: #selector(removePartner), for: .touchUpInside)
+        }
+        
+        @objc private func removePartner() {
+        // determine when we want to remove the invites sent from a a user
+            
+            
+            
+            FirestoreService.manager.deleteMatchedEvents(coupleID: profilePartnerUser?.coupleID) { [weak self](result) in
+                self?.handlePartnerRemoval(result: result)
+            }
+            
+          
+            FirestoreService.manager.removePartnerReferencesInUserCollection(uid: Auth.auth().currentUser?.uid, partnerUID: profilePartnerUser?.uid) { [weak self](result) in
+                self?.handlePartnerRemoval(result: result)
+            }
+            
+                
+            
+    }
+    
+    private func handlePartnerRemoval(result:Result<(),AppError>) {
+        switch result {
+        case .failure(let error):
+            print(error)
+        case .success():
+            print("successfully removed partner reference")
+        }
+    }
+    
 }
 
 extension PartnerSettingVC {

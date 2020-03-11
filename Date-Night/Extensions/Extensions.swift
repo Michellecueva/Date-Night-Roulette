@@ -137,6 +137,62 @@ extension UIViewController {
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
     }
+    
+    public func testAlert(controllerTitle:String?, controllerMessage:String?,actionOneTitle:String?, actionTwoTitle:String?,actionOneClosure: ((UIAlertAction) -> ())?,controllerStyle:UIAlertController.Style, actionTwoClosure:((UIAlertAction) -> ())?,actionOneStyle:UIAlertAction.Style,actionTwoStyle:UIAlertAction.Style?) {
+       
+        let alertController = UIAlertController(title: controllerTitle, message: controllerMessage, preferredStyle: controllerStyle)
+        
+        let actionOne = UIAlertAction(title: actionOneTitle, style:actionOneStyle, handler: actionOneClosure)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        
+        if actionTwoTitle != nil {
+            let actionTwo = UIAlertAction(title: actionTwoTitle, style: actionTwoStyle!, handler: actionTwoClosure)
+            
+            alertController.addAction(actionOne)
+            alertController.addAction(actionTwo)
+            alertController.addAction(cancel)
+            present(alertController,animated: true)
+        } else {
+       
+        alertController.addAction(actionOne)
+        alertController.addAction(cancel)
+        present(alertController,animated: true)
+        
+    }
+    }
+}
+
+extension UIBarButtonItem {
+
+    static func barButton(_ target: Any?, action: Selector, imageName: String?, image:UIImage?,systemImageName:String?) -> UIBarButtonItem {
+        let button = UIButton(type: .custom)
+        
+        
+        
+        if let imageName = imageName {
+        button.setImage(UIImage(named: imageName), for: .normal)
+        }
+    
+       if let image = image {
+            button.setImage(image, for: .normal)
+        }
+        
+        if let systemImageName = systemImageName {
+            button.setImage(UIImage(systemName: systemImageName), for: .normal)
+        }
+        button.addTarget(target, action: action, for: .touchUpInside)
+        button.setImage(UIImage(), for: .disabled)
+        let barButtonItem = UIBarButtonItem(customView: button)
+        barButtonItem.customView?.translatesAutoresizingMaskIntoConstraints = false
+        barButtonItem.customView?.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        barButtonItem.customView?.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        
+     
+
+        return barButtonItem
+    }
 }
 
 extension Date {

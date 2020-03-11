@@ -74,6 +74,15 @@ class InvitesPendingVC: UIViewController {
         }
     }
     
+    private func handleRemoveInvitesFromUser(result:Result<(),AppError>) -> () {
+        switch result {
+        case .success():
+            print("successfully removed partner's invitations")
+        case .failure(let error):
+            print(error)
+        }
+    }
+    
     private func updatePartnerUsernameAndCoupleID(partnerUserName: String?, coupleID: String?) {
         FirestoreService.manager.updateCurrentUser(partnerUserName: partnerUserName, coupleID: coupleID) { (result) in
             switch result {
@@ -118,6 +127,9 @@ class InvitesPendingVC: UIViewController {
                 
                 self.updatePartnerUsernameAndCoupleID(partnerUserName: partner.userName, coupleID: coupleID)
                 self.updatePartnersField(partnerUID: partner.uid, coupleID: coupleID)
+                FirestoreService.manager.removeInvitesFromUser(userEmail: partnerEmailAddress) {[weak self] (result) in
+                    self?.handleRemoveInvitesFromUser(result: result)
+                }
 
             case .failure(let error):
                 print("unable to get partner user data \(error)")
@@ -185,6 +197,9 @@ extension InvitesPendingVC: CellDelegate {
         updateInvitationStatus(inviteID: invite.id)
         updatePartnerEmailField(partnerEmail: invite.from)
         getPartnerUserData(partnerEmailAddress: invite.from)
+        FirestoreService.manager.removeInvitesFromUser(userEmail: currentUserEmail) { [weak self] (result) in
+            self?.handleRemoveInvitesFromUser(result: result)
+        }
     }
     
     func handleDeclinedInvite(tag: Int) {

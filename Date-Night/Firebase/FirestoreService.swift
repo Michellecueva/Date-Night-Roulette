@@ -157,6 +157,39 @@ class FirestoreService {
         }
     }
     
+    func removePartnerReferencesInUserCollection(uid:String?,partnerUID:String?,completionHandler:@escaping(Result<(),AppError>) -> ()) {
+           
+           guard let uid = uid else {return}
+           guard let partnerUID = partnerUID else {return}
+           var count:Int = 0 {
+               didSet {
+                   guard count == 2 else {return}
+                   count = 0
+                   completionHandler(.success(()))
+               }
+           }
+           var upDateFields:Dictionary<String,Any> = [:]
+           upDateFields["partnerEmail"] = ""
+           upDateFields["partnerUserName"] = ""
+           upDateFields["coupleID"] = ""
+           
+           db.collection(FireStoreCollections.users.rawValue).document(partnerUID).updateData(upDateFields) { (error) in
+               if let error = error {
+                   completionHandler(.failure(.failedToRemovePartner))
+               } else {
+                   count += 1
+               }
+           }
+           db.collection(FireStoreCollections.users.rawValue).document(uid).updateData(upDateFields) { (error) in
+               if let error = error {
+                   completionHandler(.failure(.failedToRemovePartner))
+               } else {
+                   count += 1
+               }
+           }
+       }
+       
+    
     func deleteAllDocuments(docIDs:[String],
                             path:FireStoreCollections,
                             completionHandler:@escaping(Result<(),AppError>) -> ())
@@ -295,6 +328,22 @@ class FirestoreService {
         }
     }
     
+    func removeInvitesFromUser(userEmail:String?,completionHandler:@escaping(Result<(),AppError>) -> ()) {
+           
+           guard let userEmail = userEmail else {return}
+           
+           db.collection(FireStoreCollections.invites.rawValue).whereField("from", isEqualTo: userEmail).getDocuments { (snapshot, error) in
+               if let error = error {
+                   completionHandler(.failure(.other(rawError: error)))
+               } else {
+                   _ = snapshot?.documents.compactMap({ [weak self] (snapshot) -> () in
+                       let id = snapshot.documentID
+                       self?.db.collection(FireStoreCollections.invites.rawValue).document(id).delete()
+                   })
+               }
+           }
+       }
+    
     func updateInvitationStatus(inviteID: String,
                                 invitationStatus: String,
                                 completion: @escaping (Result<(), Error>) -> ())
@@ -342,6 +391,27 @@ class FirestoreService {
             } else {
                 completionHandler(.success(()))
             }
+        }
+    }
+    
+    
+    func deleteMatchedEvents(coupleID: String?, completionHandler: @escaping (Result <(), AppError>) -> () ) {
+        
+        guard let coupleID = coupleID else {return}
+        db.collection(FireStoreCollections.MatchedEvents.rawValue).whereField("coupleID", isEqualTo: coupleID).getDocuments { (snapshot, error) in
+                if let error = error {
+                    completionHandler(.failure(.other(rawError: error)))
+                } else {
+                    _ = snapshot?.documents.compactMap({ [weak self] (snapshot) -> () in
+                        let matchedID = snapshot.documentID
+                       
+                    self?.db.collection(FireStoreCollections.MatchedEvents.rawValue).document(matchedID).delete()
+                        
+                
+                    })
+                    
+                    completionHandler(.success(()))
+                }
         }
     }
     
