@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B38E7CA2400761E003D05CE /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = 0B38E7C92400761D003D05CE /* events.json */; };
 		0B38E7CC2400762E003D05CE /* EventfulModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38E7CB2400762E003D05CE /* EventfulModel.swift */; };
 		0B38E7CD24007664003D05CE /* EventfulModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38E7CB2400762E003D05CE /* EventfulModel.swift */; };
 		0B38E7CF24007755003D05CE /* EventfulAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B38E7CE24007755003D05CE /* EventfulAPIClient.swift */; };
@@ -502,7 +501,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B38E7CA2400761E003D05CE /* events.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
