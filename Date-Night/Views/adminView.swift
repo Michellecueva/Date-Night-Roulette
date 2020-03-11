@@ -9,6 +9,9 @@
 import UIKit
 
 class AdminView: UIView {
+    
+    private let cellIdentifier = "PreferenceCell"
+
 
      lazy var addEventsButton: UIButton = {
             let button = UIButton(type: .system)
@@ -17,10 +20,19 @@ class AdminView: UIView {
             button.titleLabel?.font = UIFont(name: "Arial-Bold", size: 16)
         button.backgroundColor = .clear
             button.layer.cornerRadius = 5
-            button.isEnabled = true
     
             return button
         }()
+    
+    lazy var getEventsFromAPIButton:UIButton = {
+        let eventButton = UIButton(type: .system)
+        eventButton.setTitle("Get events from API", for: .normal)
+        eventButton.setTitleColor(.blue, for: .normal)
+        eventButton.backgroundColor = .clear
+        eventButton.layer.cornerRadius = 5
+ 
+        return eventButton
+    }()
     
     lazy var image:UIImageView = {
         let imageview = UIImageView()
@@ -37,13 +49,23 @@ class AdminView: UIView {
         label.font = UIFont(name: "Arial-Bold", size: 24)
         return label
     }()
+    
+    lazy var preferenceCollectionView: UICollectionView = {
+         var layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
+         let cv = UICollectionView(frame: UIScreen.main.bounds, collectionViewLayout: layout)
+         layout.scrollDirection = .vertical
+         cv.backgroundColor = .clear
+         layout.sectionInset = UIEdgeInsets(top: 0, left: 3, bottom: 0, right: 3)
+         cv.register(PreferenceCell.self, forCellWithReuseIdentifier: cellIdentifier)
+         cv.layer.borderColor = UIColor.black.cgColor
+         cv.layer.borderWidth = 2
+         return cv
+     }()
         
         override init(frame: CGRect) {
             super.init(frame: UIScreen.main.bounds)
-            self.backgroundColor = .black
-            setSubviews()
-            setConstraints()
-            self.setGradientBackground(colorTop: .black, colorBottom: .white)
+           commonInit()
+           
             
         }
         
@@ -56,17 +78,27 @@ class AdminView: UIView {
         
         
         //MARK: -UI Setup
+    
+    private func commonInit() {
+        setSubviews()
+                   setConstraints()
+                   self.setGradientBackground(colorTop: .black, colorBottom: .white)
+    }
         
         private func setSubviews() {
             self.addSubview(adminLabel)
             self.addSubview(image)
             self.addSubview(addEventsButton)
+            self.addSubview(getEventsFromAPIButton)
+            self.addSubview(preferenceCollectionView)
         }
         
         private func setConstraints() {
             setAdminLabelConstraints()
             setImageConstraints()
             setAddEventButtonConstraints()
+            setAPIButtonConstraints()
+            setPrefCollectionViewConstraints()
         }
     
     private func setAdminLabelConstraints() {
@@ -99,6 +131,26 @@ class AdminView: UIView {
                 addEventsButton.heightAnchor.constraint(equalToConstant: 40)
             ])
         }
+    
+    private func setAPIButtonConstraints() {
+        getEventsFromAPIButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            getEventsFromAPIButton.topAnchor.constraint(equalTo: addEventsButton.bottomAnchor,constant: self.frame.height * 0.05),
+            getEventsFromAPIButton.centerXAnchor.constraint(equalTo: addEventsButton.centerXAnchor),
+            getEventsFromAPIButton.heightAnchor.constraint(equalTo: addEventsButton.heightAnchor)
+        ])
+    }
+    
+    private func setPrefCollectionViewConstraints() {
+        preferenceCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            preferenceCollectionView.topAnchor.constraint(equalTo: getEventsFromAPIButton.bottomAnchor),
+            preferenceCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            preferenceCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            preferenceCollectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ])
+    }
     }
 
 

@@ -12,14 +12,31 @@ import FirebaseAuth
 
 class AdminViewController: UIViewController {
     
+    
+    
     var arrayOfEvents = [Event]() {
          didSet {
              print("added Event  #\(arrayOfEvents.count)")
          }
      }
-    var preferenceArray:[String]  = [] {
+    
+    var arrayOfPreferences:[String] = [] {
         didSet {
-            print(preferenceArray.count)
+            print(arrayOfPreferences.count)
+        }
+    }
+    
+    var prefList:[Categories] = [] {
+        didSet {
+        //    getPreferences()
+        }
+    }
+    
+   
+    
+    var fbEvents:[FBEvents] = [] {
+        didSet {
+            print("fbEvent count \(fbEvents.count)")
         }
     }
     
@@ -30,69 +47,91 @@ class AdminViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .clear
         view.addSubview(adminView)
-        addTargetToButton()
-        getUserPreferences()
+        addTargetToButtons()
+        addDelegatesToSelf()
+        getPreferences()
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+    }
     
 
     @objc private func addEventsToFirebase() {
-     
-        addEventsFromAPI()
+            sendEventToFireBase(eventArray: fbEvents)
     }
     
-    
-    private func addTargetToButton() {
+    private func getPreferences()  {
+        guard let fileName = Bundle.main.path(forResource: "Categories", ofType: "json")
+            else {fatalError()}
+        let fileURL = URL(fileURLWithPath: fileName)
+        do {
+            let data = try Data(contentsOf: fileURL)
+            let preferences = try
+                JSONDecoder().decode(Wrapper.self, from: data)
+            
+            prefList = preferences.Categories
+        } catch {
+            fatalError("\(error)")
+        }
+    }
+   
+    private func addDelegatesToSelf() {
+        adminView.preferenceCollectionView.delegate = self
+        adminView.preferenceCollectionView.dataSource = self
+    }
+    private func addTargetToButtons() {
         adminView.addEventsButton.addTarget(self, action: #selector(addEventsToFirebase), for: .touchUpInside)
+        
+        adminView.getEventsFromAPIButton.addTarget(self, action: #selector(getEventsFromAPI), for: .touchUpInside)
     }
-        private func addEventsFromAPI() {
-            for preference in preferenceArray {
+      @objc  private func getEventsFromAPI() {
+            for preference in arrayOfPreferences {
                 EventfulAPIClient.shared.getEventsFrom(category: preference) { (result) in
+                    
+                        
                     switch result {
+                  
                     case .failure(let error):
                         print(error)
                     case .success(let event):
-                        self.arrayOfEvents += event
-                    
-                        self.sendEventToFireBase(preference: preference, eventArray: event)
-                      
+                       // self.arrayOfEvents += event
+                        self.convertEventsIntoFBEvents(events: event, preference: preference)
+                        }
                     }
                 }
-            }
+            
         }
     
-    private func getUserPreferences() {
-           //determine whether or not we should make multiple requests to get the same user
-        guard let appUserID = Auth.auth().currentUser?.uid else {return}
-           
-           FirestoreService.manager.getUser(userID: appUserID) { (result) in
-               switch result {
-               case .failure(let error):
-                   print(error)
-               case .success(let user):
-
-                   self.preferenceArray = user.preferences
-                   print(user.preferences.count)
-                   
-               }
-           }
-       }
+    private func convertEventsIntoFBEvents(events:[Event],preference:String) {
+        for event in events {
+            guard let description = event.description, let address = event.venue_address, let eventID = event.id, let title = event.title else {continue}
+            
+            
+            
+            
+            let fbEvent = FBEvents(title: title, address: address, eventID: eventID, description: description, imageURL: event.image?.medium?.url ?? "Image Unavailable", websiteURL: event.venue_url ?? "URL Unavailable",type:preference)
+            fbEvents.append(fbEvent)
+            
+        }
+    }
     
-        private func sendEventToFireBase(preference:String,eventArray:[Event]) {
+    
+    
+        private func sendEventToFireBase(eventArray:[FBEvents]) {
     
             for event in eventArray {
-                print(event.title)
-                  guard event.image?.medium.url != nil && event.description != nil else {return}
-    
-                let fbEvent = FBEvents(title: event.title, address: event.venue_url, eventID: String(event.id), description: event.description, imageURL: event.image?.medium.url, websiteURL: event.venue_url,type:preference)
-    
-              
-               
-                
-                
-                
-                FirestoreService.manager.sendEventsToFirebase(event: fbEvent) { (result) in
+//                print(event.title)
+//                print(event.image?.medium.url ?? "no image")
+//                  guard event.description != nil else {return}
+//
+//                let fbEvent = FBEvents(title: event.title, address: event.venue_url, eventID: String(event.id), description: event.description, imageURL: event.image?.medium.url, websiteURL: event.venue_url,type:preference)
+//
+//
+ 
+                FirestoreService.manager.sendEventsToFirebase(event: event) { (result) in
                     switch result {
                     case .failure(let error):
                         print(error)
@@ -102,4 +141,40 @@ class AdminViewController: UIViewController {
                 }
         }
 }
+}
+extension AdminViewController:UICollectionViewDataSource,UICollectionViewDelegate {
+   
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+           print(prefList.count)
+           return prefList.count
+       }
+       
+       func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+           let pref = prefList[indexPath.row]
+           let cell = adminView.preferenceCollectionView.dequeueReusableCell(withReuseIdentifier: "PreferenceCell", for: indexPath) as! PreferenceCell
+           cell.preferenceLabel.text = pref.data.type
+           //cell.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+           cell.layer.cornerRadius = 5
+           if arrayOfPreferences.contains(cell.preferenceLabel.text?.lowercased().replacingOccurrences(of: " ", with: "+") ?? "") {
+               cell.isAddedToPreferenceArray = true
+           }
+           return cell
+       }
+       
+       func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+           guard let currentCell = collectionView.cellForItem(at: indexPath) as? PreferenceCell else {return}
+           
+           switch currentCell.isAddedToPreferenceArray {
+           case true :
+               currentCell.isAddedToPreferenceArray = false
+               arrayOfPreferences.removeAll { (string) -> Bool in
+                   string == currentCell.preferenceLabel.text?.lowercased().replacingOccurrences(of: " ", with: "+") ?? ""
+                          }
+           case false :
+               currentCell.isAddedToPreferenceArray = true
+               arrayOfPreferences.append(currentCell.preferenceLabel.text?.lowercased().replacingOccurrences(of: " ", with: "+") ?? "")
+           }
+           
+           print("clicked")
+          }
 }
