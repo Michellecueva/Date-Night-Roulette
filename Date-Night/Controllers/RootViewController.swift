@@ -124,19 +124,22 @@ class RootViewController: UIViewController{
     private func setUpLeftBarButton(profilePictureURL:String?) {
         guard let profileURL = profilePictureURL else {return}
        
-        DispatchQueue.main.async {
-            
             if let image = ImageHelper.shared.image(forKey: profileURL as NSString) {
                 
                 self.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(self, action: #selector(self.navigateToPartnerVC), imageName: nil, image: image, systemImageName: nil)
             } else {
         
+                
         ImageHelper.shared.getImage(urlStr: profileURL) { [weak self] (result) in
+           
             switch result {
             case .failure(let error):
                 print(error)
             case .success(let image):
+                DispatchQueue.main.async {
                 self?.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(self, action: #selector(self?.navigateToPartnerVC), imageName: nil, image: image, systemImageName: nil)
+                self?.navigationItem.leftBarButtonItem?.customView?.layer.cornerRadius = 14
+                self?.navigationItem.leftBarButtonItem?.customView?.layer.masksToBounds = true
             }
                 }
         }
@@ -159,8 +162,10 @@ class RootViewController: UIViewController{
                    case .failure(let error):
                        print(error)
                    case .success(let image):
+                    
                     self?.navigationItem.rightBarButtonItem = UIBarButtonItem.barButton(self, action: #selector(self?.navigateToProfileVC), imageName: nil, image: image, systemImageName: nil)
-                    self?.navigationItem.rightBarButtonItem?.customView?.layer.cornerRadius = 12
+                    self?.navigationItem.rightBarButtonItem?.customView?.layer.cornerRadius = 14
+                    self?.navigationItem.rightBarButtonItem?.customView?.layer.masksToBounds = true
                     
                     self?.navigationItem.rightBarButtonItem?.customView?.layoutIfNeeded()
                     
