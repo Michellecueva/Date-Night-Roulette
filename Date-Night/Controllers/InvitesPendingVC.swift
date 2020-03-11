@@ -3,6 +3,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import UIKit
 
+
 class InvitesPendingVC: UIViewController {
     
     var invites: [Invites] = [] {
@@ -13,7 +14,7 @@ class InvitesPendingVC: UIViewController {
     
     let invitesPendingView = InvitesPendingView()
     
-    private var dataSource: UITableViewDiffableDataSource<Section, Invites>!
+    private var dataSource: UITableViewDiffableDataSource<Section,Invites>!
     
     private var inviteListener: ListenerRegistration?
     
@@ -40,11 +41,12 @@ class InvitesPendingVC: UIViewController {
         view.addSubview(invitesPendingView)
         configureDataSource()
         addListener()
+        self.invitesPendingView.invitesPendingTableView.delegate = self
         print(currentUserEmail)
     }
     
     private func configureDataSource() {
-        dataSource = UITableViewDiffableDataSource<Section, Invites>(tableView: invitesPendingView.invitesPendingTableView, cellProvider: { (tableView, indexPath, Invite) -> UITableViewCell? in
+        dataSource = UITableViewDiffableDataSource<Section,Invites>(tableView: invitesPendingView.invitesPendingTableView, cellProvider: { (tableView, indexPath, Invite) -> UITableViewCell? in
             let cell = tableView.dequeueReusableCell(withIdentifier: InvitesCell.identifier, for: indexPath) as! InvitesCell
             
             cell.configureCell(with: Invite, row: indexPath.row)
@@ -56,7 +58,7 @@ class InvitesPendingVC: UIViewController {
     private func createSnapshot(from invites: [Invites]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Invites>()
         
-        snapshot.appendSections([.main])
+        snapshot.appendSections([.invites])
         snapshot.appendItems(invites)
         dataSource.apply(snapshot, animatingDifferences: true)
     }
@@ -153,6 +155,19 @@ class InvitesPendingVC: UIViewController {
     }
 }
 
+extension InvitesPendingVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let returnedView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
+        returnedView.backgroundColor = .clear
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
+        label.text = "Invites Pending"
+        label.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        returnedView.addSubview(label)
+        return returnedView
+       
+      }
+}
+
 extension InvitesPendingVC {
     
     private func addListener() {
@@ -177,10 +192,8 @@ extension InvitesPendingVC {
                 
                 if inviteList.count == 0 {
                     self.invitesPendingView.invitesPendingTableView.isHidden = true
-                    self.invitesPendingView.noInvitesLabel.isHidden = false
                 } else {
                     self.invitesPendingView.invitesPendingTableView.isHidden = false
-                    self.invitesPendingView.noInvitesLabel.isHidden = true
                 }
                 self.invites = inviteList
                 print("inviteList: \(inviteList)")
@@ -219,8 +232,4 @@ extension InvitesPendingVC: CellDelegate {
     }
 }
 
-extension InvitesPendingVC {
-    fileprivate enum Section {
-        case main
-    }
-}
+

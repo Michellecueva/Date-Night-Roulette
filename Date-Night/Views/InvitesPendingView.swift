@@ -12,13 +12,13 @@ class InvitesPendingView: UIView {
         return tableview
        }()
     
-    lazy var noInvitesLabel: UILabel = {
-        let label = UILabel()
-        label.text = "No Pending Invites"
-        label.textColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
-        label.textAlignment = .center
-        return label
-    }()
+//    lazy var InvitesPendingLabel: UILabel = {
+//        let label = UILabel()
+//        label.text = "Invites Pending"
+//        label.textColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+//        label.textAlignment = .center
+//        return label
+//    }()
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
@@ -33,31 +33,31 @@ class InvitesPendingView: UIView {
     
     private func addSubview() {
         addSubview(invitesPendingTableView)
-        addSubview(noInvitesLabel)
+//        addSubview(InvitesPendingLabel)
     }
     
     private func addContraints() {
+     //    addLabelContraints()
         addTableViewContraints()
-        addLabelContraints()
     }
+    
+//    private func addLabelContraints() {
+//        InvitesPendingLabel.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            InvitesPendingLabel.bottomAnchor.constraint(equalTo: self.invitesPendingTableView.topAnchor),
+//            InvitesPendingLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+//            InvitesPendingLabel.heightAnchor.constraint(equalToConstant: 50),
+//            InvitesPendingLabel.widthAnchor.constraint(equalToConstant: 200)
+//        ])
+//    }
     
     private func addTableViewContraints() {
-        invitesPendingTableView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-           invitesPendingTableView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-           invitesPendingTableView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-           invitesPendingTableView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8),
-           invitesPendingTableView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9)
-       ])
-    }
-    
-    private func addLabelContraints() {
-        noInvitesLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            noInvitesLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            noInvitesLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            noInvitesLabel.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.8),
-            noInvitesLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9)
-        ])
-    }
+           invitesPendingTableView.translatesAutoresizingMaskIntoConstraints = false
+           NSLayoutConstraint.activate([
+            invitesPendingTableView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                invitesPendingTableView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                invitesPendingTableView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.7),
+                invitesPendingTableView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9)
+          ])
+       }
 }

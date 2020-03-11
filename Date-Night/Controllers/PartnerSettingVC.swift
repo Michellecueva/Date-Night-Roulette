@@ -165,8 +165,3 @@ class PartnerSettingVC: UIViewController {
     
 }
 
-extension PartnerSettingVC {
-    fileprivate enum Section {
-        case events
-    }
-}
