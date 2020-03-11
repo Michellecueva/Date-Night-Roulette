@@ -11,7 +11,6 @@ import FirebaseAuth
 
 class ProfileSettingView: UIView {
     
-    var user: AppUser!
     
     //MARK: Portrait
     
@@ -37,7 +36,7 @@ class ProfileSettingView: UIView {
           button.isEnabled = true
           //button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
           button.layer.backgroundColor = UIColor.black.cgColor
-          button.layer.cornerRadius = 25
+          //button.layer.cornerRadius = 
           return button
       }()
     
@@ -88,7 +87,7 @@ class ProfileSettingView: UIView {
         button.backgroundColor = StyleGuide.ButtonStyle.backgroundColor
         button.layer.cornerRadius = StyleGuide.ButtonStyle.cornerRadius
         button.layer.borderColor = StyleGuide.ButtonStyle.borderColor
-        button.layer.borderWidth = StyleGuide.ButtonStyle.borderWidth
+        button.layer.borderWidth = StyleGuide.ButtonStyle.altBorderWidth
         button.isEnabled = true
         return button
     }()
@@ -136,15 +135,15 @@ class ProfileSettingView: UIView {
             portraitPic.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4),
             portraitPic.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4)
         ])
-       // portraitPic.layer.cornerRadius = portraitPic.bounds.size.width / 2
+       
     }
     
     private func setAddButtonConstraints(){
         addPictureButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             addPictureButton.bottomAnchor.constraint(equalTo: portraitPic.bottomAnchor),
-          //  addPictureButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            addPictureButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 250),
+            addPictureButton.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 60),
+           // addPictureButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 250),
             addPictureButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.12),
             addPictureButton.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.12)
         ])
