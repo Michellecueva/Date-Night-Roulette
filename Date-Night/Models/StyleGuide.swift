@@ -48,6 +48,7 @@ enum StyleGuide {
         static let fontSize: CGFloat = 20
         static let cornerRadius: CGFloat = 5
         static let borderWidth: CGFloat = 4
+        static let altBorderWidth: CGFloat = 2
         
     }
     //For All Textfields
