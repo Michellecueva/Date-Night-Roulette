@@ -45,7 +45,12 @@ class PartnerSettingVC: UIViewController {
         getAppUser()
         configureDataSource()
     }
- 
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        thePartner.portraitPic.layer.cornerRadius = thePartner.portraitPic.bounds.size.width / 2
+    }
+    
 
     private func configureDataSource(){
         dataSource = UITableViewDiffableDataSource<Section, MatchedEvent>(tableView: thePartner.historyTable, cellProvider: { (tableView, indexPath, MatchedEvents) -> UITableViewCell? in
