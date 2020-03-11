@@ -49,6 +49,12 @@ class ProfileSettingVC: UIViewController {
         setUpProfilePortrait()
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        profileSetting.portraitPic.layer.cornerRadius = profileSetting.portraitPic.bounds.size.width / 2
+        profileSetting.addPictureButton.layer.cornerRadius = profileSetting.addPictureButton.bounds.size.width / 2
+    }
+    
     private func setUpUserName() {
         if let userName = FirebaseAuthService.manager.currentUser?.displayName {
             profileSetting.userNameLabel.text = "Hi \(userName) !"
