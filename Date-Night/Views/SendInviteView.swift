@@ -7,17 +7,19 @@ class SendInviteView: UIView {
     lazy var userInstructions:UILabel = {
         let uiLabel = UILabel()
         uiLabel.adjustsFontSizeToFitWidth = true
-        uiLabel.font = UIFont(name: "Arial-Bold", size: 16)
+        uiLabel.font = UIFont(name: StyleGuide.FontStyle.fontName, size: StyleGuide.FontStyle.fontSize)
         uiLabel.numberOfLines = 0
         uiLabel.textAlignment = .center
-        uiLabel.textColor = .white
+        uiLabel.textColor = StyleGuide.FontStyle.fontColor
         uiLabel.text = "Please Enter Your Partner's Email"
         return uiLabel
     }()
     
     lazy var emailField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Pending Invitation"
+        textField.placeholder = "Enter Partners Email"
+        textField.font = UIFont(name: StyleGuide.TextFieldStyle.fontName, size: StyleGuide.TextFieldStyle.fontSize)
+        textField.backgroundColor = StyleGuide.TextFieldStyle.backgroundColor
         textField.borderStyle = .roundedRect
         textField.backgroundColor = .lightText
         return textField
@@ -25,17 +27,17 @@ class SendInviteView: UIView {
     
     lazy var enterButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("enter", for: .normal)
-        button.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
-        button.titleLabel?.font = UIFont(name: "Arial-Bold", size: 16)
-        button.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
-        button.layer.cornerRadius = 5
-        
+        button.setTitle("Send Invite", for: .normal)
+        button.setTitleColor(StyleGuide.ButtonStyle.fontColor, for: .normal)
+        button.titleLabel?.font = UIFont(name: StyleGuide.ButtonStyle.fontName, size: StyleGuide.ButtonStyle.fontSize)
+        button.backgroundColor = StyleGuide.ButtonStyle.backgroundColor
+        button.layer.cornerRadius = StyleGuide.ButtonStyle.cornerRadius
+        button.layer.borderColor = StyleGuide.ButtonStyle.borderColor
+        button.layer.borderWidth = StyleGuide.ButtonStyle.borderWidth
         button.isEnabled = true
         return button
     }()
-    
-    
+
     public lazy var stackView: UIStackView = {
         
         let sv = UIStackView(arrangedSubviews: [self.userInstructions, self.emailField, self.enterButton])

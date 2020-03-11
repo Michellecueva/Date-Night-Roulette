@@ -3,14 +3,16 @@ import UIKit
 class PartnerSettingView: UIView {
 
  lazy var portraitPic: UIImageView = {
-       let image = UIImageView()
+       let image = UIImageView(frame: UIScreen.main.bounds)
        image.tintColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
-       image.image = UIImage(named: "partnerpic")
+       image.backgroundColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
+       image.image = UIImage(named: "PortraitPlaceholder")
        image.layer.borderWidth = 1
-       image.layer.cornerRadius =  84//image.frame.size.height/2
+      // image.layer.cornerRadius =  84//image.frame.size.height/2
        image.layer.masksToBounds = true
        image.layer.borderColor = UIColor.black.cgColor
-       image.clipsToBounds = true
+      // image.clipsToBounds = true
+       image.contentMode = .scaleToFill
        //image.image = UIImage(systemName: "person.crop.circle")
        return image
    }()
@@ -18,16 +20,16 @@ class PartnerSettingView: UIView {
     lazy var partnerNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Partner Username"
-        label.font = UIFont(name: "Palatino-bold", size: 25)
+        label.font = UIFont(name: StyleGuide.FontStyle.fontName, size: StyleGuide.FontStyle.altFontSize)
         label.adjustsFontSizeToFitWidth = true
-        label.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        label.textColor = StyleGuide.FontStyle.fontColor
         return label
     }()
     
     lazy var noEventsLabel: UILabel = {
           let label = UILabel()
           label.text = "No Event History"
-          label.font = UIFont(name: "Palatino-bold", size: 25)
+          label.font = UIFont(name:StyleGuide.FontStyle.fontName, size: StyleGuide.FontStyle.altFontSize)
           label.adjustsFontSizeToFitWidth = true
           label.textAlignment = .center
           label.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
@@ -47,11 +49,12 @@ class PartnerSettingView: UIView {
     lazy var removePartnerButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Remove Partner", for: .normal)
-        button.setTitleColor(#colorLiteral(red: 0.9534531236, green: 0.3136326671, blue: 1, alpha: 1), for: .normal)
-        button.titleLabel?.font = UIFont(name: "CopperPlate", size: 20)
-        button.layer.borderColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
-        button.layer.borderWidth = 2
-        button.layer.cornerRadius = 5
+        button.setTitleColor(StyleGuide.ButtonStyle.fontColor, for: .normal)
+        button.titleLabel?.font = UIFont(name: StyleGuide.ButtonStyle.fontName, size: StyleGuide.ButtonStyle.fontSize)
+       button.backgroundColor = StyleGuide.ButtonStyle.backgroundColor
+        button.layer.cornerRadius = StyleGuide.ButtonStyle.cornerRadius
+        button.layer.borderColor = StyleGuide.ButtonStyle.borderColor
+        button.layer.borderWidth = StyleGuide.ButtonStyle.altBorderWidth
         button.isEnabled = true
         return button
     }()

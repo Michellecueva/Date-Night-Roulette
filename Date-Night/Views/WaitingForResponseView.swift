@@ -5,12 +5,12 @@ class WaitingForResponseView: UIView {
 
     lazy var waitingStatusLabel: UILabel = {
         let label = UILabel()
-        label.text = "Waiting for partner to respond to your invite."
+        label.text = "Awaiting partner's response to invite."
         label.numberOfLines = 2
-        label.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        label.textColor = StyleGuide.TitleFontStyle.fontColor
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
-        label.font = UIFont(name: "CopperPlate", size: 25)
+        label.font = UIFont(name: StyleGuide.TitleFontStyle.fontName, size: StyleGuide.TitleFontStyle.altFontSize)
         return label
     }()
     

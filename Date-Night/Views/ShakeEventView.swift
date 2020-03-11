@@ -20,7 +20,7 @@ class ShakeEventView: UIView {
         
         lazy var shakeInfoEye: UIButton = {
             let button = UIButton()
-            button.setImage(UIImage(systemName: "eye"), for: .normal)
+            button.setImage(UIImage(systemName: "info.circle"), for: .normal)
             button.isUserInteractionEnabled = true
             button.addTarget(self, action: #selector(animateShowInfo), for: .touchUpInside)
             return button
@@ -32,7 +32,7 @@ class ShakeEventView: UIView {
             textview.alpha = 0.7
             textview.layer.shadowColor = .init(srgbRed: 0.5, green: 0.5, blue: 0.5, alpha: 0.9)
             textview.adjustsFontForContentSizeCategory = true
-            textview.font = UIFont(name: "Arial", size: 30)
+            textview.font = UIFont(name: StyleGuide.FontStyle.fontName, size: 30)
 //            textview.isUserInteractionEnabled = false
             textview.textColor = .clear
             textview.text = " "

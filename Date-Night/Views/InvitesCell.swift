@@ -16,14 +16,14 @@ class InvitesCell: UITableViewCell {
         button.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
         button.addTarget(self, action: #selector(acceptButtonPressed), for: .touchUpInside)
         return button
-    }()
+        }()
     
     lazy var declineButton: UIButton = { [unowned self] in
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark.circle"), for: .normal)
         button.addTarget(self, action: #selector(declineButtonPressed), for: .touchUpInside)
         return button
-    }()
+        }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -34,11 +34,11 @@ class InvitesCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -53,7 +53,7 @@ class InvitesCell: UITableViewCell {
     
     func configureCell(with invite: Invites, row: Int) {
         nameLabel.text = invite.from
-        nameLabel.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        nameLabel.textColor = StyleGuide.FontStyle.fontColor
         backgroundColor = .clear
         acceptButton.tag = row
         declineButton.tag = row
@@ -103,5 +103,5 @@ class InvitesCell: UITableViewCell {
             declineButton.widthAnchor.constraint(equalToConstant: 50),
         ])
     }
-
+    
 }

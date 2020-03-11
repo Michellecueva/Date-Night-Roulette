@@ -11,14 +11,13 @@ import FirebaseAuth
 
 class ProfileSettingView: UIView {
     
-    var user: AppUser!
     
     //MARK: Portrait
     
     lazy var portraitPic: UIImageView = {
         let image = UIImageView(frame: UIScreen.main.bounds)
         image.tintColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
-        image.image = UIImage(named: "profilepic")
+        image.image = UIImage(named: "PortraitPlaceholder")
         image.layer.borderWidth = 1
         image.layer.cornerRadius = 84 //frame.size.width / 2 //image.bounds.width / 2 //84 //image.frame.size.height/2
         image.layer.masksToBounds = true
@@ -29,8 +28,6 @@ class ProfileSettingView: UIView {
         return image
     }()
     
-
-    
     lazy var addPictureButton: UIButton = {
           let button = UIButton()
           button.setBackgroundImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
@@ -39,17 +36,17 @@ class ProfileSettingView: UIView {
           button.isEnabled = true
           //button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
           button.layer.backgroundColor = UIColor.black.cgColor
-          button.layer.cornerRadius = 25
+          //button.layer.cornerRadius = 
           return button
       }()
     
     lazy var userNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Hi, userName!"
+        label.text = "Hi, user!"
         label.adjustsFontSizeToFitWidth = true
-        label.font = UIFont(name: "CopperPlate", size: 17)
+        label.font = UIFont(name: StyleGuide.FontStyle.fontName, size: StyleGuide.FontStyle.altFontSize)
         label.textAlignment = .center
-        label.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        label.textColor = StyleGuide.FontStyle.fontColor
         return label
     }()
     
@@ -57,8 +54,8 @@ class ProfileSettingView: UIView {
         let label = UILabel()
         label.text = "Partner Email:"
         label.textAlignment = .center
-        label.font = UIFont(name: "Arial", size: 17)
-        label.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+        label.font = UIFont(name: StyleGuide.FontStyle.fontName, size: StyleGuide.FontStyle.altFontSize)
+        label.textColor = StyleGuide.FontStyle.fontColor
         return label
     }()
     
@@ -71,15 +68,26 @@ class ProfileSettingView: UIView {
         label.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
         return label
     }()
-
+/*
+    lazy var noEventsLabel: UILabel = {
+          let label = UILabel()
+          label.text = "No Event History"
+          label.font = UIFont(name:StyleGuide.FontStyle.fontName, size: StyleGuide.FontStyle.altFontSize)
+          label.adjustsFontSizeToFitWidth = true
+          label.textAlignment = .center
+          label.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+          return label
+      }()
+    */
     lazy var logoutButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Logout", for: .normal)
-        button.setTitleColor(#colorLiteral(red: 0.9534531236, green: 0.3136326671, blue: 1, alpha: 1), for: .normal)
-        button.titleLabel?.font = UIFont(name: "CopperPlate", size: 20)
-        button.layer.borderColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
-        button.layer.borderWidth = 2
-        button.layer.cornerRadius = 5
+        button.setTitleColor(StyleGuide.ButtonStyle.fontColor, for: .normal)
+        button.titleLabel?.font = UIFont(name: StyleGuide.ButtonStyle.fontName, size: StyleGuide.ButtonStyle.fontSize)
+        button.backgroundColor = StyleGuide.ButtonStyle.backgroundColor
+        button.layer.cornerRadius = StyleGuide.ButtonStyle.cornerRadius
+        button.layer.borderColor = StyleGuide.ButtonStyle.borderColor
+        button.layer.borderWidth = StyleGuide.ButtonStyle.altBorderWidth
         button.isEnabled = true
         return button
     }()
@@ -127,15 +135,15 @@ class ProfileSettingView: UIView {
             portraitPic.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4),
             portraitPic.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4)
         ])
-       // portraitPic.layer.cornerRadius = portraitPic.bounds.size.width / 2
+       
     }
     
     private func setAddButtonConstraints(){
         addPictureButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             addPictureButton.bottomAnchor.constraint(equalTo: portraitPic.bottomAnchor),
-          //  addPictureButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            addPictureButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 250),
+            addPictureButton.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 60),
+           // addPictureButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 250),
             addPictureButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.12),
             addPictureButton.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.12)
         ])
