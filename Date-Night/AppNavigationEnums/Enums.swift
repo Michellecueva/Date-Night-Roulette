@@ -21,3 +21,7 @@ enum LeftScreenStatus:String {
     case partnerProfile
 }
 
+public enum ThumbDirection {
+    case up
+    case down
+}

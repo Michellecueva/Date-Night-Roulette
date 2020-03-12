@@ -66,7 +66,9 @@ class RootViewController: UIViewController{
     private var partner:AppUser? {
            didSet {
                print("rootVC received partner")
-            guard partner != nil else {return}
+            guard partner != nil else {
+                 navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(self, action: #selector(navigateToPartnerVC), imageName: nil, image: nil,systemImageName:"person.fill")
+                return}
                leftVC.leftScreenPartner = partner
                homeScreenVC.partner = partner
             setUpLeftBarButton(profilePictureURL: partner?.photoURL)
@@ -102,6 +104,7 @@ class RootViewController: UIViewController{
             getInvites()
             homeScreenVC.homePageStatus = .none
             partner = nil
+            profileVC.currentUser = currentUser
         } else {
             if partner == nil {
                 grabPartnerFromFirebase()
@@ -358,6 +361,9 @@ class RootViewController: UIViewController{
   
    private func showBarButtons() {
     navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(self, action: #selector(navigateToPartnerVC), imageName: nil, image: nil,systemImageName:"person.fill")
+    
+     navigationItem.rightBarButtonItem = UIBarButtonItem.barButton(self, action: #selector(navigateToProfileVC), imageName: nil, image: nil,systemImageName:"person.fill")
+    
     }
     
     

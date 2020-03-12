@@ -15,6 +15,36 @@ extension CALayer{
     }
 }
 
+extension UIImageView {
+    public convenience init(thumbImageView:String) {
+        self.init()
+        self.contentMode = .scaleAspectFit
+     
+    }
+}
+
+extension SwipeImageView {
+    func setUp(imageURL:String?,uiImage:UIImage?,containerView:UIView,distanceFromCenter:CGFloat,panGesture:UIPanGestureRecognizer) {
+    
+        self.addGestureRecognizer(panGesture)
+        self.contentMode = .scaleToFill
+        if let imageURL = imageURL {
+        self.image = UIImage(named: imageURL)
+        }
+        if let uiImage = uiImage {
+            self.image = uiImage
+        }
+        self.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(self)
+        self.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
+        self.centerYAnchor.constraint(equalTo: containerView.centerYAnchor, constant: distanceFromCenter).isActive = true
+        self.heightAnchor.constraint(equalToConstant: containerView.frame.height * 0.45).isActive = true
+        self.widthAnchor.constraint(equalToConstant: containerView.frame.width * 0.80).isActive = true
+       }
+   
+}
+
+
 //extension UIImageView {
 
 //    func getImage(with urlString: String, completion: @escaping (Result<UIImage, AppError>) -> ()) {

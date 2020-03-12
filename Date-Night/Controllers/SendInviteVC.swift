@@ -25,6 +25,11 @@ class SendInviteVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        sendInviteView.emailField.text = ""
+    }
+    
     private func changeStatus() {
       //  leftScreenStatus = .waitingForResponse
         delegate?.changeStatus(status: .waitingForResponse)

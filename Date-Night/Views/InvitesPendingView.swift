@@ -20,6 +20,13 @@ class InvitesPendingView: UIView {
         label.textAlignment = .center
         return label
     }()
+    
+    lazy var dateNightLogo:UIImageView = {
+        let dnl = UIImageView()
+        dnl.contentMode = .scaleAspectFit
+        dnl.image = UIImage(named:"splashLogo")
+        return dnl
+    }()
 
     
     override init(frame: CGRect) {
@@ -34,12 +41,14 @@ class InvitesPendingView: UIView {
     }
     
     private func addSubview() {
-        addSubview(invitesPendingTableView)
+        self.addSubview(invitesPendingTableView)
+        self.addSubview(dateNightLogo)
 
     }
     
     private func addContraints() {
         addTableViewContraints()
+        logoConstraints()
     }
     
     private func addTableViewContraints() {
@@ -51,4 +60,15 @@ class InvitesPendingView: UIView {
                 invitesPendingTableView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9)
           ])
        }
+    
+    private func logoConstraints() {
+        dateNightLogo.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            dateNightLogo.topAnchor.constraint(equalTo: self.topAnchor),
+            dateNightLogo.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            dateNightLogo.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            dateNightLogo.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+
+        ])
+    }
 }
