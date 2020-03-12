@@ -104,124 +104,6 @@ class ShakeGestureVC: UIViewController {
         
     }
     
-//       private func createImageViews(imageURLS:[String]) {
-//           // var arrayOfImageViews:[UIImageView] = []
-//            var distanceFromCenter:CGFloat = 0
-//            imageURLS.forEach({
-//    //           UIImageView(imageURL: $0, containerView: view, distanceFromCenter: distanceFromCenter)
-//                print($0)
-//                SwipeImageView(angle: 10).setUp(imageURL: $0, containerView: view, distanceFromCenter: distanceFromCenter, panGesture: UIPanGestureRecognizer(target: self, action: #selector(panGesture(sender:))))
-//
-//
-//                distanceFromCenter -= 15
-//
-//
-//            })
-//
-//
-//        }
-    private func createImageViews(image:UIImage) {
-            
-        SwipeImageView(angle: 0).setUp(imageURL: nil, uiImage: image, containerView: view, distanceFromCenter: 0, panGesture:UIPanGestureRecognizer(target: self, action: #selector(panGesture(sender:))) )
-            
-        
-             }
-                 
-           
-         
-        
-        
-        
-        @objc private func panGesture(sender:UIPanGestureRecognizer) {
-              
-              let card = sender.view
-              
-            let imageView = card as! SwipeImageView
-            print(card?.superview)
-             let containerView = card!.superview
-            
-              let pointer = sender.translation(in: containerView)
-              
-            card?.center = CGPoint(x: view.center.x + pointer.x, y: (containerView?.center.y)! + pointer.y)
-
-              
-            let xFromCenter = (card?.center.x)! - (containerView?.center.x)!
-            let rotation = (xFromCenter / ((containerView?.frame.width)! / 2)) * 0.61
-              // for full rotation make sure rotation value is over 1 (divide xFromCenter seperately)
-            let twentyFivePercentAwayFromCenter = (containerView?.center.x)!  * 0.25
-              
-            let twentyFivePercentAwayFromCenterToTheLeft = (containerView?.center.x)! * -0.25
-              
-              let scaler = min(abs(80/xFromCenter), 1)
-             
-            if card?.center.y != containerView?.center.y  {
-                card?.center.y = (containerView?.center.y)!
-                  }
-              print(scaler)
-              card?.transform = CGAffineTransform(rotationAngle: rotation).scaledBy(x: scaler, y: scaler)
-        
-              if xFromCenter > 0 {
-                imageView.thumbDirection = .up
-                imageView.thumbSymbol.tintColor = .green
-              } else {
-                imageView.thumbDirection = .down
-                   imageView.thumbSymbol.tintColor = .red
-              }
-               imageView.thumbSymbol.alpha = abs(xFromCenter / view.center.x)
-             
-              if sender.state == .ended {
-                  print(xFromCenter)
-                  
-                  if xFromCenter > 0 && xFromCenter < twentyFivePercentAwayFromCenter {
-                              
-                                UIView.animate(withDuration: 0.2) {
-
-                                            card?.center = self.view.center
-                                    imageView.thumbSymbol.alpha = 0
-                                  
-                                  card?.transform = .identity
-
-                                       }
-                                return
-                  } else if xFromCenter < 0 && xFromCenter > twentyFivePercentAwayFromCenterToTheLeft {
-                      
-                      UIView.animate(withDuration: 0.2) {
-
-                                                              card?.center = self.view.center
-                        imageView.thumbSymbol.alpha = 0
-                          card?.transform = .identity
-
-                                                         }
-                                     return
-                  } else if xFromCenter >= twentyFivePercentAwayFromCenter {
-                      UIView.animate(withDuration: 0.8) {
-                          card?.center = CGPoint(x: self.view.frame.maxX + (self.view.frame.width * 0.5), y: (card?.center.y)! + ((card?.center.y)! / 2))
-                        imageView.thumbSymbol.alpha = 0
-                        imageView.alpha = 0
-                        imageView.removeFromSuperview()
-
-                      }
-                          return
-                  } else if xFromCenter <= twentyFivePercentAwayFromCenterToTheLeft
-                          {
-                      UIView.animate(withDuration:0.8) {
-                          card?.center = CGPoint(x: self.view.frame.minX - (self.view.frame.width * 0.5), y: (card?.center.y)! + ((card?.center.y)! / 2) )
-                        imageView.alpha = 0
-                        imageView.thumbSymbol.alpha = 0
-                        imageView.removeFromSuperview()
-
-                      }
-                      return
-                  }
-
-             
-              }
-              
-              
-              }
-          
-        
-    
     @objc private func likedButtonPressed() {
         guard let eventID = fbEvents.last?.eventID else {return}
         
@@ -295,7 +177,7 @@ class ShakeGestureVC: UIViewController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let confirmMatch = UIAlertAction(title: "Confirm", style: .default) { (response) in
-            self.navigationController?.pushViewController(RootViewController(), animated: true)
+            self.navigationController?.pushViewController(MatchedEventVC(), animated: true)
         }
         let deny = UIAlertAction(title: "Deny", style: .destructive)
         
@@ -355,7 +237,6 @@ class ShakeGestureVC: UIViewController {
                     case .success(let image):
                         
                         self?.shakeView.shakeEventView.setUpImage(from: lastEvent, image: image)
-                    //     self?.createImageViews(image: image)
                     }
                 }
             }
