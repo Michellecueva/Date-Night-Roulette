@@ -186,8 +186,8 @@ extension UIBarButtonItem {
         button.setImage(UIImage(), for: .disabled)
         let barButtonItem = UIBarButtonItem(customView: button)
         barButtonItem.customView?.translatesAutoresizingMaskIntoConstraints = false
-        barButtonItem.customView?.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        barButtonItem.customView?.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        barButtonItem.customView?.heightAnchor.constraint(equalToConstant: 28).isActive = true
+        barButtonItem.customView?.widthAnchor.constraint(equalToConstant: 28).isActive = true
         
      
 

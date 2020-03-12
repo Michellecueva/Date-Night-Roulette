@@ -1,11 +1,3 @@
-//
-//  MatchedEventVC.swift
-//  Date-Night
-//
-//  Created by Kimball Yang on 3/3/20.
-//  Copyright © 2020 Date Night Roulette. All rights reserved.
-//
-
 import UIKit
 
 class MatchedEventVC: UIViewController {
@@ -15,11 +7,18 @@ class MatchedEventVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(matchedView)
+        addObjcFunctions()
 
         // Do any additional setup after loading the view.
     }
     
 
+    private func addObjcFunctions() {
+        matchedView.directionButton.addTarget(self, action: #selector(directionsLink), for: .touchUpInside)
+        matchedView.moreInfoButton.addTarget(self, action: #selector(infoLink), for: .touchUpInside)
+    }
 
-
+    
+    @objc private func directionsLink() {}
+    @objc private func infoLink() {}
 }

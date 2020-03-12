@@ -46,6 +46,7 @@ enum StyleGuide {
         static let disabledColor: UIColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         static let backgroundColor: UIColor = .clear
         static let fontSize: CGFloat = 20
+        static let altFontSize: CGFloat = 14
         static let cornerRadius: CGFloat = 5
         static let borderWidth: CGFloat = 4
         static let altBorderWidth: CGFloat = 2

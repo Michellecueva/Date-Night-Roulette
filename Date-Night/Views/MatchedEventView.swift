@@ -6,16 +6,17 @@ class MatchedEventView: UIView {
     var imageTopConstraint = NSLayoutConstraint()
     var labelTopConstraint = NSLayoutConstraint()
     
-    private var state: State = .collapsed
+    // private var state: State = .collapsed
     
     lazy var matchLabel: UILabel = {
         let mLabel = UILabel()
         mLabel.textColor = StyleGuide.TitleFontStyle.fontColor
         mLabel.text = "You and your Partner Have Matched!"
         mLabel.numberOfLines = 0
+        
         mLabel.textAlignment = .center
         mLabel.adjustsFontForContentSizeCategory = true
-        mLabel.font = UIFont(name:StyleGuide.TitleFontStyle.fontName, size:StyleGuide.TitleFontStyle.fontSize)
+        mLabel.font = UIFont(name:StyleGuide.TitleFontStyle.fontName, size:StyleGuide.TitleFontStyle.altFontSize)
         return mLabel
     }()
     
@@ -26,72 +27,72 @@ class MatchedEventView: UIView {
         return mImage
     }()
     
-    lazy var confirmButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Confirm", for: .normal)
-        button.setTitleColor(StyleGuide.ButtonStyle.fontColor, for: .normal)
-        button.setTitleColor(StyleGuide.ButtonStyle.disabledColor, for: .disabled)
-        button.titleLabel?.font = UIFont(name: StyleGuide.ButtonStyle.fontName, size: StyleGuide.ButtonStyle.fontSize)
-        button.backgroundColor = StyleGuide.ButtonStyle.backgroundColor
-        button.layer.cornerRadius = StyleGuide.ButtonStyle.cornerRadius
-        button.layer.borderColor = StyleGuide.ButtonStyle.borderColor
-        button.layer.borderWidth = StyleGuide.ButtonStyle.borderWidth
-        button.isEnabled = true
-        return button
-    }()
-    
-    lazy var shakeImage: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: "LIONKING-superJumbo")
-        return image
-    }()
+    //    lazy var confirmButton: UIButton = {
+    //        let button = UIButton()
+    //        button.setTitle("Confirm", for: .normal)
+    //        button.setTitleColor(StyleGuide.ButtonStyle.fontColor, for: .normal)
+    //        button.setTitleColor(StyleGuide.ButtonStyle.disabledColor, for: .disabled)
+    //        button.titleLabel?.font = UIFont(name: StyleGuide.ButtonStyle.fontName, size: StyleGuide.ButtonStyle.fontSize)
+    //        button.backgroundColor = StyleGuide.ButtonStyle.backgroundColor
+    //        button.layer.cornerRadius = StyleGuide.ButtonStyle.cornerRadius
+    //        button.layer.borderColor = StyleGuide.ButtonStyle.borderColor
+    //        button.layer.borderWidth = StyleGuide.ButtonStyle.borderWidth
+    //        button.isEnabled = true
+    //        return button
+    //    }()
     
     
     lazy var moreInfoButton: UIButton = {
         let infoButton = UIButton()
         infoButton.setTitle("More Info", for: .normal)
+        // infoButton.setBackgroundImage(UIImage(systemName: "info.circle"), for: .normal)
+        //infoButton.imageView?.image = UIImage(systemName: "info.circle")
+        infoButton.tintColor = StyleGuide.AppColors.primaryColor
         infoButton.setTitleColor(StyleGuide.ButtonStyle.fontColor, for: .normal)
-        infoButton.setTitleColor(StyleGuide.ButtonStyle.disabledColor, for: .disabled)
-        infoButton.titleLabel?.font = UIFont(name: StyleGuide.ButtonStyle.fontName, size: StyleGuide.ButtonStyle.fontSize)
+        //infoButton.setTitleColor(StyleGuide.ButtonStyle.disabledColor, for: .disabled)
+        infoButton.titleLabel?.font = UIFont(name: StyleGuide.ButtonStyle.fontName, size: StyleGuide.ButtonStyle.altFontSize)
         infoButton.backgroundColor = StyleGuide.ButtonStyle.backgroundColor
         infoButton.layer.cornerRadius = StyleGuide.ButtonStyle.cornerRadius
         infoButton.layer.borderColor = StyleGuide.ButtonStyle.borderColor
-        infoButton.layer.borderWidth = StyleGuide.ButtonStyle.borderWidth
-        infoButton.addTarget(self, action: #selector(animateMatchView), for: .touchUpInside)
+        infoButton.layer.borderWidth = StyleGuide.ButtonStyle.altBorderWidth
+        // infoButton.addTarget(self, action: #selector(animateMatchView), for: .touchUpInside)
         return infoButton
     }()
     
     lazy var directionButton: UIButton = {
         let dirButton = UIButton()
         dirButton.setTitle("Directions", for: .normal)
-        dirButton.setTitleColor(StyleGuide.ButtonStyle.disabledColor, for: .disabled)
-        dirButton.titleLabel?.font = UIFont(name: StyleGuide.ButtonStyle.fontName, size: StyleGuide.ButtonStyle.fontSize)
+        //dirButton.setBackgroundImage(UIImage(systemName: "map"), for: .normal)
+        //dirButton.imageView?.image = UIImage(systemName: "map")
+        dirButton.tintColor = StyleGuide.AppColors.primaryColor
+        dirButton.setTitleColor(StyleGuide.ButtonStyle.fontColor, for: .normal)
+        dirButton.titleLabel?.font = UIFont(name: StyleGuide.ButtonStyle.fontName, size: StyleGuide.ButtonStyle.altFontSize)
         dirButton.backgroundColor = StyleGuide.ButtonStyle.backgroundColor
         dirButton.layer.cornerRadius = StyleGuide.ButtonStyle.cornerRadius
         dirButton.layer.borderColor = StyleGuide.ButtonStyle.borderColor
-        dirButton.layer.borderWidth = StyleGuide.ButtonStyle.borderWidth
+        dirButton.layer.borderWidth = StyleGuide.ButtonStyle.altBorderWidth
         return dirButton
     }()
     
-    lazy var infoTextView: UITextView = {
-        let textview = UITextView()
-        textview.backgroundColor = .lightGray
-        textview.font = UIFont(name: "Arial", size: 30)
-        textview.adjustsFontForContentSizeCategory = true
-        return textview
-    }()
-    
-    lazy var matchInfoDetailTextView: UITextView = {
-        let textview = UITextView()
-        textview.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        textview.alpha = 0.0
-        textview.layer.shadowColor = .init(srgbRed: 0.5, green: 0.5, blue: 0.5, alpha: 0.9)
-        textview.adjustsFontForContentSizeCategory = true
-        textview.font = UIFont(name: "Arial", size: 30)
-        textview.isUserInteractionEnabled = false
-        textview.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
-        return textview
-    }()
+    //    lazy var infoTextView: UITextView = {
+    //        let textview = UITextView()
+    //        textview.backgroundColor = .lightGray
+    //        textview.font = UIFont(name: "Arial", size: 30)
+    //        textview.adjustsFontForContentSizeCategory = true
+    //        return textview
+    //    }()
+    //
+    //    lazy var matchInfoDetailTextView: UITextView = {
+    //        let textview = UITextView()
+    //        textview.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    //        textview.alpha = 0.0
+    //        textview.layer.shadowColor = .init(srgbRed: 0.5, green: 0.5, blue: 0.5, alpha: 0.9)
+    //        textview.adjustsFontForContentSizeCategory = true
+    //        textview.font = UIFont(name: "Arial", size: 30)
+    //        textview.isUserInteractionEnabled = false
+    //        textview.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+    //        return textview
+    //    }()
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -101,73 +102,69 @@ class MatchedEventView: UIView {
         super.init(frame: UIScreen.main.bounds)
         addMatchSubviews()
         setMatchConstraints()
-        //        labelTopConstraint.constant = 150
-        //        imageTopConstraint.constant = 250
     }
     
-    enum State {
-        case expanded
-        case collapsed
-        
-        var change: State {
-            switch self {
-            case .expanded:
-                return .collapsed
-            case .collapsed:
-                return .expanded
-            }
-        }
-    }
-    
-    @objc func animateMatchView()  {
-        
-        UIView.animate(withDuration: 1, delay: 0.2, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.1, options: .curveEaseInOut, animations: {
-            
-            switch self.state {
-                
-            case .collapsed:
-                
-                self.imageTopConstraint.constant = 250
-                self.labelTopConstraint.constant = 150
-                self.layoutIfNeeded()
-                self.state = self.state.change
-                print("collapsed")
-                
-            case .expanded:
-                
-                self.imageTopConstraint.constant = 0
-                self.labelTopConstraint.constant = 30
-                self.layoutIfNeeded()
-                self.state = self.state.change
-                
-                print("expanded")
-                
-            }
-        })
-    }
-    
+    //    enum State {
+    //        case expanded
+    //        case collapsed
+    //
+    //        var change: State {
+    //            switch self {
+    //            case .expanded:
+    //                return .collapsed
+    //            case .collapsed:
+    //                return .expanded
+    //            }
+    //        }
+    //    }
+    //
+    //    @objc func animateMatchView()  {
+    //
+    //        UIView.animate(withDuration: 1, delay: 0.2, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.1, options: .curveEaseInOut, animations: {
+    //
+    //            switch self.state {
+    //
+    //            case .collapsed:
+    //
+    //                self.imageTopConstraint.constant = 250
+    //                self.labelTopConstraint.constant = 150
+    //                self.layoutIfNeeded()
+    //                self.state = self.state.change
+    //                print("collapsed")
+    //
+    //            case .expanded:
+    //
+    //                self.imageTopConstraint.constant = 0
+    //                self.labelTopConstraint.constant = 30
+    //                self.layoutIfNeeded()
+    //                self.state = self.state.change
+    //
+    //                print("expanded")
+    //
+    //            }
+    //        })
+    //    }
+    //
     private func addMatchSubviews() {
         self.addSubview(matchLabel)
         self.addSubview(matchImage)
-        self.addSubview(confirmButton)
+        //self.addSubview(confirmButton)
         self.addSubview(moreInfoButton)
         self.addSubview(directionButton)
-        self.addSubview(matchInfoDetailTextView)
+        // self.addSubview(matchInfoDetailTextView)
     }
     
     private func setMatchConstraints() {
         setMatchLabelConstraints()
         setMatchImageConstraints()
-        setConfirmButtonConstraints()
+        //setConfirmButtonConstraints()
         setInfoButtonConstraints()
         setDirectionButtonConstraints()
     }
     
     private func setMatchLabelConstraints() {
         matchLabel.translatesAutoresizingMaskIntoConstraints = false
-        
         labelTopConstraint = matchLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 150)
-        
         matchLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 40).isActive = true
         matchLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -40).isActive = true
         matchLabel.heightAnchor.constraint(equalToConstant: 90).isActive = true
@@ -185,22 +182,22 @@ class MatchedEventView: UIView {
         NSLayoutConstraint.activate([imageTopConstraint])
     }
     
-    private func setConfirmButtonConstraints() {
-        confirmButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            confirmButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -90),
-            confirmButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            confirmButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4),
-            confirmButton.heightAnchor.constraint(equalToConstant: 30)
-        ])
-    }
+    //    private func setConfirmButtonConstraints() {
+    //        confirmButton.translatesAutoresizingMaskIntoConstraints = false
+    //        NSLayoutConstraint.activate([
+    //            confirmButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -90),
+    //            confirmButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+    //            confirmButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4),
+    //            confirmButton.heightAnchor.constraint(equalToConstant: 30)
+    //        ])
+    //    }
     
     private func setInfoButtonConstraints() {
         moreInfoButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             moreInfoButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -160),
-            moreInfoButton.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: -100),
-            moreInfoButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3),
+            moreInfoButton.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: -80),
+            moreInfoButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.25),
             moreInfoButton.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
@@ -209,21 +206,21 @@ class MatchedEventView: UIView {
         directionButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             directionButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -160),
-            directionButton.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 100),
-            directionButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3),
+            directionButton.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 80),
+            directionButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.25),
             directionButton.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
     
-    private func setMatchInfoDetailTextViewConstraints() {
-        matchInfoDetailTextView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            matchInfoDetailTextView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            matchInfoDetailTextView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            matchInfoDetailTextView.widthAnchor.constraint(equalTo: self.widthAnchor),
-            matchInfoDetailTextView.heightAnchor.constraint(equalTo: self.heightAnchor)
-        ])
-    }
+    //    private func setMatchInfoDetailTextViewConstraints() {
+    //        matchInfoDetailTextView.translatesAutoresizingMaskIntoConstraints = false
+    //        NSLayoutConstraint.activate([
+    //            matchInfoDetailTextView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+    //            matchInfoDetailTextView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+    //            matchInfoDetailTextView.widthAnchor.constraint(equalTo: self.widthAnchor),
+    //            matchInfoDetailTextView.heightAnchor.constraint(equalTo: self.heightAnchor)
+    //        ])
+    //    }
     
     
 }
