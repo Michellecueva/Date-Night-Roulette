@@ -17,14 +17,17 @@ class WaitingForResponseView: UIView {
     lazy var unsendButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Remove Invite Sent", for: .normal)
-        button.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.9092509151, green: 0.7310814261, blue: 1, alpha: 1)
-        button.titleLabel?.font = UIFont(name: "Arial", size: 20)
-        button.layer.cornerRadius = 5
+        button.setTitleColor(StyleGuide.ButtonStyle.fontColor, for: .normal)
+        button.backgroundColor = StyleGuide.ButtonStyle.backgroundColor
+        button.titleLabel?.font = UIFont(name: StyleGuide.ButtonStyle.fontName, size: StyleGuide.ButtonStyle.fontSize)
+        button.layer.cornerRadius = StyleGuide.ButtonStyle.cornerRadius
+        button.layer.borderColor = StyleGuide.ButtonStyle.borderColor
+        button.layer.borderWidth = StyleGuide.ButtonStyle.altBorderWidth
+        
         button.isEnabled = true
         return button
     }()
-    
+  
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         self.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)

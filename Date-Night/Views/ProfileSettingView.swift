@@ -42,7 +42,7 @@ class ProfileSettingView: UIView {
     
     lazy var userNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Hi, user!"
+        label.text = "Hi user!"
         label.adjustsFontSizeToFitWidth = true
         label.font = UIFont(name: StyleGuide.FontStyle.fontName, size: StyleGuide.FontStyle.altFontSize)
         label.textAlignment = .center

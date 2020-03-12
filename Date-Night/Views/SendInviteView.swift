@@ -21,9 +21,10 @@ class SendInviteView: UIView {
         textField.font = UIFont(name: StyleGuide.TextFieldStyle.fontName, size: StyleGuide.TextFieldStyle.fontSize)
         textField.backgroundColor = StyleGuide.TextFieldStyle.backgroundColor
         textField.borderStyle = .roundedRect
-        textField.backgroundColor = .lightText
+        textField.backgroundColor = StyleGuide.TextFieldStyle.backgroundColor
         return textField
     }()
+    
     
     lazy var enterButton: UIButton = {
         let button = UIButton(type: .system)
