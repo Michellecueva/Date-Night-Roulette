@@ -177,7 +177,7 @@ class ShakeGestureVC: UIViewController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let confirmMatch = UIAlertAction(title: "Confirm", style: .default) { (response) in
-            self.navigationController?.pushViewController(RootViewController(), animated: true)
+            self.navigationController?.pushViewController(MatchedEventVC(), animated: true)
         }
         let deny = UIAlertAction(title: "Deny", style: .destructive)
         
