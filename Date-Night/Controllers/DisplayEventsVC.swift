@@ -12,7 +12,7 @@ class DisplayEventsVC: UIViewController {
     var eventTitle: String!
     
     
-    var shakeView = ShakeGestureView()
+    var displayEventView = DisplayEventView()
     var fbEvents:[FBEvents] = [] {
         didSet {
             guard fbEvents.count != 0 else {
@@ -62,9 +62,9 @@ class DisplayEventsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(shakeView)
-        shakeView.eventCard.isUserInteractionEnabled = true
-        shakeView.eventCard.addGestureRecognizer(panGestureRecognizer)
+        view.addSubview(displayEventView)
+        displayEventView.eventCard.isUserInteractionEnabled = true
+        displayEventView.eventCard.addGestureRecognizer(panGestureRecognizer)
         view.backgroundColor = .black
         
     }
@@ -92,7 +92,7 @@ fbEvents = []
     }
     
     private func addObjcFunctionsToViewButtons() {
-        shakeView.confirmButton.addTarget(self, action: #selector(likedButtonPressed), for: .touchUpInside)
+        displayEventView.confirmButton.addTarget(self, action: #selector(likedButtonPressed), for: .touchUpInside)
     }
     
     
@@ -141,7 +141,7 @@ fbEvents = []
                                    
                                      UIView.animate(withDuration: 0.2) {
                                       
-                                                 card?.center = self.view.center
+                                        card?.center = CGPoint(x: self.view.center.x , y: (card?.center.y)! + (card?.superview?.frame.height)! * 0.05)
                                        card?.layer.borderWidth = 0
                                        card?.layer.borderColor = .none
                                        
@@ -153,7 +153,7 @@ fbEvents = []
                            UIView.animate(withDuration: 0.2) {
 
                              
-                                                                  card?.center = self.view.center
+                                                                 card?.center = CGPoint(x: self.view.center.x , y: (card?.center.y)! + (card?.superview?.frame.height)! * 0.05)
                                                                       card?.layer.borderWidth = 0
                                                                                                 card?.layer.borderColor = .none
                                
@@ -165,7 +165,7 @@ fbEvents = []
                        
                                        UIView.animate(withDuration: 0.5, animations: {
   
-                                            card?.center = CGPoint(x: self.view.frame.maxX + (self.view.frame.width * 0.5), y: (card?.center.y)!)
+                                        card?.center = CGPoint(x: self.view.frame.maxX + (self.view.frame.width * 0.5), y: (card?.center.y)! + (card?.superview?.frame.height)! * 0.05)
                                              //
                                                               
                        
@@ -179,7 +179,7 @@ fbEvents = []
                                       UIView.animate(withDuration: 0.5, animations: {
                        
                                        
-                                       card?.center = CGPoint(x: self.view.frame.maxX - (self.view.frame.width * 1.5), y: ((card?.center.y)!))
+                                       card?.center = CGPoint(x: self.view.frame.maxX - (self.view.frame.width * 1.5), y: ((card?.center.y)!) + (card?.superview?.frame.height)! * 0.05)
                                                 
                     
                                                       }, completion: { (bool) in
@@ -220,25 +220,25 @@ fbEvents = []
     }
     
     private func returnToCenterFromRight() {
-        shakeView.eventCard.center = CGPoint(x: view.frame.minX, y: view.center.y )
-        shakeView.eventCard.layer.borderWidth = 0
-                   shakeView.eventCard.layer.borderColor = .none
+        displayEventView.eventCard.center = CGPoint(x: view.frame.minX, y: view.center.y )
+        displayEventView.eventCard.layer.borderWidth = 0
+                   displayEventView.eventCard.layer.borderColor = .none
            UIView.animate(withDuration: 0.3) {
-            self.shakeView.eventCard.alpha = 1
-            self.shakeView.eventCard.transform = .identity
-            self.shakeView.eventCard.center = CGPoint(x: self.view.center.x, y: self.view.center.y)
+            self.displayEventView.eventCard.alpha = 1
+            self.displayEventView.eventCard.transform = .identity
+            self.displayEventView.eventCard.center = CGPoint(x: self.view.center.x, y: self.view.center.y + self.view.frame.height * 0.05)
            }
            
        }
        
        private func returnToCenterLeft() {
-                   shakeView.eventCard.center = CGPoint(x: view.frame.maxX, y: view.center.y )
-                   shakeView.eventCard.layer.borderWidth = 0
-                   shakeView.eventCard.layer.borderColor = .none
+                   displayEventView.eventCard.center = CGPoint(x: view.frame.maxX, y: view.center.y )
+                   displayEventView.eventCard.layer.borderWidth = 0
+                   displayEventView.eventCard.layer.borderColor = .none
                   UIView.animate(withDuration: 0.3) {
-                    self.shakeView.eventCard.alpha = 1
-                    self.shakeView.eventCard.transform = .identity
-                    self.shakeView.eventCard.center = CGPoint(x: self.view.center.x, y: self.view.center.y)
+                    self.displayEventView.eventCard.alpha = 1
+                    self.displayEventView.eventCard.transform = .identity
+                    self.displayEventView.eventCard.center = CGPoint(x: self.view.center.x, y: self.view.center.y + self.view.frame.height * 0.05)
                   }
        }
     
@@ -294,7 +294,7 @@ fbEvents = []
         let confirmMatch = UIAlertAction(title: "Confirm", style: .default) { (response) in
 
                   let matched = MatchedEventVC()
-            matched.newImage = self.shakeView.eventCard.imageView.image
+            matched.newImage = self.displayEventView.eventCard.imageView.image
             self.navigationController?.pushViewController(MatchedEventVC(), animated: true)
             
             
@@ -343,8 +343,8 @@ fbEvents = []
      
           //eventCard.setNeedsDisplay()
         
-        shakeView.eventCard.layoutTitleLabel(event: event)
-        shakeView.eventCard.layoutDetailView(from:event)
+        displayEventView.eventCard.layoutTitleLabel(event: event)
+        displayEventView.eventCard.layoutDetailView(from:event)
         if let image = event.imageURL {
             
             //remember to stop user interaction until image finishes loading
@@ -355,33 +355,15 @@ fbEvents = []
                     switch result {
                     case .failure(let error):
                         print(error)
-                        self?.shakeView.eventCard.layoutImageView(eventImage: UIImage(systemName: "photo"))
+                        self?.displayEventView.eventCard.layoutImageView(eventImage: UIImage(systemName: "photo"))
                     case .success(let image):
                         
-                        self?.shakeView.eventCard.layoutImageView(eventImage: image)
+                        self?.displayEventView.eventCard.layoutImageView(eventImage: image)
                     }
                 }
             }
         } else {
-            self.shakeView.eventCard.layoutImageView(eventImage: UIImage(systemName: "photo"))
+            self.displayEventView.eventCard.layoutImageView(eventImage: UIImage(systemName: "photo"))
         }
       }
-  
-    
-    override func becomeFirstResponder() -> Bool {
-        return true
-    }
-    
-    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-       
-        print("Shake has happened")
-    }
-    
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?){
-        if motion == .motionShake
-        {
-            print("Shake Gesture Detected")
-            //show some alert here
-        }
-    }
 }
