@@ -9,5 +9,5 @@
 import Foundation
 
 protocol WaitingForResponseDelegate:AnyObject {
-    func  changeStatus(status: LeftScreenStatus)
+    func  changeStatusWaiting(status: LeftScreenStatus)
 }
