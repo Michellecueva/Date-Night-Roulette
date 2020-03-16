@@ -48,6 +48,7 @@ class LeftViewController: UIViewController {
               sendInviteVC.delegate = self
               addAndRemoveChild(currentChild: sendInviteVC)
           case .waitingForResponse:
+            waitingForResponseVC.delegate = self
               addAndRemoveChild(currentChild: waitingForResponseVC)
           }
       }
@@ -72,6 +73,12 @@ class LeftViewController: UIViewController {
 }
 extension LeftViewController:SendInviteDelegate {
     func changeStatus(status: LeftScreenStatus) {
+        leftScreenStatus = status
+    }
+}
+
+extension LeftViewController:WaitingForResponseDelegate {
+    func changeStatusWaiting(status: LeftScreenStatus) {
         leftScreenStatus = status
     }
 }
