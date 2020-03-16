@@ -4,12 +4,20 @@ class MatchedEventVC: UIViewController {
     
     var matchedView = MatchedEventView()
     
+    var newImage:UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(matchedView)
         addObjcFunctions()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let newImage = newImage else {return}
+        matchedView.matchImage.image = newImage
     }
     
 

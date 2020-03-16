@@ -63,15 +63,19 @@ class RootViewController: UIViewController{
         return user
     }
     
+     
+    
+    
     private var partner:AppUser? {
-           didSet {
+       //handle removing partner profile image after a user removes their partner
+        didSet {
                print("rootVC received partner")
-            guard partner != nil else {
-                 navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(self, action: #selector(navigateToPartnerVC), imageName: nil, image: nil,systemImageName:"person.fill")
-                return}
+            
+            guard partner != nil else {return}
                leftVC.leftScreenPartner = partner
                homeScreenVC.partner = partner
             setUpLeftBarButton(profilePictureURL: partner?.photoURL)
+            
            }
        }
     
@@ -89,7 +93,6 @@ class RootViewController: UIViewController{
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         swipingNavigationViewController.view.frame = view.bounds
-       // profileButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,6 +108,7 @@ class RootViewController: UIViewController{
             homeScreenVC.homePageStatus = .none
             partner = nil
             profileVC.currentUser = currentUser
+
         } else {
             if partner == nil {
                 grabPartnerFromFirebase()
@@ -125,15 +129,20 @@ class RootViewController: UIViewController{
     
    
     private func setUpLeftBarButton(profilePictureURL:String?) {
-        guard let profileURL = profilePictureURL else {return}
+        guard let partnerURL = profilePictureURL else {return}
        
-            if let image = ImageHelper.shared.image(forKey: profileURL as NSString) {
+            if let image = ImageHelper.shared.image(forKey: partnerURL as NSString) {
                 
                 self.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(self, action: #selector(self.navigateToPartnerVC), imageName: nil, image: image, systemImageName: nil)
+                self.navigationItem.leftBarButtonItem?.customView?.layer.cornerRadius = 14
+                self.navigationItem.leftBarButtonItem?.customView?.layer.masksToBounds = true
+                
+                self.navigationItem.leftBarButtonItem?.customView?.layoutIfNeeded()
+                                   
             } else {
         
                 
-        ImageHelper.shared.getImage(urlStr: profileURL) { [weak self] (result) in
+        ImageHelper.shared.getImage(urlStr: partnerURL) { [weak self] (result) in
            
             switch result {
             case .failure(let error):
@@ -143,6 +152,10 @@ class RootViewController: UIViewController{
                 self?.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(self, action: #selector(self?.navigateToPartnerVC), imageName: nil, image: image, systemImageName: nil)
                 self?.navigationItem.leftBarButtonItem?.customView?.layer.cornerRadius = 14
                 self?.navigationItem.leftBarButtonItem?.customView?.layer.masksToBounds = true
+                    
+                    self?.navigationItem.leftBarButtonItem?.customView?.layoutIfNeeded()
+                    
+               
             }
                 }
         }
@@ -155,6 +168,11 @@ class RootViewController: UIViewController{
         if let image = ImageHelper.shared.image(forKey: profileURL as NSString) {
                      
             self.navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(self, action: #selector(self.navigateToPartnerVC), imageName: nil, image: image, systemImageName: nil)
+            self.navigationItem.rightBarButtonItem?.customView?.layer.cornerRadius = 14
+            self.navigationItem.rightBarButtonItem?.customView?.layer.masksToBounds = true
+            
+            self.navigationItem.rightBarButtonItem?.customView?.layoutIfNeeded()
+                               
         } else {
         
         ImageHelper.shared.getImage(urlStr: profileURL) { [weak self] (result) in
@@ -361,9 +379,7 @@ class RootViewController: UIViewController{
   
    private func showBarButtons() {
     navigationItem.leftBarButtonItem = UIBarButtonItem.barButton(self, action: #selector(navigateToPartnerVC), imageName: nil, image: nil,systemImageName:"person.fill")
-    
      navigationItem.rightBarButtonItem = UIBarButtonItem.barButton(self, action: #selector(navigateToProfileVC), imageName: nil, image: nil,systemImageName:"person.fill")
-    
     }
     
     
