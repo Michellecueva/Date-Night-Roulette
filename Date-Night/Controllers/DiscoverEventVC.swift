@@ -79,6 +79,7 @@ class DiscoverEventVC: UIViewController {
     
     private func shakeGestureDelegateFunction() {
        delegate?.sendEvents(events: arrayOfEvents)
+        arrayOfEvents = []
     }
     
     private func setPreferencesForGetEvent(user:AppUser?, partner:AppUser?) -> Set<String> {
