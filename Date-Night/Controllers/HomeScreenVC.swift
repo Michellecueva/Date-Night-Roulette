@@ -50,7 +50,7 @@ class HomeScreenVC: UIViewController {
            }
        }
     
-    private let shakeGesture = ShakeGestureVC()
+    private let shakeGesture = DisplayEventsVC()
 
     private var currentUserEmail:String {
         guard let user = Auth.auth().currentUser?.email else { fatalError()}

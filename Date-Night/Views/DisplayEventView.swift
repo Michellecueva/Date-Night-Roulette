@@ -3,12 +3,13 @@ import UIKit
 
 class DisplayEventView: UIView {
     
-    lazy var shakeLabel: UILabel = {
+    lazy var displayEventLabel: UILabel = {
         let label1 = UILabel()
         label1.textColor = StyleGuide.TitleFontStyle.fontColor
         label1.text = "Shake for\nNext Experience"
         label1.numberOfLines = 0
         label1.textAlignment = .center
+        label1.textColor = .white
         label1.adjustsFontForContentSizeCategory = true
         label1.font = UIFont(name:StyleGuide.TitleFontStyle.fontName, size:StyleGuide.TitleFontStyle.altFontSize)
         return label1
@@ -46,7 +47,7 @@ class DisplayEventView: UIView {
     }
     
     private func addShakeSubviews() {
-        self.addSubview(shakeLabel)
+        self.addSubview(displayEventLabel)
         //        self.addSubview(shakeCollectionView)
         self.addSubview(eventCard)
         self.addSubview(confirmButton)
@@ -60,16 +61,16 @@ class DisplayEventView: UIView {
     }
     
     private func setShakeLabelConstraints() {
-        shakeLabel.translatesAutoresizingMaskIntoConstraints = false
-        shakeLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: self.frame.height * 0.1).isActive = true
-        shakeLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 40).isActive = true
-        shakeLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -40).isActive = true
-        shakeLabel.heightAnchor.constraint(equalToConstant: 90).isActive = true
+        displayEventLabel.translatesAutoresizingMaskIntoConstraints = false
+        displayEventLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: self.frame.height * 0.1).isActive = true
+        displayEventLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 40).isActive = true
+        displayEventLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -40).isActive = true
+        displayEventLabel.heightAnchor.constraint(equalToConstant: 90).isActive = true
     }
     
     private func seteventCardConstraints() {
         eventCard.translatesAutoresizingMaskIntoConstraints = false
-        eventCard.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        eventCard.centerYAnchor.constraint(equalTo: self.centerYAnchor,constant: self.frame.height * 0.05).isActive = true
         eventCard.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         eventCard.widthAnchor.constraint(equalTo:self.widthAnchor).isActive = true
         eventCard.heightAnchor.constraint(equalToConstant: self.frame.height * 0.46).isActive = true

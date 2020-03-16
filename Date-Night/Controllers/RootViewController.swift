@@ -427,7 +427,7 @@ extension RootViewController: SwipingContainerViewControllerDelegate {
 
 extension RootViewController:fbEventsDelegate {
     func sendEventDataToShakeVC(fbEvents: [FBEvents]) {
-        let shakeVC = ShakeGestureVC()
+        let shakeVC = DisplayEventsVC()
      //maybe pop discover VC before pushing shakeVC
         shakeVC.fbEvents = fbEvents
         navigationController?.pushViewController(shakeVC, animated: true)

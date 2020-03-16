@@ -17,7 +17,17 @@ class EventCard: UIView {
 //        }
 //    }
 
-    let titleLabel = UILabel()
+    lazy var  titleLabel:UILabel = {
+        let tl = UILabel()
+        tl.textColor = StyleGuide.TitleFontStyle.fontColor
+            tl.numberOfLines = 0
+            tl.textAlignment = .center
+            
+           
+            tl.font = UIFont(name:StyleGuide.TitleFontStyle.fontName, size:StyleGuide.TitleFontStyle.altFontSize)
+        tl.adjustsFontSizeToFitWidth  = true
+        return tl
+    }()
     let imageView = UIImageView()
     let detailView = EventCardDetailView()
     var firstValue:Bool = true 
