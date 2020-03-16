@@ -10,14 +10,13 @@ class ShakeGestureView: UIView {
         label1.numberOfLines = 0
         label1.textAlignment = .center
         label1.adjustsFontForContentSizeCategory = true
-        label1.font = UIFont(name:StyleGuide.TitleFontStyle.fontName, size:StyleGuide.TitleFontStyle.fontSize)
+        label1.font = UIFont(name:StyleGuide.TitleFontStyle.fontName, size:StyleGuide.TitleFontStyle.altFontSize)
         return label1
     }()
     
-    lazy var shakeEventView: ShakeEventView = {
-        let daView = ShakeEventView()
-        daView.backgroundColor = .brown
-        return daView
+    lazy var eventCard: EventCard = {
+        let eventView = EventCard()
+        return eventView
     }()
     
     
@@ -49,32 +48,31 @@ class ShakeGestureView: UIView {
     private func addShakeSubviews() {
         self.addSubview(shakeLabel)
         //        self.addSubview(shakeCollectionView)
-        self.addSubview(shakeEventView)
+        self.addSubview(eventCard)
         self.addSubview(confirmButton)
         
     }
     
     private func setShakeConstraints() {
         setShakeLabelConstraints()
-        //        setShakeCollectionConstraints()
-        setShakeEventViewConstraints()
+        seteventCardConstraints()
         setConfirmButtonConstraints()
     }
     
     private func setShakeLabelConstraints() {
         shakeLabel.translatesAutoresizingMaskIntoConstraints = false
-        shakeLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 60).isActive = true
+        shakeLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: self.frame.height * 0.1).isActive = true
         shakeLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 40).isActive = true
         shakeLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -40).isActive = true
         shakeLabel.heightAnchor.constraint(equalToConstant: 90).isActive = true
     }
     
-    private func setShakeEventViewConstraints() {
-        shakeEventView.translatesAutoresizingMaskIntoConstraints = false
-        shakeEventView.topAnchor.constraint(equalTo: self.shakeLabel.bottomAnchor, constant: 30).isActive = true
-        shakeEventView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        shakeEventView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        shakeEventView.heightAnchor.constraint(equalToConstant: self.frame.height * 0.46).isActive = true
+    private func seteventCardConstraints() {
+        eventCard.translatesAutoresizingMaskIntoConstraints = false
+        eventCard.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        eventCard.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        eventCard.widthAnchor.constraint(equalTo:self.widthAnchor).isActive = true
+        eventCard.heightAnchor.constraint(equalToConstant: self.frame.height * 0.46).isActive = true
     }
     
     private func setConfirmButtonConstraints() {
