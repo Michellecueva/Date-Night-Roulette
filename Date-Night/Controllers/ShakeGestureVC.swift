@@ -11,16 +11,17 @@ class ShakeGestureVC: UIViewController {
     
     var eventTitle: String!
     
-    var pageControl:UIPageControl = UIPageControl(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     
     var shakeView = ShakeGestureView()
     var fbEvents:[FBEvents] = [] {
         didSet {
             guard fbEvents.count != 0 else {
-                navigationController?.popViewController(animated: true)
+                self.testAlert(controllerTitle: "You've Reached The End of Your Events", controllerMessage: "", actionOneTitle: "Ok", actionTwoTitle: nil, actionOneClosure: { (action) in
+                    self.navigationController?.popViewController(animated: true)
+                }, controllerStyle: .alert, actionTwoClosure: nil, actionOneStyle: .default, actionTwoStyle: nil)
                 return
             }
-            setUpView()
+            setUpView(event: fbEvents.last!)
             print(fbEvents.count)
             
         }
@@ -37,6 +38,13 @@ class ShakeGestureVC: UIViewController {
         addListenerOnPartner()
       }
     }
+    lazy var panGestureRecognizer:UIPanGestureRecognizer = {
+        let pan = UIPanGestureRecognizer()
+        
+        pan.addTarget(self, action: #selector(panGesture))
+       
+        return pan
+    }()
     
     var partnersEventsLiked = [String]()
     
@@ -55,17 +63,22 @@ class ShakeGestureVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(shakeView)
+        shakeView.eventCard.isUserInteractionEnabled = true
+        shakeView.eventCard.addGestureRecognizer(panGestureRecognizer)
         view.backgroundColor = .black
         
     }
     
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.makeNavBarTranslucent()
-        configurePageControl()
+       
         addObjcFunctionsToViewButtons()
         getAppUser()
         getPriorEventsLiked()
+        
     }
     
     override func viewDidAppear(_ animated:Bool) {
@@ -74,35 +87,113 @@ class ShakeGestureVC: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+fbEvents = []
+        
     }
     
     private func addObjcFunctionsToViewButtons() {
         shakeView.confirmButton.addTarget(self, action: #selector(likedButtonPressed), for: .touchUpInside)
     }
     
-    func shakeTheEvent() {
-        
-        setUpView()
-        shakeView.layoutIfNeeded()
-        fbEvents.popLast()
-        pageControl.currentPage = pageControl.currentPage + 1
-        print("shake event func called")
-        shakeView.confirmButton.isEnabled = true
-    }
     
-    private func configurePageControl() {
-        self.pageControl.numberOfPages = fbEvents.count
-        self.pageControl.currentPage = 0
-        self.pageControl.tintColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
-        self.pageControl.pageIndicatorTintColor = UIColor.white
-        self.pageControl.currentPageIndicatorTintColor = #colorLiteral(red: 0.9767183661, green: 0.2991916835, blue: 1, alpha: 1)
-        pageControl.isUserInteractionEnabled = false
-        pageControl.translatesAutoresizingMaskIntoConstraints = false
+   @objc private func panGesture(sender:UIPanGestureRecognizer)
+   
+       {
+                   
+                   let card = sender.view
+                   
+                   let pointer = sender.translation(in: view)
+                   
+                   card?.center = CGPoint(x: view.center.x + pointer.x, y: view.center.y + pointer.y)
+
+                   
+                   let xFromCenter = (card?.center.x)! - view.center.x
         
-        navigationItem.titleView = pageControl
-        pageControl.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
         
-    }
+           let rotation = (xFromCenter / (view.frame.width / 2)) * 0.93
+                   // for full rotation make sure rotation value is over 1 (divide xFromCenter seperately)
+                   let distanceFromCenterToTheRight = view.center.x  * 0.50
+                   
+                   let distanceFromCenterToTheLeft = view.center.x * -0.50
+                   
+                   let scaler = min(abs(80/xFromCenter), 1)
+                  
+       //            if card?.center.y != view.center.y  {
+       //                card?.center.y = view.center.y
+       //                }
+                  
+                   card?.transform = CGAffineTransform(rotationAngle: rotation).scaledBy(x: scaler, y: scaler)
+             
+                   if xFromCenter > 0 {
+                       card?.layer.borderWidth = 5
+                       card?.layer.borderColor = UIColor.green.withAlphaComponent(abs(xFromCenter / view.center.x)).cgColor
+                        
+                   } else if xFromCenter < 0 {
+                         card?.layer.borderWidth = 5
+                       card?.layer.borderColor = UIColor.red.withAlphaComponent(abs(xFromCenter / view.center.x)).cgColor
+                   }
+                   
+                   
+                  
+                   if sender.state == .ended {
+                    
+                       if xFromCenter > 0 && xFromCenter < distanceFromCenterToTheRight {
+                                   
+                                     UIView.animate(withDuration: 0.2) {
+                                      
+                                                 card?.center = self.view.center
+                                       card?.layer.borderWidth = 0
+                                       card?.layer.borderColor = .none
+                                       
+                                       card?.transform = .identity
+                                       }
+                                     return
+                       } else if xFromCenter < 0 && xFromCenter > distanceFromCenterToTheLeft {
+                           
+                           UIView.animate(withDuration: 0.2) {
+
+                             
+                                                                  card?.center = self.view.center
+                                                                      card?.layer.borderWidth = 0
+                                                                                                card?.layer.borderColor = .none
+                               
+                               card?.transform = .identity
+
+                                                              }
+                                          return
+                       } else if xFromCenter >= distanceFromCenterToTheRight {
+                       
+                                       UIView.animate(withDuration: 0.5, animations: {
+  
+                                            card?.center = CGPoint(x: self.view.frame.maxX + (self.view.frame.width * 0.5), y: (card?.center.y)!)
+                                             //
+                                                              
+                       
+                                       }, completion: { (bool) in
+                                           self.likedButtonPressed()
+                                           self.returnToCenterFromRight()
+                                       })
+                                           return
+                                   } else if xFromCenter <= distanceFromCenterToTheLeft
+                                           {
+                                      UIView.animate(withDuration: 0.5, animations: {
+                       
+                                       
+                                       card?.center = CGPoint(x: self.view.frame.maxX - (self.view.frame.width * 1.5), y: ((card?.center.y)!))
+                                                
+                    
+                                                      }, completion: { (bool) in
+                                                        self.fbEvents.popLast()
+                                                self.returnToCenterLeft()
+                                                      })
+                                       return
+                                   }
+
+                  
+                   }
+                   
+                   
+                   }
     
     @objc private func likedButtonPressed() {
         guard let eventID = fbEvents.last?.eventID else {return}
@@ -123,9 +214,33 @@ class ShakeGestureVC: UIViewController {
             clearEventsLikedArr()
             
         }else {
-            shakeTheEvent()
+            //in the future prevent liked events from showing up at all
+            fbEvents.popLast()
         }
     }
+    
+    private func returnToCenterFromRight() {
+        shakeView.eventCard.center = CGPoint(x: view.frame.minX, y: view.center.y )
+        shakeView.eventCard.layer.borderWidth = 0
+                   shakeView.eventCard.layer.borderColor = .none
+           UIView.animate(withDuration: 0.3) {
+            self.shakeView.eventCard.alpha = 1
+            self.shakeView.eventCard.transform = .identity
+            self.shakeView.eventCard.center = CGPoint(x: self.view.center.x, y: self.view.center.y)
+           }
+           
+       }
+       
+       private func returnToCenterLeft() {
+                   shakeView.eventCard.center = CGPoint(x: view.frame.maxX, y: view.center.y )
+                   shakeView.eventCard.layer.borderWidth = 0
+                   shakeView.eventCard.layer.borderColor = .none
+                  UIView.animate(withDuration: 0.3) {
+                    self.shakeView.eventCard.alpha = 1
+                    self.shakeView.eventCard.transform = .identity
+                    self.shakeView.eventCard.center = CGPoint(x: self.view.center.x, y: self.view.center.y)
+                  }
+       }
     
     
     private func getPriorEventsLiked() {
@@ -177,7 +292,13 @@ class ShakeGestureVC: UIViewController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let confirmMatch = UIAlertAction(title: "Confirm", style: .default) { (response) in
+
+                  let matched = MatchedEventVC()
+            matched.newImage = self.shakeView.eventCard.imageView.image
             self.navigationController?.pushViewController(MatchedEventVC(), animated: true)
+            
+            
+                
         }
         let deny = UIAlertAction(title: "Deny", style: .destructive)
         
@@ -218,12 +339,13 @@ class ShakeGestureVC: UIViewController {
                 
             })
     }
-    
-    private func setUpView() {
+    private func setUpView(event:FBEvents) {
+     
+          //eventCard.setNeedsDisplay()
         
-        guard let lastEvent = self.fbEvents.last else {return}
-        eventTitle = lastEvent.title
-        if let image = lastEvent.imageURL {
+        shakeView.eventCard.layoutTitleLabel(event: event)
+        shakeView.eventCard.layoutDetailView(from:event)
+        if let image = event.imageURL {
             
             //remember to stop user interaction until image finishes loading
             ImageHelper.shared.getImage(urlStr: image) { [weak self](result) in
@@ -233,25 +355,25 @@ class ShakeGestureVC: UIViewController {
                     switch result {
                     case .failure(let error):
                         print(error)
-                        self?.shakeView.shakeEventView.setUpImage(from:lastEvent , image: UIImage(systemName: "photo")!)
+                        self?.shakeView.eventCard.layoutImageView(eventImage: UIImage(systemName: "photo"))
                     case .success(let image):
                         
-                        self?.shakeView.shakeEventView.setUpImage(from: lastEvent, image: image)
+                        self?.shakeView.eventCard.layoutImageView(eventImage: image)
                     }
                 }
             }
         } else {
-            self.shakeView.shakeEventView.setUpImage(from:lastEvent , image: UIImage(systemName: "photo")!)
+            self.shakeView.eventCard.layoutImageView(eventImage: UIImage(systemName: "photo"))
         }
-    }
-    
+      }
+  
     
     override func becomeFirstResponder() -> Bool {
         return true
     }
     
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        shakeTheEvent()
+       
         print("Shake has happened")
     }
     
