@@ -64,28 +64,18 @@ detailView.frame = imageView.frame
 
     // MARK: Layout
     
-    func layoutTitleLabel(event:Event?) {
+    func layoutTitleLabel(event:FBEvents?) {
         titleLabel.text = event?.title
-//        let fittingSize =
-//            CGSize(width: frame.width, height: CGFloat.greatestFiniteMagnitude)
-//        let titleLabelSize = titleLabel.sizeThatFits(fittingSize)
-//        titleLabel.frame = CGRect(x: 0, y: 0, width: titleLabelSize.width, height: titleLabelSize.height)
     }
     
-    func layoutImageView(event:Event?) {
-        //imageView.backgroundColor = .red
-      
-//        imageView.frame = CGRect(x: 0,
-//                                 y: titleLabel.frame.maxY,
-//                                 width: self.frame.width,
-//                                 height: self.frame.height - titleLabel.frame.maxY)
-        print(imageView.frame)
+    func layoutImageView(eventImage:UIImage?) {
+        imageView.image = eventImage
+       
     }
     
-    func layoutDetailView(event:Event?) {
+    func layoutDetailView(from event:FBEvents?) {
         detailView.frame = imageView.frame
-        guard let event = event else {return}
-        detailView.descriptionLabel.text = event.description
+        self.detailView.descriptionLabel.text = event?.description?.replacingOccurrences(of: "<em>", with: "").replacingOccurrences(of: "<br>", with: "").replacingOccurrences(of: "</em>", with: "").replacingOccurrences(of: "</br>", with: "")
         
     }
 
