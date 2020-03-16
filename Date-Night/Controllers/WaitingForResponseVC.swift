@@ -13,6 +13,8 @@ class WaitingForResponseVC: UIViewController {
     
 var waitingResponse = WaitingForResponseView()
 
+    var delegate:WaitingForResponseDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(waitingResponse)
@@ -32,10 +34,13 @@ var waitingResponse = WaitingForResponseView()
             case .failure(let error):
                 print(error)
             case .success():
-                
                 print("removed invite")
+                self.delegateFunction()
+                
             }
         }
     }
-    
+    private func delegateFunction() {
+        delegate?.changeStatusWaiting(status: .sendInvite)
+    }
 }
