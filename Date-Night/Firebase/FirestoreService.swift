@@ -340,6 +340,7 @@ class FirestoreService {
                        let id = snapshot.documentID
                        self?.db.collection(FireStoreCollections.invites.rawValue).document(id).delete()
                    })
+                completionHandler(.success(()))
                }
            }
        }

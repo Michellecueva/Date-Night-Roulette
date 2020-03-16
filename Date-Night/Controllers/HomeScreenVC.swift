@@ -50,7 +50,7 @@ class HomeScreenVC: UIViewController {
            }
        }
     
-    private let shakeGesture = ShakeGestureVC()
+    private let shakeGesture = DisplayEventsVC()
 
     private var currentUserEmail:String {
         guard let user = Auth.auth().currentUser?.email else { fatalError()}
@@ -87,18 +87,13 @@ class HomeScreenVC: UIViewController {
             case .setPreferences:
                 addAndRemoveChild(currentChild: preferences)
                 
-            case .shakeGesture:
-               
-                shakeGesture.fbEvents = homeEvents
-                addAndRemoveChild(currentChild: shakeGesture)
-                
                 
             default:
                 addAndRemoveChild(currentChild: pendingInvites)
             }
         }
     
-    private func testChainDelegateFunction() {
+    private func sendEventsToShakeVCDelegate() {
         delegate?.sendEventDataToShakeVC(fbEvents: homeEvents)
     }
    
@@ -113,7 +108,7 @@ class HomeScreenVC: UIViewController {
 extension HomeScreenVC:ShakeGestureDelegate {
     func sendEvents(events: [FBEvents]) {
         homeEvents = events
-        testChainDelegateFunction()
+        sendEventsToShakeVCDelegate()
 
     }
     
