@@ -5,7 +5,7 @@ import FirebaseAuth
 
 
 //shake gesture only works on first responder
-class ShakeGestureVC: UIViewController {
+class DisplayEventsVC: UIViewController {
     
     var eventIndexCount = 0
     

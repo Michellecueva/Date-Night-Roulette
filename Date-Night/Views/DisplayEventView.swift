@@ -1,7 +1,7 @@
 
 import UIKit
 
-class ShakeGestureView: UIView {
+class DisplayEventView: UIView {
     
     lazy var shakeLabel: UILabel = {
         let label1 = UILabel()
