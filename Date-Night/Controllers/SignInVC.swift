@@ -62,7 +62,17 @@ class SignInVC: UIViewController {
             else {
               return
           }
-            
+        
+        // commented code makes this screen work as intended in conjunction with adjusting height code below
+        
+//        if notification.name == UIResponder.keyboardWillHideNotification{
+//            scrollView.setContentOffset(.zero, animated: true)
+//        } else {
+//           let scrollPoint = CGPoint(x: 0.0, y: self.viewSignIn.loginButton.frame.origin.y - (keyboardFrame.cgRectValue.height) - view.frame.height * 0.05)
+//
+//           scrollView.setContentOffset(scrollPoint, animated: true)
+//        }
+//
           let adjustmentHeight = (keyboardFrame.cgRectValue.height + 20) * (show ? 3 : -3)
           scrollView.contentInset.bottom += adjustmentHeight
           scrollView.verticalScrollIndicatorInsets.bottom += adjustmentHeight
@@ -156,7 +166,7 @@ extension SignInVC: UITextFieldDelegate {
 
 extension SignInVC: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print("Did scroll")
+       
     }
 }
 
