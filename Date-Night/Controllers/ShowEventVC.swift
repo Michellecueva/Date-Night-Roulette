@@ -16,6 +16,14 @@ class ShowEventVC: UIViewController {
             print("added Event  #\(arrayOfEvents.count)")
         }
     }
+    
+    var arrayOfYelpEvents = [Business]() {
+          didSet {
+              print("added Event  #\(arrayOfYelpEvents.count)")
+          }
+      }
+      
+    
     var preferenceArray:[String] {
         guard let preferences =  UserDefaultsWrapper.standard.getPreferences() else {fatalError()}
         return preferences

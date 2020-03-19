@@ -11,7 +11,6 @@
                 "type": "Music"
             }
         },
-        
         {
             "data": {
                 "type": "Comedy"
@@ -19,7 +18,7 @@
         },
         {
             "data": {
-                "type": "Conferences"
+                "type": "Bars"
             }
         },
         {
@@ -29,7 +28,7 @@
         },
         {
             "data": {
-                "type": "Festivals & Parades"
+                "type": "Festivals"
             }
         },
         {
@@ -39,7 +38,7 @@
         },
         {
             "data": {
-                "type": "Food"
+                "type": "Restaurants"
             }
         },
         {
@@ -80,16 +79,6 @@
         {
             "data": {
                 "type": "Performing Arts"
-            }
-        },
-        {
-            "data": {
-                "type": "Politics"
-            }
-        },
-        {
-            "data": {
-                "type": "Sports"
             }
         },
     ]
