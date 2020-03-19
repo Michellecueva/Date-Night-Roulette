@@ -19,7 +19,7 @@ struct YelpAPIClient{
                 completionHandler(.failure(AppError.badURL))
                 return
         }
-        NetworkHelper.manager.performDataTask(withUrl: url, andMethod: .get) { (result) in
+        YelpNetworkHelper.manager.performDataTask(withUrl: url, andMethod: .get) { (result) in
             switch result {
             case .failure(let error):
                 completionHandler(.failure(.other(rawError: error)))
