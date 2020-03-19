@@ -1,0 +1,781 @@
+{
+    "businesses": [
+        {
+            "id": "jVncyqXwlx_D9f2xZn05tg",
+            "alias": "the-metropolitan-museum-of-art-new-york-3",
+            "name": "The Metropolitan Museum of Art",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/lHEKQRcbGaaEQfVO2P3AMw/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/the-metropolitan-museum-of-art-new-york-3?adjust_creative=M3HZR-u1H_6EnhDdjVvTmQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=M3HZR-u1H_6EnhDdjVvTmQ",
+            "review_count": 2868,
+            "categories": [
+                {
+                    "alias": "artmuseums",
+                    "title": "Art Museums"
+                }
+            ],
+            "rating": 4.5,
+            "coordinates": {
+                "latitude": 40.779449,
+                "longitude": -73.963245
+            },
+            "transactions": [],
+            "location": {
+                "address1": "1000 5th Ave",
+                "address2": "",
+                "address3": "",
+                "city": "New York",
+                "zip_code": "10028",
+                "country": "US",
+                "state": "NY",
+                "display_address": [
+                    "1000 5th Ave",
+                    "New York, NY 10028"
+                ]
+            },
+            "phone": "+12125357710",
+            "display_phone": "(212) 535-7710",
+            "distance": 8634.601734170283
+        },
+        {
+            "id": "mjq_dOmCPBBLAnq7PJG9-Q",
+            "alias": "spyscape-new-york",
+            "name": "Spyscape",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/1jZ6TW68ljx6Fo65fNRRXQ/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/spyscape-new-york?adjust_creative=M3HZR-u1H_6EnhDdjVvTmQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=M3HZR-u1H_6EnhDdjVvTmQ",
+            "review_count": 262,
+            "categories": [
+                {
+                    "alias": "museums",
+                    "title": "Museums"
+                }
+            ],
+            "rating": 4.5,
+            "coordinates": {
+                "latitude": 40.765436,
+                "longitude": -73.983925
+            },
+            "transactions": [],
+            "location": {
+                "address1": "928 8th Ave",
+                "address2": null,
+                "address3": "",
+                "city": "New York",
+                "zip_code": "10019",
+                "country": "US",
+                "state": "NY",
+                "display_address": [
+                    "928 8th Ave",
+                    "New York, NY 10019"
+                ]
+            },
+            "phone": "+12125491941",
+            "display_phone": "(212) 549-1941",
+            "distance": 6727.6605336050625
+        },
+        {
+            "id": "O1gHEYYSCULCcfJD9sLJqw",
+            "alias": "american-museum-of-natural-history-new-york",
+            "name": "American Museum of Natural History",
+            "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/Z3CUzvZ7Gn9aZndBpdPthA/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/american-museum-of-natural-history-new-york?adjust_creative=M3HZR-u1H_6EnhDdjVvTmQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=M3HZR-u1H_6EnhDdjVvTmQ",
+            "review_count": 2076,
+            "categories": [
+                {
+                    "alias": "museums",
+                    "title": "Museums"
+                }
+            ],
+            "rating": 4.0,
+            "coordinates": {
+                "latitude": 40.7812654,
+                "longitude": -73.9738201
+            },
+            "transactions": [],
+            "location": {
+                "address1": "200 Central Park W",
+                "address2": "",
+                "address3": "",
+                "city": "New York",
+                "zip_code": "10024",
+                "country": "US",
+                "state": "NY",
+                "display_address": [
+                    "200 Central Park W",
+                    "New York, NY 10024"
+                ]
+            },
+            "phone": "+12127695100",
+            "display_phone": "(212) 769-5100",
+            "distance": 8605.466896647562
+        },
+        {
+            "id": "OUPyV2WKYETuprScXSAtuA",
+            "alias": "the-museum-of-modern-art-new-york-3",
+            "name": "The Museum of Modern Art",
+            "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/FwsEEyWQ-wprYo-9hoDsJg/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/the-museum-of-modern-art-new-york-3?adjust_creative=M3HZR-u1H_6EnhDdjVvTmQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=M3HZR-u1H_6EnhDdjVvTmQ",
+            "review_count": 1995,
+            "categories": [
+                {
+                    "alias": "artmuseums",
+                    "title": "Art Museums"
+                }
+            ],
+            "rating": 4.5,
+            "coordinates": {
+                "latitude": 40.761441,
+                "longitude": -73.977625
+            },
+            "transactions": [],
+            "location": {
+                "address1": "11 West 53rd St",
+                "address2": "",
+                "address3": "",
+                "city": "New York",
+                "zip_code": "10019",
+                "country": "US",
+                "state": "NY",
+                "display_address": [
+                    "11 West 53rd St",
+                    "New York, NY 10019"
+                ]
+            },
+            "phone": "+12127089400",
+            "display_phone": "(212) 708-9400",
+            "distance": 6382.905320505184
+        },
+        {
+            "id": "FCt4zU9tPAewEnEniRRLbg",
+            "alias": "color-factory-new-york",
+            "name": "Color Factory",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/FJdbu7r8Cr8rDEfIFd51ig/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/color-factory-new-york?adjust_creative=M3HZR-u1H_6EnhDdjVvTmQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=M3HZR-u1H_6EnhDdjVvTmQ",
+            "review_count": 422,
+            "categories": [
+                {
+                    "alias": "artmuseums",
+                    "title": "Art Museums"
+                }
+            ],
+            "rating": 4.0,
+            "coordinates": {
+                "latitude": 40.7257668,
+                "longitude": -74.0053664
+            },
+            "transactions": [],
+            "location": {
+                "address1": "251 Spring St",
+                "address2": "",
+                "address3": null,
+                "city": "New York",
+                "zip_code": "10013",
+                "country": "US",
+                "state": "NY",
+                "display_address": [
+                    "251 Spring St",
+                    "New York, NY 10013"
+                ]
+            },
+            "phone": "",
+            "display_phone": "",
+            "distance": 2447.7628306855613
+        },
+        {
+            "id": "Wy010IeikcMCGxL-leLZFA",
+            "alias": "brooklyn-museum-brooklyn-2",
+            "name": "Brooklyn Museum",
+            "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/uCFbz07gn-w72gv4CpnqPQ/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/brooklyn-museum-brooklyn-2?adjust_creative=M3HZR-u1H_6EnhDdjVvTmQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=M3HZR-u1H_6EnhDdjVvTmQ",
+            "review_count": 608,
+            "categories": [
+                {
+                    "alias": "artmuseums",
+                    "title": "Art Museums"
+                }
+            ],
+            "rating": 4.5,
+            "coordinates": {
+                "latitude": 40.6714058033045,
+                "longitude": -73.9636778798943
+            },
+            "transactions": [],
+            "location": {
+                "address1": "200 Eastern Pkwy",
+                "address2": "",
+                "address3": "",
+                "city": "Brooklyn",
+                "zip_code": "11238",
+                "country": "US",
+                "state": "NY",
+                "display_address": [
+                    "200 Eastern Pkwy",
+                    "Brooklyn, NY 11238"
+                ]
+            },
+            "phone": "+17186385000",
+            "display_phone": "(718) 638-5000",
+            "distance": 4581.406428110214
+        },
+        {
+            "id": "YTMCwlmMkVPYRsaNiRLtFA",
+            "alias": "museum-of-the-moving-image-astoria",
+            "name": "Museum of the Moving Image",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/ww74b-NLNNcSGRkMvaWWZg/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/museum-of-the-moving-image-astoria?adjust_creative=M3HZR-u1H_6EnhDdjVvTmQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=M3HZR-u1H_6EnhDdjVvTmQ",
+            "review_count": 558,
+            "categories": [
+                {
+                    "alias": "movietheaters",
+                    "title": "Cinema"
+                },
+                {
+                    "alias": "museums",
+                    "title": "Museums"
+                }
+            ],
+            "rating": 4.5,
+            "coordinates": {
+                "latitude": 40.756377,
+                "longitude": -73.923855
+            },
+            "transactions": [],
+            "location": {
+                "address1": "3601 35th Ave",
+                "address2": "",
+                "address3": "",
+                "city": "Astoria",
+                "zip_code": "11106",
+                "country": "US",
+                "state": "NY",
+                "display_address": [
+                    "3601 35th Ave",
+                    "Astoria, NY 11106"
+                ]
+            },
+            "phone": "+17187776888",
+            "display_phone": "(718) 777-6888",
+            "distance": 8195.520536517515
+        },
+        {
+            "id": "jv0Gu4wXNuyaoJMBOXqfVQ",
+            "alias": "guggenheim-museum-new-york",
+            "name": "Guggenheim Museum",
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/CafLAiRyTmM578KrHEU2kg/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/guggenheim-museum-new-york?adjust_creative=M3HZR-u1H_6EnhDdjVvTmQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=M3HZR-u1H_6EnhDdjVvTmQ",
+            "review_count": 1001,
+            "categories": [
+                {
+                    "alias": "museums",
+                    "title": "Museums"
+                }
+            ],
+            "rating": 3.5,
+            "coordinates": {
+                "latitude": 40.78301,
+                "longitude": -73.95912
+            },
+            "transactions": [],
+            "location": {
+                "address1": "1071 5th Ave",
+                "address2": "",
+                "address3": "",
+                "city": "New York",
+                "zip_code": "10128",
+                "country": "US",
+                "state": "NY",
+                "display_address": [
+                    "1071 5th Ave",
+                    "New York, NY 10128"
+                ]
+            },
+            "phone": "+12124233500",
+            "display_phone": "(212) 423-3500",
+            "distance": 9146.327050366197
+        },
+        {
+            "id": "bUpeNcz4-SWnhIKqSKTVMQ",
+            "alias": "tenement-museum-new-york-2",
+            "name": "Tenement Museum",
+            "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/BPSW5NV9gzcRX0jinZFhTQ/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/tenement-museum-new-york-2?adjust_creative=M3HZR-u1H_6EnhDdjVvTmQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=M3HZR-u1H_6EnhDdjVvTmQ",
+            "review_count": 677,
+            "categories": [
+                {
+                    "alias": "museums",
+                    "title": "Museums"
+                },
+                {
+                    "alias": "walkingtours",
+                    "title": "Walking Tours"
+                },
+                {
+                    "alias": "foodtours",
+                    "title": "Food Tours"
+                }
+            ],
+            "rating": 4.0,
+            "coordinates": {
+                "latitude": 40.71883,
+                "longitude": -73.98998
+            },
+            "transactions": [],
+            "location": {
+                "address1": "103 Orchard St",
+                "address2": "",
+                "address3": null,
+                "city": "New York",
+                "zip_code": "10002",
+                "country": "US",
+                "state": "NY",
+                "display_address": [
+                    "103 Orchard St",
+                    "New York, NY 10002"
+                ]
+            },
+            "phone": "+18779753786",
+            "display_phone": "(877) 975-3786",
+            "distance": 1532.03837415077
+        },
+        {
+            "id": "6BnU1pAeE2Urlx3x4ANigQ",
+            "alias": "the-cloisters-new-york-2",
+            "name": "The Cloisters",
+            "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/-c0GsLk7_q3I-iWzsJyRVQ/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/the-cloisters-new-york-2?adjust_creative=M3HZR-u1H_6EnhDdjVvTmQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=M3HZR-u1H_6EnhDdjVvTmQ",
+            "review_count": 635,
+            "categories": [
+                {
+                    "alias": "museums",
+                    "title": "Museums"
+                }
+            ],
+            "rating": 4.5,
+            "coordinates": {
+                "latitude": 40.8649766228154,
+                "longitude": -73.9315730494599
+            },
+            "transactions": [],
+            "location": {
+                "address1": "99 Margaret Corbin Dr",
+                "address2": "",
+                "address3": "Fort Tryon Park",
+                "city": "New York",
+                "zip_code": "10040",
+                "country": "US",
+                "state": "NY",
+                "display_address": [
+                    "99 Margaret Corbin Dr",
+                    "Fort Tryon Park",
+                    "New York, NY 10040"
+                ]
+            },
+            "phone": "+12129233700",
+            "display_phone": "(212) 923-3700",
+            "distance": 18508.381904004695
+        },
+        {
+            "id": "uVOgbsNrcVRip7uBaCWhBA",
+            "alias": "whitney-museum-of-american-art-new-york-4",
+            "name": "Whitney Museum of American Art",
+            "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/4nR4dkRGwyKlqo1-0PqRHA/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/whitney-museum-of-american-art-new-york-4?adjust_creative=M3HZR-u1H_6EnhDdjVvTmQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=M3HZR-u1H_6EnhDdjVvTmQ",
+            "review_count": 494,
+            "categories": [
+                {
+                    "alias": "artmuseums",
+                    "title": "Art Museums"
+                }
+            ],
+            "rating": 4.0,
+            "coordinates": {
+                "latitude": 40.7396059,
+                "longitude": -74.0089716
+            },
+            "transactions": [],
+            "location": {
+                "address1": "99 Gansevoort St",
+                "address2": "",
+                "address3": "",
+                "city": "New York",
+                "zip_code": "10014",
+                "country": "US",
+                "state": "NY",
+                "display_address": [
+                    "99 Gansevoort St",
+                    "New York, NY 10014"
+                ]
+            },
+            "phone": "+12125703600",
+            "display_phone": "(212) 570-3600",
+            "distance": 3994.8645138068628
+        },
+        {
+            "id": "E672oSwgE6Vm4izZlpA6lQ",
+            "alias": "the-frick-collection-new-york",
+            "name": "The Frick Collection",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/YRCvVxBdby3mi5Fh7-avLg/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/the-frick-collection-new-york?adjust_creative=M3HZR-u1H_6EnhDdjVvTmQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=M3HZR-u1H_6EnhDdjVvTmQ",
+            "review_count": 497,
+            "categories": [
+                {
+                    "alias": "artmuseums",
+                    "title": "Art Museums"
+                }
+            ],
+            "rating": 4.5,
+            "coordinates": {
+                "latitude": 40.77094,
+                "longitude": -73.96717
+            },
+            "transactions": [],
+            "location": {
+                "address1": "1 E 70th St",
+                "address2": "",
+                "address3": "",
+                "city": "New York",
+                "zip_code": "10021",
+                "country": "US",
+                "state": "NY",
+                "display_address": [
+                    "1 E 70th St",
+                    "New York, NY 10021"
+                ]
+            },
+            "phone": "+12122880700",
+            "display_phone": "(212) 288-0700",
+            "distance": 7655.6378856152405
+        },
+        {
+            "id": "c8TfKT7NdTuwcBZatXHmzg",
+            "alias": "new-york-transit-museum-brooklyn",
+            "name": "New York Transit Museum",
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/FLDVFXKedjCwnHKpibMj_Q/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/new-york-transit-museum-brooklyn?adjust_creative=M3HZR-u1H_6EnhDdjVvTmQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=M3HZR-u1H_6EnhDdjVvTmQ",
+            "review_count": 406,
+            "categories": [
+                {
+                    "alias": "museums",
+                    "title": "Museums"
+                },
+                {
+                    "alias": "venues",
+                    "title": "Venues & Event Spaces"
+                }
+            ],
+            "rating": 4.5,
+            "coordinates": {
+                "latitude": 40.6905279416182,
+                "longitude": -73.9899399429917
+            },
+            "transactions": [],
+            "location": {
+                "address1": "Boerum Pl Schermerhorn St",
+                "address2": "",
+                "address3": "",
+                "city": "Brooklyn",
+                "zip_code": "11201",
+                "country": "US",
+                "state": "NY",
+                "display_address": [
+                    "Boerum Pl Schermerhorn St",
+                    "Brooklyn, NY 11201"
+                ]
+            },
+            "phone": "+17186941600",
+            "display_phone": "(718) 694-1600",
+            "distance": 1698.7991222826768
+        },
+        {
+            "id": "1FgUXp_ZwBbdoeiIgGw_0w",
+            "alias": "rubin-museum-of-art-new-york",
+            "name": "Rubin Museum of Art",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/YxBKxZkIYXn0ZpAA0A66Pw/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/rubin-museum-of-art-new-york?adjust_creative=M3HZR-u1H_6EnhDdjVvTmQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=M3HZR-u1H_6EnhDdjVvTmQ",
+            "review_count": 265,
+            "categories": [
+                {
+                    "alias": "artmuseums",
+                    "title": "Art Museums"
+                },
+                {
+                    "alias": "venues",
+                    "title": "Venues & Event Spaces"
+                }
+            ],
+            "rating": 4.5,
+            "coordinates": {
+                "latitude": 40.74013,
+                "longitude": -73.99772
+            },
+            "transactions": [],
+            "location": {
+                "address1": "150 W 17th St",
+                "address2": null,
+                "address3": "",
+                "city": "New York",
+                "zip_code": "10011",
+                "country": "US",
+                "state": "NY",
+                "display_address": [
+                    "150 W 17th St",
+                    "New York, NY 10011"
+                ]
+            },
+            "phone": "+12126205000",
+            "display_phone": "(212) 620-5000",
+            "distance": 3873.447296413354
+        },
+        {
+            "id": "4r7PlSbxfndQeK_SY4GS8A",
+            "alias": "museum-of-the-american-gangster-new-york",
+            "name": "Museum of the American Gangster",
+            "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/0bNjfMqzeBt7EdIkZCIq8Q/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/museum-of-the-american-gangster-new-york?adjust_creative=M3HZR-u1H_6EnhDdjVvTmQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=M3HZR-u1H_6EnhDdjVvTmQ",
+            "review_count": 128,
+            "categories": [
+                {
+                    "alias": "museums",
+                    "title": "Museums"
+                }
+            ],
+            "rating": 4.0,
+            "coordinates": {
+                "latitude": 40.72765,
+                "longitude": -73.98573
+            },
+            "transactions": [],
+            "location": {
+                "address1": "80 St Marks Pl",
+                "address2": null,
+                "address3": "",
+                "city": "New York",
+                "zip_code": "10003",
+                "country": "US",
+                "state": "NY",
+                "display_address": [
+                    "80 St Marks Pl",
+                    "New York, NY 10003"
+                ]
+            },
+            "phone": "",
+            "display_phone": "",
+            "distance": 2573.5418769270573
+        },
+        {
+            "id": "kViIWJFfAfWPpJOwAXBKGA",
+            "alias": "national-september-11-memorial-museum-new-york",
+            "name": "National September 11 Memorial Museum",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/yoe6Wha7gQlTBNIeFO0UhQ/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/national-september-11-memorial-museum-new-york?adjust_creative=M3HZR-u1H_6EnhDdjVvTmQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=M3HZR-u1H_6EnhDdjVvTmQ",
+            "review_count": 1417,
+            "categories": [
+                {
+                    "alias": "museums",
+                    "title": "Museums"
+                }
+            ],
+            "rating": 4.5,
+            "coordinates": {
+                "latitude": 40.71143,
+                "longitude": -74.012481
+            },
+            "transactions": [],
+            "location": {
+                "address1": "180 Greenwich St",
+                "address2": "",
+                "address3": "",
+                "city": "New York",
+                "zip_code": "10007",
+                "country": "US",
+                "state": "NY",
+                "display_address": [
+                    "180 Greenwich St",
+                    "New York, NY 10007"
+                ]
+            },
+            "phone": "+12122665211",
+            "display_phone": "(212) 266-5211",
+            "distance": 1671.270457850173
+        },
+        {
+            "id": "IN-oJW5-9mwPEG491xWIsQ",
+            "alias": "museum-of-the-city-of-new-york-new-york",
+            "name": "Museum of the City of New York",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/tlEdFR4zuJrkbIu2RqpibA/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/museum-of-the-city-of-new-york-new-york?adjust_creative=M3HZR-u1H_6EnhDdjVvTmQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=M3HZR-u1H_6EnhDdjVvTmQ",
+            "review_count": 253,
+            "categories": [
+                {
+                    "alias": "museums",
+                    "title": "Museums"
+                },
+                {
+                    "alias": "venues",
+                    "title": "Venues & Event Spaces"
+                }
+            ],
+            "rating": 4.0,
+            "coordinates": {
+                "latitude": 40.79251,
+                "longitude": -73.95192
+            },
+            "transactions": [],
+            "location": {
+                "address1": "1220 5th Ave",
+                "address2": null,
+                "address3": "",
+                "city": "New York",
+                "zip_code": "10029",
+                "country": "US",
+                "state": "NY",
+                "display_address": [
+                    "1220 5th Ave",
+                    "New York, NY 10029"
+                ]
+            },
+            "phone": "+12125341672",
+            "display_phone": "(212) 534-1672",
+            "distance": 10321.11379048722
+        },
+        {
+            "id": "y8wMTCN3p9wOa3AF9Zkd6g",
+            "alias": "arcadia-earth-new-york",
+            "name": "Arcadia Earth",
+            "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/Uhss-cAFCRWm4pobiBlzFw/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/arcadia-earth-new-york?adjust_creative=M3HZR-u1H_6EnhDdjVvTmQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=M3HZR-u1H_6EnhDdjVvTmQ",
+            "review_count": 80,
+            "categories": [
+                {
+                    "alias": "galleries",
+                    "title": "Art Galleries"
+                }
+            ],
+            "rating": 4.0,
+            "coordinates": {
+                "latitude": 40.72906,
+                "longitude": -73.99353
+            },
+            "transactions": [],
+            "price": "$$",
+            "location": {
+                "address1": "718 Broadway",
+                "address2": null,
+                "address3": "",
+                "city": "New York",
+                "zip_code": "10003",
+                "country": "US",
+                "state": "NY",
+                "display_address": [
+                    "718 Broadway",
+                    "New York, NY 10003"
+                ]
+            },
+            "phone": "",
+            "display_phone": "",
+            "distance": 2617.5075823006932
+        },
+        {
+            "id": "2edh-uEnrXPoPc9Xeerp4Q",
+            "alias": "kgb-espionage-museum-new-york",
+            "name": "KGB Espionage Museum",
+            "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/NJpYCY5QttMTaQW6JK1Qmw/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/kgb-espionage-museum-new-york?adjust_creative=M3HZR-u1H_6EnhDdjVvTmQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=M3HZR-u1H_6EnhDdjVvTmQ",
+            "review_count": 108,
+            "categories": [
+                {
+                    "alias": "museums",
+                    "title": "Museums"
+                }
+            ],
+            "rating": 4.5,
+            "coordinates": {
+                "latitude": 40.73961,
+                "longitude": -74.00143
+            },
+            "transactions": [],
+            "location": {
+                "address1": "245 W 14th St",
+                "address2": null,
+                "address3": "",
+                "city": "New York",
+                "zip_code": "10011",
+                "country": "US",
+                "state": "NY",
+                "display_address": [
+                    "245 W 14th St",
+                    "New York, NY 10011"
+                ]
+            },
+            "phone": "+19173882332",
+            "display_phone": "(917) 388-2332",
+            "distance": 3847.7876784704235
+        },
+        {
+            "id": "Uplh1HiI1wOc6p8DR7O3QA",
+            "alias": "the-morgan-library-and-museum-new-york-4",
+            "name": "The Morgan Library & Museum",
+            "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/CgbqFxQBsY6lQpAiO7HxXA/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/the-morgan-library-and-museum-new-york-4?adjust_creative=M3HZR-u1H_6EnhDdjVvTmQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=M3HZR-u1H_6EnhDdjVvTmQ",
+            "review_count": 284,
+            "categories": [
+                {
+                    "alias": "libraries",
+                    "title": "Libraries"
+                },
+                {
+                    "alias": "artmuseums",
+                    "title": "Art Museums"
+                }
+            ],
+            "rating": 4.5,
+            "coordinates": {
+                "latitude": 40.749242,
+                "longitude": -73.981397
+            },
+            "transactions": [],
+            "location": {
+                "address1": "225 Madison Ave",
+                "address2": "",
+                "address3": "",
+                "city": "New York",
+                "zip_code": "10016",
+                "country": "US",
+                "state": "NY",
+                "display_address": [
+                    "225 Madison Ave",
+                    "New York, NY 10016"
+                ]
+            },
+            "phone": "+12126850008",
+            "display_phone": "(212) 685-0008",
+            "distance": 4989.7873785804195
+        }
+    ],
+    "total": 934,
+    "region": {
+        "center": {
+            "longitude": -73.99429321289062,
+            "latitude": 40.70544486444615
+        }
+    }
+}
