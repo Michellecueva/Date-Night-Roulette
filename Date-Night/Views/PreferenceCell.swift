@@ -43,14 +43,16 @@ class PreferenceCell: UICollectionViewCell {
         preferenceLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor).isActive = true
         preferenceLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         preferenceLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        
     }
     
     private func switchBackgroundColorOfCell(bool:Bool) {
         switch bool {
         case true:
-            self.backgroundColor = .gray
+              self.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+           
         case false:
-            self.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+             self.backgroundColor = .gray
         }
     }
 }
