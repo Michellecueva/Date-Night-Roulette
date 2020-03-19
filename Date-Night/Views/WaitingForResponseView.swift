@@ -30,7 +30,7 @@ class WaitingForResponseView: UIView {
   
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
-        self.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        self.backgroundColor = StyleGuide.AppColors.backgroundColor
         setSubviews()
         setConstraints()
     }

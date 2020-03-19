@@ -109,7 +109,7 @@ class SignUpView: UIView {
     //MARK:- UI Setup
     
     private func commonInit() {
-        self.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+       self.backgroundColor = StyleGuide.AppColors.backgroundColor
         setSubviews()
         setConstraints()
         
