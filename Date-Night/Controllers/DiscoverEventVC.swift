@@ -41,15 +41,23 @@ class DiscoverEventVC: UIViewController {
         }
     }
     
-   
+
+   override var preferredStatusBarStyle: UIStatusBarStyle {
+    return .lightContent
+   }
         
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
         view.addSubview(discover)
         addObjcFunctions()
+        setNeedsStatusBarAppearanceUpdate()
+          
     }
-
+//    
+//    override func viewDidAppear(_ animated: Bool) {
+//        navigationController?.navigationBar.barStyle = .default
+//    }
     
     private func addObjcFunctions() {
         discover.myPreferencesButton.addTarget(self, action: #selector(goToPreferences), for: .touchUpInside)

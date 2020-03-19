@@ -49,7 +49,7 @@ class PreferenceView: UIView {
         addSubviews()
         cvConstraints()
         buttonConstraints()
-        self.backgroundColor = .black
+        self.backgroundColor = StyleGuide.AppColors.backgroundColor
         //self.layer.borderColor = UIColor.gray.cgColor
         self.layer.borderWidth = 3
     }
