@@ -15,11 +15,13 @@ class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionView
     
     var arrayOfPreferences:[String] = [] {
         didSet {
-            for i in arrayOfPreferences {
-                print(i)
+            if arrayOfPreferences == initalArrayOfPreferences {
+                prefView.saveButton.isEnabled = false
+                
             }
         }
     }
+    lazy var initalArrayOfPreferences:[String] = []
     
     var prefList = [Categories](){
         didSet{
@@ -45,6 +47,8 @@ class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionView
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getUserPreferences()
+        prefView.saveButton.isEnabled = false
+        
     }
     
     private func collectionViewMethods(){
@@ -89,6 +93,7 @@ class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionView
         }
     }
     
+    
     private func getUserPreferences() {
         //determine whether or not we should make multiple requests to get the same user
         
@@ -99,6 +104,7 @@ class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionView
             case .success(let user):
 
                 self.arrayOfPreferences = user.preferences
+                self.initalArrayOfPreferences = user.preferences
                 print(user.preferences.count)
                 self.prefView.preferenceCollectionView.reloadData()
             }
@@ -119,6 +125,8 @@ class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionView
         cell.layer.cornerRadius = 5
         if arrayOfPreferences.contains(cell.preferenceLabel.text?.lowercased().replacingOccurrences(of: " ", with: "+") ?? "") {
             cell.isAddedToPreferenceArray = true
+        } else {
+            cell.isAddedToPreferenceArray = false
         }
         return cell
     }
@@ -126,18 +134,23 @@ class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let currentCell = collectionView.cellForItem(at: indexPath) as? PreferenceCell else {return}
         
+        prefView.saveButton.isEnabled = true
+        
+        
         switch currentCell.isAddedToPreferenceArray {
         case true :
-            currentCell.isAddedToPreferenceArray = false
+            
             arrayOfPreferences.removeAll { (string) -> Bool in
                 string == currentCell.preferenceLabel.text?.lowercased().replacingOccurrences(of: " ", with: "+") ?? ""
                        }
+            currentCell.isAddedToPreferenceArray = false
         case false :
-            currentCell.isAddedToPreferenceArray = true
+          
             arrayOfPreferences.append(currentCell.preferenceLabel.text?.lowercased().replacingOccurrences(of: " ", with: "+") ?? "")
+              currentCell.isAddedToPreferenceArray = true
         }
         
-        print("clicked")
+        print(arrayOfPreferences.count)
        }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
