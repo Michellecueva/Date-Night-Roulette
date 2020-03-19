@@ -9,8 +9,7 @@ class DisplayEventsVC: UIViewController {
     
     var eventIndexCount = 0
     
-    var eventTitle: String!
-    
+    var event: FBEvents!
     
     var displayEventView = DisplayEventView()
     var fbEvents:[FBEvents] = [] {
@@ -196,9 +195,10 @@ fbEvents = []
                    }
     
     @objc private func likedButtonPressed() {
-        guard let eventID = fbEvents.last?.eventID else {return}
+        guard let lastEvent = fbEvents.last else {return}
+        event = lastEvent
         
-        eventsLiked.append(eventID)
+        eventsLiked.append(event.eventID)
         updateEventsLikedOnFirebase(eventsLiked: eventsLiked)
         
         guard let lastEventLiked = eventsLiked.last else {return}
@@ -207,7 +207,8 @@ fbEvents = []
                        print("no user found")
                        return
                    }
-            let matchedEvent = MatchedEvent(coupleID: coupleID, title: eventTitle, eventID: eventID)
+            let matchedEvent = MatchedEvent(coupleID: coupleID, title: event.title
+                ?? "Title Unavailable", eventID: event.eventID)
             createMatchedEvent(matchedEvent: matchedEvent)
             
             matchAlert(title: "It's a Match!", message: "You've Matched Events With Your Partner")
