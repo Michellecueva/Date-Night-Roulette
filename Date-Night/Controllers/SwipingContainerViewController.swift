@@ -58,8 +58,6 @@ class SwipingContainerViewController: UIViewController {
 
   //MARK: Layout
   
-   
-    
   func calculateScrollViewContentSize() {
     let scrollViewContentSizeWidth = scrollView.bounds.width * CGFloat(viewControllers.count)
     let scrollViewContentSize = CGSize(width: scrollViewContentSizeWidth,
