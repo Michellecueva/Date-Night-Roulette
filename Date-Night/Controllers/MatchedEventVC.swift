@@ -4,20 +4,28 @@ class MatchedEventVC: UIViewController {
     
     var matchedView = MatchedEventView()
     
-    var newImage:UIImage?
+    var newImage:UIImage? 
+    
+    var event: FBEvents!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(matchedView)
         addObjcFunctions()
+        guard let newImage = newImage else {
+                   return
+               }
+               matchedView.matchImage.image = newImage
 
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let newImage = newImage else {return}
-        matchedView.matchImage.image = newImage
+        guard let newImage = newImage else {
+            return
+        }
+        matchedView.addImage(image: newImage)
     }
     
 

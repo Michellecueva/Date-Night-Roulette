@@ -86,7 +86,7 @@ class DisplayEventsVC: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-fbEvents = []
+//fbEvents = []
         
     }
     
@@ -117,9 +117,9 @@ fbEvents = []
                    
                    let scaler = min(abs(80/xFromCenter), 1)
                   
-       //            if card?.center.y != view.center.y  {
-       //                card?.center.y = view.center.y
-       //                }
+//                   if card?.center.y != view.center.y  {
+//                       card?.center.y = view.center.y
+//                       }
                   
                    card?.transform = CGAffineTransform(rotationAngle: rotation).scaledBy(x: scaler, y: scaler)
              
@@ -215,7 +215,7 @@ fbEvents = []
             clearEventsLikedArr()
             
         }else {
-            //in the future prevent liked events from showing up at all
+//            in the future prevent liked events from showing up at all
             fbEvents.popLast()
         }
     }
@@ -294,9 +294,10 @@ fbEvents = []
         
         let confirmMatch = UIAlertAction(title: "Confirm", style: .default) { (response) in
 
-                  let matched = MatchedEventVC()
+            let matched = MatchedEventVC()
             matched.newImage = self.displayEventView.eventCard.imageView.image
-            self.navigationController?.pushViewController(MatchedEventVC(), animated: true)
+            matched.event = self.event
+            self.navigationController?.pushViewController(matched, animated: true)
             
             
                 
