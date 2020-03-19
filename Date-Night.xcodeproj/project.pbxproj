@@ -17,6 +17,8 @@
 		0B4DC89B2423E043006F2B35 /* YelpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4DC89A2423E043006F2B35 /* YelpModel.swift */; };
 		0B4DC89C2423E065006F2B35 /* YelpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4DC89A2423E043006F2B35 /* YelpModel.swift */; };
 		0B4DC89D2423E0E3006F2B35 /* YelpBusinessEndpoint.json in Resources */ = {isa = PBXBuildFile; fileRef = 0B4DC8982423DF59006F2B35 /* YelpBusinessEndpoint.json */; };
+		0B4DC89F2423E3A0006F2B35 /* YelpNetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4DC89E2423E3A0006F2B35 /* YelpNetworkHelper.swift */; };
+		0B4DC8A12423E3F3006F2B35 /* YelpAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4DC8A02423E3F3006F2B35 /* YelpAPIClient.swift */; };
 		0B5D18F9240716D800A5849B /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D18F8240716D800A5849B /* FirebaseStorageService.swift */; };
 		0B5D18FD24086B3100A5849B /* MatchedEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D18FC24086B3100A5849B /* MatchedEvent.swift */; };
 		0B5D18FF24086F8000A5849B /* MatchedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D18FE24086F8000A5849B /* MatchedCell.swift */; };
@@ -108,6 +110,8 @@
 		0B38E7D624048BAC003D05CE /* RandomEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomEventVC.swift; sourceTree = "<group>"; };
 		0B4DC8982423DF59006F2B35 /* YelpBusinessEndpoint.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = YelpBusinessEndpoint.json; sourceTree = "<group>"; };
 		0B4DC89A2423E043006F2B35 /* YelpModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpModel.swift; sourceTree = "<group>"; };
+		0B4DC89E2423E3A0006F2B35 /* YelpNetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpNetworkHelper.swift; sourceTree = "<group>"; };
+		0B4DC8A02423E3F3006F2B35 /* YelpAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpAPIClient.swift; sourceTree = "<group>"; };
 		0B5D18F8240716D800A5849B /* FirebaseStorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
 		0B5D18FC24086B3100A5849B /* MatchedEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchedEvent.swift; sourceTree = "<group>"; };
 		0B5D18FE24086F8000A5849B /* MatchedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchedCell.swift; sourceTree = "<group>"; };
@@ -309,7 +313,9 @@
 			isa = PBXGroup;
 			children = (
 				0B38E7CE24007755003D05CE /* EventfulAPIClient.swift */,
+				0B4DC8A02423E3F3006F2B35 /* YelpAPIClient.swift */,
 				0BBFCD2F23E8CDFB00E039A7 /* NetworkHelper.swift */,
+				0B4DC89E2423E3A0006F2B35 /* YelpNetworkHelper.swift */,
 				0BBFCD3323E8CE0800E039A7 /* ImageHelper.swift */,
 				283823C523E885730031327E /* AppError.swift */,
 			);
@@ -606,6 +612,7 @@
 				0BBFCD3A23E8CEB700E039A7 /* Categories.swift in Sources */,
 				28313C7524121564005F14BF /* Secrets.swift in Sources */,
 				6954708524033F5B0042159C /* AdminViewController.swift in Sources */,
+				0B4DC89F2423E3A0006F2B35 /* YelpNetworkHelper.swift in Sources */,
 				7467518123F7169F00357610 /* SplashScreenView.swift in Sources */,
 				283823C223E885050031327E /* Invites.swift in Sources */,
 				2862B5FF23DD47130047B47B /* SignInVC.swift in Sources */,
@@ -629,6 +636,7 @@
 				0B96460D23EE2C6A00D2CAB9 /* PreferenceView.swift in Sources */,
 				283823E823F0C5F20031327E /* InvitesPendingView.swift in Sources */,
 				69CE863723F715FF001E1327 /* SendInviteDelegate.swift in Sources */,
+				0B4DC8A12423E3F3006F2B35 /* YelpAPIClient.swift in Sources */,
 				0BA7E32E241306720082C0BE /* StyleGuide.swift in Sources */,
 				691DD0F023EE03A0003A67E7 /* SendInviteVC.swift in Sources */,
 				7401EF4923ECAB81000C322B /* DiscoverEventVC.swift in Sources */,
