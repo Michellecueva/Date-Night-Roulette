@@ -6,7 +6,7 @@ class DisplayEventView: UIView {
     lazy var displayEventLabel: UILabel = {
         let label1 = UILabel()
         label1.textColor = StyleGuide.TitleFontStyle.fontColor
-        label1.text = "Shake for\nNext Experience"
+        label1.text = "Swipe Right to like, \nSwipe left to dislike "
         label1.numberOfLines = 0
         label1.textAlignment = .center
         label1.textColor = .white
