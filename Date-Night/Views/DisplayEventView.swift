@@ -43,6 +43,7 @@ class DisplayEventView: UIView {
         super.init(frame: UIScreen.main.bounds)
         addShakeSubviews()
         setShakeConstraints()
+        self.backgroundColor = StyleGuide.AppColors.backgroundColor
         
     }
     

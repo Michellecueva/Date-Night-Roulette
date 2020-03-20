@@ -38,7 +38,7 @@ class PartnerSettingView: UIView {
     
     lazy var historyTable: UITableView = {
          let tableview = UITableView()
-         tableview.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+         tableview.backgroundColor = StyleGuide.AppColors.backgroundColor
          tableview.separatorColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
          tableview.register(MatchedCell.self, forCellReuseIdentifier: MatchedCell.identifier)
          tableview.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
