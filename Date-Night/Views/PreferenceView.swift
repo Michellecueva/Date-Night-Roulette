@@ -22,6 +22,7 @@ class PreferenceView: UIView {
         let button = UIButton(type: .system)
         button.setTitle("Save!", for: .normal)
         button.setTitleColor(StyleGuide.ButtonStyle.fontColor, for: .normal)
+        button.setTitleColor(.systemGray, for: .disabled)
         button.titleLabel?.font = UIFont(name: StyleGuide.ButtonStyle.fontName, size: StyleGuide.ButtonStyle.fontSize)
         button.backgroundColor = StyleGuide.ButtonStyle.backgroundColor
         button.layer.cornerRadius = StyleGuide.ButtonStyle.cornerRadius
@@ -48,7 +49,7 @@ class PreferenceView: UIView {
         addSubviews()
         cvConstraints()
         buttonConstraints()
-        self.backgroundColor = .black
+        self.backgroundColor = StyleGuide.AppColors.backgroundColor
         //self.layer.borderColor = UIColor.gray.cgColor
         self.layer.borderWidth = 3
     }

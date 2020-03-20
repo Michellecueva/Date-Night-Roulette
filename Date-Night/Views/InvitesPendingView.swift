@@ -33,7 +33,8 @@ class InvitesPendingView: UIView {
         super.init(frame: UIScreen.main.bounds)
         addSubview()
         addContraints()
-        self.backgroundColor = .black
+        self.backgroundColor = StyleGuide.AppColors.backgroundColor
+
     }
     
     required init?(coder aDecoder: NSCoder) {

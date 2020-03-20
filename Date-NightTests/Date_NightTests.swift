@@ -49,6 +49,36 @@ class Date_NightTests: XCTestCase {
       }
   }
     
+    private func getYelpData() -> Data? {
+                guard let pathToData = Bundle.main.path(forResource: "YelpBusinessEndpoint", ofType: "json")
+                    else {
+                        XCTFail("cant find data")
+                        return nil
+                        //fatalError("discovery.json file not found")
+                }
+                let url = URL(fileURLWithPath: pathToData)
+                do {
+                    let data = try Data(contentsOf: url)
+                    return data
+                } catch let jsonError {
+                    fatalError("could not find file: \(jsonError)")
+                }
+            }
+
+      
+      func testYelpDataLoad(){
+          let data = getYelpData() ?? Data()
+      
+          do{
+              let dataLoad = try Business.getYelpData(data: data) ?? []
+              print("test406\(dataLoad)")
+              XCTAssertTrue(dataLoad.count > 0, "We have \(dataLoad.count)")
+              print("We have \(data.count)")
+          } catch {
+              XCTFail()
+          }
+      }
+        
     
     func testExample() {
         // This is an example of a functional test case.

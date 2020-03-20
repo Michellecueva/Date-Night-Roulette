@@ -81,15 +81,15 @@ class RootViewController: UIViewController{
     
     private let swipingNavigationViewController = SwipingContainerViewController()
     private var viewControllerConfigs: [ViewControllerConfig] = [] // probably need to implement will set did set
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         getUser()
         makeNavBarTranslucent()
         showBarButtons()
-       
     }
-    
+
+       
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         swipingNavigationViewController.view.frame = view.bounds

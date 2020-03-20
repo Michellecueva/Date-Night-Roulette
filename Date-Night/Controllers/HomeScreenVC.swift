@@ -58,13 +58,12 @@ class HomeScreenVC: UIViewController {
        return user
     }
     
-  
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Current User: \(currentUserEmail)")
-      
+       
     }
     
     

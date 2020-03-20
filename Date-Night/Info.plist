@@ -56,6 +56,10 @@
 	</dict>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Please allow this app to access your photo library.</string>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

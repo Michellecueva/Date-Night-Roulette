@@ -62,7 +62,7 @@ class SendInviteView: UIView {
     }
     
     private func addConstraintsToSelf() {
-        backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        backgroundColor = StyleGuide.AppColors.backgroundColor
         addSubview(userInstructions)
         addSubview(emailField)
         addSubview(enterButton)
