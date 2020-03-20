@@ -20,14 +20,6 @@ class MatchedEventVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        guard let newImage = newImage else {
-            return
-        }
-        matchedView.addImage(image: newImage)
-    }
-    
 
     private func addObjcFunctions() {
         matchedView.directionButton.addTarget(self, action: #selector(directionsLink), for: .touchUpInside)
@@ -35,6 +27,12 @@ class MatchedEventVC: UIViewController {
     }
 
     
-    @objc private func directionsLink() {}
-    @objc private func infoLink() {}
+    @objc private func directionsLink() {
+    }
+    @objc private func infoLink() {
+        guard let url = event.websiteURL else {return}
+        guard let urlStr = URL(string: url) else {return}
+        
+        UIApplication.shared.open(urlStr, options: [:], completionHandler: nil)
+    }
 }
