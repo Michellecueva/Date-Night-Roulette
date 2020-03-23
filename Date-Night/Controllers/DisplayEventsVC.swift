@@ -196,9 +196,9 @@ fbEvents = []
                    }
     
     @objc private func likedButtonPressed() {
-        guard let eventID = fbEvents.last?.eventID else {return}
+        guard let lastEvent = fbEvents.last else {return}
         
-        eventsLiked.append(eventID)
+        eventsLiked.append(lastEvent.eventID)
         updateEventsLikedOnFirebase(eventsLiked: eventsLiked)
         
         guard let lastEventLiked = eventsLiked.last else {return}
@@ -207,7 +207,7 @@ fbEvents = []
                        print("no user found")
                        return
                    }
-            let matchedEvent = MatchedEvent(coupleID: coupleID, title: eventTitle, eventID: eventID)
+            let matchedEvent = MatchedEvent(coupleID: coupleID, title: lastEvent.title ?? "Title Unavailable", eventID: lastEvent.eventID)
             createMatchedEvent(matchedEvent: matchedEvent)
             
             matchAlert(title: "It's a Match!", message: "You've Matched Events With Your Partner")
@@ -336,6 +336,7 @@ fbEvents = []
                 print("*******listener on PartnerUser \(userList[0].eventsLiked)")
                 
                 self.partnersEventsLiked = userList[0].eventsLiked
+                
                 
             })
     }
