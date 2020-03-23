@@ -10,6 +10,7 @@ class MatchedEventVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = StyleGuide.AppColors.backgroundColor
         view.addSubview(matchedView)
         addObjcFunctions()
         addImage()
