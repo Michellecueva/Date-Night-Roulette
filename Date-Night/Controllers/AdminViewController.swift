@@ -144,7 +144,7 @@ class AdminViewController: UIViewController {
 //            guard let title = event.name
 //                else {continue}
 //
-            let fbYelpEvent = FBEvents(title: title, address: event.location.displayAddress.description, eventID: event.id, description: event.categories.first?.title.description, imageURL: event.imageURL ?? "Image Unavailable", websiteURL: event.url ?? "URL Unavailable", type: preference)
+            let fbYelpEvent = FBEvents(title: event.name, address: event.location.returnDisplayAddress(), eventID: event.id, description: event.categories.first?.title.description, imageURL: event.imageURL ?? "Image Unavailable", websiteURL: event.url ?? "URL Unavailable", type: preference)
             fbEvents.append(fbYelpEvent)
             
         }

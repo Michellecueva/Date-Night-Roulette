@@ -68,6 +68,10 @@ struct Location: Codable {
     let zipCode: String
     let state: String
     let displayAddress: [String]
+    
+    func returnDisplayAddress() -> String {
+        return displayAddress.joined(separator: " ")
+    }
 
     enum CodingKeys: String, CodingKey {
         case address1, address2, city

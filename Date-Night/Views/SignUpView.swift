@@ -18,8 +18,9 @@ class SignUpView: UIView {
         label.text = "Date Night\nRoulette"
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.adjustsFontForContentSizeCategory = true
         label.font = UIFont(name: StyleGuide.TitleFontStyle.fontName, size: StyleGuide.TitleFontStyle.fontSize)
+        label.adjustsFontSizeToFitWidth = true
+
         return label
     }()
     
@@ -42,6 +43,7 @@ class SignUpView: UIView {
         textField.backgroundColor = StyleGuide.TextFieldStyle.backgroundColor
         textField.borderStyle = .roundedRect
         textField.autocorrectionType = .no
+        textField.tag = 0
         return textField
     }()
     
@@ -54,6 +56,7 @@ class SignUpView: UIView {
         textField.borderStyle = .roundedRect
         textField.autocorrectionType = .no
         textField.isSecureTextEntry = true
+        textField.tag = 1
         return textField
     }()
     
@@ -66,7 +69,80 @@ class SignUpView: UIView {
         textField.borderStyle = .roundedRect
         textField.autocorrectionType = .no
         textField.isSecureTextEntry = true
+        textField.tag = 2
         return textField
+    }()
+    
+    lazy var warningImageEmail:UIImageView = {
+           let newImage = UIImageView()
+           newImage.image = UIImage(systemName: "exclamationmark.triangle")
+                         newImage.contentMode = .scaleAspectFit
+                  newImage.tintColor = .white
+        newImage.isHidden = true
+        newImage.alpha = 0.0
+           return newImage
+       }()
+    
+    lazy var warningImagePassword:UIImageView = {
+              let newImage = UIImageView()
+              newImage.image = UIImage(systemName: "exclamationmark.triangle")
+                            newImage.contentMode = .scaleAspectFit
+                     newImage.tintColor = .white
+        newImage.isHidden = true
+        newImage.alpha = 0.0
+
+              return newImage
+          }()
+    
+    lazy var warningImageConfirmPassword:UIImageView = {
+              let newImage = UIImageView()
+              newImage.image = UIImage(systemName: "exclamationmark.triangle")
+                            newImage.contentMode = .scaleAspectFit
+                     newImage.tintColor = .white
+        newImage.isHidden = true
+        newImage.alpha = 0.0
+
+              return newImage
+          }()
+    
+       
+       lazy var emailTextFieldStack:UIStackView = {
+           let stackView = UIStackView(
+                    arrangedSubviews: [
+                       self.emailTextField,
+                       self.warningImageEmail
+                    ]
+                )
+                stackView.axis = .horizontal
+                stackView.spacing = 5
+                stackView.distribution = .fillProportionally
+                return stackView
+       }()
+    
+    lazy var passWordTextFieldStack:UIStackView = {
+        let stackView = UIStackView(
+                 arrangedSubviews: [
+                    self.passwordTextField,
+                    self.warningImagePassword
+                 ]
+             )
+             stackView.axis = .horizontal
+             stackView.spacing = 5
+             stackView.distribution = .fillProportionally
+             return stackView
+    }()
+    
+    lazy var confirmPasswordTextFieldStack:UIStackView = {
+        let stackView = UIStackView(
+                 arrangedSubviews: [
+                    self.confirmPasswordTextField,
+                    self.warningImageConfirmPassword
+                 ]
+             )
+             stackView.axis = .horizontal
+             stackView.spacing = 5
+             stackView.distribution = .fillProportionally
+             return stackView
     }()
     
     
@@ -86,17 +162,18 @@ class SignUpView: UIView {
         let stackView = UIStackView(
             arrangedSubviews: [
                 displayName,
-                emailTextField,
-                passwordTextField,
-                confirmPasswordTextField
+                emailTextFieldStack,
+                passWordTextFieldStack,
+                confirmPasswordTextFieldStack
             ]
         )
-        
         stackView.axis = .vertical
         stackView.spacing = 25
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fill
         return stackView
     }()
+    
+   
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
@@ -109,7 +186,7 @@ class SignUpView: UIView {
     //MARK:- UI Setup
     
     private func commonInit() {
-       self.backgroundColor = StyleGuide.AppColors.backgroundColor
+        self.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         setSubviews()
         setConstraints()
         
@@ -119,41 +196,104 @@ class SignUpView: UIView {
         self.addSubview(titleLabel)
         self.addSubview(stackView)
         self.addSubview(createButton)
+        
     }
     
     private func setConstraints() {
         setTitleLabelConstraints()
+        setDisplayNameConstraints()
+        setEmailTextViewConstraints()
+        setPassWordTextViewConstraints()
+        setConfirmPasswordTextViewConstraints()
+        setWarningImageEmailConstraints()
+        setWarningImagePasswordConstraints()
+        setWarningImageConfirmPasswordConstraints()
         setupStackViewConstraints()
         setCreateAccountButtonConstraints()
+        
     }
     
     private func setTitleLabelConstraints() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 30),
-            titleLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            titleLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            titleLabel.heightAnchor.constraint(lessThanOrEqualTo: self.safeAreaLayoutGuide.heightAnchor, multiplier: 0.8)])
+            titleLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: self.frame.height * 0.05),
+            titleLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
+            titleLabel.heightAnchor.constraint(equalToConstant: self.frame.height * 0.1)
+        ])
     }
+    
+    private func setEmailTextViewConstraints() {
+        NSLayoutConstraint.activate([
+        emailTextField.heightAnchor.constraint(equalToConstant: self.frame.height * 0.05),
+                 emailTextField.widthAnchor.constraint(equalToConstant: self.frame.width * 0.8)
+        ])
+    }
+    
+    private func setDisplayNameConstraints() {
+           NSLayoutConstraint.activate([
+            displayName.heightAnchor.constraint(equalToConstant: self.frame.height * 0.05),
+            displayName.widthAnchor.constraint(equalToConstant: self.frame.width * 0.8)
+                  ])
+       }
+    
+    private func setPassWordTextViewConstraints() {
+           NSLayoutConstraint.activate([
+                  passwordTextField.heightAnchor.constraint(equalToConstant: self.frame.height * 0.05),
+                           passwordTextField.widthAnchor.constraint(equalToConstant: self.frame.width * 0.8)
+                  ])
+       }
+    
+    private func setConfirmPasswordTextViewConstraints() {
+           NSLayoutConstraint.activate([
+                  confirmPasswordTextField.heightAnchor.constraint(equalToConstant: self.frame.height * 0.05),
+                           confirmPasswordTextField.widthAnchor.constraint(equalToConstant: self.frame.width * 0.8)
+                  ])
+       }
     
     private func setupStackViewConstraints() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 50),
+            stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: self.frame.height * 0.05),
             stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            stackView.heightAnchor.constraint(equalToConstant: 215),
-            stackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7)
+            stackView.heightAnchor.constraint(equalToConstant: self.frame.height * 0.3),
+            stackView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8)
         ])
     }
     
     private func setCreateAccountButtonConstraints() {
         createButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            createButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 40),
-            createButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
-            createButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
-            createButton.heightAnchor.constraint(equalToConstant: 40)
+            createButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: self.frame.height * 0.05),
+            createButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor,constant: self.frame.width * 0.05),
+            createButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor,constant: -self.frame.width * 0.05),
+            createButton.heightAnchor.constraint(equalToConstant: self.frame.height * 0.05)
         ])
+    }
+    
+private func setWarningImageEmailConstraints() {
+    warningImageEmail.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+        warningImageEmail.heightAnchor.constraint(equalToConstant: self.frame.height * 0.05),
+        warningImageEmail.widthAnchor.constraint(equalToConstant: self.frame.width * 0.05)
+        
+    ])
+    }
+    private func setWarningImagePasswordConstraints() {
+    warningImagePassword.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+        warningImagePassword.heightAnchor.constraint(equalToConstant: self.frame.height * 0.05),
+        warningImagePassword.widthAnchor.constraint(equalToConstant: self.frame.width * 0.05)
+        
+    ])
+    }
+    private func setWarningImageConfirmPasswordConstraints() {
+    warningImageConfirmPassword.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+        warningImageConfirmPassword.heightAnchor.constraint(equalToConstant: self.frame.height * 0.05),
+        warningImageConfirmPassword.widthAnchor.constraint(equalToConstant: self.frame.width * 0.05)
+        
+    ])
     }
 }
 
