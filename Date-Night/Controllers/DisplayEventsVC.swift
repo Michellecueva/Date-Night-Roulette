@@ -206,8 +206,9 @@ class DisplayEventsVC: UIViewController {
             let matchedEvent = MatchedEvent(coupleID: coupleID, title: event.title
                 ?? "Title Unavailable", eventID: event.eventID)
             createMatchedEvent(matchedEvent: matchedEvent)
-            
-            matchAlert(title: "It's a Match!", message: "You've Matched Events With Your Partner")
+            updateHasMatchedField(hasMatched: true)
+            segueToMatchedVC()
+//            matchAlert(title: "It's a Match!", message: "You've Matched Events With Your Partner")
             clearEventsLikedArr()
             
         }else {
@@ -261,6 +262,17 @@ class DisplayEventsVC: UIViewController {
         }
     }
     
+    private func updateHasMatchedField(hasMatched: Bool) {
+        FirestoreService.manager.updateCurrentUser(hasMatched: hasMatched) { (result) in
+            switch result {
+            case .success(()):
+                print("Has Matched has changed")
+            case .failure(let error):
+                print("Unable to change Has Matched field \(error)")
+            }
+        }
+    }
+    
     private func updateEventsLikedOnFirebase(eventsLiked: [String]) {
         FirestoreService.manager.updateEventsLiked(eventsLiked: eventsLiked) { (result) in
             switch result {
@@ -283,23 +295,33 @@ class DisplayEventsVC: UIViewController {
         }
     }
     
-    private func matchAlert(title:String,message:String) {
-        //move to extension
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        let confirmMatch = UIAlertAction(title: "Confirm", style: .default) { (response) in
+    private func segueToMatchedVC() {
+        let matched = MatchedEventVC()
+        matched.newImage = self.displayEventView.eventCard.imageView.image
+        matched.event = self.event
+        self.navigationController?.pushViewController(matched, animated: true)
+        updateHasMatchedField(hasMatched: false)
 
-            let matched = MatchedEventVC()
-            matched.newImage = self.displayEventView.eventCard.imageView.image
-            matched.event = self.event
-            self.navigationController?.pushViewController(matched, animated: true)
-        }
-        let deny = UIAlertAction(title: "Deny", style: .destructive)
-        
-        alertController.addAction(confirmMatch)
-        alertController.addAction(deny)
-        present(alertController,animated: true)
     }
+    
+//    private func matchAlert(title:String,message:String) {
+//        //move to extension
+//        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//
+//        let confirmMatch = UIAlertAction(title: "Confirm", style: .default) { (response) in
+//
+//            let matched = MatchedEventVC()
+//            matched.newImage = self.displayEventView.eventCard.imageView.image
+//            matched.event = self.event
+//            self.navigationController?.pushViewController(matched, animated: true)
+//
+//        }
+//        let deny = UIAlertAction(title: "Deny", style: .destructive)
+//
+//        alertController.addAction(confirmMatch)
+//        alertController.addAction(deny)
+//        present(alertController,animated: true)
+//    }
     
     private func clearEventsLikedArr() {
         eventsLiked = []
