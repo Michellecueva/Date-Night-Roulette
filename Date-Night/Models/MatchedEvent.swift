@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-struct MatchedEvent: Codable,Hashable {
+struct MatchedEvent: Codable,Hashable, EventsShown {
     
     let coupleID: String?
     let title: String?
@@ -19,6 +19,33 @@ struct MatchedEvent: Codable,Hashable {
     let imageURL: String?
     let websiteURL: String?
     let type:String
+    
+    var coupleId: String? {
+        return coupleID
+    }
+    
+    var heading: String? {
+        return title
+    }
+    var eventId: String? {
+        return eventID
+    }
+    var location: String? {
+        return address
+    }
+    var summary: String? {
+        return description
+    }
+    var imageUrl: String? {
+        return imageURL
+    }
+    var websiteUrl: String? {
+        return websiteURL
+    }
+    var category: String? {
+        return type
+    }
+
     
     init(coupleID: String, title: String, eventID: String, address: String?,description: String?, imageURL: String?, websiteURL: String?,type:String){
         self.coupleID = coupleID

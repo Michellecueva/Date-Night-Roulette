@@ -205,7 +205,7 @@ class DisplayEventsVC: UIViewController {
         if partnersEventsLiked.contains(lastEventLiked) {
             guard let coupleID = currentUser?.coupleID else {return}
             let eventTitle = event.title == "" ? "Title Unavailable" : event.title!
-            let matchedEvent = MatchedEvent(coupleID: coupleID, title: eventTitle, eventID: event.eventID)
+            let matchedEvent = MatchedEvent(coupleID: coupleID, title: eventTitle, eventID: event.eventID, address: event.address, description: event.description, imageURL: event.imageURL, websiteURL: event.websiteURL, type: event.type)
             createMatchedEvent(matchedEvent: matchedEvent)
             updateHasMatchedField(hasMatched: true)
             segueToMatchedVC()

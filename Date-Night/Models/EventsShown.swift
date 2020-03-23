@@ -9,14 +9,14 @@
 import Foundation
 
 protocol EventsShown {
-    var coupleID: String? {get}
+    var coupleId: String? {get}
     
-    var title: String? {get}
-    var eventID: String? {get }
-    var address: String? {get }
-    var description: String? {get}
-    var imageURL: String? {get}
-    var websiteURL: String? {get }
-    var type: String? {get}
+    var heading: String? {get}
+    var eventId: String? {get }
+    var location: String? {get }
+    var summary: String? {get}
+    var imageUrl: String? {get}
+    var websiteUrl: String? {get }
+    var category: String? {get}
 }
 
