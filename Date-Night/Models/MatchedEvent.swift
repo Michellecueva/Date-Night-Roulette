@@ -14,17 +14,32 @@ struct MatchedEvent: Codable,Hashable {
     let coupleID: String?
     let title: String?
     let eventID: String?
+    let address: String?
+    let description: String?
+    let imageURL: String?
+    let websiteURL: String?
+    let type:String
     
-    init(coupleID: String, title: String, eventID: String){
+    init(coupleID: String, title: String, eventID: String, address: String?,description: String?, imageURL: String?, websiteURL: String?,type:String){
         self.coupleID = coupleID
         self.title = title
         self.eventID = eventID
+        self.address = address
+        self.description = description
+        self.imageURL = imageURL
+        self.websiteURL = websiteURL
+        self.type = type
     }
     
     init?(from dict: [String: Any], id: String){
         guard let coupleID = dict["coupleID"] as? String,
-        let title = dict["title"] as? String,
-        let eventID = dict["eventID"] as? String
+            let title = dict["title"] as? String,
+            let address = dict["address"] as? String,
+            let eventID = dict["eventID"] as? String,
+            let description = dict["description"] as? String,
+            let imageURL = dict["imageURL"] as? String,
+            let websiteURL = dict["websiteURL"] as? String,
+            let type = dict["type"] as? String
             else {
                 return nil
         }
@@ -32,12 +47,22 @@ struct MatchedEvent: Codable,Hashable {
         self.coupleID = coupleID
         self.title = title
         self.eventID = eventID
+        self.address = address
+        self.description = description
+        self.imageURL = imageURL
+        self.websiteURL = websiteURL
+        self.type = type
     }
     var fieldsDict: [String: Any] {
         return [
             "coupleID": self.coupleID ?? "",
             "title": self.title ?? "",
-            "eventID": self.eventID ?? ""
+            "eventID": self.eventID ?? "",
+            "address": self.address ?? "",
+            "description": self.description ?? "",
+            "imageURL": self.imageURL ?? "Image Unavailable",
+            "websiteURL": self.websiteURL ?? "Website URL Unavailable",
+            "type":self.type
         ]
     }
 }
