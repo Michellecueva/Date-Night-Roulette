@@ -377,7 +377,7 @@ class FirestoreService {
         guard let userId = FirebaseAuthService.manager.currentUser?.uid else {
             return
         }
-        
+
         var updateFields = [String:Any]()
         
         updateFields["eventsLiked"] = eventsLiked
