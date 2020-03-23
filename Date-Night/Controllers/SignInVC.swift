@@ -36,17 +36,17 @@ class SignInVC: UIViewController {
     private func loginButtonFunctions(email:String?,password:String?) {
         
         guard let email = email, let password = password else {
-            //add alert
+            self.showAlert(title: "Error", message: "Invalid Email / Password")
             return
         }
         
         guard email.isValidEmail else {
-            //add alert
+            self.showAlert(title: "Error", message: "This Email Address is Not Associated With an Account")
             return
         }
         
         guard password.isValidPassword else {
-            //add alert
+            self.showAlert(title: "Error", message: "This Password is Incorrect")
             return
         }
         FirebaseAuthService.manager.loginUser(email: email.lowercased().trimmingCharacters(in: .whitespacesAndNewlines), password: password) { (result) in

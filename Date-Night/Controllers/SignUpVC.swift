@@ -17,6 +17,12 @@ class SignUpVC: UIViewController {
         super.viewDidLoad()
         view.addSubview(signUpView)
         addObjcFunctionsToViewObjects()
+        addDelegates()
+    }
+    private func addDelegates() {
+        signUpView.emailTextField.delegate = self
+        signUpView.passwordTextField.delegate = self
+        signUpView.confirmPasswordTextField.delegate = self
     }
     
     @objc func validateFields() {
@@ -37,18 +43,71 @@ class SignUpVC: UIViewController {
     
     @objc func signUpButton() {
         
-        if signUpView.passwordTextField.text != signUpView.confirmPasswordTextField.text {
-            let alertController = UIAlertController(title: "Error", message: "Passwords do not match", preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(defaultAction)
-            self.present(alertController, animated: true, completion: nil)
-            
-        } else {
-            
+     
             signUpFunction(email: signUpView.emailTextField.text, password: signUpView.passwordTextField.text, confirmPassword: signUpView.confirmPasswordTextField.text, displayName: signUpView.displayName.text)
-        }
+        
     }
     
+     private func checkEmailIsValid(email:String?) {
+        guard let email = email else {
+            hideWarningImage(warningImageView: signUpView.warningImageEmail)
+            return
+        }
+        guard email != "" else {
+    hideWarningImage(warningImageView: signUpView.warningImageEmail)
+            return
+        }
+        email.isValidEmail ? animateCheckMark(warningImageView: signUpView.warningImageEmail) : animateWarning(warningImageView: signUpView.warningImageEmail)
+    }
+    
+    private func checkPasswordIsValid(password:String?) {
+        guard let password = password else {
+hideWarningImage(warningImageView: signUpView.warningImagePassword)
+            return
+        }
+        guard password != "" else {
+hideWarningImage(warningImageView: signUpView.warningImagePassword)
+            return
+        }
+        password.isValidPassword ? animateCheckMark(warningImageView: signUpView.warningImagePassword) : animateWarning(warningImageView: signUpView.warningImagePassword)
+    }
+    
+    private func checkConfirmPasswordIsValid(confirmPassword:String?) {
+        guard let confirmPassword = confirmPassword else {
+            hideWarningImage(warningImageView: signUpView.warningImageConfirmPassword)
+            return
+        }
+        guard confirmPassword != "" else {
+            hideWarningImage(warningImageView: signUpView.warningImageConfirmPassword)
+            return
+        }
+        
+        confirmPassword == signUpView.passwordTextField.text ? animateCheckMark(warningImageView: signUpView.warningImageConfirmPassword) : animateWarning(warningImageView: signUpView.warningImageConfirmPassword)
+        
+    }
+    private func hideWarningImage(warningImageView:UIImageView) {
+        UIView.animate(withDuration: 0.3, animations: {
+            warningImageView.alpha = 0.0
+        }) { (bool) in
+             warningImageView.isHidden = true
+        }
+       
+    }
+    private func animateCheckMark(warningImageView:UIImageView){
+       warningImageView.isHidden = false
+        UIView.transition(with: warningImageView, duration: 0.5, options: .transitionFlipFromRight, animations: {
+            warningImageView.alpha = 1.0
+             warningImageView.image = UIImage(systemName: "checkmark.circle")
+        })
+    }
+    private func animateWarning(warningImageView:UIImageView){
+         warningImageView.isHidden = false
+        UIView.transition(with: warningImageView, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+            warningImageView.alpha = 1.0
+            warningImageView.image = UIImage(systemName: "exclamationmark.triangle")
+        })
+    }
+   
     private func signUpFunction(email:String?,password:String?,confirmPassword: String?, displayName:String?) {
         
         guard let email = email,
@@ -62,15 +121,18 @@ class SignUpVC: UIViewController {
         }
         
         guard email.isValidEmail else {
-            
+            self.showAlert(title: "Error", message: "Invalid Email")
             return
         }
         
         guard password.isValidPassword else {
+            self.showAlert(title: "Error", message: "Invalid Password Format")
+
             return
         }
         
-        guard confirmPassword.isConfirmPasswordValid else {
+        guard confirmPassword == password else {
+            self.showAlert(title: "Error", message: "Passwords Must Match")
             return
         }
         
@@ -152,6 +214,22 @@ private func handleLoginResponse(vc
     }
 }
 
-
+extension SignUpVC:UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        switch textField.tag {
+        case 0:
+            checkEmailIsValid(email: textField.text)
+        case 1:
+            checkPasswordIsValid(password: textField.text)
+        case 2:
+            checkConfirmPasswordIsValid(confirmPassword: textField.text)
+        default:
+            print("")
+        }
+        print(textField.tag)
+        
+       
+    }
+}
 
 
