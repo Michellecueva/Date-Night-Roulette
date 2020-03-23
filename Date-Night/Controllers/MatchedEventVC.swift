@@ -6,7 +6,7 @@ class MatchedEventVC: UIViewController {
     
     var newImage:UIImage? 
     
-    var event: FBEvents!
+    var event: EventsShown!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class MatchedEventVC: UIViewController {
 
     
     @objc private func directionsLink() {
-        guard let direction = event.address else {return}
+        guard let direction = event.location else {return}
         let urlLink = "https://www.google.com/maps/place/\(direction.replacingOccurrences(of: " ", with: "+"))"
 //        let array = ["133 Mulberry St","New York, NY 10013"]
 //        let sent = array.joined(separator: " ").replacingOccurrences(of: " ", with: "+")
@@ -46,7 +46,7 @@ class MatchedEventVC: UIViewController {
         
     }
     @objc private func infoLink() {
-        guard let url = event.websiteURL else {return}
+        guard let url = event.websiteUrl else {return}
         guard let urlStr = URL(string: url) else {return}
         
         UIApplication.shared.open(urlStr, options: [:], completionHandler: nil)
