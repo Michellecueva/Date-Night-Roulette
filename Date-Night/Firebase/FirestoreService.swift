@@ -76,10 +76,7 @@ class FirestoreService {
     }
     
     func updateCurrentUser(partnerEmail: String? = nil, completion: @escaping (Result<(), Error>) -> ()){
-        guard let userId = FirebaseAuthService.manager.currentUser?.uid else {
-            //MARK: TODO - handle can't get current user
-            return
-        }
+        guard let userId = FirebaseAuthService.manager.currentUser?.uid else {return}
         var updateFields = [String:Any]()
         
         if let partnerEmail = partnerEmail {
@@ -97,10 +94,7 @@ class FirestoreService {
     }
     
     func updateCurrentUser(partnerUserName: String?, coupleID: String?, completion: @escaping (Result<(), Error>) -> ()){
-        guard let userId = FirebaseAuthService.manager.currentUser?.uid else {
-            //MARK: TODO - handle can't get current user
-            return
-        }
+        guard let userId = FirebaseAuthService.manager.currentUser?.uid else {return}
         var updateFields = [String:Any]()
         
         if let partnerUserName = partnerUserName {
@@ -111,6 +105,21 @@ class FirestoreService {
                    updateFields["coupleID"] = coupleID
         }
         
+        //PUT request
+        db.collection(FireStoreCollections.users.rawValue).document(userId).updateData(updateFields) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    
+    func updateCurrentUser(hasMatched:Bool, completion: @escaping (Result<(), Error>) -> ()){
+        guard let userId = FirebaseAuthService.manager.currentUser?.uid else {return}
+        var updateFields = [String:Any]()
+        updateFields["hasMatched"] = hasMatched
+      
         //PUT request
         db.collection(FireStoreCollections.users.rawValue).document(userId).updateData(updateFields) { (error) in
             if let error = error {

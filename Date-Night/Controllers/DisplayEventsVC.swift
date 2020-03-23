@@ -73,7 +73,6 @@ class DisplayEventsVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.makeNavBarTranslucent()
-       
         addObjcFunctionsToViewButtons()
         getAppUser()
         getPriorEventsLiked()
@@ -203,10 +202,7 @@ class DisplayEventsVC: UIViewController {
         
         guard let lastEventLiked = eventsLiked.last else {return}
         if partnersEventsLiked.contains(lastEventLiked) {
-            guard let coupleID = currentUser?.coupleID else {
-                       print("no user found")
-                       return
-                   }
+            guard let coupleID = currentUser?.coupleID else {return}
             let matchedEvent = MatchedEvent(coupleID: coupleID, title: event.title
                 ?? "Title Unavailable", eventID: event.eventID)
             createMatchedEvent(matchedEvent: matchedEvent)
@@ -259,9 +255,8 @@ class DisplayEventsVC: UIViewController {
             switch result {
             case .success(let appUser):
                 self.currentUser = appUser
-                print("****** this is the partner email\(appUser.partnerEmail)")
             case .failure(let error):
-                print("unable to get appUser in gesture VC \(error)")
+                print("unable to get appUser in DisplayEventVC \(error)")
             }
         }
     }
@@ -298,9 +293,6 @@ class DisplayEventsVC: UIViewController {
             matched.newImage = self.displayEventView.eventCard.imageView.image
             matched.event = self.event
             self.navigationController?.pushViewController(matched, animated: true)
-            
-            
-                
         }
         let deny = UIAlertAction(title: "Deny", style: .destructive)
         
