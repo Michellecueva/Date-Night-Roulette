@@ -7,38 +7,29 @@ class SignInVC: UIViewController {
     
     var scrollView = UIScrollView(frame: UIScreen.main.bounds)
     
-    lazy var bottomScrollConstraint: NSLayoutConstraint = {
-           scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-    }()
-    
-  
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(scrollView)
         addObjcFunctionsToViewObjects()
         addKeyboardAppearObserver()
         addKeyboardDismissObserver()
-        setScrollView()
+        setScrollViewConstraints()
         setDelegate()
+        setUpScrollView()
     }
-    
-    override func viewWillLayoutSubviews() {
-          super.viewWillLayoutSubviews()
-          setUpScrollView()
-      }
     
     private func setDelegate() {
         viewSignIn.emailField.delegate = self
         viewSignIn.passwordField.delegate = self
     }
     
-    private func setScrollView() {
+    private func setScrollViewConstraints() {
         self.scrollView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             self.scrollView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20),
             self.scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            bottomScrollConstraint
+            self.scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
         ])
     }
     
@@ -55,27 +46,25 @@ class SignInVC: UIViewController {
     }
     
     private func adjustInsetForKeyboardShow(_ show: Bool, notification: Notification) {
-          guard
+        guard
             let userInfo = notification.userInfo,
             let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey]
-              as? NSValue
+                as? NSValue
             else {
-              return
-          }
+                return
+        }
         
-        // commented code makes this screen work as intended in conjunction with adjusting height code below
+        if notification.name == UIResponder.keyboardWillHideNotification{
+            scrollView.setContentOffset(.zero, animated: true)
+        } else {
+            let scrollPoint = CGPoint(x: 0.0, y: self.viewSignIn.loginButton.frame.origin.y - (keyboardFrame.cgRectValue.height) - view.frame.height * 0.05)
+            
+            scrollView.setContentOffset(scrollPoint, animated: true)
+        }
         
-//        if notification.name == UIResponder.keyboardWillHideNotification{
-//            scrollView.setContentOffset(.zero, animated: true)
-//        } else {
-//           let scrollPoint = CGPoint(x: 0.0, y: self.viewSignIn.loginButton.frame.origin.y - (keyboardFrame.cgRectValue.height) - view.frame.height * 0.05)
-//
-//           scrollView.setContentOffset(scrollPoint, animated: true)
-//        }
-//
-          let adjustmentHeight = (keyboardFrame.cgRectValue.height + 20) * (show ? 3 : -3)
-          scrollView.contentInset.bottom += adjustmentHeight
-          scrollView.verticalScrollIndicatorInsets.bottom += adjustmentHeight
+        let adjustmentHeight = (keyboardFrame.cgRectValue.height + 20) * (show ? 3 : -3)
+        scrollView.contentInset.bottom += adjustmentHeight
+        scrollView.verticalScrollIndicatorInsets.bottom += adjustmentHeight
     }
     
     @objc func handleKeyboardAppearing(sender: Notification) {
@@ -153,7 +142,6 @@ class SignInVC: UIViewController {
         scrollView.addSubview(viewSignIn)
         scrollView.alwaysBounceVertical = false
         view.addSubview(scrollView)
-        scrollView.delegate = self
     }
 }
 
@@ -161,12 +149,6 @@ extension SignInVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }
-}
-
-extension SignInVC: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-       
     }
 }
 

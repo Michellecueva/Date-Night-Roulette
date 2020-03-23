@@ -12,17 +12,81 @@ import FirebaseAuth
 class SignUpVC: UIViewController {
     
     let signUpView = SignUpView()
+    var scrollView = UIScrollView(frame: UIScreen.main.bounds)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(signUpView)
+        view.addSubview(scrollView)
         addObjcFunctionsToViewObjects()
         addDelegates()
+        addKeyboardAppearObserver()
+        addKeyboardDismissObserver()
+        setScrollViewConstraints()
+        setUpScrollView()
     }
     private func addDelegates() {
         signUpView.emailTextField.delegate = self
         signUpView.passwordTextField.delegate = self
         signUpView.confirmPasswordTextField.delegate = self
+    }
+    
+    private func setScrollViewConstraints() {
+        self.scrollView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.scrollView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20),
+            self.scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+        ])
+    }
+    
+    private func setUpScrollView() {
+        scrollView.addSubview(signUpView)
+        scrollView.alwaysBounceVertical = false
+        view.addSubview(scrollView)
+    }
+    
+    private func addKeyboardAppearObserver()
+    {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardAppearing(sender:)), name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+    }
+    
+    private func addKeyboardDismissObserver()
+    {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardDisappearing(sender:)), name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
+    
+    private func adjustInsetForKeyboardShow(_ show: Bool, notification: Notification) {
+        guard
+            let userInfo = notification.userInfo,
+            let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey]
+                as? NSValue
+            else {
+                return
+        }
+        
+        if notification.name == UIResponder.keyboardWillHideNotification{
+            scrollView.setContentOffset(.zero, animated: true)
+        } else {
+            let scrollPoint = CGPoint(x: 0.0, y: self.signUpView.createButton.frame.origin.y - (keyboardFrame.cgRectValue.height) - view.frame.height * 0.05)
+            
+            scrollView.setContentOffset(scrollPoint, animated: true)
+        }
+        
+        let adjustmentHeight = (keyboardFrame.cgRectValue.height + 20) * (show ? 3 : -3)
+        scrollView.contentInset.bottom += adjustmentHeight
+        scrollView.verticalScrollIndicatorInsets.bottom += adjustmentHeight
+    }
+    
+    @objc func handleKeyboardAppearing(sender: Notification) {
+        adjustInsetForKeyboardShow(true, notification: sender)
+    }
+    
+    @objc func handleKeyboardDisappearing(sender: Notification) {
+        adjustInsetForKeyboardShow(false, notification: sender)
+        
     }
     
     @objc func validateFields() {
@@ -43,18 +107,18 @@ class SignUpVC: UIViewController {
     
     @objc func signUpButton() {
         
-     
-            signUpFunction(email: signUpView.emailTextField.text, password: signUpView.passwordTextField.text, confirmPassword: signUpView.confirmPasswordTextField.text, displayName: signUpView.displayName.text)
+        
+        signUpFunction(email: signUpView.emailTextField.text, password: signUpView.passwordTextField.text, confirmPassword: signUpView.confirmPasswordTextField.text, displayName: signUpView.displayName.text)
         
     }
     
-     private func checkEmailIsValid(email:String?) {
+    private func checkEmailIsValid(email:String?) {
         guard let email = email else {
             hideWarningImage(warningImageView: signUpView.warningImageEmail)
             return
         }
         guard email != "" else {
-    hideWarningImage(warningImageView: signUpView.warningImageEmail)
+            hideWarningImage(warningImageView: signUpView.warningImageEmail)
             return
         }
         email.isValidEmail ? animateCheckMark(warningImageView: signUpView.warningImageEmail) : animateWarning(warningImageView: signUpView.warningImageEmail)
@@ -62,11 +126,11 @@ class SignUpVC: UIViewController {
     
     private func checkPasswordIsValid(password:String?) {
         guard let password = password else {
-hideWarningImage(warningImageView: signUpView.warningImagePassword)
+            hideWarningImage(warningImageView: signUpView.warningImagePassword)
             return
         }
         guard password != "" else {
-hideWarningImage(warningImageView: signUpView.warningImagePassword)
+            hideWarningImage(warningImageView: signUpView.warningImagePassword)
             return
         }
         password.isValidPassword ? animateCheckMark(warningImageView: signUpView.warningImagePassword) : animateWarning(warningImageView: signUpView.warningImagePassword)
@@ -89,25 +153,25 @@ hideWarningImage(warningImageView: signUpView.warningImagePassword)
         UIView.animate(withDuration: 0.3, animations: {
             warningImageView.alpha = 0.0
         }) { (bool) in
-             warningImageView.isHidden = true
+            warningImageView.isHidden = true
         }
-       
+        
     }
     private func animateCheckMark(warningImageView:UIImageView){
-       warningImageView.isHidden = false
+        warningImageView.isHidden = false
         UIView.transition(with: warningImageView, duration: 0.5, options: .transitionFlipFromRight, animations: {
             warningImageView.alpha = 1.0
-             warningImageView.image = UIImage(systemName: "checkmark.circle")
+            warningImageView.image = UIImage(systemName: "checkmark.circle")
         })
     }
     private func animateWarning(warningImageView:UIImageView){
-         warningImageView.isHidden = false
+        warningImageView.isHidden = false
         UIView.transition(with: warningImageView, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             warningImageView.alpha = 1.0
             warningImageView.image = UIImage(systemName: "exclamationmark.triangle")
         })
     }
-   
+    
     private func signUpFunction(email:String?,password:String?,confirmPassword: String?, displayName:String?) {
         
         guard let email = email,
@@ -127,7 +191,7 @@ hideWarningImage(warningImageView: signUpView.warningImagePassword)
         
         guard password.isValidPassword else {
             self.showAlert(title: "Error", message: "Invalid Password Format")
-
+            
             return
         }
         
@@ -228,7 +292,7 @@ extension SignUpVC:UITextFieldDelegate {
         }
         print(textField.tag)
         
-       
+        
     }
 }
 
