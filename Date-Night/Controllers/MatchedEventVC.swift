@@ -12,12 +12,16 @@ class MatchedEventVC: UIViewController {
         super.viewDidLoad()
         view.addSubview(matchedView)
         addObjcFunctions()
-        guard let newImage = newImage else {
-                   return
-               }
-               matchedView.matchImage.image = newImage
-
-        // Do any additional setup after loading the view.
+        addImage()
+    }
+    
+    private func addImage() {
+        if newImage != nil {
+             matchedView.matchImage.image = newImage
+        } else {
+            // get info from MatchedEvent
+            print("noImageAvailable")
+        }
     }
     
 
@@ -28,7 +32,6 @@ class MatchedEventVC: UIViewController {
 
     
     @objc private func directionsLink() {
-        
         guard let direction = event.address else {return}
         let urlLink = "https://www.google.com/maps/place/\(direction.replacingOccurrences(of: " ", with: "+"))"
 //        let array = ["133 Mulberry St","New York, NY 10013"]
