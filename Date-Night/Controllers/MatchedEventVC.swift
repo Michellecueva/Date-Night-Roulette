@@ -17,27 +17,37 @@ class MatchedEventVC: UIViewController {
     
     private func addImage() {
         if newImage != nil {
-             matchedView.matchImage.image = newImage
+            matchedView.matchImage.image = newImage
         } else {
-            // get info from MatchedEvent
-            print("noImageAvailable")
+            guard let image = event.imageUrl else {return}
+            ImageHelper.shared.getImage(urlStr: image) { [weak self](result) in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .failure(let error):
+                        print("failed to get image \(error)")
+                        self?.matchedView.matchImage.image = UIImage(systemName: "photo")
+                    case .success(let imageFromOnline):
+                        self?.matchedView.matchImage.image = imageFromOnline
+                    }
+                }
+            }
         }
     }
     
-
+    
     private func addObjcFunctions() {
         matchedView.directionButton.addTarget(self, action: #selector(directionsLink), for: .touchUpInside)
         matchedView.moreInfoButton.addTarget(self, action: #selector(infoLink), for: .touchUpInside)
     }
-
+    
     
     @objc private func directionsLink() {
         guard let direction = event.location else {return}
         let urlLink = "https://www.google.com/maps/place/\(direction.replacingOccurrences(of: " ", with: "+"))"
-//        let array = ["133 Mulberry St","New York, NY 10013"]
-//        let sent = array.joined(separator: " ").replacingOccurrences(of: " ", with: "+")
-//       print(sent)
-//        let url = "https://www.google.com/maps/place/\(sent)"
+        //        let array = ["133 Mulberry St","New York, NY 10013"]
+        //        let sent = array.joined(separator: " ").replacingOccurrences(of: " ", with: "+")
+        //       print(sent)
+        //        let url = "https://www.google.com/maps/place/\(sent)"
         
         print(urlLink)
         
