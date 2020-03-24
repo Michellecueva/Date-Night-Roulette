@@ -49,6 +49,19 @@ class AccountSettingsView: UIView {
         return button
     }()
     
+    lazy var notificationsButton: UIButton = {
+           let button = UIButton(type: .system)
+           button.setTitle("Notifications", for: .normal)
+           button.setTitleColor(StyleGuide.ButtonStyle.fontColor, for: .normal)
+           button.titleLabel?.font = UIFont(name: StyleGuide.ButtonStyle.fontName, size: StyleGuide.ButtonStyle.fontSize)
+           button.backgroundColor = StyleGuide.ButtonStyle.backgroundColor
+           button.layer.cornerRadius = StyleGuide.ButtonStyle.cornerRadius
+           button.layer.borderColor = StyleGuide.ButtonStyle.borderColor
+           button.layer.borderWidth = StyleGuide.ButtonStyle.altBorderWidth
+           button.isEnabled = true
+           return button
+       }()
+       
     lazy var helpButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Help Center", for: .normal)
@@ -61,21 +74,6 @@ class AccountSettingsView: UIView {
         button.isEnabled = true
         return button
     }()
-    
-    
-    lazy var notificationsButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Notifications", for: .normal)
-        button.setTitleColor(StyleGuide.ButtonStyle.fontColor, for: .normal)
-        button.titleLabel?.font = UIFont(name: StyleGuide.ButtonStyle.fontName, size: StyleGuide.ButtonStyle.fontSize)
-        button.backgroundColor = StyleGuide.ButtonStyle.backgroundColor
-        button.layer.cornerRadius = StyleGuide.ButtonStyle.cornerRadius
-        button.layer.borderColor = StyleGuide.ButtonStyle.borderColor
-        button.layer.borderWidth = StyleGuide.ButtonStyle.altBorderWidth
-        button.isEnabled = true
-        return button
-    }()
-    
     
     lazy var logoutButton: UIButton = {
         let button = UIButton(type: .system)
@@ -91,7 +89,7 @@ class AccountSettingsView: UIView {
     }()
     
     lazy var labelStackview: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [accountLabel, displayNameButton, removePartnerButton, helpButton, notificationsButton, logoutButton])
+        let stackView = UIStackView(arrangedSubviews: [accountLabel, displayNameButton, removePartnerButton, notificationsButton, helpButton, logoutButton])
         stackView.axis = .vertical
         stackView.spacing = 15
         stackView.distribution = .fillEqually
