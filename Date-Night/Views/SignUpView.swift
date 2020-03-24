@@ -178,6 +178,7 @@ class SignUpView: UIView {
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
+        self.backgroundColor = StyleGuide.AppColors.backgroundColor
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
