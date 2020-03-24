@@ -856,8 +856,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Date-Night/Date-Night.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3642JZ3MYP;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 26RHXP32FH;
 				INFOPLIST_FILE = "Date-Night/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -877,8 +876,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Date-Night/Date-Night.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3642JZ3MYP;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 26RHXP32FH;
 				INFOPLIST_FILE = "Date-Night/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
