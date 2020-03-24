@@ -833,6 +833,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Date-Night/Date-Night.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3642JZ3MYP;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Date-Night/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -853,6 +854,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Date-Night/Date-Night.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3642JZ3MYP;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Date-Night/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

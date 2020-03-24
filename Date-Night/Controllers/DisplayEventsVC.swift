@@ -196,9 +196,7 @@ class DisplayEventsVC: UIViewController {
     @objc private func likedButtonPressed() {
         guard let lastEvent = fbEvents.last else {return}
         event = lastEvent
-        
         eventsLiked.append(event.eventID)
-    
         updateEventsLikedOnFirebase(eventsLiked: eventsLiked)
         
         guard let lastEventLiked = eventsLiked.last else {return}
@@ -352,7 +350,6 @@ class DisplayEventsVC: UIViewController {
                     // push notification sent instead of alert
                     self.matchAlert(title: "It's a Match!", message: "You have a match")
                 }
-                
             })
     }
     private func setUpView(event:FBEvents) {
