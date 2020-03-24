@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsView: UIView {
+class AccountSettingsView: UIView {
     
     lazy var accountLabel: UILabel = {
         let label1 = UILabel()
@@ -18,7 +18,7 @@ class SettingsView: UIView {
         label1.textAlignment = .center
         label1.textColor = .white
         label1.adjustsFontForContentSizeCategory = true
-        label1.font = UIFont(name:StyleGuide.TitleFontStyle.fontName, size:StyleGuide.FontStyle.fontSize)
+        label1.font = UIFont(name:StyleGuide.TitleFontStyle.fontName, size:StyleGuide.FontStyle.altFontSize)
         return label1
     }()
     
@@ -93,7 +93,7 @@ class SettingsView: UIView {
     lazy var labelStackview: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [accountLabel, displayNameButton, removePartnerButton, helpButton, notificationsButton, logoutButton])
         stackView.axis = .vertical
-        stackView.spacing = 25
+        stackView.spacing = 15
         stackView.distribution = .fillEqually
         return stackView
     }()
@@ -129,8 +129,8 @@ class SettingsView: UIView {
         NSLayoutConstraint.activate([
             labelStackview.topAnchor.constraint(equalTo: self.topAnchor, constant: 120),
             labelStackview.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            labelStackview.heightAnchor.constraint(equalToConstant: 250),
-            labelStackview.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8)
+            labelStackview.heightAnchor.constraint(equalToConstant: 650),
+            labelStackview.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9)
         ])
     }
 }
