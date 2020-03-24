@@ -4,6 +4,19 @@ class SendInviteView: UIView {
     
     //MARK: UI Objects
     
+    
+    lazy var inviteLabel: UILabel = {
+        let label1 = UILabel()
+        label1.textColor = StyleGuide.TitleFontStyle.fontColor
+        label1.text = "Invite your partner"
+        label1.numberOfLines = 0
+        label1.textAlignment = .center
+        label1.textColor = .white
+        label1.adjustsFontForContentSizeCategory = true
+        label1.font = UIFont(name:StyleGuide.TitleFontStyle.fontName, size:StyleGuide.FontStyle.fontSize)
+        return label1
+    }()
+    
     lazy var userInstructions:UILabel = {
         let uiLabel = UILabel()
         uiLabel.adjustsFontSizeToFitWidth = true
