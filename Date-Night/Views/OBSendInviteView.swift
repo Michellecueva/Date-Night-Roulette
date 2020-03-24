@@ -1,6 +1,6 @@
 import UIKit
 
-class SendInviteView: UIView {
+class OBSendInviteView: UIView {
     
     //MARK: UI Objects
     
@@ -13,7 +13,7 @@ class SendInviteView: UIView {
         label1.textAlignment = .center
         label1.textColor = .white
         label1.adjustsFontForContentSizeCategory = true
-        label1.font = UIFont(name:StyleGuide.TitleFontStyle.fontName, size:StyleGuide.FontStyle.fontSize)
+        label1.font = UIFont(name:StyleGuide.TitleFontStyle.fontName, size:StyleGuide.FontStyle.altFontSize)
         return label1
     }()
     
@@ -24,13 +24,13 @@ class SendInviteView: UIView {
         uiLabel.numberOfLines = 0
         uiLabel.textAlignment = .center
         uiLabel.textColor = StyleGuide.FontStyle.fontColor
-        uiLabel.text = "Please Enter Your Partner's Email"
+        uiLabel.text = "Please enter your partners email to have them join you on the app!"
         return uiLabel
     }()
     
     lazy var emailField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Enter Partners Email"
+        textField.placeholder = "Email Address"
         textField.font = UIFont(name: StyleGuide.TextFieldStyle.fontName, size: StyleGuide.TextFieldStyle.fontSize)
         textField.backgroundColor = StyleGuide.TextFieldStyle.backgroundColor
         textField.borderStyle = .roundedRect
@@ -54,7 +54,7 @@ class SendInviteView: UIView {
 
     public lazy var stackView: UIStackView = {
         
-        let sv = UIStackView(arrangedSubviews: [self.userInstructions, self.emailField, self.enterButton])
+        let sv = UIStackView(arrangedSubviews: [self.inviteLabel, self.userInstructions, self.emailField, self.enterButton])
         
         sv.axis = .vertical
         sv.alignment = .fill
@@ -76,16 +76,26 @@ class SendInviteView: UIView {
     
     private func addConstraintsToSelf() {
         backgroundColor = StyleGuide.AppColors.backgroundColor
+        addSubview(inviteLabel)
         addSubview(userInstructions)
         addSubview(emailField)
         addSubview(enterButton)
         addSubview(stackView)
+        setUpInviteLabelConstraints()
         setUpUserInstructionsConstraints()
         setUpEmailTextFieldConstraints()
         setUpEnterButtonConstraints()
         setUpStackViewConstraints()
     }
     
+    private func setUpInviteLabelConstraints(){
+           
+           inviteLabel.translatesAutoresizingMaskIntoConstraints = false
+           
+           NSLayoutConstraint.activate([
+               inviteLabel.heightAnchor.constraint(equalToConstant: self.frame.height * 0.05)
+           ])
+       }
     private func setUpUserInstructionsConstraints(){
         
         userInstructions.translatesAutoresizingMaskIntoConstraints = false
@@ -108,7 +118,7 @@ class SendInviteView: UIView {
         enterButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            enterButton.heightAnchor.constraint(equalToConstant: self.frame.height * 0.1)
+            enterButton.heightAnchor.constraint(equalToConstant: self.frame.height * 0.05)
         ])
     }
     
