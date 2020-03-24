@@ -49,7 +49,7 @@ class PartnerSettingVC: UIViewController {
         view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         view.addSubview(partnerView)
         configureDataSource()
-        addObjcFunctionToRemovePartnerButton()
+        //addObjcFunctionToRemovePartnerButton()
         self.partnerView.historyTable.delegate = self
     }
     
@@ -138,11 +138,11 @@ class PartnerSettingVC: UIViewController {
         }
     }
     
-     private func addObjcFunctionToRemovePartnerButton() {
-            partnerView.removePartnerButton.addTarget(self, action: #selector(removePartner), for: .touchUpInside)
-        }
-        
-        @objc private func removePartner() {
+//     private func addObjcFunctionToRemovePartnerButton() {
+//            partnerView.removePartnerButton.addTarget(self, action: #selector(removePartner), for: .touchUpInside)
+//        }
+//
+     /*   @objc private func removePartner() {
         // determine when we want to remove the invites sent from a a user
             
             
@@ -164,7 +164,7 @@ class PartnerSettingVC: UIViewController {
         case .success():
             print("successfully removed partner reference")
         }
-    }
+    }*/
 }
 
 extension PartnerSettingVC : UITableViewDelegate {
