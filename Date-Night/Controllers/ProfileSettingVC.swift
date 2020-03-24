@@ -40,7 +40,7 @@ class ProfileSettingVC: UIViewController {
         view.addSubview(profileSetting)
         addObjcFunction()
         //    profileSetting.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        logOut()
+        //logOut()
         print(FirebaseAuthService.manager.currentUser?.email)
     }
     
@@ -116,7 +116,7 @@ class ProfileSettingVC: UIViewController {
         
     }
     
-    private func logOut(){
+  /*  private func logOut(){
         profileSetting.logoutButton.addTarget(self, action: #selector(signOut), for:.touchUpInside )
     }
     
@@ -149,7 +149,7 @@ class ProfileSettingVC: UIViewController {
         case .failure(let error):
             print(error)
         }
-    }
+    }*/
     
     private func setUpProfilePortrait() {
         guard let photoURL = Auth.auth().currentUser?.photoURL?.absoluteString else {return}
