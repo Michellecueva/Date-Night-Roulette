@@ -22,8 +22,8 @@ class MatchedEventView: UIView {
     
     lazy var matchImage: UIImageView = {
         let mImage = UIImageView()
-        mImage.backgroundColor = .brown
-        mImage.image = UIImage(named: "LIONKING-superJumbo")
+        mImage.backgroundColor = .clear
+        mImage.image = UIImage(systemName: "photo")
         return mImage
     }()
     
@@ -74,26 +74,6 @@ class MatchedEventView: UIView {
         return dirButton
     }()
     
-    //    lazy var infoTextView: UITextView = {
-    //        let textview = UITextView()
-    //        textview.backgroundColor = .lightGray
-    //        textview.font = UIFont(name: "Arial", size: 30)
-    //        textview.adjustsFontForContentSizeCategory = true
-    //        return textview
-    //    }()
-    //
-    //    lazy var matchInfoDetailTextView: UITextView = {
-    //        let textview = UITextView()
-    //        textview.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-    //        textview.alpha = 0.0
-    //        textview.layer.shadowColor = .init(srgbRed: 0.5, green: 0.5, blue: 0.5, alpha: 0.9)
-    //        textview.adjustsFontForContentSizeCategory = true
-    //        textview.font = UIFont(name: "Arial", size: 30)
-    //        textview.isUserInteractionEnabled = false
-    //        textview.textColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
-    //        return textview
-    //    }()
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -103,48 +83,7 @@ class MatchedEventView: UIView {
         addMatchSubviews()
         setMatchConstraints()
     }
-    
-    //    enum State {
-    //        case expanded
-    //        case collapsed
-    //
-    //        var change: State {
-    //            switch self {
-    //            case .expanded:
-    //                return .collapsed
-    //            case .collapsed:
-    //                return .expanded
-    //            }
-    //        }
-    //    }
-    //
-    //    @objc func animateMatchView()  {
-    //
-    //        UIView.animate(withDuration: 1, delay: 0.2, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.1, options: .curveEaseInOut, animations: {
-    //
-    //            switch self.state {
-    //
-    //            case .collapsed:
-    //
-    //                self.imageTopConstraint.constant = 250
-    //                self.labelTopConstraint.constant = 150
-    //                self.layoutIfNeeded()
-    //                self.state = self.state.change
-    //                print("collapsed")
-    //
-    //            case .expanded:
-    //
-    //                self.imageTopConstraint.constant = 0
-    //                self.labelTopConstraint.constant = 30
-    //                self.layoutIfNeeded()
-    //                self.state = self.state.change
-    //
-    //                print("expanded")
-    //
-    //            }
-    //        })
-    //    }
-    //
+
     private func addMatchSubviews() {
         self.addSubview(matchLabel)
         self.addSubview(matchImage)

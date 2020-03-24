@@ -19,6 +19,7 @@ struct AppUser {
     let partnerEmail: String?
     let partnerUserName: String?
     let isAdmin:Bool
+    let hasMatched: Bool
     let eventsLiked: [String]
     
     init(from user: User,coupleID:String?, preferences:[String], eventsLiked: [String]) {
@@ -32,6 +33,7 @@ struct AppUser {
         self.partnerUserName = nil
         self.isAdmin = false
         self.eventsLiked = eventsLiked
+        self.hasMatched = false
     }
     
     init?(from dict: [String: Any], id: String) {
@@ -43,7 +45,8 @@ struct AppUser {
             let partnerEmail = dict["partnerEmail"] as? String,
             let partnerUserName = dict["partnerUserName"] as? String,
             let isAdmin = dict["isAdmin"] as? Bool,
-            let eventsLiked = dict["eventsLiked"] as? [String]
+            let eventsLiked = dict["eventsLiked"] as? [String],
+            let hasMatched = dict["hasMatched"] as? Bool
             else {return nil}
         
         self.userName = userName
@@ -56,6 +59,7 @@ struct AppUser {
         self.partnerUserName = partnerUserName
         self.isAdmin = isAdmin
         self.eventsLiked = eventsLiked
+        self.hasMatched = hasMatched
     }
     
     var fieldsDict: [String: Any] {
@@ -69,7 +73,8 @@ struct AppUser {
             "partnerUserName": self.partnerUserName ?? "",
             "uid": self.uid,
             "isAdmin":self.isAdmin,
-            "eventsLiked": self.eventsLiked
+            "eventsLiked": self.eventsLiked,
+            "hasMatched": self.hasMatched
         ]
     }
 }

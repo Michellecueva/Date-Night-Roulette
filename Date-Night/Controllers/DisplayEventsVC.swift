@@ -9,8 +9,7 @@ class DisplayEventsVC: UIViewController {
     
     var eventIndexCount = 0
     
-    var eventTitle: String!
-    
+    var event: FBEvents!
     
     var displayEventView = DisplayEventView()
     var fbEvents:[FBEvents] = [] {
@@ -46,7 +45,7 @@ class DisplayEventsVC: UIViewController {
         return pan
     }()
     
-    var partnersEventsLiked = [String]()
+    var partnersEventsLiked = [String]() 
     
     private var partnerListener: ListenerRegistration?
     
@@ -74,7 +73,6 @@ class DisplayEventsVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.makeNavBarTranslucent()
-       
         addObjcFunctionsToViewButtons()
         getAppUser()
         getPriorEventsLiked()
@@ -87,7 +85,7 @@ class DisplayEventsVC: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-fbEvents = []
+//fbEvents = []
         
     }
     
@@ -118,9 +116,9 @@ fbEvents = []
                    
                    let scaler = min(abs(80/xFromCenter), 1)
                   
-       //            if card?.center.y != view.center.y  {
-       //                card?.center.y = view.center.y
-       //                }
+//                   if card?.center.y != view.center.y  {
+//                       card?.center.y = view.center.y
+//                       }
                   
                    card?.transform = CGAffineTransform(rotationAngle: rotation).scaledBy(x: scaler, y: scaler)
              
@@ -196,25 +194,24 @@ fbEvents = []
                    }
     
     @objc private func likedButtonPressed() {
-        guard let eventID = fbEvents.last?.eventID else {return}
-        
-        eventsLiked.append(eventID)
+        guard let lastEvent = fbEvents.last else {return}
+        event = lastEvent
+        eventsLiked.append(event.eventID)
         updateEventsLikedOnFirebase(eventsLiked: eventsLiked)
         
         guard let lastEventLiked = eventsLiked.last else {return}
         if partnersEventsLiked.contains(lastEventLiked) {
-            guard let coupleID = currentUser?.coupleID else {
-                       print("no user found")
-                       return
-                   }
-            let matchedEvent = MatchedEvent(coupleID: coupleID, title: eventTitle, eventID: eventID)
+            guard let coupleID = currentUser?.coupleID else {return}
+            let eventTitle = event.title == "" ? "Title Unavailable" : event.title!
+            let matchedEvent = MatchedEvent(coupleID: coupleID, title: eventTitle, eventID: event.eventID, address: event.address, description: event.description, imageURL: event.imageURL, websiteURL: event.websiteURL, type: event.type)
             createMatchedEvent(matchedEvent: matchedEvent)
-            
-            matchAlert(title: "It's a Match!", message: "You've Matched Events With Your Partner")
+            updateHasMatchedField(hasMatched: true)
+            segueToMatchedVC()
+//            matchAlert(title: "It's a Match!", message: "You've Matched Events With Your Partner")
             clearEventsLikedArr()
             
         }else {
-            //in the future prevent liked events from showing up at all
+//            in the future prevent liked events from showing up at all
             fbEvents.popLast()
         }
     }
@@ -258,9 +255,19 @@ fbEvents = []
             switch result {
             case .success(let appUser):
                 self.currentUser = appUser
-                print("****** this is the partner email\(appUser.partnerEmail)")
             case .failure(let error):
-                print("unable to get appUser in gesture VC \(error)")
+                print("unable to get appUser in DisplayEventVC \(error)")
+            }
+        }
+    }
+    
+    private func updateHasMatchedField(hasMatched: Bool) {
+        FirestoreService.manager.updateCurrentUser(hasMatched: hasMatched) { (result) in
+            switch result {
+            case .success(()):
+                print("Has Matched has changed")
+            case .failure(let error):
+                print("Unable to change Has Matched field \(error)")
             }
         }
     }
@@ -287,21 +294,29 @@ fbEvents = []
         }
     }
     
+    private func segueToMatchedVC() {
+        let matched = MatchedEventVC()
+        matched.newImage = self.displayEventView.eventCard.imageView.image
+        matched.event = self.event
+        self.navigationController?.pushViewController(matched, animated: true)
+        updateHasMatchedField(hasMatched: false)
+
+    }
+    
     private func matchAlert(title:String,message:String) {
         //move to extension
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
+
         let confirmMatch = UIAlertAction(title: "Confirm", style: .default) { (response) in
 
-                  let matched = MatchedEventVC()
+            let matched = MatchedEventVC()
             matched.newImage = self.displayEventView.eventCard.imageView.image
-            self.navigationController?.pushViewController(MatchedEventVC(), animated: true)
-            
-            
-                
+            matched.event = self.event
+            self.navigationController?.pushViewController(matched, animated: true)
+
         }
         let deny = UIAlertAction(title: "Deny", style: .destructive)
-        
+
         alertController.addAction(confirmMatch)
         alertController.addAction(deny)
         present(alertController,animated: true)
@@ -323,20 +338,18 @@ fbEvents = []
                 if let error = error {
                     print(error.localizedDescription)
                 }
-                guard let usersFromOnline = snapshot?.documents else {
-                    print("no invites available")
-                    return
-                }
+                guard let usersFromOnline = snapshot?.documents else {return}
                 let userList = usersFromOnline.compactMap { (snapshot) -> AppUser? in
                     let userID = snapshot.documentID
                     let data = snapshot.data()
                     return AppUser(from: data, id: userID)
                 }
-                
-                print("*******listener on PartnerUser \(userList[0].eventsLiked)")
-                
                 self.partnersEventsLiked = userList[0].eventsLiked
                 
+                if userList[0].hasMatched == true {
+                    // push notification sent instead of alert
+                    self.matchAlert(title: "It's a Match!", message: "You have a match")
+                }
             })
     }
     private func setUpView(event:FBEvents) {
