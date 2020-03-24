@@ -3,11 +3,6 @@
     "Categories": [
         {
             "data": {
-                "type": "Concerts"
-            }
-        },
-        {
-            "data": {
                 "type": "Music"
             }
         },
@@ -19,11 +14,6 @@
         {
             "data": {
                 "type": "Bars"
-            }
-        },
-        {
-            "data": {
-                "type": "Family Fun"
             }
         },
         {
@@ -43,7 +33,7 @@
         },
         {
             "data": {
-                "type": "Wine"
+                "type": "Wine Bar"
             }
         },
         {
@@ -53,7 +43,7 @@
         },
         {
             "data": {
-                "type": "Health & Wellness"
+                "type": "Paint & Sip"
             }
         },
         {
@@ -63,22 +53,12 @@
         },
         {
             "data": {
-                "type": "Networking"
+                "type": "Parks"
             }
         },
         {
             "data": {
                 "type": "Nightlife"
-            }
-        },
-        {
-            "data": {
-                "type": "Outdoors & Recreation"
-            }
-        },
-        {
-            "data": {
-                "type": "Performing Arts"
             }
         },
     ]
