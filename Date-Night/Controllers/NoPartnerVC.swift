@@ -16,18 +16,9 @@ class NoPartnerVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(noPartner)
-        addObjcFunctions()
         
     }
     
-    private func addObjcFunctions() {
-        noPartner.sendInviteButton.addTarget(self, action: #selector(inviteButton ), for: .touchUpInside)
-      }
-      
-      
-      @objc private func inviteButton(){
-          present(OBSendInviteVC(), animated: true, completion: nil)
-         
-      }
+
    
 }

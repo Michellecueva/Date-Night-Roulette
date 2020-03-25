@@ -13,7 +13,7 @@ class PreferenceView: UIView {
         layout.sectionInset = UIEdgeInsets(top: 30, left: 3, bottom: 0, right: 3)
         cv.register(PreferenceCell.self, forCellWithReuseIdentifier: cellIdentifier)
         //cv.layer.borderColor = UIColor.black.cgColor
-       // cv.layer.borderWidth = 2
+        cv.layer.borderWidth = 2
         return cv
     }()
     
@@ -51,7 +51,7 @@ class PreferenceView: UIView {
         buttonConstraints()
         self.backgroundColor = StyleGuide.AppColors.backgroundColor
         //self.layer.borderColor = UIColor.gray.cgColor
-       // self.layer.borderWidth = 3
+        self.layer.borderWidth = 3
     }
     //MARK:- Constraints
     
