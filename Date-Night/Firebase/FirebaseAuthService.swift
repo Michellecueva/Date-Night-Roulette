@@ -50,12 +50,12 @@ class FirebaseAuthService {
           })
       }
     
-    func loginUser(email: String, password: String, completion: @escaping (Result<(), AppError>) -> ()) {
+    func loginUser(email: String, password: String, completion: @escaping (Result<(), Error>) -> ()) {
         //   do { try auth.useUserAccessGroup(nil)}catch {print(error)}
         auth.signIn(withEmail: email, password: password) { (result, error) in
             guard result?.user != nil else {
                 if let error = error {
-                    completion(.failure(.other(rawError: error)))
+                    completion(.failure(error))
                 
             }
                 return
