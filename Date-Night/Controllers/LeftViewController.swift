@@ -13,7 +13,7 @@ import FirebaseFirestore
 
 class LeftViewController: UIViewController {
     
-    let sendInviteVC = SendInviteVC()
+    let sendInviteVC = OBSendInviteVC()
     let waitingForResponseVC = WaitingForResponseVC()
     let partnerProfileVC = PartnerSettingVC()
 
