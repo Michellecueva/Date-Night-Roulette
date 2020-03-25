@@ -15,8 +15,8 @@ class DisplayEventView: UIView {
         return label1
     }()
     
-    lazy var eventCard: EventCard = {
-        let eventView = EventCard()
+    lazy var eventCard: EventCardTrio = {
+        let eventView = EventCardTrio()
         return eventView
     }()
     
@@ -63,18 +63,27 @@ class DisplayEventView: UIView {
     
     private func setShakeLabelConstraints() {
         displayEventLabel.translatesAutoresizingMaskIntoConstraints = false
-        displayEventLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: self.frame.height * 0.1).isActive = true
-        displayEventLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 40).isActive = true
-        displayEventLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -40).isActive = true
-        displayEventLabel.heightAnchor.constraint(equalToConstant: 90).isActive = true
+        
+        NSLayoutConstraint.activate([
+         displayEventLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: self.frame.height * 0.05),
+         displayEventLabel.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: self.frame.width * 0.1),
+            displayEventLabel.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -self.frame.width * 0.1),
+            displayEventLabel.heightAnchor.constraint(equalToConstant: self.frame.height * 0.1)
+         
+        ])
+
     }
     
     private func seteventCardConstraints() {
         eventCard.translatesAutoresizingMaskIntoConstraints = false
-        eventCard.centerYAnchor.constraint(equalTo: self.centerYAnchor,constant: self.frame.height * 0.05).isActive = true
-        eventCard.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        eventCard.widthAnchor.constraint(equalTo:self.widthAnchor).isActive = true
-        eventCard.heightAnchor.constraint(equalToConstant: self.frame.height * 0.46).isActive = true
+       
+        NSLayoutConstraint.activate([
+            eventCard.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            eventCard.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            eventCard.leadingAnchor.constraint(equalTo: self.leadingAnchor,constant: 0),
+            eventCard.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: 0),
+            eventCard.heightAnchor.constraint(equalToConstant: self.frame.height * 0.45)
+        ])
     }
     
     private func setConfirmButtonConstraints() {
