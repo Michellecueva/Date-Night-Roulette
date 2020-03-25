@@ -85,6 +85,7 @@
 		69CE863823F715FF001E1327 /* InvitesPendingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE863423F715FF001E1327 /* InvitesPendingDelegate.swift */; };
 		69CE863A23F716C7001E1327 /* ViewControllerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE863923F716C6001E1327 /* ViewControllerConfig.swift */; };
 		69CE863B23F718BA001E1327 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE863023F715A9001E1327 /* Enums.swift */; };
+		69D76765242C1AD700B06B2A /* EventCardTrio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D76764242C1AD700B06B2A /* EventCardTrio.swift */; };
 		6BD4DEF7BB09901D06486257 /* Pods_Date_NightTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430EC1B11EDEEA43E7890593 /* Pods_Date_NightTests.framework */; };
 		7401EF4723ECAB45000C322B /* DiscoverEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401EF4623ECAB45000C322B /* DiscoverEventView.swift */; };
 		7401EF4923ECAB81000C322B /* DiscoverEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401EF4823ECAB81000C322B /* DiscoverEventVC.swift */; };
@@ -192,6 +193,7 @@
 		69CE863323F715FF001E1327 /* SendInviteDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendInviteDelegate.swift; sourceTree = "<group>"; };
 		69CE863423F715FF001E1327 /* InvitesPendingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitesPendingDelegate.swift; sourceTree = "<group>"; };
 		69CE863923F716C6001E1327 /* ViewControllerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerConfig.swift; sourceTree = "<group>"; };
+		69D76764242C1AD700B06B2A /* EventCardTrio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCardTrio.swift; sourceTree = "<group>"; };
 		7401EF4623ECAB45000C322B /* DiscoverEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverEventView.swift; sourceTree = "<group>"; };
 		7401EF4823ECAB81000C322B /* DiscoverEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverEventVC.swift; sourceTree = "<group>"; };
 		7401EF6923F1C53D000C322B /* PartnerSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerSettingVC.swift; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 			isa = PBXGroup;
 			children = (
 				69849BE3241FC8FB0060F0D5 /* EventCard.swift */,
+				69D76764242C1AD700B06B2A /* EventCardTrio.swift */,
 				69849BE5241FC9010060F0D5 /* EventCardDetailView.swift */,
 				0B96460C23EE2C6A00D2CAB9 /* PreferenceView.swift */,
 				0B4DC8A224256412006F2B35 /* OBNotificationsView.swift */,
@@ -641,6 +644,7 @@
 				0BEF6968242AAD47001B2F03 /* AccountSettingsVC.swift in Sources */,
 				0B4DC8A324256412006F2B35 /* OBNotificationsView.swift in Sources */,
 				283823C423E885390031327E /* FBEvents.swift in Sources */,
+				69D76765242C1AD700B06B2A /* EventCardTrio.swift in Sources */,
 				7401EF6C23F1C573000C322B /* PartnerSettingView.swift in Sources */,
 				6986FE2D23FC793A00B5560A /* ShowEventVC.swift in Sources */,
 				69CE862B23F71565001E1327 /* SwipingContainerViewController.swift in Sources */,
