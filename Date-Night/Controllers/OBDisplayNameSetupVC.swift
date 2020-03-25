@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class OBDisplayNameSetupVC: UIViewController {
 
@@ -17,7 +18,23 @@ class OBDisplayNameSetupVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(obDisplayName)
-
+        addObjcFunctions()
+      
     }
+    
+
+
+    private func addObjcFunctions() {
+        obDisplayName.nextButton.addTarget(self, action: #selector(addDisplayName), for: .touchUpInside)
+        
+       }
+       
+       
+       @objc private func addDisplayName(){
+        
+             //  present(OBDisplayNameSetupVC(), animated: true, completion: nil)
+       }
+       
+    
 
 }

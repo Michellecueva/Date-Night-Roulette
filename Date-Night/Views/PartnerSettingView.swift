@@ -46,18 +46,18 @@ class PartnerSettingView: UIView {
         }()
      
     
-    lazy var removePartnerButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Remove Partner", for: .normal)
-        button.setTitleColor(StyleGuide.ButtonStyle.fontColor, for: .normal)
-        button.titleLabel?.font = UIFont(name: StyleGuide.ButtonStyle.fontName, size: StyleGuide.ButtonStyle.fontSize)
-       button.backgroundColor = StyleGuide.ButtonStyle.backgroundColor
-        button.layer.cornerRadius = StyleGuide.ButtonStyle.cornerRadius
-        button.layer.borderColor = StyleGuide.ButtonStyle.borderColor
-        button.layer.borderWidth = StyleGuide.ButtonStyle.altBorderWidth
-        button.isEnabled = true
-        return button
-    }()
+//    lazy var removePartnerButton: UIButton = {
+//        let button = UIButton(type: .system)
+//        button.setTitle("Remove Partner", for: .normal)
+//        button.setTitleColor(StyleGuide.ButtonStyle.fontColor, for: .normal)
+//        button.titleLabel?.font = UIFont(name: StyleGuide.ButtonStyle.fontName, size: StyleGuide.ButtonStyle.fontSize)
+//       button.backgroundColor = StyleGuide.ButtonStyle.backgroundColor
+//        button.layer.cornerRadius = StyleGuide.ButtonStyle.cornerRadius
+//        button.layer.borderColor = StyleGuide.ButtonStyle.borderColor
+//        button.layer.borderWidth = StyleGuide.ButtonStyle.altBorderWidth
+//        button.isEnabled = true
+//        return button
+//    }()
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
@@ -76,7 +76,7 @@ class PartnerSettingView: UIView {
         self.addSubview(partnerNameLabel)
         self.addSubview(noEventsLabel)
         self.addSubview(historyTable)
-        self.addSubview(removePartnerButton)
+        //self.addSubview(removePartnerButton)
     }
     
     private func setConstraints() {
@@ -84,7 +84,7 @@ class PartnerSettingView: UIView {
         setPartnerNameLabelConstraints()
         setNoEventsLabelConstraints()
         setTableConstraints()
-        setRemoveButtonConstraints()
+        //setRemoveButtonConstraints()
     }
     
     private func setPortraitConstraints() {
@@ -137,14 +137,14 @@ class PartnerSettingView: UIView {
         ])
     }
     
-    private func setRemoveButtonConstraints() {
-        removePartnerButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            removePartnerButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -70),
-            removePartnerButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            removePartnerButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.50),
-            removePartnerButton.heightAnchor.constraint(equalToConstant: 40)
-        ])
-    }
-    
+//    private func setRemoveButtonConstraints() {
+//        removePartnerButton.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            removePartnerButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -70),
+//            removePartnerButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+//            removePartnerButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.50),
+//            removePartnerButton.heightAnchor.constraint(equalToConstant: 40)
+//        ])
+//    }
+//
 }
