@@ -30,7 +30,7 @@ class OBSendInviteVC: UIViewController {
     private func setupScene(){
         
         self.navigationController?.navigationBar.topItem?.title = "Date Night Roulette"
-       // navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Skip", style: .plain, target: self, action: #selector(skipButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Skip", style: .plain, target: self, action: #selector(skipButton))
         self.navigationController?.navigationBar.barTintColor = .gray
         navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.9712318778, green: 0.9606906772, blue: 0.6410447955, alpha: 1)
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.init(red: 0.9712318778, green: 0.9606906772, blue: 0.6410447955, alpha: 1)]
@@ -50,12 +50,11 @@ class OBSendInviteVC: UIViewController {
     
     private func addObjcFunctions() {
         sendInviteView.enterButton.addTarget(self, action: #selector(sendInvite), for: .touchUpInside)
-        sendInviteView.skipButton.addTarget(self, action: #selector(skipButton), for: .touchUpInside)
     }
     
     
     @objc private func skipButton(){
-        present(NoPartnerVC(), animated: true, completion: nil)
+        present(OBNotifcationsVC(), animated: true, completion: nil)
        
     }
     
