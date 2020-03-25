@@ -39,6 +39,8 @@
 		0BDA95D223EA0B150069E56D /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBFCD3923E8CEB700E039A7 /* Categories.swift */; };
 		0BEF6966242AA9AA001B2F03 /* AccountSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEF6965242AA9AA001B2F03 /* AccountSettingsView.swift */; };
 		0BEF6968242AAD47001B2F03 /* AccountSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEF6967242AAD47001B2F03 /* AccountSettingsVC.swift */; };
+		0BEF696A242BB894001B2F03 /* NoPartnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEF6969242BB894001B2F03 /* NoPartnerView.swift */; };
+		0BEF696C242BC8F4001B2F03 /* NoPartnerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEF696B242BC8F4001B2F03 /* NoPartnerVC.swift */; };
 		28313C732412153F005F14BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28313C722412153F005F14BF /* GoogleService-Info.plist */; };
 		28313C7524121564005F14BF /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28313C7424121564005F14BF /* Secrets.swift */; };
 		28381B7A242966840010AC6C /* EventsShown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28381B79242966840010AC6C /* EventsShown.swift */; };
@@ -140,6 +142,8 @@
 		0BBFCD3923E8CEB700E039A7 /* Categories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		0BEF6965242AA9AA001B2F03 /* AccountSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsView.swift; sourceTree = "<group>"; };
 		0BEF6967242AAD47001B2F03 /* AccountSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsVC.swift; sourceTree = "<group>"; };
+		0BEF6969242BB894001B2F03 /* NoPartnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPartnerView.swift; sourceTree = "<group>"; };
+		0BEF696B242BC8F4001B2F03 /* NoPartnerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPartnerVC.swift; sourceTree = "<group>"; };
 		28313C722412153F005F14BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		28313C7424121564005F14BF /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		28381B79242966840010AC6C /* EventsShown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsShown.swift; sourceTree = "<group>"; };
@@ -319,6 +323,7 @@
 				7467518223F7293200357610 /* SplashScreenVC.swift */,
 				0BEF6967242AAD47001B2F03 /* AccountSettingsVC.swift */,
 				0B4DC8A4242572A0006F2B35 /* OBNotifcationsVC.swift */,
+				0BEF696B242BC8F4001B2F03 /* NoPartnerVC.swift */,
 				0B4DC8A6242579EA006F2B35 /* OBLocationServicesVC.swift */,
 				0B4DC8AC242586DF006F2B35 /* OBDisplayNameSetupVC.swift */,
 				283823E923F0C6E70031327E /* InvitesPendingVC.swift */,
@@ -378,6 +383,7 @@
 				7467518023F7169F00357610 /* SplashScreenView.swift */,
 				7401EF6B23F1C573000C322B /* PartnerSettingView.swift */,
 				7401EF4623ECAB45000C322B /* DiscoverEventView.swift */,
+				0BEF6969242BB894001B2F03 /* NoPartnerView.swift */,
 				7401EF7723F1E941000C322B /* WaitingForResponseView.swift */,
 				0B38E7D424048B89003D05CE /* RandomEventView.swift */,
 				283823E523F0C4D10031327E /* InvitesCell.swift */,
@@ -679,8 +685,10 @@
 				0BBFCD3023E8CDFB00E039A7 /* NetworkHelper.swift in Sources */,
 				2862B5FB23DD47130047B47B /* AppDelegate.swift in Sources */,
 				0B4DC8AB24258693006F2B35 /* OBDisplayNameSetupView.swift in Sources */,
+				0BEF696C242BC8F4001B2F03 /* NoPartnerVC.swift in Sources */,
 				283823EE23F0F4F30031327E /* CellDelegate.swift in Sources */,
 				69CE862923F71565001E1327 /* LeftViewController.swift in Sources */,
+				0BEF696A242BB894001B2F03 /* NoPartnerView.swift in Sources */,
 				74DB5647240F044C000C43EA /* MatchedEventVC.swift in Sources */,
 				69849BE4241FC8FB0060F0D5 /* EventCard.swift in Sources */,
 				746751A523FF458900357610 /* DisplayEventView.swift in Sources */,
