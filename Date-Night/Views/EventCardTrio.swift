@@ -10,34 +10,43 @@ import UIKit
 
 class EventCardTrio: UIView {
 
-    let eventCardOne = EventCard()
-    let eventCardTwo = EventCard()
-    let eventCardThree = EventCard()
+  lazy var eventCardOne = EventCard()
+   lazy var eventCardTwo = EventCard()
+   lazy var eventCardThree = EventCard()
     
     var firstCard:EventCard? {
         didSet {
             UIView.animate(withDuration: 0.2) { [weak self] in
                 self?.firstCard?.transform = .identity
+                self?.firstCard?.titleLabel.alpha = 1.0
+                self?.firstCard?.imageView.isOpaque = true
         }
         }
     }
     var secondCard:EventCard? {
         didSet {
+            secondCard?.titleLabel.alpha = 0.0
+            secondCard?.imageView.isOpaque = false
             UIView.animate(withDuration: 0.2) { [weak self] in
-                self?.secondCard?.transform = CGAffineTransform(translationX: 0, y: (self?.frame.height ?? 0) * 0.05)
+                self?.secondCard?.transform = CGAffineTransform(translationX: 1, y: (self?.frame.height ?? 0) * 0.04).scaledBy(x: 0.8, y: 1)
+              
             }
         }
     }
     var thirdCard:EventCard? {
         didSet {
+            thirdCard?.titleLabel.alpha = 0.0
+            thirdCard?.imageView.isOpaque = false
             UIView.animate(withDuration: 0.2) { [weak self] in
                 
-                self?.thirdCard?.transform = CGAffineTransform(translationX: 0, y: (self?.frame.height ?? 0) * 0.10)
+                self?.thirdCard?.transform = CGAffineTransform(translationX: 1, y: (self?.frame.height ?? 0) * 0.08).scaledBy(x: 0.7, y: 1)
+               
               }
         }
     }
    
-    lazy var trio = [self.eventCardOne,self.eventCardTwo,self.eventCardThree]
+  lazy var queue = [self.eventCardOne,self.eventCardTwo,self.eventCardThree]
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
@@ -49,14 +58,18 @@ class EventCardTrio: UIView {
     }
     
     private func commonInit() {
-        self.addSubview(eventCardThree)
-        self.addSubview(eventCardTwo)
-        self.addSubview(eventCardOne)
-      
-      
-        eventConstraints()
+        addSubviews()
+        eventCardOneConstraints()
+        eventCardTwoConstraints()
+        eventCardThreeConstraints()
         initialCardSetup()
         
+    }
+    
+    private func addSubviews() {
+               self.addSubview(eventCardThree)
+               self.addSubview(eventCardTwo)
+               self.addSubview(eventCardOne)
     }
     
     private func initialCardSetup() {
@@ -65,24 +78,40 @@ class EventCardTrio: UIView {
         thirdCard = eventCardThree
     }
     
-    private func eventConstraints() {
-
+    private func eventCardOneConstraints() {
         eventCardOne.translatesAutoresizingMaskIntoConstraints = false
-        eventCardTwo.translatesAutoresizingMaskIntoConstraints = false
-        eventCardThree.translatesAutoresizingMaskIntoConstraints = false
-              NSLayoutConstraint.activate([
-              eventCardOne.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-              eventCardOne.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-              eventCardOne.heightAnchor.constraint(equalToConstant: self.frame.width * 0.8),
-                  eventCardOne.widthAnchor.constraint(equalToConstant: self.frame.height * 0.5),
-                  eventCardTwo.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                  eventCardTwo.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-                  eventCardTwo.heightAnchor.constraint(equalToConstant: self.frame.width * 0.8),
-                      eventCardTwo.widthAnchor.constraint(equalToConstant: self.frame.height * 0.5),
-                      eventCardThree.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                      eventCardThree.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-                      eventCardThree.heightAnchor.constraint(equalToConstant: self.frame.width * 0.8),
-                          eventCardThree.widthAnchor.constraint(equalToConstant: self.frame.height * 0.5)
-              ])
+        NSLayoutConstraint.activate([
+           eventCardOne.topAnchor.constraint(equalTo: self.topAnchor),
+                 eventCardOne.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+                  eventCardOne.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+                   eventCardOne.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+        ])
     }
+    
+    private func eventCardTwoConstraints() {
+        eventCardTwo.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+               eventCardTwo.topAnchor.constraint(equalTo: self.topAnchor),
+                        eventCardTwo.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+                         eventCardTwo.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+                          eventCardTwo.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+               ])
+
+    }
+    private func eventCardThreeConstraints() {
+        eventCardThree.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+               
+            eventCardThree.topAnchor.constraint(equalTo: self.topAnchor),
+             eventCardThree.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+              eventCardThree.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+               eventCardThree.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+               ])
+
+    }
+    
+    
+
 }
