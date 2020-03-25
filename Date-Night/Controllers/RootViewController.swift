@@ -9,7 +9,6 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
-import UserNotifications
 
 class RootViewController: UIViewController{
     
@@ -88,7 +87,6 @@ class RootViewController: UIViewController{
         getUser()
         makeNavBarTranslucent()
         showBarButtons()
-        UNUserNotificationCenter.current().delegate = self
     }
 
        
@@ -104,10 +102,6 @@ class RootViewController: UIViewController{
         
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        print("disappeared")
-    }
-    
     private func handleAppNavigationLogic() {
         if currentUser?.partnerEmail == "" {
             getInvites()
@@ -116,9 +110,6 @@ class RootViewController: UIViewController{
             profileVC.currentUser = currentUser
 
         } else {
-            if currentUser?.hasMatched == true {
-                  UNNotification.configureNotifications(title: "It's a Match!", body: "You've Matched Events With Your Partner", time: 0.1, categoryIdentifier: "matched")
-            }
             if partner == nil {
                 grabPartnerFromFirebase()
             }
@@ -441,9 +432,4 @@ extension RootViewController:fbEventsDelegate {
         shakeVC.fbEvents = fbEvents
         navigationController?.pushViewController(shakeVC, animated: true)
     }
-}
-extension RootViewController: UNUserNotificationCenterDelegate {
-  func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-    completionHandler([.alert, .sound])
-  }
 }
