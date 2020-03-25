@@ -9,26 +9,28 @@
 import UIKit
 
 class EventCard: UIView {
-    
+
+//    var event: Event? {
+//        didSet {
+//            print(event?.title)
+//     //       setNeedsLayout()
+//        }
+//    }
+
     lazy var  titleLabel:UILabel = {
         let tl = UILabel()
         tl.textColor = StyleGuide.TitleFontStyle.fontColor
             tl.numberOfLines = 0
             tl.textAlignment = .center
-        tl.alpha = 0.0
+            
            
             tl.font = UIFont(name:StyleGuide.TitleFontStyle.fontName, size:StyleGuide.TitleFontStyle.altFontSize)
         tl.adjustsFontSizeToFitWidth  = true
         return tl
     }()
-    let imageView:UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFit
-        iv.clipsToBounds = true
-        return iv
-    }()
+    let imageView = UIImageView()
     let detailView = EventCardDetailView()
-    
+    var firstValue:Bool = true 
 
     lazy var tapGesture: UITapGestureRecognizer = {
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(tap:)))

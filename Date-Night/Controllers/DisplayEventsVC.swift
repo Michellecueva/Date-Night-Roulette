@@ -2,7 +2,6 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
-import UserNotifications
 
 
 //shake gesture only works on first responder
@@ -15,13 +14,18 @@ class DisplayEventsVC: UIViewController {
     var displayEventView = DisplayEventView()
     var fbEvents:[FBEvents] = [] {
         didSet {
-            
+            guard fbEvents.count != 0 else {
+                self.testAlert(controllerTitle: "You've Reached The End of Your Events", controllerMessage: "", actionOneTitle: "Ok", actionTwoTitle: nil, actionOneClosure: { (action) in
+                    self.navigationController?.popViewController(animated: true)
+                }, controllerStyle: .alert, actionTwoClosure: nil, actionOneStyle: .default, actionTwoStyle: nil)
+                return
+            }
+            setUpView(event: fbEvents.last!)
             print(fbEvents.count)
             
         }
     }
-    let animator = UIViewPropertyAnimator(duration: 0.5, curve: .linear)
-    var visualEffectView = UIVisualEffectView()
+    
     var eventsLiked = [String]() {
         didSet {
             UserDefaultsWrapper.standard.store(eventsLikedArr: eventsLiked)
@@ -29,15 +33,15 @@ class DisplayEventsVC: UIViewController {
     }
     
     var currentUser:AppUser? {
-        didSet {
-            addListenerOnPartner()
-        }
+      didSet {
+        addListenerOnPartner()
+      }
     }
     lazy var panGestureRecognizer:UIPanGestureRecognizer = {
         let pan = UIPanGestureRecognizer()
         
         pan.addTarget(self, action: #selector(panGesture))
-        
+       
         return pan
     }()
     
@@ -58,14 +62,14 @@ class DisplayEventsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(displayEventView)
+        displayEventView.eventCard.isUserInteractionEnabled = true
+        displayEventView.eventCard.addGestureRecognizer(panGestureRecognizer)
         view.backgroundColor = .black
-        animator.addAnimations {
-            self.visualEffectView.effect = UIBlurEffect(style: .regular)
-        }
-        UNUserNotificationCenter.current().delegate = self
-
+        
     }
-
+    
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.makeNavBarTranslucent()
@@ -77,189 +81,124 @@ class DisplayEventsVC: UIViewController {
     
     override func viewDidAppear(_ animated:Bool) {
         super.viewDidAppear(animated)
-        setInitialCards()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+//fbEvents = []
         
-    }
-    
-    
-    private func enqueueAndDequeue(card:EventCard) {
-        
-        displayEventView.eventCard.queue.remove(at: 0)
-        guard displayEventView.eventCard.queue.count < fbEvents.count else {
-            setCards()
-            return}
-        displayEventView.eventCard.queue.append(card)
-        
-        displayEventView.eventCard.insertSubview(card, at: 0)
-        setCards()
-        card.layer.borderColor = .none
-        card.layer.borderWidth = 0
-    }
-    
-    private func setCards() {
-        //implement check if number of events is **initially** lower than the number of eventCards
-        
-        guard displayEventView.eventCard.queue.count - 1 > 0 else {
-            self.showAlert(title: "No more events", message: "What should we put here?")
-            return}
-        for card in 0...displayEventView.eventCard.queue.count - 1 {
-            switch card {
-            case 0:
-                displayEventView.eventCard.firstCard = displayEventView.eventCard.queue[card]
-                
-                if  displayEventView.eventCard.queue[card].gestureRecognizers?.count ?? 1 < 2 {
-                    displayEventView.eventCard.queue[card].addGestureRecognizer(panGestureRecognizer)
-                }
-                
-                displayEventView.eventCard.queue[card].isUserInteractionEnabled = true
-            case 1:
-                displayEventView.eventCard.secondCard = displayEventView.eventCard.queue[card]
-                if displayEventView.eventCard.queue.count == 2 {
-                    setUpView(event: fbEvents.popLast(), card: displayEventView.eventCard.queue[card])
-                }
-                
-                displayEventView.eventCard.queue[card].isUserInteractionEnabled = false
-            case 2:
-                displayEventView.eventCard.thirdCard = displayEventView.eventCard.queue[card]
-                
-                setUpView(event: fbEvents.popLast(), card: displayEventView.eventCard.queue[card])
-                displayEventView.eventCard.queue[card].isUserInteractionEnabled = false
-            default:
-                print("")
-            }
-        }
-    }
-    
-    private func setInitialCards() {
-        guard displayEventView.eventCard.queue.count - 1 > 0 else {return}
-        for card in 0...displayEventView.eventCard.queue.count - 1 {
-            switch card {
-            case 0:
-                displayEventView.eventCard.firstCard = displayEventView.eventCard.queue[card]
-                
-                if  displayEventView.eventCard.queue[card].gestureRecognizers?.count ?? 1 < 2 {
-                    displayEventView.eventCard.queue[card].addGestureRecognizer(panGestureRecognizer)
-                    
-                }
-                setUpView(event: fbEvents.popLast(), card: displayEventView.eventCard.queue[card])
-                displayEventView.eventCard.queue[card].isUserInteractionEnabled = true
-            case 1:
-                displayEventView.eventCard.secondCard = displayEventView.eventCard.queue[card]
-                
-                setUpView(event: fbEvents.popLast(), card: displayEventView.eventCard.queue[card])
-                displayEventView.eventCard.queue[card].isUserInteractionEnabled = false
-            case 2:
-                displayEventView.eventCard.thirdCard = displayEventView.eventCard.queue[card]
-                
-                setUpView(event: fbEvents.popLast(), card: displayEventView.eventCard.queue[card])
-                displayEventView.eventCard.queue[card].isUserInteractionEnabled = false
-            default:
-                print("")
-            }
-        }
     }
     
     private func addObjcFunctionsToViewButtons() {
         displayEventView.confirmButton.addTarget(self, action: #selector(likedButtonPressed), for: .touchUpInside)
     }
+    
+    
+   @objc private func panGesture(sender:UIPanGestureRecognizer)
+   
+       {
+                   
+                   let card = sender.view
+                   
+                   let pointer = sender.translation(in: view)
+                   
+                   card?.center = CGPoint(x: view.center.x + pointer.x, y: view.center.y + pointer.y)
 
-    @objc private func panGesture(sender:UIPanGestureRecognizer)
+                   
+                   let xFromCenter = (card?.center.x)! - view.center.x
         
-    {
         
-        let card = sender.view
-        let pointer = sender.translation(in: view)
-        
-        //      uncomment when bug is fixed -view.center.y makes the card move to the bottom of the screen-
-        //        card?.center = CGPoint(x: view.center.x + pointer.x, y: view.center.y + pointer.y)
+           let rotation = (xFromCenter / (view.frame.width / 2)) * 0.93
+                   // for full rotation make sure rotation value is over 1 (divide xFromCenter seperately)
+                   let distanceFromCenterToTheRight = view.center.x  * 0.50
+                   
+                   let distanceFromCenterToTheLeft = view.center.x * -0.50
+                   
+                   let scaler = min(abs(80/xFromCenter), 1)
+                  
+//                   if card?.center.y != view.center.y  {
+//                       card?.center.y = view.center.y
+//                       }
+                  
+                   card?.transform = CGAffineTransform(rotationAngle: rotation).scaledBy(x: scaler, y: scaler)
+             
+                   if xFromCenter > 0 {
+                       card?.layer.borderWidth = 5
+                       card?.layer.borderColor = UIColor.green.withAlphaComponent(abs(xFromCenter / view.center.x)).cgColor
+                        
+                   } else if xFromCenter < 0 {
+                         card?.layer.borderWidth = 5
+                       card?.layer.borderColor = UIColor.red.withAlphaComponent(abs(xFromCenter / view.center.x)).cgColor
+                   }
+                   
+                   
+                  
+                   if sender.state == .ended {
+                    
+                       if xFromCenter > 0 && xFromCenter < distanceFromCenterToTheRight {
+                                   
+                                     UIView.animate(withDuration: 0.2) {
+                                      
+                                        card?.center = CGPoint(x: self.view.center.x , y: (card?.center.y)! + (card?.superview?.frame.height)! * 0.05)
+                                       card?.layer.borderWidth = 0
+                                       card?.layer.borderColor = .none
+                                       
+                                       card?.transform = .identity
+                                       }
+                                     return
+                       } else if xFromCenter < 0 && xFromCenter > distanceFromCenterToTheLeft {
+                           
+                           UIView.animate(withDuration: 0.2) {
 
-          card?.center.x = view.center.x + pointer.x
-        
-        let xFromCenter = (card?.center.x)! - view.center.x
-        let rotation = (xFromCenter / (view.frame.width / 2)) * 0.93
-        // for full rotation make sure rotation value is over 1 (divide xFromCenter seperately)
-        let distanceFromCenterToTheRight = view.center.x  * 0.50
-        
-        let distanceFromCenterToTheLeft = view.center.x * -0.50
-        
-        let scaler = min(abs(80/xFromCenter), 1)
-     
-        card?.transform = CGAffineTransform(rotationAngle: rotation).scaledBy(x: scaler, y: scaler)
-        
-        if xFromCenter > 0 {
-            card?.layer.borderWidth = 5
-            card?.layer.borderColor = UIColor.green.withAlphaComponent(abs(xFromCenter / view.center.x)).cgColor
-            
-           // displayEventView.eventCard.secondCard?.transform = CGAffineTransform(translationX: <#T##CGFloat#>, y: <#T##CGFloat#>)
-            
-        } else if xFromCenter < 0 {
-            card?.layer.borderWidth = 5
-            card?.layer.borderColor = UIColor.red.withAlphaComponent(abs(xFromCenter / view.center.x)).cgColor
-        }
-        
-        if sender.state == .ended {
-            
-            if xFromCenter > 0 && xFromCenter < distanceFromCenterToTheRight {
-                
-                UIView.animate(withDuration: 0.2) {
+                             
+                                                                 card?.center = CGPoint(x: self.view.center.x , y: (card?.center.y)! + (card?.superview?.frame.height)! * 0.05)
+                                                                      card?.layer.borderWidth = 0
+                                                                                                card?.layer.borderColor = .none
+                               
+                               card?.transform = .identity
+
+                                                              }
+                                          return
+                       } else if xFromCenter >= distanceFromCenterToTheRight {
+                       
+                                       UIView.animate(withDuration: 0.5, animations: {
+  
+                                        card?.center = CGPoint(x: self.view.frame.maxX + (self.view.frame.width * 0.5), y: (card?.center.y)! + (card?.superview?.frame.height)! * 0.05)
+                                             //
+                                                              
+                       
+                                       }, completion: { (bool) in
+                                           self.likedButtonPressed()
+                                           self.returnToCenterFromRight()
+                                       })
+                                           return
+                                   } else if xFromCenter <= distanceFromCenterToTheLeft
+                                           {
+                                      UIView.animate(withDuration: 0.5, animations: {
+                       
+                                       
+                                       card?.center = CGPoint(x: self.view.frame.maxX - (self.view.frame.width * 1.5), y: ((card?.center.y)!) + (card?.superview?.frame.height)! * 0.05)
+                                                
                     
-                    card?.center.x = self.view.center.x
-                    card?.layer.borderWidth = 0
-                    card?.layer.borderColor = .none
-                    card?.transform = .identity
-                }
-                return
-            } else if xFromCenter < 0 && xFromCenter > distanceFromCenterToTheLeft {
-                
-                UIView.animate(withDuration: 0.2) {
-                    card?.center.x = self.view.center.x
-                    card?.layer.borderWidth = 0
-                    card?.layer.borderColor = .none
-                    card?.transform = .identity
-                }
-                return
-            } else if xFromCenter >= distanceFromCenterToTheRight {
-                
-                UIView.animate(withDuration: 0.5, animations: {
-                    card?.center = CGPoint(x: self.view.frame.maxX + (self.view.frame.width * 0.5), y: (card?.center.y)! + (card?.superview?.frame.height)! * 0.05)
-                })
-                likedButtonPressed()
-                if self.displayEventView.eventCard.queue.count < self.fbEvents.count {
-                    self.enqueueAndDequeue(card: card as! EventCard)
-                    
-                } else {
-                    enqueueAndDequeue(card: card as! EventCard)
-                    card?.removeFromSuperview()
-                }
-                return
-            } else if xFromCenter <= distanceFromCenterToTheLeft
-            {
-                UIView.animate(withDuration: 0.5, animations: {
-                
-                    card?.center = CGPoint(x: self.view.frame.maxX - (self.view.frame.width * 1.5), y: ((card?.center.y)!) + (card?.superview?.frame.height)! * 0.05)
-                })
-                if self.displayEventView.eventCard.queue.count < self.fbEvents.count {
-                    
-                    self.enqueueAndDequeue(card: card as! EventCard)
-                    
-                } else {
-                    enqueueAndDequeue(card: card as! EventCard)
-                    card?.removeFromSuperview()
-                }
-                return
-            }
-        }
-    }
+                                                      }, completion: { (bool) in
+                                                        self.fbEvents.popLast()
+                                                self.returnToCenterLeft()
+                                                      })
+                                       return
+                                   }
+
+                  
+                   }
+                   
+                   
+                   }
     
     @objc private func likedButtonPressed() {
         guard let lastEvent = fbEvents.last else {return}
         event = lastEvent
         eventsLiked.append(event.eventID)
         updateEventsLikedOnFirebase(eventsLiked: eventsLiked)
+        
         guard let lastEventLiked = eventsLiked.last else {return}
         if partnersEventsLiked.contains(lastEventLiked) {
             guard let coupleID = currentUser?.coupleID else {return}
@@ -268,20 +207,46 @@ class DisplayEventsVC: UIViewController {
             createMatchedEvent(matchedEvent: matchedEvent)
             updateHasMatchedField(hasMatched: true)
             segueToMatchedVC()
-            UNNotification.configureNotifications(title: "It's a Match!", body: "You've Matched Events With Your Partner", time: 0.1, categoryIdentifier: "matched")
-            //            matchAlert(title: "It's a Match!", message: "You've Matched Events With Your Partner")
+//            matchAlert(title: "It's a Match!", message: "You've Matched Events With Your Partner")
             clearEventsLikedArr()
             
         }else {
-            //            in the future prevent liked events from showing up at all
-            //            fbEvents.popLast()
+//            in the future prevent liked events from showing up at all
+            fbEvents.popLast()
         }
     }
-
+    
+    private func returnToCenterFromRight() {
+        displayEventView.eventCard.center = CGPoint(x: view.frame.minX, y: view.center.y )
+        displayEventView.eventCard.layer.borderWidth = 0
+                   displayEventView.eventCard.layer.borderColor = .none
+           UIView.animate(withDuration: 0.3) {
+            self.displayEventView.eventCard.alpha = 1
+            self.displayEventView.eventCard.transform = .identity
+            self.displayEventView.eventCard.center = CGPoint(x: self.view.center.x, y: self.view.center.y + self.view.frame.height * 0.05)
+           }
+           
+       }
+       
+       private func returnToCenterLeft() {
+                   displayEventView.eventCard.center = CGPoint(x: view.frame.maxX, y: view.center.y )
+                   displayEventView.eventCard.layer.borderWidth = 0
+                   displayEventView.eventCard.layer.borderColor = .none
+                  UIView.animate(withDuration: 0.3) {
+                    self.displayEventView.eventCard.alpha = 1
+                    self.displayEventView.eventCard.transform = .identity
+                    self.displayEventView.eventCard.center = CGPoint(x: self.view.center.x, y: self.view.center.y + self.view.frame.height * 0.05)
+                  }
+       }
+    
+    
     private func getPriorEventsLiked() {
         if let eventsArr = UserDefaultsWrapper.standard.getEventsLiked() {
             guard eventsArr.count > 0 else {return}
         }
+        
+        //maybe pull events from firebase instead
+        
     }
     
     private func getAppUser() {
@@ -331,27 +296,27 @@ class DisplayEventsVC: UIViewController {
     
     private func segueToMatchedVC() {
         let matched = MatchedEventVC()
-        matched.newImage = self.displayEventView.eventCard.firstCard?.imageView.image
+        matched.newImage = self.displayEventView.eventCard.imageView.image
         matched.event = self.event
         self.navigationController?.pushViewController(matched, animated: true)
         updateHasMatchedField(hasMatched: false)
-        
+
     }
     
     private func matchAlert(title:String,message:String) {
         //move to extension
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
+
         let confirmMatch = UIAlertAction(title: "Confirm", style: .default) { (response) in
-            
+
             let matched = MatchedEventVC()
-            matched.newImage = self.displayEventView.eventCard.firstCard?.imageView.image
+            matched.newImage = self.displayEventView.eventCard.imageView.image
             matched.event = self.event
             self.navigationController?.pushViewController(matched, animated: true)
-            
+
         }
         let deny = UIAlertAction(title: "Deny", style: .destructive)
-        
+
         alertController.addAction(confirmMatch)
         alertController.addAction(deny)
         present(alertController,animated: true)
@@ -387,36 +352,31 @@ class DisplayEventsVC: UIViewController {
                 }
             })
     }
-    private func setUpView(event:FBEvents?,card:EventCard?) {
-        guard let event = event else {return}
+    private func setUpView(event:FBEvents) {
+     
+          //eventCard.setNeedsDisplay()
         
-        card?.layoutTitleLabel(event: event)
-        card?.layoutDetailView(from:event)
-        
+        displayEventView.eventCard.layoutTitleLabel(event: event)
+        displayEventView.eventCard.layoutDetailView(from:event)
         if let image = event.imageURL {
             
             //remember to stop user interaction until image finishes loading
-            ImageHelper.shared.getImage(urlStr: image) { (result) in
+            ImageHelper.shared.getImage(urlStr: image) { [weak self](result) in
                 DispatchQueue.main.async {
                     
                     
                     switch result {
                     case .failure(let error):
                         print(error)
-                        card?.layoutImageView(eventImage: UIImage(systemName: "photo.fill"))
+                        self?.displayEventView.eventCard.layoutImageView(eventImage: UIImage(systemName: "photo"))
                     case .success(let image):
                         
-                        card?.layoutImageView(eventImage: image)
+                        self?.displayEventView.eventCard.layoutImageView(eventImage: image)
                     }
                 }
             }
         } else {
-            card?.layoutImageView(eventImage: UIImage(systemName: "photo.fill"))
+            self.displayEventView.eventCard.layoutImageView(eventImage: UIImage(systemName: "photo"))
         }
-    }
-}
-extension DisplayEventsVC: UNUserNotificationCenterDelegate {
-  func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-    completionHandler([.alert, .sound])
-  }
+      }
 }

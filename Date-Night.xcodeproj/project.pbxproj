@@ -64,11 +64,8 @@
 		2862B6B023DFFF3F0047B47B /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2862B6AF23DFFF3F0047B47B /* FirebaseAuthService.swift */; };
 		2865BF102418801500327385 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2865BF0F2418801500327385 /* Section.swift */; };
 		3D45F700C5198B3C28C12DCB /* Pods_Date_Night.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A0A167012B1843CEF3F7DD /* Pods_Date_Night.framework */; };
-
-		6900CDBE242A8BFC00CF1475 /* EventCardTrio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6900CDBD242A8BFC00CF1475 /* EventCardTrio.swift */; };
 		691DD0EE23EE0351003A67E7 /* OBSendInviteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691DD0ED23EE0351003A67E7 /* OBSendInviteView.swift */; };
 		691DD0F023EE03A0003A67E7 /* OBSendInviteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691DD0EF23EE03A0003A67E7 /* OBSendInviteVC.swift */; };
-
 		691DD12423F20A5D003A67E7 /* ProfileSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691DD12323F20A5D003A67E7 /* ProfileSettingView.swift */; };
 		691DD12623F20ACD003A67E7 /* ProfileSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691DD12523F20ACD003A67E7 /* ProfileSettingVC.swift */; };
 		6954708524033F5B0042159C /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6954708424033F5B0042159C /* AdminViewController.swift */; };
@@ -174,12 +171,8 @@
 		2862B6AF23DFFF3F0047B47B /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		2865BF0F2418801500327385 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		430EC1B11EDEEA43E7890593 /* Pods_Date_NightTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Date_NightTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-
-		6900CDBD242A8BFC00CF1475 /* EventCardTrio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCardTrio.swift; sourceTree = "<group>"; };
-
 		691DD0ED23EE0351003A67E7 /* OBSendInviteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBSendInviteView.swift; sourceTree = "<group>"; };
 		691DD0EF23EE03A0003A67E7 /* OBSendInviteVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBSendInviteVC.swift; sourceTree = "<group>"; };
-
 		691DD12323F20A5D003A67E7 /* ProfileSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingView.swift; sourceTree = "<group>"; };
 		691DD12523F20ACD003A67E7 /* ProfileSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingVC.swift; sourceTree = "<group>"; };
 		6954708424033F5B0042159C /* AdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
@@ -384,7 +377,6 @@
 				0B4DC8A824257A06006F2B35 /* OBLocationServicesView.swift */,
 				0B4DC8AA24258693006F2B35 /* OBDisplayNameSetupView.swift */,
 				746751A323FF458900357610 /* DisplayEventView.swift */,
-				6900CDBD242A8BFC00CF1475 /* EventCardTrio.swift */,
 				74DB5648240F046F000C43EA /* MatchedEventView.swift */,
 				0B96460E23EE2C9E00D2CAB9 /* PreferenceCell.swift */,
 				7448D1A123E895DF003A997C /* SignUpView.swift */,
@@ -679,7 +671,6 @@
 				69CE863B23F718BA001E1327 /* Enums.swift in Sources */,
 				69CE863623F715FF001E1327 /* ShakeGestureDelegate.swift in Sources */,
 				6986FE3123FC85B100B5560A /* UserDefaultsWrapper.swift in Sources */,
-				6900CDBE242A8BFC00CF1475 /* EventCardTrio.swift in Sources */,
 				0B96460D23EE2C6A00D2CAB9 /* PreferenceView.swift in Sources */,
 				283823E823F0C5F20031327E /* InvitesPendingView.swift in Sources */,
 				69CE863723F715FF001E1327 /* SendInviteDelegate.swift in Sources */,
@@ -881,9 +872,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Date-Night/Date-Night.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-<
 				DEVELOPMENT_TEAM = 26RHXP32FH;
->
 				INFOPLIST_FILE = "Date-Night/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -903,9 +892,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Date-Night/Date-Night.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-
 				DEVELOPMENT_TEAM = 26RHXP32FH;
-
 				INFOPLIST_FILE = "Date-Night/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

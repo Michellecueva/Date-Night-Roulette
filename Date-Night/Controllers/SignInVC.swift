@@ -102,21 +102,20 @@ class SignInVC: UIViewController {
             return
         }
         
-        guard email != "" else {
-            showAlert(title: "Error", message: "Invalid Email")
-            return
-        }
-        guard password != "" else {
-            showAlert(title: "Error", message: "Invalid Password")
+        guard email.isValidEmail else {
+            self.showAlert(title: "Error", message: "This Email Address is Not Associated With an Account")
             return
         }
         
-       
+        guard password.isValidPassword else {
+            self.showAlert(title: "Error", message: "This Password is Incorrect")
+            return
+        }
         FirebaseAuthService.manager.loginUser(email: email.lowercased().trimmingCharacters(in: .whitespacesAndNewlines), password: password) { (result) in
             self.handleLoginResponse(vc: UINavigationController(rootViewController:RootViewController()), with: result)
         }
     }
-    private func handleLoginResponse(vc:UINavigationController, with result: Result<(), Error>) {
+    private func handleLoginResponse(vc:UINavigationController, with result: Result<(), AppError>) {
         switch result {
             
         case .success:
@@ -134,11 +133,7 @@ class SignInVC: UIViewController {
                 }
             }, completion: nil)
         case .failure(let error):
-          if error.localizedDescription.contains("user record") {
-                 self.showAlert(title: "Error", message: "This Email Address is Not Associated With an Account")
-          } else {
-            self.showAlert(title: "Error", message: error.localizedDescription)
-            }
+            print(error)
             //add alert
         }
     }
