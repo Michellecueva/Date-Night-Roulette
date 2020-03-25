@@ -1,4 +1,3 @@
-
 import UIKit
 
 class SignInVC: UIViewController {
@@ -102,20 +101,21 @@ class SignInVC: UIViewController {
             return
         }
         
-        guard email.isValidEmail else {
-            self.showAlert(title: "Error", message: "This Email Address is Not Associated With an Account")
+        guard email != "" else {
+            showAlert(title: "Error", message: "Invalid Email")
+            return
+        }
+        guard password != "" else {
+            showAlert(title: "Error", message: "Invalid Password")
             return
         }
         
-        guard password.isValidPassword else {
-            self.showAlert(title: "Error", message: "This Password is Incorrect")
-            return
-        }
+       
         FirebaseAuthService.manager.loginUser(email: email.lowercased().trimmingCharacters(in: .whitespacesAndNewlines), password: password) { (result) in
             self.handleLoginResponse(vc: UINavigationController(rootViewController:RootViewController()), with: result)
         }
     }
-    private func handleLoginResponse(vc:UINavigationController, with result: Result<(), AppError>) {
+    private func handleLoginResponse(vc:UINavigationController, with result: Result<(), Error>) {
         switch result {
             
         case .success:
@@ -133,7 +133,11 @@ class SignInVC: UIViewController {
                 }
             }, completion: nil)
         case .failure(let error):
-            print(error)
+          if error.localizedDescription.contains("user record") {
+                 self.showAlert(title: "Error", message: "This Email Address is Not Associated With an Account")
+          } else {
+            self.showAlert(title: "Error", message: error.localizedDescription)
+            }
             //add alert
         }
     }
@@ -151,8 +155,3 @@ extension SignInVC: UITextFieldDelegate {
         return true
     }
 }
-
-
-
-
-
