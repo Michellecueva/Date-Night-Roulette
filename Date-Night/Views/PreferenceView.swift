@@ -12,7 +12,7 @@ class PreferenceView: UIView {
         cv.backgroundColor = .clear
         layout.sectionInset = UIEdgeInsets(top: 30, left: 3, bottom: 0, right: 3)
         cv.register(PreferenceCell.self, forCellWithReuseIdentifier: cellIdentifier)
-        cv.layer.borderColor = UIColor.black.cgColor
+        //cv.layer.borderColor = UIColor.black.cgColor
         cv.layer.borderWidth = 2
         return cv
     }()

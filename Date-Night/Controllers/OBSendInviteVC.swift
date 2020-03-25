@@ -21,7 +21,7 @@ class OBSendInviteVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(sendInviteView)
-        setupScene()
+        //setupScene()
         addObjcFunctions()
         
         // Do any additional setup after loading the view.

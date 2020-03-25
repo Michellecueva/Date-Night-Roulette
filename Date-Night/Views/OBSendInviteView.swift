@@ -52,9 +52,22 @@ class OBSendInviteView: UIView {
         return button
     }()
 
+    lazy var skipButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Skip", for: .normal)
+        button.setTitleColor(StyleGuide.ButtonStyle.fontColor, for: .normal)
+        button.titleLabel?.font = UIFont(name: StyleGuide.ButtonStyle.fontName, size: StyleGuide.ButtonStyle.fontSize)
+        button.backgroundColor = StyleGuide.ButtonStyle.backgroundColor
+        button.layer.cornerRadius = StyleGuide.ButtonStyle.cornerRadius
+        button.layer.borderColor = StyleGuide.ButtonStyle.borderColor
+        button.layer.borderWidth = StyleGuide.ButtonStyle.borderWidth
+        button.isEnabled = true
+           return button
+       }()
+    
     public lazy var stackView: UIStackView = {
         
-        let sv = UIStackView(arrangedSubviews: [self.inviteLabel, self.userInstructions, self.emailField, self.enterButton])
+        let sv = UIStackView(arrangedSubviews: [self.inviteLabel, self.userInstructions, self.emailField, self.enterButton, self.skipButton])
         
         sv.axis = .vertical
         sv.alignment = .fill
@@ -80,11 +93,13 @@ class OBSendInviteView: UIView {
         addSubview(userInstructions)
         addSubview(emailField)
         addSubview(enterButton)
+        addSubview(skipButton)
         addSubview(stackView)
         setUpInviteLabelConstraints()
         setUpUserInstructionsConstraints()
         setUpEmailTextFieldConstraints()
         setUpEnterButtonConstraints()
+        setUpSkipButtonConstraints()
         setUpStackViewConstraints()
     }
     
@@ -121,7 +136,14 @@ class OBSendInviteView: UIView {
             enterButton.heightAnchor.constraint(equalToConstant: self.frame.height * 0.05)
         ])
     }
-    
+    private func setUpSkipButtonConstraints(){
+        skipButton.translatesAutoresizingMaskIntoConstraints = false
+               
+        NSLayoutConstraint.activate([
+            skipButton.heightAnchor.constraint(equalToConstant: self.frame.height * 0.05)
+        ])
+        
+    }
     private func setUpStackViewConstraints(){
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
