@@ -62,6 +62,8 @@ class DisplayEventsVC: UIViewController {
         animator.addAnimations {
             self.visualEffectView.effect = UIBlurEffect(style: .regular)
         }
+        UNUserNotificationCenter.current().delegate = self
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -412,4 +414,9 @@ class DisplayEventsVC: UIViewController {
             card?.layoutImageView(eventImage: UIImage(systemName: "photo.fill"))
         }
     }
+}
+extension DisplayEventsVC: UNUserNotificationCenterDelegate {
+  func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    completionHandler([.alert, .sound])
+  }
 }
