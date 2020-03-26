@@ -265,8 +265,6 @@ class DisplayEventsVC: UIViewController {
             matchAlert(title: "It's a Match!", message: "You've Matched Events With Your Partner")
             clearEventsLikedArr()
             
-        }else {
-           
         }
     }
     
