@@ -33,7 +33,6 @@ class PartnerSettingVC: UIViewController {
     
     private var dataSource: UITableViewDiffableDataSource<Section, MatchedEvent>!
     
-    
     private let db = Firestore.firestore()
     
     private var matchedEventListener: ListenerRegistration?
@@ -42,14 +41,12 @@ class PartnerSettingVC: UIViewController {
            return db.collection("MatchedEvents")
     }
     
- 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         view.addSubview(partnerView)
         configureDataSource()
-        //addObjcFunctionToRemovePartnerButton()
+        addObjcFunctionToRemovePartnerButton()
         self.partnerView.historyTable.delegate = self
     }
     
@@ -58,11 +55,13 @@ class PartnerSettingVC: UIViewController {
         partnerView.portraitPic.layer.cornerRadius = partnerView.portraitPic.bounds.size.width / 2
     }
     
-
     private func configureDataSource(){
         dataSource = UITableViewDiffableDataSource<Section, MatchedEvent>(tableView: partnerView.historyTable, cellProvider: { (tableView, indexPath, MatchedEvents) -> UITableViewCell? in
             let cell = tableView.dequeueReusableCell(withIdentifier: MatchedCell.identifier, for: indexPath) as! MatchedCell
             cell.configureCell(with: MatchedEvents, row: indexPath.row)
+            let customColorView = UIView()
+            customColorView.backgroundColor = #colorLiteral(red: 0.4663916826, green: 0.3947991133, blue: 0.5015093088, alpha: 0.5466579861)
+            cell.selectedBackgroundView = customColorView
             return cell
         })
     }
@@ -75,7 +74,6 @@ class PartnerSettingVC: UIViewController {
     }
     
     private func addMatchedEventListener() {
-        
         guard let partner = profilePartnerUser else {return}
         
         matchedEventListener = collectionReference.whereField(
@@ -104,10 +102,7 @@ class PartnerSettingVC: UIViewController {
                         self.partnerView.historyTable.isHidden = false
                         self.partnerView.noEventsLabel.isHidden = true
                    }
-                    print("inviteList: \(eventList)")
                     self.matchedEvents = eventList
-                
-                   
                })
        }
     
@@ -127,36 +122,22 @@ class PartnerSettingVC: UIViewController {
              }
          }
     
-    private func getMatchedEvents(coupleID: String) {
-        FirestoreService.manager.getMatchedHistory(coupleID: coupleID) { (result) in
-            switch result {
-            case .success(let matchedEventsOnline):
-                self.matchedEvents = matchedEventsOnline
-            case .failure(let error):
-                print("unable to get matched Events \(error)")
-            }
+     private func addObjcFunctionToRemovePartnerButton() {
+            partnerView.removePartnerButton.addTarget(self, action: #selector(removePartner), for: .touchUpInside)
         }
-    }
-    
-//     private func addObjcFunctionToRemovePartnerButton() {
-//            partnerView.removePartnerButton.addTarget(self, action: #selector(removePartner), for: .touchUpInside)
-//        }
-//
-     /*   @objc private func removePartner() {
-        // determine when we want to remove the invites sent from a a user
-            
-            
-            
+
+       @objc private func removePartner() {
+
             FirestoreService.manager.deleteMatchedEvents(coupleID: profilePartnerUser?.coupleID) { [weak self](result) in
                 self?.handlePartnerRemoval(result: result)
             }
-            
-          
+
+
             FirestoreService.manager.removePartnerReferencesInUserCollection(uid: Auth.auth().currentUser?.uid, partnerUID: profilePartnerUser?.uid) { [weak self](result) in
                 self?.handlePartnerRemoval(result: result)
             }
     }
-    
+
     private func handlePartnerRemoval(result:Result<(),AppError>) {
         switch result {
         case .failure(let error):
@@ -164,13 +145,13 @@ class PartnerSettingVC: UIViewController {
         case .success():
             print("successfully removed partner reference")
         }
-    }*/
+    }
 }
 
 extension PartnerSettingVC : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("***** selecting tableview \(indexPath.row)")
         let matchedVC = MatchedEventVC()
+        matchedVC.matchedView.matchLabel.isHidden = true
         matchedVC.event = matchedEvents[indexPath.row]
         present(matchedVC, animated: true, completion: nil)
     }
