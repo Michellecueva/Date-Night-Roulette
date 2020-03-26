@@ -63,13 +63,20 @@ class EventCardTrio: UIView {
         eventCardTwoConstraints()
         eventCardThreeConstraints()
         initialCardSetup()
-        
+        changeBackgroundColors()
     }
     
     private func addSubviews() {
                self.addSubview(eventCardThree)
                self.addSubview(eventCardTwo)
                self.addSubview(eventCardOne)
+    }
+    private func changeBackgroundColors() {
+        eventCardOne.backgroundColor = StyleGuide.AppColors.backgroundColor
+        eventCardTwo.backgroundColor = StyleGuide.AppColors.backgroundColor
+        eventCardThree.backgroundColor = StyleGuide.AppColors.backgroundColor
+
+        
     }
     
     private func initialCardSetup() {

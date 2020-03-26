@@ -130,7 +130,7 @@ detailView.frame = imageView.frame
                 imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor,constant: self.frame.height * 0.01),
                 imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
                 imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-                imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+                imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: -UIScreen.main.bounds.height * 0.05)
             ])
         
     }
