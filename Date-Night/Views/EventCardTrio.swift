@@ -10,26 +10,9 @@ import UIKit
 
 class EventCardTrio: UIView {
 
-//    lazy var eventCardOne: = EventCard()
-//   lazy var eventCardTwo = EventCard()
-//   lazy var eventCardThree = EventCard()
-    lazy var eventCardOne:EventCard = {
-    let event = EventCard()
-        event.layer.setCustomLayer(radius: 5)
-        return event
-    }()
-    
-     lazy var eventCardTwo:EventCard = {
-     let event = EventCard()
-         event.layer.setCustomLayer(radius: 5)
-         return event
-     }()
-    
-     lazy var eventCardThree:EventCard = {
-     let event = EventCard()
-         event.layer.setCustomLayer(radius: 5)
-         return event
-     }()
+  lazy var eventCardOne = EventCard()
+   lazy var eventCardTwo = EventCard()
+   lazy var eventCardThree = EventCard()
     
     var firstCard:EventCard? {
         didSet {
@@ -37,8 +20,7 @@ class EventCardTrio: UIView {
                 self?.firstCard?.transform = .identity
                 self?.firstCard?.titleLabel.alpha = 1.0
                 self?.firstCard?.imageView.isOpaque = true
-                self?.firstCard?.layer.borderColor = StyleGuide.AppColors.primaryColor.cgColor
-            }
+        }
         }
     }
     var secondCard:EventCard? {
@@ -46,9 +28,8 @@ class EventCardTrio: UIView {
             secondCard?.titleLabel.alpha = 0.0
             secondCard?.imageView.isOpaque = false
             UIView.animate(withDuration: 0.2) { [weak self] in
-                self?.secondCard?.transform = CGAffineTransform(translationX: 1, y: (self?.frame.height ?? 0) * 0.05).scaledBy(x: 0.9, y: 1.0)
-              self?.secondCard?.layer.borderColor = StyleGuide.AppColors.primaryColor.cgColor
-
+                self?.secondCard?.transform = CGAffineTransform(translationX: 1, y: (self?.frame.height ?? 0) * 0.04).scaledBy(x: 0.8, y: 1)
+              
             }
         }
     }
@@ -58,8 +39,8 @@ class EventCardTrio: UIView {
             thirdCard?.imageView.isOpaque = false
             UIView.animate(withDuration: 0.2) { [weak self] in
                 
-                self?.thirdCard?.transform = CGAffineTransform(translationX: 1, y: (self?.frame.height ?? 0) * 0.10).scaledBy(x: 0.8, y: 1.0)
-                self?.thirdCard?.layer.borderColor = StyleGuide.AppColors.primaryColor.cgColor
+                self?.thirdCard?.transform = CGAffineTransform(translationX: 1, y: (self?.frame.height ?? 0) * 0.08).scaledBy(x: 0.7, y: 1)
+               
               }
         }
     }
@@ -94,7 +75,6 @@ class EventCardTrio: UIView {
         eventCardOne.backgroundColor = StyleGuide.AppColors.backgroundColor
         eventCardTwo.backgroundColor = StyleGuide.AppColors.backgroundColor
         eventCardThree.backgroundColor = StyleGuide.AppColors.backgroundColor
-       
 
         
     }
