@@ -2,26 +2,19 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
-import UserNotifications
+//import UserNotifications
 
 
-//shake gesture only works on first responder
+
+
 class DisplayEventsVC: UIViewController {
     
     var eventIndexCount = 0
     
     var event: FBEvents!
-    
+    var storedEvents:[FBEvents] = []
     var displayEventView = DisplayEventView()
-    var fbEvents:[FBEvents] = [] {
-        didSet {
-            
-            print(fbEvents.count)
-            
-        }
-    }
-    let animator = UIViewPropertyAnimator(duration: 0.5, curve: .linear)
-    var visualEffectView = UIVisualEffectView()
+    var fbEvents:[FBEvents] = []
     var eventsLiked = [String]() {
         didSet {
             UserDefaultsWrapper.standard.store(eventsLikedArr: eventsLiked)
@@ -59,13 +52,10 @@ class DisplayEventsVC: UIViewController {
         super.viewDidLoad()
         view.addSubview(displayEventView)
         view.backgroundColor = .black
-        animator.addAnimations {
-            self.visualEffectView.effect = UIBlurEffect(style: .regular)
-        }
-        UNUserNotificationCenter.current().delegate = self
-
+       // UNUserNotificationCenter.current().delegate = self
+        
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.makeNavBarTranslucent()
@@ -95,8 +85,8 @@ class DisplayEventsVC: UIViewController {
         
         displayEventView.eventCard.insertSubview(card, at: 0)
         setCards()
-        card.layer.borderColor = .none
-        card.layer.borderWidth = 0
+       // card.layer.borderColor = .none
+       // card.layer.borderWidth = 0
     }
     
     private func setCards() {
@@ -109,6 +99,7 @@ class DisplayEventsVC: UIViewController {
             switch card {
             case 0:
                 displayEventView.eventCard.firstCard = displayEventView.eventCard.queue[card]
+                storedEvents.remove(at: 0)
                 
                 if  displayEventView.eventCard.queue[card].gestureRecognizers?.count ?? 1 < 2 {
                     displayEventView.eventCard.queue[card].addGestureRecognizer(panGestureRecognizer)
@@ -165,7 +156,7 @@ class DisplayEventsVC: UIViewController {
     private func addObjcFunctionsToViewButtons() {
         displayEventView.confirmButton.addTarget(self, action: #selector(likedButtonPressed), for: .touchUpInside)
     }
-
+    
     @objc private func panGesture(sender:UIPanGestureRecognizer)
         
     {
@@ -175,8 +166,8 @@ class DisplayEventsVC: UIViewController {
         
         //      uncomment when bug is fixed -view.center.y makes the card move to the bottom of the screen-
         //        card?.center = CGPoint(x: view.center.x + pointer.x, y: view.center.y + pointer.y)
-
-          card?.center.x = view.center.x + pointer.x
+        
+        card?.center.x = view.center.x + pointer.x
         
         let xFromCenter = (card?.center.x)! - view.center.x
         let rotation = (xFromCenter / (view.frame.width / 2)) * 0.93
@@ -186,17 +177,17 @@ class DisplayEventsVC: UIViewController {
         let distanceFromCenterToTheLeft = view.center.x * -0.50
         
         let scaler = min(abs(80/xFromCenter), 1)
-     
+        
         card?.transform = CGAffineTransform(rotationAngle: rotation).scaledBy(x: scaler, y: scaler)
         
         if xFromCenter > 0 {
-            card?.layer.borderWidth = 5
+            card?.layer.borderWidth = 2
             card?.layer.borderColor = UIColor.green.withAlphaComponent(abs(xFromCenter / view.center.x)).cgColor
             
-           // displayEventView.eventCard.secondCard?.transform = CGAffineTransform(translationX: <#T##CGFloat#>, y: <#T##CGFloat#>)
+            // displayEventView.eventCard.secondCard?.transform = CGAffineTransform(translationX: <#T##CGFloat#>, y: <#T##CGFloat#>)
             
         } else if xFromCenter < 0 {
-            card?.layer.borderWidth = 5
+            card?.layer.borderWidth = 2
             card?.layer.borderColor = UIColor.red.withAlphaComponent(abs(xFromCenter / view.center.x)).cgColor
         }
         
@@ -207,18 +198,20 @@ class DisplayEventsVC: UIViewController {
                 UIView.animate(withDuration: 0.2) {
                     
                     card?.center.x = self.view.center.x
-                    card?.layer.borderWidth = 0
-                    card?.layer.borderColor = .none
+                 //   card?.layer.borderWidth = 0
+                  //  card?.layer.borderColor = .none
                     card?.transform = .identity
+                    card?.layer.borderColor = StyleGuide.AppColors.primaryColor.cgColor
                 }
                 return
             } else if xFromCenter < 0 && xFromCenter > distanceFromCenterToTheLeft {
                 
                 UIView.animate(withDuration: 0.2) {
                     card?.center.x = self.view.center.x
-                    card?.layer.borderWidth = 0
-                    card?.layer.borderColor = .none
+                   // card?.layer.borderWidth = 0
+                  //  card?.layer.borderColor = .none
                     card?.transform = .identity
+ card?.layer.borderColor = StyleGuide.AppColors.primaryColor.cgColor
                 }
                 return
             } else if xFromCenter >= distanceFromCenterToTheRight {
@@ -238,7 +231,7 @@ class DisplayEventsVC: UIViewController {
             } else if xFromCenter <= distanceFromCenterToTheLeft
             {
                 UIView.animate(withDuration: 0.5, animations: {
-                
+                    
                     card?.center = CGPoint(x: self.view.frame.maxX - (self.view.frame.width * 1.5), y: ((card?.center.y)!) + (card?.superview?.frame.height)! * 0.05)
                 })
                 if self.displayEventView.eventCard.queue.count < self.fbEvents.count {
@@ -255,7 +248,8 @@ class DisplayEventsVC: UIViewController {
     }
     
     @objc private func likedButtonPressed() {
-        guard let lastEvent = fbEvents.last else {return}
+        
+        guard let lastEvent = storedEvents.first else {return}
         event = lastEvent
         eventsLiked.append(event.eventID)
         updateEventsLikedOnFirebase(eventsLiked: eventsLiked)
@@ -265,14 +259,14 @@ class DisplayEventsVC: UIViewController {
             let eventTitle = event.title == "" ? "Title Unavailable" : event.title!
             let matchedEvent = MatchedEvent(coupleID: coupleID, title: eventTitle, eventID: event.eventID, address: event.address, description: event.description, imageURL: event.imageURL, websiteURL: event.websiteURL, type: event.type)
             createMatchedEvent(matchedEvent: matchedEvent)
-            updateHasMatchedField(hasMatched: true)
             segueToMatchedVC()
-            UNNotification.configureNotifications(title: "It's a Match!", body: "You've Matched Events With Your Partner", time: 0.1, categoryIdentifier: "matched")
-            //            matchAlert(title: "It's a Match!", message: "You've Matched Events With Your Partner")
+            
+            matchAlert(title: "It's a Match!", message: "You've Matched Events With Your Partner")
             clearEventsLikedArr()
+
         }
     }
-
+    
     private func getPriorEventsLiked() {
         if let eventsArr = UserDefaultsWrapper.standard.getEventsLiked() {
             guard eventsArr.count > 0 else {return}
@@ -314,10 +308,12 @@ class DisplayEventsVC: UIViewController {
     }
     
     private func createMatchedEvent(matchedEvent: MatchedEvent) {
-        FirestoreService.manager.createMatchedEvent(matchedEvent: matchedEvent) { (result) in
+        FirestoreService.manager.createMatchedEvent(matchedEvent: matchedEvent) { [weak self] (result) in
             switch result {
             case .success(()):
                 print("able to save matched event")
+                self?.updateHasMatchedField(hasMatched: true)
+
             case .failure(let error):
                 print("not able to save matched event \(error)")
             }
@@ -371,23 +367,25 @@ class DisplayEventsVC: UIViewController {
                 
                 if userList[0].hasMatched == true {
                     // push notification sent instead of alert
+                    
+//                    UNNotification.configureNotifications(title: "It's a Match!", body: "You've Matched Events With Your Partner", time: 0.1, categoryIdentifier: "matched")
+                    
                     self.matchAlert(title: "It's a Match!", message: "You have a match")
                 }
             })
     }
     private func setUpView(event:FBEvents?,card:EventCard?) {
         guard let event = event else {return}
-        
+        storedEvents.append(event)
         card?.layoutTitleLabel(event: event)
         card?.layoutDetailView(from:event)
-        
+        //   card?.storeRelevantData(from: event)
         if let image = event.imageURL {
             
             //remember to stop user interaction until image finishes loading
             ImageHelper.shared.getImage(urlStr: image) { (result) in
                 DispatchQueue.main.async {
-                    
-                    
+                 
                     switch result {
                     case .failure(let error):
                         print(error)
@@ -403,8 +401,14 @@ class DisplayEventsVC: UIViewController {
         }
     }
 }
-extension DisplayEventsVC: UNUserNotificationCenterDelegate {
-  func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-    completionHandler([.alert, .sound])
-  }
-}
+//extension DisplayEventsVC: UNUserNotificationCenterDelegate {
+//    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+//        completionHandler([.alert, .sound])
+//    }
+//    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+//        let matched = MatchedEventVC()
+//        matched.newImage = self.displayEventView.eventCard.firstCard?.imageView.image
+//        matched.event = self.event
+//        self.navigationController?.pushViewController(matched, animated: true)
+//    }
+//}
