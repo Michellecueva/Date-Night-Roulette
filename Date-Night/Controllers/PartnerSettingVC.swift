@@ -46,7 +46,7 @@ class PartnerSettingVC: UIViewController {
         view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         view.addSubview(partnerView)
         configureDataSource()
-        //addObjcFunctionToRemovePartnerButton()
+        addObjcFunctionToRemovePartnerButton()
         self.partnerView.historyTable.delegate = self
     }
     
@@ -118,32 +118,31 @@ class PartnerSettingVC: UIViewController {
                  }
              }
          }
-
     
-//     private func addObjcFunctionToRemovePartnerButton() {
-//            partnerView.removePartnerButton.addTarget(self, action: #selector(removePartner), for: .touchUpInside)
-//        }
-//
-//       @objc private func removePartner() {
-//
-//            FirestoreService.manager.deleteMatchedEvents(coupleID: profilePartnerUser?.coupleID) { [weak self](result) in
-//                self?.handlePartnerRemoval(result: result)
-//            }
-//
-//
-//            FirestoreService.manager.removePartnerReferencesInUserCollection(uid: Auth.auth().currentUser?.uid, partnerUID: profilePartnerUser?.uid) { [weak self](result) in
-//                self?.handlePartnerRemoval(result: result)
-//            }
-//    }
-//
-//    private func handlePartnerRemoval(result:Result<(),AppError>) {
-//        switch result {
-//        case .failure(let error):
-//            print(error)
-//        case .success():
-//            print("successfully removed partner reference")
-//        }
-//    }
+     private func addObjcFunctionToRemovePartnerButton() {
+            partnerView.removePartnerButton.addTarget(self, action: #selector(removePartner), for: .touchUpInside)
+        }
+
+       @objc private func removePartner() {
+
+            FirestoreService.manager.deleteMatchedEvents(coupleID: profilePartnerUser?.coupleID) { [weak self](result) in
+                self?.handlePartnerRemoval(result: result)
+            }
+
+
+            FirestoreService.manager.removePartnerReferencesInUserCollection(uid: Auth.auth().currentUser?.uid, partnerUID: profilePartnerUser?.uid) { [weak self](result) in
+                self?.handlePartnerRemoval(result: result)
+            }
+    }
+
+    private func handlePartnerRemoval(result:Result<(),AppError>) {
+        switch result {
+        case .failure(let error):
+            print(error)
+        case .success():
+            print("successfully removed partner reference")
+        }
+    }
 }
 
 extension PartnerSettingVC : UITableViewDelegate {
