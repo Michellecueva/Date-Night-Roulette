@@ -79,19 +79,19 @@ class ProfileSettingView: UIView {
           return label
       }()
     */
-//    lazy var logoutButton: UIButton = {
-//        let button = UIButton(type: .system)
-//        button.setTitle("Logout", for: .normal)
-//        button.setTitleColor(StyleGuide.ButtonStyle.fontColor, for: .normal)
-//        button.titleLabel?.font = UIFont(name: StyleGuide.ButtonStyle.fontName, size: StyleGuide.ButtonStyle.fontSize)
-//        button.backgroundColor = StyleGuide.ButtonStyle.backgroundColor
-//        button.layer.cornerRadius = StyleGuide.ButtonStyle.cornerRadius
-//        button.layer.borderColor = StyleGuide.ButtonStyle.borderColor
-//        button.layer.borderWidth = StyleGuide.ButtonStyle.altBorderWidth
-//        button.isEnabled = true
-//        return button
-//    }()
-//
+    lazy var logoutButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Logout", for: .normal)
+        button.setTitleColor(StyleGuide.ButtonStyle.fontColor, for: .normal)
+        button.titleLabel?.font = UIFont(name: StyleGuide.ButtonStyle.fontName, size: StyleGuide.ButtonStyle.fontSize)
+        button.backgroundColor = StyleGuide.ButtonStyle.backgroundColor
+        button.layer.cornerRadius = StyleGuide.ButtonStyle.cornerRadius
+        button.layer.borderColor = StyleGuide.ButtonStyle.borderColor
+        button.layer.borderWidth = StyleGuide.ButtonStyle.altBorderWidth
+        button.isEnabled = true
+        return button
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         self.backgroundColor = StyleGuide.AppColors.backgroundColor
@@ -111,7 +111,7 @@ class ProfileSettingView: UIView {
         self.addSubview(userNameLabel)
         self.addSubview(partnerEmailLabel)
         self.addSubview(partnerEmailDisplayLabel)
-       //self.addSubview(logoutButton)
+        self.addSubview(logoutButton)
         
     }
     
@@ -122,7 +122,7 @@ class ProfileSettingView: UIView {
         setUserNameLabelConstraints()
         setPartnerEmailLabelConstraints()
         setPartnerEmailDisplayConstraints()
-        //setLogOutButtonConstraints()
+        setLogOutButtonConstraints()
     }
     
     
@@ -181,14 +181,14 @@ class ProfileSettingView: UIView {
         ])
     }
     
-//    private func setLogOutButtonConstraints() {
-//        logoutButton.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            logoutButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -70),
-//            logoutButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-//            logoutButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.25),
-//            logoutButton.heightAnchor.constraint(equalToConstant: 35)
-//        ])
-//    }
+    private func setLogOutButtonConstraints() {
+        logoutButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            logoutButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -70),
+            logoutButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            logoutButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.25),
+            logoutButton.heightAnchor.constraint(equalToConstant: 35)
+        ])
+    }
 }
 
