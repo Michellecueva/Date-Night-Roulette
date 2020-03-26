@@ -85,7 +85,6 @@ class DisplayEventsVC: UIViewController {
         
     }
     
-    
     private func enqueueAndDequeue(card:EventCard) {
         
         displayEventView.eventCard.queue.remove(at: 0)
@@ -271,10 +270,6 @@ class DisplayEventsVC: UIViewController {
             UNNotification.configureNotifications(title: "It's a Match!", body: "You've Matched Events With Your Partner", time: 0.1, categoryIdentifier: "matched")
             //            matchAlert(title: "It's a Match!", message: "You've Matched Events With Your Partner")
             clearEventsLikedArr()
-            
-        }else {
-            //            in the future prevent liked events from showing up at all
-            //            fbEvents.popLast()
         }
     }
 
@@ -331,7 +326,6 @@ class DisplayEventsVC: UIViewController {
     
     private func segueToMatchedVC() {
         let matched = MatchedEventVC()
-        matched.newImage = self.displayEventView.eventCard.firstCard?.imageView.image
         matched.event = self.event
         self.navigationController?.pushViewController(matched, animated: true)
         updateHasMatchedField(hasMatched: false)
@@ -339,21 +333,15 @@ class DisplayEventsVC: UIViewController {
     }
     
     private func matchAlert(title:String,message:String) {
-        //move to extension
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let confirmMatch = UIAlertAction(title: "Confirm", style: .default) { (response) in
-            
+        let ok = UIAlertAction(title: "Okay", style: .default) { (response) in
             let matched = MatchedEventVC()
-            matched.newImage = self.displayEventView.eventCard.firstCard?.imageView.image
             matched.event = self.event
             self.navigationController?.pushViewController(matched, animated: true)
-            
         }
-        let deny = UIAlertAction(title: "Deny", style: .destructive)
         
-        alertController.addAction(confirmMatch)
-        alertController.addAction(deny)
+        alertController.addAction(ok)
         present(alertController,animated: true)
     }
     
