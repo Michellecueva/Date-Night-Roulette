@@ -23,6 +23,7 @@ class EventCard: UIView {
     }()
     let imageView:UIImageView = {
         let iv = UIImageView()
+        iv.backgroundColor = StyleGuide.AppColors.backgroundColor
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
         return iv

@@ -86,7 +86,7 @@ class SwipingContainerViewController: UIViewController {
   func setUpScrollView() {
     
     scrollView.alwaysBounceVertical = false
-    scrollView.backgroundColor = #colorLiteral(red: 0.9164920449, green: 0.7743749022, blue: 0.9852260947, alpha: 1)
+    scrollView.backgroundColor = StyleGuide.AppColors.backgroundColor
     scrollView.isPagingEnabled = true
     view.addSubview(scrollView)
     scrollView.delegate = self
