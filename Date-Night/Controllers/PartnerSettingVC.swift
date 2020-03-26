@@ -59,6 +59,9 @@ class PartnerSettingVC: UIViewController {
         dataSource = UITableViewDiffableDataSource<Section, MatchedEvent>(tableView: partnerView.historyTable, cellProvider: { (tableView, indexPath, MatchedEvents) -> UITableViewCell? in
             let cell = tableView.dequeueReusableCell(withIdentifier: MatchedCell.identifier, for: indexPath) as! MatchedCell
             cell.configureCell(with: MatchedEvents, row: indexPath.row)
+            let customColorView = UIView()
+            customColorView.backgroundColor = #colorLiteral(red: 0.4663916826, green: 0.3947991133, blue: 0.5015093088, alpha: 0.5466579861)
+            cell.selectedBackgroundView = customColorView
             return cell
         })
     }
