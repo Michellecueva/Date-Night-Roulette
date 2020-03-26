@@ -41,7 +41,6 @@
 		0BEF6968242AAD47001B2F03 /* AccountSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEF6967242AAD47001B2F03 /* AccountSettingsVC.swift */; };
 		0BEF696A242BB894001B2F03 /* NoPartnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEF6969242BB894001B2F03 /* NoPartnerView.swift */; };
 		0BEF696C242BC8F4001B2F03 /* NoPartnerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEF696B242BC8F4001B2F03 /* NoPartnerVC.swift */; };
-		28313C732412153F005F14BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28313C722412153F005F14BF /* GoogleService-Info.plist */; };
 		28313C7524121564005F14BF /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28313C7424121564005F14BF /* Secrets.swift */; };
 		28381B7A242966840010AC6C /* EventsShown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28381B79242966840010AC6C /* EventsShown.swift */; };
 		283823C223E885050031327E /* Invites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283823C123E885050031327E /* Invites.swift */; };
@@ -86,6 +85,7 @@
 		69CE863A23F716C7001E1327 /* ViewControllerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE863923F716C6001E1327 /* ViewControllerConfig.swift */; };
 		69CE863B23F718BA001E1327 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE863023F715A9001E1327 /* Enums.swift */; };
 		69D76765242C1AD700B06B2A /* EventCardTrio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D76764242C1AD700B06B2A /* EventCardTrio.swift */; };
+		69D767D4242D090A00B06B2A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 69D767D3242D090A00B06B2A /* GoogleService-Info.plist */; };
 		6BD4DEF7BB09901D06486257 /* Pods_Date_NightTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430EC1B11EDEEA43E7890593 /* Pods_Date_NightTests.framework */; };
 		7401EF4723ECAB45000C322B /* DiscoverEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401EF4623ECAB45000C322B /* DiscoverEventView.swift */; };
 		7401EF4923ECAB81000C322B /* DiscoverEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7401EF4823ECAB81000C322B /* DiscoverEventVC.swift */; };
@@ -145,7 +145,6 @@
 		0BEF6967242AAD47001B2F03 /* AccountSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsVC.swift; sourceTree = "<group>"; };
 		0BEF6969242BB894001B2F03 /* NoPartnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPartnerView.swift; sourceTree = "<group>"; };
 		0BEF696B242BC8F4001B2F03 /* NoPartnerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPartnerVC.swift; sourceTree = "<group>"; };
-		28313C722412153F005F14BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		28313C7424121564005F14BF /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		28381B79242966840010AC6C /* EventsShown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsShown.swift; sourceTree = "<group>"; };
 		283823C123E885050031327E /* Invites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invites.swift; sourceTree = "<group>"; };
@@ -194,6 +193,7 @@
 		69CE863423F715FF001E1327 /* InvitesPendingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvitesPendingDelegate.swift; sourceTree = "<group>"; };
 		69CE863923F716C6001E1327 /* ViewControllerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerConfig.swift; sourceTree = "<group>"; };
 		69D76764242C1AD700B06B2A /* EventCardTrio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCardTrio.swift; sourceTree = "<group>"; };
+		69D767D3242D090A00B06B2A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7401EF4623ECAB45000C322B /* DiscoverEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverEventView.swift; sourceTree = "<group>"; };
 		7401EF4823ECAB81000C322B /* DiscoverEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverEventVC.swift; sourceTree = "<group>"; };
 		7401EF6923F1C53D000C322B /* PartnerSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerSettingVC.swift; sourceTree = "<group>"; };
@@ -269,7 +269,7 @@
 				2862B67823DFEA860047B47B /* Extensions */,
 				2862B66423DFE0570047B47B /* SupportingFiles */,
 				2862B60B23DD47160047B47B /* Info.plist */,
-				28313C722412153F005F14BF /* GoogleService-Info.plist */,
+				69D767D3242D090A00B06B2A /* GoogleService-Info.plist */,
 				2862B60323DD47130047B47B /* Date_Night.xcdatamodeld */,
 			);
 			path = "Date-Night";
@@ -545,13 +545,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2862B60A23DD47160047B47B /* LaunchScreen.storyboard in Resources */,
-				28313C732412153F005F14BF /* GoogleService-Info.plist in Resources */,
 				0BBFCD3823E8CEB000E039A7 /* seatGeekAPI.json in Resources */,
 				0B38E7D224007961003D05CE /* events.json in Resources */,
 				0B38E7D324007B0B003D05CE /* Categories.json in Resources */,
 				0B38E7D224007961003D05CE /* events.json in Resources */,
 				0B4DC89D2423E0E3006F2B35 /* YelpBusinessEndpoint.json in Resources */,
 				0B38E7D324007B0B003D05CE /* Categories.json in Resources */,
+				69D767D4242D090A00B06B2A /* GoogleService-Info.plist in Resources */,
 				2862B60723DD47160047B47B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
