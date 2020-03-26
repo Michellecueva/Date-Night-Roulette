@@ -71,6 +71,7 @@ class PreferenceVC: UIViewController, UICollectionViewDelegate, UICollectionView
                 print("couldn't save preferences")
             case .success():
                 print("saved Preferences")
+                self.dismiss(animated: true, completion: nil)
                 
             }
         }
