@@ -25,6 +25,7 @@ class SignUpVC: UIViewController {
         setUpScrollView()
     }
     private func addDelegates() {
+        signUpView.displayName.delegate = self
         signUpView.emailTextField.delegate = self
         signUpView.passwordTextField.delegate = self
         signUpView.confirmPasswordTextField.delegate = self
@@ -291,8 +292,11 @@ extension SignUpVC:UITextFieldDelegate {
             print("")
         }
         print(textField.tag)
-        
-        
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 
