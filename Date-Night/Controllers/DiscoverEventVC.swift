@@ -96,9 +96,8 @@ class DiscoverEventVC: UIViewController {
     }
     
     private func getEvents(arrayOfPreferences:Set<String>) {
-      //check matched events to see stop events you've already added from showing up in get events
+        //check matched events to see stop events you've already added from showing up in get events
         let group = DispatchGroup()
-        
         
         for preferences in arrayOfPreferences {
             group.enter()
@@ -113,11 +112,41 @@ class DiscoverEventVC: UIViewController {
                 }
             }
         }
-     
+        
+        
         group.notify(queue: .main) {
-            self.discover.customActivityIndc.stopAnimating()
-            self.shakeGestureDelegateFunction()
-            self.remove()
+
+            FirestoreService.manager.getMatchedHistory(coupleID: (self.discoverEventCurrentUser?.coupleID)!) { (result) in
+                group.enter()
+                switch result {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                case .success(let events):
+                    for event in events {
+                        self.arrayOfEvents = self.arrayOfEvents.filter({$0.eventId != event.eventId})
+                    }
+                    self.discover.customActivityIndc.stopAnimating()
+                    self.shakeGestureDelegateFunction()
+                    self.remove()
+                }
+            }
+            
         }
+    }
+
+    private func getMatchedHistory() {
+        guard let coupleID = discoverEventCurrentUser?.coupleID else {return}
+        
+        FirestoreService.manager.getMatchedHistory(coupleID: coupleID) { (result) in
+                  switch result {
+                  case .success(let matchedEventsFromOnline):
+                      for matchedEvent in matchedEventsFromOnline {
+                          
+                      }
+                      
+                  case .failure(let error):
+                      print("unable to get matched history ")
+                  }
+              }
     }
 }

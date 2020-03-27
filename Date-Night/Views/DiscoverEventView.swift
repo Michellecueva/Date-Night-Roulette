@@ -38,6 +38,7 @@ class DiscoverEventView: UIView {
         button.layer.cornerRadius = StyleGuide.ButtonStyle.cornerRadius
         button.layer.borderColor = StyleGuide.ButtonStyle.borderColor
         button.layer.borderWidth = StyleGuide.ButtonStyle.borderWidth
+        button.isHidden = true
         button.isEnabled = true
         return button
     }()

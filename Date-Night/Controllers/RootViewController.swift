@@ -419,20 +419,22 @@ class RootViewController: UIViewController{
         navigationItem.leftBarButtonItem?.isEnabled = false
     }
 }
-extension RootViewController: SwipingContainerViewControllerDelegate {
-    func swipingViewControllerDidEndDeceleratingOnPage(swippingViewController: SwipingContainerViewController, page: Int) {
-        print(page)
-        pageControl.currentPage = page
-        if page == 0 || page == 2 {
-            navigationItem.rightBarButtonItem?.isEnabled = false
-            navigationItem.leftBarButtonItem?.isEnabled = false
-        } else {
-                       navigationItem.rightBarButtonItem?.isEnabled = true
-                       navigationItem.leftBarButtonItem?.isEnabled = true
 
-        }
+extension RootViewController: SwipingContainerViewControllerDelegate {
+  func swipingViewControllerDidEndDeceleratingOnPage(swippingViewController: SwipingContainerViewController, page: Int) {
+    print(page)
+    pageControl.currentPage = page
+    if page == 0 || page == 2 {
+      navigationItem.rightBarButtonItem?.isEnabled = false
+      navigationItem.leftBarButtonItem?.isEnabled = false
+      swippingViewController.scrollView.bounces = false
+    } else {
+            navigationItem.rightBarButtonItem?.isEnabled = true
+            navigationItem.leftBarButtonItem?.isEnabled = true
     }
+  }
 }
+
 
 extension RootViewController:fbEventsDelegate {
     func sendEventDataToShakeVC(fbEvents: [FBEvents]) {
@@ -447,3 +449,5 @@ extension RootViewController: UNUserNotificationCenterDelegate {
     completionHandler([.alert, .sound])
   }
 }
+
+
