@@ -27,16 +27,28 @@ class CustomIndictator: UIImageView {
          self.contentMode = .scaleAspectFit
          self.clipsToBounds = true
          self.image = UIImage(named:"splashLogo")
-         self.beginAnimation()
+         self.isHidden = true
     }
-    
     public func setToCenter(view:UIView, sizeRelativeToView:CGFloat) {
         
         self.frame = CGRect(x: 0, y: 0, width: view.frame.width * sizeRelativeToView, height: view.frame.height * sizeRelativeToView)
         self.center = view.center
     }
     
-    public func stopAnimatingAndHide() {
-        self.removeFromSuperview()
+    override func stopAnimating() {
+        self.isHidden = true
+        self.removeRotation()
+    }
+    override func startAnimating() {
+        self.isHidden = false
+          let rotation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+          rotation.toValue = NSNumber(value: Double.pi * 1)
+          rotation.duration = 1
+          rotation.isCumulative = true
+          rotation.repeatCount = Float.greatestFiniteMagnitude
+          self.layer.add(rotation, forKey: "rotationAnimation")
+    }
+    private func removeRotation() {
+        self.layer.removeAnimation(forKey: "rotationAnimation")
     }
 }
