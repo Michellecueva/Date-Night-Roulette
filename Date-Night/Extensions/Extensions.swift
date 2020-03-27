@@ -89,6 +89,15 @@ extension UIView {
         self.layer.insertSublayer(gradientLayer, at: 0)
         
     }
+        public func beginAnimation() {
+            UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear, animations: { () -> Void in
+                     self.transform = self.transform.rotated(by: .pi / 2)
+                 }) { (finished) -> Void in
+                     self.beginAnimation()
+                    }
+            }
+    
+
 }
 
 extension UILabel {
