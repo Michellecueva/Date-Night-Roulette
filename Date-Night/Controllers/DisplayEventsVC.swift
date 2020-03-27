@@ -91,7 +91,7 @@ class DisplayEventsVC: UIViewController {
         //implement check if number of events is **initially** lower than the number of eventCards
         
         guard displayEventView.eventCard.queue.count - 1 > 0 else {
-            self.showAlert(title: "No more events", message: "What should we put here?")
+            self.showAlert(title: "No more events", message: "")
             return}
         for card in 0...displayEventView.eventCard.queue.count - 1 {
             switch card {
