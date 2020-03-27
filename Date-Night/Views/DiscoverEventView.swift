@@ -26,6 +26,8 @@ class DiscoverEventView: UIView {
         button.isEnabled = false
         return button
     }()
+    
+    lazy var customActivityIndc:CustomIndictator = CustomIndictator(frame: .zero)
 
     lazy var randomEventButton: UIButton = {
         let button = UIButton(type: .system)
@@ -66,27 +68,32 @@ class DiscoverEventView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
-        self.backgroundColor = StyleGuide.AppColors.backgroundColor
-        setSubviews()
-        setConstraints()
+        
+        commonInit()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: Obj-C Methods
+   
     
     
+    private func commonInit() {
+        setSubviews()
+        setConstraints()
+        self.backgroundColor = StyleGuide.AppColors.backgroundColor
+        customActivityIndc.setToCenter(view: self, sizeRelativeToView: 0.2)
+    }
     
     
-    //MARK:- Private functions
     
     
     //MARK: -UI Setup
     
     private func setSubviews() {
         self.addSubview(buttonStackView)
+        self.addSubview(customActivityIndc)
     }
     
     
