@@ -110,7 +110,7 @@ class SignInVC: UIViewController {
             return
         }
         
-       
+        self.viewSignIn.customActivityIndc.startAnimating()
         FirebaseAuthService.manager.loginUser(email: email.lowercased().trimmingCharacters(in: .whitespacesAndNewlines), password: password) { (result) in
             self.handleLoginResponse(vc: UINavigationController(rootViewController:RootViewController()), with: result)
         }
@@ -119,6 +119,7 @@ class SignInVC: UIViewController {
         switch result {
             
         case .success:
+            self.viewSignIn.customActivityIndc.stopAnimating()
             guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                 let sceneDelegate = windowScene.delegate as? SceneDelegate, let window = sceneDelegate.window
                 else {
@@ -133,6 +134,7 @@ class SignInVC: UIViewController {
                 }
             }, completion: nil)
         case .failure(let error):
+            self.viewSignIn.customActivityIndc.stopAnimating()
           if error.localizedDescription.contains("user record") {
                  self.showAlert(title: "Error", message: "This Email Address is Not Associated With an Account")
           } else {
