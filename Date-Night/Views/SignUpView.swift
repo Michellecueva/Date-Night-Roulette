@@ -83,6 +83,8 @@ class SignUpView: UIView {
            return newImage
        }()
     
+    lazy var customActivityIndc:CustomIndictator = CustomIndictator(frame: .zero)
+    
     lazy var warningImagePassword:UIImageView = {
               let newImage = UIImageView()
               newImage.image = UIImage(systemName: "exclamationmark.triangle")
@@ -178,7 +180,6 @@ class SignUpView: UIView {
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
-        self.backgroundColor = StyleGuide.AppColors.backgroundColor
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -187,9 +188,10 @@ class SignUpView: UIView {
     //MARK:- UI Setup
     
     private func commonInit() {
-        self.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        self.backgroundColor = StyleGuide.AppColors.backgroundColor
         setSubviews()
         setConstraints()
+        customActivityIndc.setToCenter(view: self, sizeRelativeToView: 0.2)
         
     }
     
@@ -197,6 +199,7 @@ class SignUpView: UIView {
         self.addSubview(titleLabel)
         self.addSubview(stackView)
         self.addSubview(createButton)
+        self.addSubview(customActivityIndc)
         
     }
     

@@ -45,6 +45,9 @@ class SignInView: UIView {
         return textField
     }()
     
+    lazy var customActivityIndc:CustomIndictator = CustomIndictator(frame: .zero)
+
+    
     lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Login", for: .normal)
@@ -79,15 +82,22 @@ class SignInView: UIView {
         return button
     }()
     
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
-        self.backgroundColor = StyleGuide.AppColors.backgroundColor
-        setSubviews()
-        setConstraints()
+       commonInit()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func commonInit() {
+        
+        self.backgroundColor = StyleGuide.AppColors.backgroundColor
+               setSubviews()
+               setConstraints()
+        customActivityIndc.setToCenter(view: self, sizeRelativeToView: 0.2)
     }
     
     //MARK: -UI Setup
@@ -98,6 +108,7 @@ class SignInView: UIView {
         self.addSubview(passwordField)
         self.addSubview(loginButton)
         self.addSubview(createAccountButton)
+        self.addSubview(customActivityIndc)
     }
     
     private func setConstraints() {
