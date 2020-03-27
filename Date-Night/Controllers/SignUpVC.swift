@@ -107,6 +107,7 @@ class SignUpVC: UIViewController {
     
     @objc func signUpButton() {
         
+        signUpView.customActivityIndc.startAnimating()
         
         signUpFunction(email: signUpView.emailTextField.text, password: signUpView.passwordTextField.text, confirmPassword: signUpView.confirmPasswordTextField.text, displayName: signUpView.displayName.text)
         
@@ -186,16 +187,20 @@ class SignUpVC: UIViewController {
         
         guard email.isValidEmail else {
             self.showAlert(title: "Error", message: "Invalid Email")
+            signUpView.customActivityIndc.stopAnimating()
             return
         }
         
         guard password.isValidPassword else {
+            signUpView.customActivityIndc.stopAnimating()
             self.showAlert(title: "Error", message: "Invalid Password Format")
-            
+         
+
             return
         }
         
         guard confirmPassword == password else {
+            signUpView.customActivityIndc.stopAnimating()
             self.showAlert(title: "Error", message: "Passwords Must Match")
             return
         }
@@ -214,23 +219,23 @@ class SignUpVC: UIViewController {
             switch result {
             case .failure(let error):
                 print(error)
-                
+                self.signUpView.customActivityIndc.stopAnimating()
             case.success(let user):
                 FirestoreService.manager.createAppUser(user: AppUser(from: user, coupleID: nil, preferences: [], eventsLiked: [])) { (result) in
                     FirestoreService.manager.updateCurrentUser(userName: displayName, photoURL: nil) { (result) in
                         switch result {
                         case .failure(let error):
                             print(error)
-                            
+                    self.signUpView.customActivityIndc.stopAnimating()
                         case .success():
                             FirebaseAuthService.manager.updateUserFields(name: displayName, photoURL: nil) { (result) in
                                 switch result {
                                 case .failure(let error):
                                     print(error)
-                                    
+                                    self.signUpView.customActivityIndc.stopAnimating()
                                 case .success():
                                     print("created user")
-                                    handleLoginResponse(vc: UINavigationController(rootViewController:RootViewController()), with: result)
+                                    self.handleLoginResponse(vc: UINavigationController(rootViewController:RootViewController()), with: result)
                                 }
                             }
                         }
@@ -239,23 +244,11 @@ class SignUpVC: UIViewController {
             }
         }
     }
-}
 
-private func updateUserFields(result:Result<User,AppError>,displayName:String) {
-    
-    FirebaseAuthService.manager.updateUserFields(name: displayName , photoURL: nil) { (result) in
-        switch result {
-        case .failure(let error):
-            print(error)
-            
-        case .success():
-            handleLoginResponse(vc: UINavigationController(rootViewController: RootViewController()), with: result)
-        }
-    }
-}
 
 private func handleLoginResponse(vc
     viewController:UINavigationController,with result: Result<(), Error>) {
+    self.signUpView.customActivityIndc.stopAnimating()
     switch result {
         
     case .success:
@@ -277,7 +270,7 @@ private func handleLoginResponse(vc
         print(error)
     }
 }
-
+}
 extension SignUpVC:UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField.tag {
