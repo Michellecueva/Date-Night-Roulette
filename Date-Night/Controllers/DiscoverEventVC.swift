@@ -16,11 +16,7 @@ class DiscoverEventVC: UIViewController {
      weak var delegate:ShakeGestureDelegate?
     
     
-    var discoverEventCurrentUser:AppUser? {
-        didSet {
-            print("discover event VC receieved currentUser\(print(discoverEventCurrentUser))")
-        }
-    }
+    var discoverEventCurrentUser:AppUser?
     
     private var partnerListener:ListenerRegistration?
     
@@ -77,7 +73,7 @@ class DiscoverEventVC: UIViewController {
     
     @objc private func goToDiscoverEvent() {
 
-       
+        discover.customActivityIndc.startAnimating()
         getEvents(arrayOfPreferences: setPreferencesForGetEvent(user: discoverEventCurrentUser, partner: discoverEventsPartnerUser))
         
 //        let shakeGestureVC = ShakeGestureVC()
@@ -119,6 +115,7 @@ class DiscoverEventVC: UIViewController {
         
         
         group.notify(queue: .main) {
+
             FirestoreService.manager.getMatchedHistory(coupleID: (self.discoverEventCurrentUser?.coupleID)!) { (result) in
                 group.enter()
                 switch result {
@@ -128,7 +125,7 @@ class DiscoverEventVC: UIViewController {
                     for event in events {
                         self.arrayOfEvents = self.arrayOfEvents.filter({$0.eventId != event.eventId})
                     }
-                    
+                    self.discover.customActivityIndc.stopAnimating()
                     self.shakeGestureDelegateFunction()
                     self.remove()
                 }
