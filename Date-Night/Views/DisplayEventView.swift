@@ -89,10 +89,11 @@ class DisplayEventView: UIView {
     private func setConfirmButtonConstraints() {
         confirmButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            confirmButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -150),
-            confirmButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            confirmButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5),
-            confirmButton.heightAnchor.constraint(equalToConstant: 30)
+            confirmButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -self.frame.height * 0.15),
+                      confirmButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                      confirmButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5),
+                      confirmButton.heightAnchor.constraint(equalToConstant: self.frame.height * 0.05)
+                    
         ])
     }
     

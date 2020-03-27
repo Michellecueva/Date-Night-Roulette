@@ -1,10 +1,3 @@
-//
-//  SwipingNavigationViewController.swift
-//  SwipingNavigation
-//
-//  Created by Andrew Overton on 2/10/20.
-//  Copyright © 2020 Andrew Overton. All rights reserved.
-//
 
 import UIKit
 
